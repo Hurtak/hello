@@ -1,16 +1,15 @@
 {
-	"name": "calendar",
-	"version": "0.1.0",
-	"dependencies": {
-		"fela": "^5.1.0",
-		"react": "15.6.1",
-		"react-dom": "15.6.1",
-		"react-fela": "5.2.0",
-		"react-scripts": "1.0.10"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test --env=jsdom"
-	}
+  "name": "calendar",
+  "version": "0.1.0",
+  "dependencies": {
+    "classnames": "2.2.5",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-scripts": "1.0.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom"
+  }
 }

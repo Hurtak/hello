@@ -1,4 +1,3 @@
 {
-	"editor.formatOnSave": true,
-	"standard.enable": false
+  "editor.formatOnSave": true
 }

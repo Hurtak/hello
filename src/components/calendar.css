@@ -1,0 +1,29 @@
+.MonthWrapper {
+	list-style-type: none;
+	padding: 0;
+}
+
+.Month {
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+}
+
+.Month--selected {
+	background-color: lightblue;
+}
+
+.DayWrapper {
+	list-style-type: none;
+	padding: 0;
+}
+
+.Day {
+	display: inline-block;
+	width: calc(100% / 7);
+	vertical-align: top;
+}
+
+.Day--selected {
+	background-color: orange;
+}
