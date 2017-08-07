@@ -3,6 +3,14 @@ export default {
 		base: 8,
 	},
 
+	font: {
+		small: {
+			fontFamily: 'Arial',
+			fontSize: '12px',
+			color: 'red',
+		},
+	},
+
 	colors: {
 		red: 'red',
 	},

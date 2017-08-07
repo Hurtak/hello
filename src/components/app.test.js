@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import * as fela from 'fela';
+import * as reactFela from 'react-fela';
+import App from './app.js';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+	const renderer = fela.createRenderer();
+
+	ReactDOM.render(
+		<reactFela.Provider renderer={renderer}>
+			<App />
+		</reactFela.Provider>,
+		document.createElement('div')
+	);
 });
