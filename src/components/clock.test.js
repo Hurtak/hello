@@ -18,3 +18,8 @@ it('formatTime', () => {
 	expect(ClockFunctions.formatTime(new Date(2015, 0, 1, 10, 1, 0, 0))).toBe('10:01');
 	expect(ClockFunctions.formatTime(new Date(2015, 0, 1, 1, 10, 0, 0))).toBe('01:10');
 });
+
+it('addLeadingZero', () => {
+	expect(ClockFunctions.addLeadingZero('1')).toBe('01');
+	expect(ClockFunctions.addLeadingZero('11')).toBe('11');
+});

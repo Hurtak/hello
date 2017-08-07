@@ -66,7 +66,7 @@ export function formatTime(timestamp) {
 	return `${hours}:${minutes}`;
 }
 
-function addLeadingZero(str) {
+export function addLeadingZero(str) {
 	if (str.length < 2) {
 		str = '0' + str;
 	}
