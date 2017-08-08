@@ -40,7 +40,11 @@ export default class ConditionarUpdater extends React.Component {
   }
 }
 
-function shouldBeUpdated (currentTime, lastTime, updateEveryN) {
+export function shouldBeUpdated (currentTime, lastTime, updateEveryN) {
+  if (updateEveryN === 0) {
+    return currentTime !== lastTime
+  }
+
   const currentTimeRoundedToN =
     Math.floor(currentTime / updateEveryN) * updateEveryN
   const lastTimeRoundedToN = Math.floor(lastTime / updateEveryN) * updateEveryN

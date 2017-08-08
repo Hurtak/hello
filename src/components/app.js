@@ -40,7 +40,7 @@ class App extends React.Component {
         </ConditionalUpdater>
         <ConditionalUpdater
           time={this.state.time}
-          updateEveryN={24 * 60 * 60 * 1000} // minute
+          updateEveryN={24 * 60 * 60 * 1000} // day
         >
           <Calendar />
         </ConditionalUpdater>

@@ -13,15 +13,17 @@ export default class Clock extends React.Component {
 export function formatTime (timestamp) {
   const date = new Date(timestamp)
 
-  const hours = addLeadingZero(String(date.getHours()))
-  const minutes = addLeadingZero(String(date.getMinutes()))
+  const hours = addLeadingZero(date.getHours())
+  const minutes = addLeadingZero(date.getMinutes())
 
   return `${hours}:${minutes}`
 }
 
-export function addLeadingZero (str) {
-  if (str.length < 2) {
-    str = '0' + str
+export function addLeadingZero (input) {
+  input = String(input)
+  if (input.length < 2) {
+    input = '0' + input
   }
-  return str
+
+  return input
 }
