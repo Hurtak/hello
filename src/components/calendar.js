@@ -15,6 +15,7 @@ export default class Calendar extends React.Component {
     const currentDay = now.getDate()
 
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 
     return (
       <ul className='MonthWrapper'>
@@ -36,6 +37,33 @@ export default class Calendar extends React.Component {
 
                 return (
                   <ul className='DayWrapper'>
+                    {dayNames.map(dayName => {
+                      return <li className='Day' key={dayName}>{dayName}</li>
+                    })}
+
+                    {(() => {
+                      const day = new Date(currentYear, monthNumber - 1, 1)
+
+                      // 0 - Su, 1 - Mo ...
+                      let firstDayIndex = day.getDay()
+
+                      // shift items that week starts with monday
+                      firstDayIndex -= 1
+                      if (firstDayIndex === -1) {
+                        firstDayIndex = 6
+                      }
+
+                      const numberOfEmptyItems = firstDayIndex
+                      const emptyItems = []
+                      for (let i = 0; i < numberOfEmptyItems; i++) {
+                        emptyItems.push(i)
+                      }
+
+                      return emptyItems.map((item, index) => {
+                        return <li className='Day' key={item} />
+                      })
+                    })()}
+
                     {days.map(dayNumber => {
                       const isCurrentDay =
                         monthNumber === currentMonth && dayNumber === currentDay
