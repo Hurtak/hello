@@ -3,12 +3,8 @@ import classnames from 'classnames'
 import './calendar.css'
 
 export default class Calendar extends React.Component {
-  static config = {}
-
-  state = {}
-
   render () {
-    const now = new Date()
+    const now = new Date(this.props.time)
 
     const currentMonth = now.getMonth() + 1
     const currentYear = now.getFullYear()
