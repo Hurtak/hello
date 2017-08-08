@@ -15,6 +15,22 @@ export default class Calendar extends React.Component {
     const currentDay = now.getDate()
 
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ]
+
     const dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 
     return (
@@ -27,10 +43,13 @@ export default class Calendar extends React.Component {
               })}
               key={monthNumber}
             >
-              {monthNumber}
+              <p className='Month-name'>
+                {monthNumber}. {monthNames[monthNumber - 1]}
+              </p>
+
               {(() => {
                 const days = []
-                const daysInMonth = getDaysInMonth(monthNumber)
+                const daysInMonth = getDaysInMonth(currentYear, monthNumber - 1)
                 for (let i = 0; i < daysInMonth; i++) {
                   days.push(i + 1)
                 }
@@ -68,10 +87,15 @@ export default class Calendar extends React.Component {
                       const isCurrentDay =
                         monthNumber === currentMonth && dayNumber === currentDay
 
+                      const isDayFromPast =
+                        monthNumber < currentMonth ||
+                        (monthNumber === currentMonth && dayNumber < currentDay)
+
                       return (
                         <li
                           className={classnames('Day', {
-                            'Day--selected': isCurrentDay
+                            'Day--selected': isCurrentDay,
+                            'Day--crossed': isDayFromPast
                           })}
                           key={dayNumber}
                         >
@@ -90,6 +114,6 @@ export default class Calendar extends React.Component {
   }
 }
 
-function getDaysInMonth (month) {
-  return new Date(2000, month, 0).getDate()
+function getDaysInMonth (year, month) {
+  return new Date(year, month + 1, 0).getDate()
 }

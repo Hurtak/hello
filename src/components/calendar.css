@@ -9,6 +9,10 @@
 	vertical-align: top;
 }
 
+.Month-name {
+  text-align: center;
+}
+
 .Month--selected {
 	background-color: lightblue;
 }
@@ -26,4 +30,8 @@
 
 .Day--selected {
 	background-color: orange;
+}
+
+.Day--crossed {
+	text-decoration: line-through;
 }
