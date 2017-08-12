@@ -1,5 +1,8 @@
 import React from 'react'
 
+// TODO: instead of using the props.time and comparing it to current time
+//       we could take a look at the updateEveryN and set timeouts aproprietly.
+
 export default class ConditionarUpdater extends React.Component {
   state = {
     timeConditionallyUpdated: this.props.time
@@ -30,6 +33,8 @@ export default class ConditionarUpdater extends React.Component {
   }
 
   render () {
+    // TODO: Are there any performance implications to cloneElement?
+    //       Maybe we should redo the API?
     return (
       <section>
         {React.cloneElement(this.props.children, {

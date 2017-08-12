@@ -1,7 +1,8 @@
 import React from 'react'
+import ConditionalUpdater from './conditional-updater.js'
 import Clock from './clock.js'
 import Calendar from './calendar.js'
-import ConditionalUpdater from './conditional-updater.js'
+import YearProgress from './year-progress.js'
 
 class App extends React.Component {
   static config = {
@@ -34,7 +35,7 @@ class App extends React.Component {
       <div>
         <ConditionalUpdater
           time={this.state.time}
-          updateEveryN={1000} // minute
+          updateEveryN={60 * 1000} // minute
         >
           <Clock />
         </ConditionalUpdater>
@@ -43,6 +44,12 @@ class App extends React.Component {
           updateEveryN={24 * 60 * 60 * 1000} // day
         >
           <Calendar />
+        </ConditionalUpdater>
+        <ConditionalUpdater
+          time={this.state.time}
+          updateEveryN={24 * 60 * 60 * 1000} // year / 100
+        >
+          <YearProgress />
         </ConditionalUpdater>
       </div>
     )

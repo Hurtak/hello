@@ -3,6 +3,23 @@ import classnames from 'classnames'
 import './calendar.css'
 
 export default class Calendar extends React.Component {
+  static monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+
+  static dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+
   render () {
     const now = new Date(this.props.time)
 
@@ -11,23 +28,6 @@ export default class Calendar extends React.Component {
     const currentDay = now.getDate()
 
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-
-    const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ]
-
-    const dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 
     return (
       <ul className='MonthWrapper'>
@@ -40,19 +40,16 @@ export default class Calendar extends React.Component {
               key={monthNumber}
             >
               <p className='Month-name'>
-                {monthNumber}. {monthNames[monthNumber - 1]}
+                {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
               </p>
 
               {(() => {
-                const days = []
                 const daysInMonth = getDaysInMonth(currentYear, monthNumber - 1)
-                for (let i = 0; i < daysInMonth; i++) {
-                  days.push(i + 1)
-                }
+                const days = range(daysInMonth, 1)
 
                 return (
                   <ul className='DayWrapper'>
-                    {dayNames.map(dayName => {
+                    {Calendar.dayNames.map(dayName => {
                       return <li className='Day' key={dayName}>{dayName}</li>
                     })}
 
@@ -69,10 +66,7 @@ export default class Calendar extends React.Component {
                       }
 
                       const numberOfEmptyItems = firstDayIndex
-                      const emptyItems = []
-                      for (let i = 0; i < numberOfEmptyItems; i++) {
-                        emptyItems.push(i)
-                      }
+                      const emptyItems = range(numberOfEmptyItems)
 
                       return emptyItems.map((item, index) => {
                         return <li className='Day' key={item} />
@@ -112,4 +106,12 @@ export default class Calendar extends React.Component {
 
 function getDaysInMonth (year, month) {
   return new Date(year, month + 1, 0).getDate()
+}
+
+export function range (numberOfItems, offset = 0) {
+  const items = []
+  for (let i = 0; i < numberOfItems; i++) {
+    items.push(i + offset)
+  }
+  return items
 }
