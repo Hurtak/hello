@@ -6,7 +6,8 @@
 .Month {
 	display: inline-block;
 	width: 25%;
-	vertical-align: top;
+  vertical-align: top;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .Month-name {
@@ -14,7 +15,7 @@
 }
 
 .Month--selected {
-	background-color: lightblue;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .DayWrapper {
@@ -29,7 +30,8 @@
 }
 
 .Day--selected {
-	background-color: orange;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-weight: bold;
 }
 
 .Day--crossed {

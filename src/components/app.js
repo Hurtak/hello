@@ -3,6 +3,8 @@ import ConditionalUpdater from './conditional-updater.js'
 import Clock from './clock.js'
 import Calendar from './calendar.js'
 import YearProgress from './year-progress.js'
+import image from '../img/01.jpg'
+import './app.css'
 
 class App extends React.Component {
   static config = {
@@ -32,7 +34,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <main className='App' style={{ backgroundImage: `url("${image}")` }}>
         <ConditionalUpdater
           time={this.state.time}
           updateEveryN={60 * 1000} // minute
@@ -51,7 +53,7 @@ class App extends React.Component {
         >
           <YearProgress />
         </ConditionalUpdater>
-      </div>
+      </main>
     )
   }
 }
