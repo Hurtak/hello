@@ -22,13 +22,11 @@ export default class YearProgress extends React.Component {
 }
 
 export function getYearProgress (timestamp) {
-  const date = new Date(timestamp)
-  const year = date.getFullYear()
+  const tsNow = new Date(timestamp)
+  const year = tsNow.getFullYear()
 
-  const dateStart = new Date(year, 0, 1, 0, 0, 0, 0).getTime()
-  console.log(new Date(dateStart))
-  const dateEnd = new Date(year, 11, 31, 23, 59, 59, 999).getTime()
-  console.log(new Date(dateEnd))
+  const tsYearStart = new Date(year, 0, 1, 0, 0, 0, 0).getTime()
+  const tsYearEnd = new Date(year + 1, 0).getTime() - 1000
 
-  return Math.floor((timestamp - dateStart) / (dateEnd - dateStart))
+  return (tsNow - tsYearStart) / (tsYearEnd - tsYearStart)
 }
