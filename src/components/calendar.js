@@ -1,8 +1,13 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import classnames from 'classnames'
 import './calendar.css'
 
 export default class Calendar extends React.Component {
+  static propTypes = {
+    time: propTypes.number.isRequired
+  }
+
   static monthNames = [
     'January',
     'February',
@@ -27,7 +32,7 @@ export default class Calendar extends React.Component {
     const currentYear = now.getFullYear()
     const currentDay = now.getDate()
 
-    const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const months = range(1, 12)
 
     return (
       <ul className='MonthWrapper'>
@@ -45,7 +50,7 @@ export default class Calendar extends React.Component {
 
               {(() => {
                 const daysInMonth = getDaysInMonth(currentYear, monthNumber - 1)
-                const days = range(daysInMonth, 1)
+                const days = range(1, daysInMonth)
 
                 return (
                   <ul className='DayWrapper'>
@@ -66,7 +71,7 @@ export default class Calendar extends React.Component {
                       }
 
                       const numberOfEmptyItems = firstDayIndex
-                      const emptyItems = range(numberOfEmptyItems)
+                      const emptyItems = range(0, numberOfEmptyItems)
 
                       return emptyItems.map((item, index) => {
                         return <li className='Day' key={item} />
@@ -108,10 +113,10 @@ function getDaysInMonth (year, month) {
   return new Date(year, month + 1, 0).getDate()
 }
 
-export function range (numberOfItems, offset = 0) {
+export function range (start, end) {
   const items = []
-  for (let i = 0; i < numberOfItems; i++) {
-    items.push(i + offset)
+  for (let i = start; i <= end; i++) {
+    items.push(i)
   }
   return items
 }

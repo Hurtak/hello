@@ -1,78 +1,29 @@
-import * as ConditionalUpdaterFunctions from './conditional-updater.js'
+import * as YearProgressFuntions from './year-progress.js'
 
 const { it, expect } = global
 
 it('shouldBeUpdated', () => {
-  // Zero update interval
   expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 1, 10, 30, 0, 0),
-      Date.UTC(2015, 0, 1, 10, 30, 0, 0),
-      0
-    )
-  ).toBe(false)
+    YearProgressFuntions.getYearProgress(new Date(2015, 0, 1, 0, 0, 0, 0))
+  ).toBe(0)
 
-  // Test edge cases
+  const yearLength = 365 * 24 * 60 * 60 * 1000
+  const yearStart = new Date(2015, 0).getTime() // 2015 is not leap year
   expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 1, 10, 30, 0, 999),
-      Date.UTC(2015, 0, 1, 10, 30, 0, 0),
-      1000
-    )
-  ).toBe(false)
+    YearProgressFuntions.getYearProgress(yearStart + yearLength / 2)
+  ).toBeCloseTo(0.5, 7)
+
+  const leapYearLength = 366 * 24 * 60 * 60 * 1000
+  const leapYearStart = new Date(2016, 0).getTime() // 2016 is leap year
+  expect(
+    YearProgressFuntions.getYearProgress(leapYearStart + leapYearLength / 2)
+  ).toBeCloseTo(0.5, 7)
 
   expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 1, 10, 30, 1, 0),
-      Date.UTC(2015, 0, 1, 10, 30, 0, 0),
-      1000
+    Math.floor(
+      YearProgressFuntions.getYearProgress(
+        new Date(2015, 11, 30, 23, 59, 59, 999)
+      ) * 100
     )
-  ).toBe(true)
-
-  expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 1, 10, 30, 1, 0),
-      Date.UTC(2015, 0, 1, 10, 30, 0, 999),
-      1000
-    )
-  ).toBe(true)
-
-  // Day interval
-  const day = 24 * 60 * 60 * 1000
-  expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 1, 20, 21, 22, 666),
-      Date.UTC(2015, 0, 1, 10, 11, 12, 555),
-      day
-    )
-  ).toBe(false)
-  expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 1, 23, 59, 59, 999),
-      Date.UTC(2015, 0, 1, 0, 0, 0, 0),
-      day
-    )
-  ).toBe(false)
-
-  expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 2, 0, 0, 0, 0),
-      Date.UTC(2015, 0, 1, 0, 0, 0, 0),
-      day
-    )
-  ).toBe(true)
-  expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 0, 2, 0, 0, 0, 0),
-      Date.UTC(2015, 0, 1, 23, 59, 59, 999),
-      day
-    )
-  ).toBe(true)
-  expect(
-    ConditionalUpdaterFunctions.shouldBeUpdated(
-      Date.UTC(2015, 5, 5, 0, 0, 0, 0),
-      Date.UTC(2015, 0, 1, 0, 0, 0, 0),
-      day
-    )
-  ).toBe(true)
+  ).toBe(99)
 })
