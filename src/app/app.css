@@ -1,3 +1,7 @@
+:root {
+  --color-gray: gray;
+}
+
 body {
 	margin: 0;
 	padding: 0;

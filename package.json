@@ -2,8 +2,8 @@
   "name": "calendar",
   "version": "0.1.0",
   "dependencies": {
-    "classnames": "2.2.5",
-    "prop-types": "15.5.10",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "react-scripts": "1.0.12"

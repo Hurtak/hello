@@ -1,8 +1,8 @@
 import React from 'react'
-import ConditionalUpdater from './conditional-updater.js'
-import Clock from './clock.js'
-import Calendar from './calendar.js'
-import YearProgress from './year-progress.js'
+import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
+import Clock from '../clock/clock.js'
+import Calendar from '../calendar/calendar.js'
+import YearProgress from '../year-progress/year-progress.js'
 import './app.css'
 
 class App extends React.Component {
