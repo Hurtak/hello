@@ -1,7 +1,12 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import './year-progress.css'
 
 export default class YearProgress extends React.Component {
+  static propTypes = {
+    decimalPlaces: propTypes.number.isRequired
+  }
+
   render () {
     const progress = getYearProgress(this.props.time)
 
@@ -14,7 +19,7 @@ export default class YearProgress extends React.Component {
           }}
         />
         <p className='YearProgress-text'>
-          {Math.floor(progress * 100)}%
+          {(progress * 100).toFixed(this.props.decimalPlaces)}%
         </p>
       </div>
     )

@@ -22,10 +22,19 @@ class App extends React.Component {
           updateEveryN={24 * 60 * 60 * 1000} // day
           component={time => <Calendar time={time} />}
         />
-        <ConditionalUpdater
-          updateEveryN={24 * 60 * 60 * 1000} // year / 100
-          component={time => <YearProgress time={time} />}
-        />
+        {(() => {
+          const year = 365 * 24 * 60 * 60 * 1000
+          const decimalPlaces = 6
+
+          return (
+            <ConditionalUpdater
+              updateEveryN={year / 100 / 10 ** decimalPlaces} // year / 100
+              component={time => (
+                <YearProgress time={time} decimalPlaces={decimalPlaces} />
+              )}
+            />
+          )
+        })()}
       </main>
     )
   }
