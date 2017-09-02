@@ -45,11 +45,11 @@ export default class Calendar extends React.Component {
               key={monthNumber}
             >
               <p className='Month-name'>
-                {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
+                {monthNumber}. {Calendar.monthNames[monthNumber]}
               </p>
 
               {(() => {
-                const daysInMonth = getDaysInMonth(currentYear, monthNumber - 1)
+                const daysInMonth = getDaysInMonth(currentYear, monthNumber)
                 const days = range(1, daysInMonth)
 
                 return (
@@ -59,7 +59,7 @@ export default class Calendar extends React.Component {
                     })}
 
                     {(() => {
-                      const day = new Date(currentYear, monthNumber - 1, 1)
+                      const day = new Date(currentYear, monthNumber, 0)
 
                       // 0 - Su, 1 - Mo ...
                       let firstDayIndex = day.getDay()
@@ -109,8 +109,8 @@ export default class Calendar extends React.Component {
   }
 }
 
-function getDaysInMonth (year, month) {
-  return new Date(year, month + 1, 0).getDate()
+export function getDaysInMonth (year, month) {
+  return new Date(year, month, 0).getDate()
 }
 
 export function range (start, end) {

@@ -24,11 +24,11 @@ class App extends React.Component {
         />
         {(() => {
           const year = 365 * 24 * 60 * 60 * 1000
-          const decimalPlaces = 6
+          const decimalPlaces = 8
 
           return (
             <ConditionalUpdater
-              updateEveryN={year / 100 / 10 ** decimalPlaces} // year / 100
+              updateEveryN={year / 100 / 10 ** decimalPlaces}
               component={time => (
                 <YearProgress time={time} decimalPlaces={decimalPlaces} />
               )}
