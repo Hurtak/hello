@@ -45,7 +45,7 @@ export default class Calendar extends React.Component {
               key={monthNumber}
             >
               <p className='Month-name'>
-                {monthNumber}. {Calendar.monthNames[monthNumber]}
+                {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
               </p>
 
               {(() => {
@@ -59,7 +59,7 @@ export default class Calendar extends React.Component {
                     })}
 
                     {(() => {
-                      const day = new Date(currentYear, monthNumber, 0)
+                      const day = new Date(currentYear, monthNumber - 1, 1)
 
                       // 0 - Su, 1 - Mo ...
                       let firstDayIndex = day.getDay()
