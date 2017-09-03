@@ -1,11 +1,44 @@
+/* Shared variables */
+
 :root {
   --color-gray: gray;
+  --color-whiteTransparent: rgba(255, 255, 255, 0.4);
+
+  --grid-quarter: 2px;
+  --grid-half:    4px;
+  --grid-1:       8px;
+  --grid-2:      16px;
+  --grid-3:      18px;
+  --grid-4:      32px;
+  --grid-5:      40px;
+  --grid-6:      48px;
+  --grid-7:      56px;
+  --grid-8:      64px;
+  --grid-9:      72px;
+  --grid-10:     80px;
 }
 
+/* Resets */
+
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
 }
+
+/*
+ * better box-sizing: border-box reset
+ * @see: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Main container styles */
 
 .App {
   min-height: 100vh;
