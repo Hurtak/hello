@@ -2,6 +2,7 @@
 
 ## TODO
 
+- more image sources
 - bing images
   - https://stackoverflow.com/questions/10639914/is-there-a-way-to-get-bings-photo-of-the-day
 

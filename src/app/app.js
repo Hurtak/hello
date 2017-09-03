@@ -6,12 +6,37 @@ import YearProgress from '../year-progress/year-progress.js'
 import './app.css'
 
 class App extends React.Component {
+  static apiUrl = 'https://unsplash.it/{width}/{height}?random&gravity=center'
+
+  state = {
+    backgroundImage: window.localStorage.image || null
+  }
+
+  async fetchImage () {
+    const url = App.apiUrl
+      .replace('{width}', window.screen.width)
+      .replace('{height}', window.screen.height)
+
+    const dataUrl = await toDataURL(url)
+
+    if (!window.localStorage.image) {
+      this.setState({
+        backgroundImage: dataUrl
+      })
+    }
+    window.localStorage.image = dataUrl
+  }
+
+  async componentDidMount () {
+    await this.fetchImage()
+  }
+
   render () {
     return (
       <div
         className='App'
         style={{
-          backgroundImage: `url("https://www.bing.com/az/hprichbg/rb/YellowNPFirehole_EN-US14008559204_1920x1080.jpg")`
+          backgroundImage: `url("${this.state.backgroundImage}")`
         }}
       >
         <main className='App-content'>
@@ -40,6 +65,23 @@ class App extends React.Component {
       </div>
     )
   }
+}
+
+function toDataURL (url, callback) {
+  return new Promise((resolve, reject) => {
+    var request = new window.XMLHttpRequest()
+    request.responseType = 'blob'
+    request.onload = () => {
+      var fileReader = new window.FileReader()
+      fileReader.onload = data => {
+        resolve(data.target.result)
+      }
+      fileReader.readAsDataURL(request.response) // async call
+    }
+
+    request.open('get', url)
+    request.send()
+  })
 }
 
 export default App
