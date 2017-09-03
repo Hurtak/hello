@@ -2,7 +2,9 @@
 
 :root {
   --color-gray: gray;
-  --color-whiteTransparent: rgba(255, 255, 255, 0.4);
+  --color-whiteTransparentDimmed:  rgba(255, 255, 255, 0.2);
+  --color-whiteTransparentDefault: rgba(255, 255, 255, 0.4);
+  --color-whiteTransparentBright:  rgba(255, 255, 255, 0.8);
 
   --grid-quarter: 2px;
   --grid-half:    4px;

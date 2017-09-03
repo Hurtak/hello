@@ -9,7 +9,7 @@
 
 .Month {
 	display: block;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--color-whiteTransparentDimmed);
   padding: var(--grid-1);
 }
 
@@ -44,7 +44,10 @@
 }
 
 .Day--selected {
-  background-color: rgba(255, 255, 255, 0.6);
+  width: 20px; /* FIXME */
+  background-color: var(--color-whiteTransparentDefault);
+  outline: var(--grid-quarter) solid var(--color-whiteTransparentBright);
+  outline-offset: var(--grid-quarter);
   font-weight: bold;
 }
 
