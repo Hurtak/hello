@@ -19,11 +19,11 @@ export default class YearProgress extends React.Component {
             width: progress * 100 + '%'
           }}
         />
-        <p className='YearProgress-text'>
+        <div className='YearProgress-textWrapper'>
           <Text size='medium'>
             {(progress * 100).toFixed(this.props.decimalPlaces)}%
           </Text>
-        </p>
+        </div>
       </div>
     )
   }

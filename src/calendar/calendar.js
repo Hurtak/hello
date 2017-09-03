@@ -1,6 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import classnames from 'classnames'
+import Text from '../text/text.js'
 import './calendar.css'
 
 // TODO: Refactor month layout to css grid.
@@ -46,7 +47,9 @@ export default class Calendar extends React.Component {
               key={monthNumber}
             >
               <h2 className='Month-name'>
-                {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
+                <Text size='medium'>
+                  {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
+                </Text>
               </h2>
 
               {(() => {
@@ -55,15 +58,19 @@ export default class Calendar extends React.Component {
 
                 return (
                   <section className='DayWrapper'>
-                    <header>
+                    <header className='DayWrapper-dayNames'>
                       {Calendar.dayNames.map(dayName => {
                         return (
-                          <div className='Day' key={dayName}>{dayName}</div>
+                          <div className='Day' key={dayName}>
+                            <Text size='medium' inline>
+                              {dayName}
+                            </Text>
+                          </div>
                         )
                       })}
                     </header>
 
-                    <div>
+                    <div className='DayWrapper-days'>
                       {(() => {
                         const day = new Date(currentYear, monthNumber - 1, 1)
 
@@ -103,7 +110,9 @@ export default class Calendar extends React.Component {
                             })}
                             key={dayNumber}
                           >
-                            {dayNumber}
+                            <Text size='medium' inline>
+                              {dayNumber}
+                            </Text>
                           </div>
                         )
                       })}

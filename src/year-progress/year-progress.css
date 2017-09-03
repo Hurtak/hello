@@ -12,7 +12,7 @@
   background-color: var(--color-whiteTransparent);
 }
 
-.YearProgress-text {
+.YearProgress-textWrapper {
   position: absolute;
   left: 0;
   top: 0;
