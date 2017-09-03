@@ -42,6 +42,10 @@ html {
 
 /* Main container styles */
 
+body {
+  background-color: #f2f1f0;
+}
+
 .App {
   display: flex;
   flex-direction: column;
