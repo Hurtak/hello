@@ -44,11 +44,37 @@
 }
 
 .Day--selected {
-  width: 20px; /* FIXME */
-  background-color: var(--color-whiteTransparentDefault);
-  outline: var(--grid-quarter) solid var(--color-whiteTransparentBright);
-  outline-offset: var(--grid-quarter);
+  position: relative;
   font-weight: bold;
+  z-index: 0;
+}
+
+.Day--selected::after {
+  content: '';
+  display: block;
+  position: absolute;
+  /* FIXME */
+  left: -2px;
+  top: -4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--color-whiteTransparentDefault);
+  z-index: -1;
+}
+
+.Day--selected::before {
+  content: '';
+  display: block;
+  position: absolute;
+  /* FIXME */
+  left: -6px;
+  top: -8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: var(--grid-quarter) solid var(--color-whiteTransparentBright);
+  z-index: -1;
 }
 
 .Day--crossed {
