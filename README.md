@@ -3,6 +3,8 @@
 ## TODO
 
 - more image sources
+- change image every x minutes?
+- have a cache of x images
 - bing images
   - https://stackoverflow.com/questions/10639914/is-there-a-way-to-get-bings-photo-of-the-day
 
