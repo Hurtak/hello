@@ -9,7 +9,7 @@ class App extends React.Component {
   static apiUrl = 'https://unsplash.it/{width}/{height}?random&gravity=center'
 
   state = {
-    backgroundImage: window.localStorage.image || null
+    backgroundImage: window.localStorage ? window.localStorage.image : null
   }
 
   async fetchImage () {

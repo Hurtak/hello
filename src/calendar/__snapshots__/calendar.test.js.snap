@@ -10,13 +10,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         1
         . 
         January
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -397,13 +397,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         2
         . 
         February
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -745,13 +745,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         3
         . 
         March
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -1120,13 +1120,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         4
         . 
         April
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -1495,13 +1495,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         5
         . 
         May
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -1864,13 +1864,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         6
         . 
         June
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -2233,13 +2233,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         7
         . 
         July
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -2617,13 +2617,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         8
         . 
         August
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -2989,13 +2989,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         9
         . 
         September
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -3361,13 +3361,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         10
         . 
         October
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -3748,13 +3748,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         11
         . 
         November
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -4114,13 +4114,13 @@ exports[`Snapshot end of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         12
         . 
         December
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -4502,13 +4502,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         1
         . 
         January
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -4889,13 +4889,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         2
         . 
         February
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -5246,13 +5246,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         3
         . 
         March
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -5624,13 +5624,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         4
         . 
         April
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -6002,13 +6002,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         5
         . 
         May
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -6374,13 +6374,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         6
         . 
         June
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -6746,13 +6746,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         7
         . 
         July
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -7133,13 +7133,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         8
         . 
         August
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -7508,13 +7508,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         9
         . 
         September
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -7883,13 +7883,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         10
         . 
         October
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -8252,13 +8252,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         11
         . 
         November
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -8621,13 +8621,13 @@ exports[`Snapshot leap year end 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         12
         . 
         December
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -9012,13 +9012,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         1
         . 
         January
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -9399,13 +9399,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         2
         . 
         February
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -9756,13 +9756,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         3
         . 
         March
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -10134,13 +10134,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         4
         . 
         April
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -10512,13 +10512,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         5
         . 
         May
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -10884,13 +10884,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         6
         . 
         June
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -11256,13 +11256,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         7
         . 
         July
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -11643,13 +11643,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         8
         . 
         August
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -12018,13 +12018,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         9
         . 
         September
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -12393,13 +12393,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         10
         . 
         October
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -12762,13 +12762,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         11
         . 
         November
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -13131,13 +13131,13 @@ exports[`Snapshot leap year start 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         12
         . 
         December
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -13522,13 +13522,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         1
         . 
         January
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -13909,13 +13909,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         2
         . 
         February
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -14257,13 +14257,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         3
         . 
         March
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -14632,13 +14632,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         4
         . 
         April
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -15007,13 +15007,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         5
         . 
         May
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -15376,13 +15376,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         6
         . 
         June
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -15745,13 +15745,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         7
         . 
         July
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -16129,13 +16129,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         8
         . 
         August
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -16501,13 +16501,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         9
         . 
         September
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -16873,13 +16873,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         10
         . 
         October
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -17260,13 +17260,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         11
         . 
         November
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
@@ -17626,13 +17626,13 @@ exports[`Snapshot start of the year 1`] = `
     <h2
       className="Month-name"
     >
-      <p
+      <span
         className="Text Text--medium"
       >
         12
         . 
         December
-      </p>
+      </span>
     </h2>
     <section
       className="DayWrapper"
