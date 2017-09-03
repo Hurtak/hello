@@ -44,61 +44,69 @@ export default class Calendar extends React.Component {
               })}
               key={monthNumber}
             >
-              <p className='Month-name'>
+              <h2 className='Month-name'>
                 {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
-              </p>
+              </h2>
 
               {(() => {
                 const daysInMonth = getDaysInMonth(currentYear, monthNumber)
                 const days = range(1, daysInMonth)
 
                 return (
-                  <ul className='DayWrapper'>
-                    {Calendar.dayNames.map(dayName => {
-                      return <li className='Day' key={dayName}>{dayName}</li>
-                    })}
+                  <section className='DayWrapper'>
+                    <header>
+                      {Calendar.dayNames.map(dayName => {
+                        return (
+                          <div className='Day' key={dayName}>{dayName}</div>
+                        )
+                      })}
+                    </header>
 
-                    {(() => {
-                      const day = new Date(currentYear, monthNumber - 1, 1)
+                    <div>
+                      {(() => {
+                        const day = new Date(currentYear, monthNumber - 1, 1)
 
-                      // 0 - Su, 1 - Mo ...
-                      let firstDayIndex = day.getDay()
+                        // 0 - Su, 1 - Mo ...
+                        let firstDayIndex = day.getDay()
 
-                      // shift items that week starts with monday
-                      firstDayIndex -= 1
-                      if (firstDayIndex === -1) {
-                        firstDayIndex = 6
-                      }
+                        // shift items that week starts with monday
+                        firstDayIndex -= 1
+                        if (firstDayIndex === -1) {
+                          firstDayIndex = 6
+                        }
 
-                      const numberOfEmptyItems = firstDayIndex
-                      const emptyItems = range(0, numberOfEmptyItems)
+                        const numberOfEmptyItems = firstDayIndex
+                        const emptyItems = range(0, numberOfEmptyItems)
 
-                      return emptyItems.map((item, index) => {
-                        return <li className='Day' key={item} />
-                      })
-                    })()}
+                        return emptyItems.map((item, index) => {
+                          return <div className='Day' key={item} />
+                        })
+                      })()}
 
-                    {days.map(dayNumber => {
-                      const isCurrentDay =
-                        monthNumber === currentMonth && dayNumber === currentDay
+                      {days.map(dayNumber => {
+                        const isCurrentDay =
+                          monthNumber === currentMonth &&
+                          dayNumber === currentDay
 
-                      const isDayFromPast =
-                        monthNumber < currentMonth ||
-                        (monthNumber === currentMonth && dayNumber < currentDay)
+                        const isDayFromPast =
+                          monthNumber < currentMonth ||
+                          (monthNumber === currentMonth &&
+                            dayNumber < currentDay)
 
-                      return (
-                        <li
-                          className={classnames('Day', {
-                            'Day--selected': isCurrentDay,
-                            'Day--crossed': isDayFromPast
-                          })}
-                          key={dayNumber}
-                        >
-                          {dayNumber}
-                        </li>
-                      )
-                    })}
-                  </ul>
+                        return (
+                          <div
+                            className={classnames('Day', {
+                              'Day--selected': isCurrentDay,
+                              'Day--crossed': isDayFromPast
+                            })}
+                            key={dayNumber}
+                          >
+                            {dayNumber}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </section>
                 )
               })()}
             </li>

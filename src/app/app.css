@@ -8,7 +8,7 @@
   --grid-half:    4px;
   --grid-1:       8px;
   --grid-2:      16px;
-  --grid-3:      18px;
+  --grid-3:      24px;
   --grid-4:      32px;
   --grid-5:      40px;
   --grid-6:      48px;
@@ -42,6 +42,7 @@ html {
 
 .App {
   min-height: 100vh;
+  padding: var(--grid-1);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

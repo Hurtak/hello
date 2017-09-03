@@ -14,10 +14,10 @@ class App extends React.Component {
           backgroundImage: `url("https://www.bing.com/az/hprichbg/rb/YellowNPFirehole_EN-US14008559204_1920x1080.jpg")`
         }}
       >
-        <ConditionalUpdater
+        {/* <ConditionalUpdater
           updateEveryN={60 * 1000} // minute
           component={time => <Clock time={time} />}
-        />
+        /> */}
         <ConditionalUpdater
           updateEveryN={24 * 60 * 60 * 1000} // day
           component={time => <Calendar time={time} />}

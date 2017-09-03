@@ -3,6 +3,7 @@
   width: 100%;
   height: var(--grid-8);
   padding: var(--grid-quarter);
+  margin-top: var(--grid-1);
   border: var(--grid-quarter) solid var(--color-whiteTransparent);
 }
 

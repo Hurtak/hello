@@ -1,5 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import Text from '../text/text.js'
 import './year-progress.css'
 
 export default class YearProgress extends React.Component {
@@ -19,7 +20,9 @@ export default class YearProgress extends React.Component {
           }}
         />
         <p className='YearProgress-text'>
-          {(progress * 100).toFixed(this.props.decimalPlaces)}%
+          <Text size='medium'>
+            {(progress * 100).toFixed(this.props.decimalPlaces)}%
+          </Text>
         </p>
       </div>
     )
