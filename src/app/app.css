@@ -44,9 +44,16 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
   padding: var(--grid-1);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.App-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
 }

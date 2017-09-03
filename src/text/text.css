@@ -1,8 +1,13 @@
 .Text {
+  display: block;
   margin: 0;
   padding: 0;
   font-family: Monospace;
   line-height: 1;
+}
+
+.Text--inline {
+  display: inline;
 }
 
 .Text--gray {

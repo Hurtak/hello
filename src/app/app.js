@@ -8,34 +8,36 @@ import './app.css'
 class App extends React.Component {
   render () {
     return (
-      <main
+      <div
         className='App'
         style={{
           backgroundImage: `url("https://www.bing.com/az/hprichbg/rb/YellowNPFirehole_EN-US14008559204_1920x1080.jpg")`
         }}
       >
-        {/* <ConditionalUpdater
+        <main className='App-content'>
+          {/* <ConditionalUpdater
             updateEveryN={60 * 1000} // minute
             component={time => <Clock time={time} />}
           /> */}
-        <ConditionalUpdater
-          updateEveryN={24 * 60 * 60 * 1000} // day
-          component={time => <Calendar time={time} />}
-        />
-        {(() => {
-          const year = 365 * 24 * 60 * 60 * 1000
-          const decimalPlaces = 8
+          <ConditionalUpdater
+            updateEveryN={24 * 60 * 60 * 1000} // day
+            component={time => <Calendar time={time} />}
+          />
+          {(() => {
+            const year = 365 * 24 * 60 * 60 * 1000
+            const decimalPlaces = 8
 
-          return (
-            <ConditionalUpdater
-              updateEveryN={year / 100 / 10 ** decimalPlaces}
-              component={time => (
-                <YearProgress time={time} decimalPlaces={decimalPlaces} />
-              )}
-            />
-          )
-        })()}
-      </main>
+            return (
+              <ConditionalUpdater
+                updateEveryN={year / 100 / 10 ** decimalPlaces}
+                component={time => (
+                  <YearProgress time={time} decimalPlaces={decimalPlaces} />
+                )}
+              />
+            )
+          })()}
+        </main>
+      </div>
     )
   }
 }

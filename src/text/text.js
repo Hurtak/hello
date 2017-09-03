@@ -12,23 +12,22 @@ class Text extends React.Component {
   }
 
   render () {
-    const Tag = this.props.inline ? 'span' : 'p'
     const size = this.props.size || 'medium'
-    const color = this.props.color
 
     return (
-      <Tag
+      <span
         className={classnames(
           'Text',
+          `Text--${size}`,
           {
-            [`Text--${size}`]: Boolean(size),
-            [`Text--${color}`]: Boolean(color)
+            [`Text--${this.props.color}`]: Boolean(this.props.color),
+            'Text--inline': Boolean(this.props.inline)
           },
           this.props.className
         )}
       >
         {this.props.children}
-      </Tag>
+      </span>
     )
   }
 }

@@ -62,7 +62,7 @@ export default class Calendar extends React.Component {
                       {Calendar.dayNames.map(dayName => {
                         return (
                           <div className='Day' key={dayName}>
-                            <Text size='medium' inline>
+                            <Text size='medium'>
                               {dayName}
                             </Text>
                           </div>
@@ -110,7 +110,7 @@ export default class Calendar extends React.Component {
                             })}
                             key={dayNumber}
                           >
-                            <Text size='medium' inline>
+                            <Text size='medium'>
                               {dayNumber}
                             </Text>
                           </div>
