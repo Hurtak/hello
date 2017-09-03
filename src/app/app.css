@@ -41,6 +41,9 @@ html {
 /* Main container styles */
 
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
   padding: var(--grid-1);
   background-size: cover;

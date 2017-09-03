@@ -3,6 +3,7 @@ import propTypes from 'prop-types'
 import classnames from 'classnames'
 import './calendar.css'
 
+// TODO: Refactor month layout to css grid.
 export default class Calendar extends React.Component {
   static propTypes = {
     time: propTypes.number.isRequired
