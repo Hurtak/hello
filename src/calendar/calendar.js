@@ -70,12 +70,13 @@ export default class Calendar extends React.Component {
                         let firstDayIndex = day.getDay()
 
                         // shift items that week starts with monday
+                        // 0 - Mo, 2 - Tu ...
                         firstDayIndex -= 1
                         if (firstDayIndex === -1) {
                           firstDayIndex = 6
                         }
 
-                        const numberOfEmptyItems = firstDayIndex
+                        const numberOfEmptyItems = firstDayIndex - 1
                         const emptyItems = range(0, numberOfEmptyItems)
 
                         return emptyItems.map((item, index) => {

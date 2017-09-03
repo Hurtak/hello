@@ -29,18 +29,26 @@ it('range', () => {
   expect(CalendarFunctions.range(-1, 1)).toEqual([-1, 0, 1])
 })
 
-it('snapshot', () => {
-  const elements = (
-    <div>
-      <Calendar time={new Date(2017, 0, 1).getTime()} />
-      <Calendar time={new Date(2017, 11, 31, 23, 59, 59, 999).getTime()} />
+it('Snapshot start of the year', () => {
+  const element = <Calendar time={new Date(2017, 0, 1).getTime()} />
+  expect(renderer.create(element).toJSON()).toMatchSnapshot()
+})
 
-      {/* Leap years */}
-      <Calendar time={new Date(2012, 0, 1).getTime()} />
-      <Calendar time={new Date(2012, 11, 31, 23, 59, 59, 999).getTime()} />
-      <Calendar time={new Date(2016, 0, 1).getTime()} />
-      <Calendar time={new Date(2016, 11, 31, 23, 59, 59, 999).getTime()} />
-    </div>
+it('Snapshot end of the year', () => {
+  const element = (
+    <Calendar time={new Date(2017, 11, 31, 23, 59, 59, 999).getTime()} />
   )
-  expect(renderer.create(elements).toJSON()).toMatchSnapshot()
+  expect(renderer.create(element).toJSON()).toMatchSnapshot()
+})
+
+it('Snapshot leap year start', () => {
+  const element = <Calendar time={new Date(2012, 0, 1).getTime()} />
+  expect(renderer.create(element).toJSON()).toMatchSnapshot()
+})
+
+it('Snapshot leap year end', () => {
+  const element = (
+    <Calendar time={new Date(2012, 11, 31, 23, 59, 59, 999).getTime()} />
+  )
+  expect(renderer.create(element).toJSON()).toMatchSnapshot()
 })
