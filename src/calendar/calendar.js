@@ -110,6 +110,8 @@ export default class Calendar extends React.Component {
                             })}
                             key={dayNumber}
                           >
+                            {/* Text now returns <p> element, this probably
+                               should not be <p>. */}
                             <Text size='medium'>
                               {dayNumber}
                             </Text>
