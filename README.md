@@ -8,8 +8,11 @@
 - more image sources
 - change image every x minutes?
 - have a cache of x images
+  - storage estimate api
 - bing images
   - https://stackoverflow.com/questions/10639914/is-there-a-way-to-get-bings-photo-of-the-day
+    - free CORS middleware?
+    - or just put the thing in img tag if we cannot download it
 
 - inspiration?
   - https://www.google.cz/search?q=wait+but+why+calendar&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiT3c-T7fLVAhWBvhQKHdUMBHsQ_AUICigB&biw=1484&bih=869#imgrc=J_Lfmg9qa0KdQM:
