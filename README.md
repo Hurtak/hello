@@ -2,6 +2,9 @@
 
 ## TODO
 
+- refactor that we only have one grid with monthss
+- move all text-align and font weight bold into text component
+
 - more image sources
 - change image every x minutes?
 - have a cache of x images
@@ -15,7 +18,6 @@
 - images from: https://unsplash.com/
 - add settings page
 - add back service-worker.js?
-- rewrite calendar to use CSS grid
 - resolve all todos in code
 - properly fill package.json
 - fill github descriptions and stuff

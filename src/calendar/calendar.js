@@ -57,8 +57,8 @@ export default class Calendar extends React.Component {
                 const days = range(1, daysInMonth)
 
                 return (
-                  <section className='DayWrapper'>
-                    <header className='DayWrapper-dayNames'>
+                  <section className='DaysWrapper'>
+                    <header className='DaysWrapper-dayNames'>
                       {Calendar.dayNames.map(dayName => {
                         return (
                           <div className='Day' key={dayName}>
@@ -70,7 +70,7 @@ export default class Calendar extends React.Component {
                       })}
                     </header>
 
-                    <div className='DayWrapper-days'>
+                    <div className='DaysWrapper-days'>
                       {(() => {
                         const day = new Date(currentYear, monthNumber - 1, 1)
 

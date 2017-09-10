@@ -10,7 +10,7 @@
 .Month {
 	display: block;
   background-color: var(--color-whiteTransparentDimmed);
-  padding: var(--grid-1);
+  padding: var(--grid-2);
 }
 
 .Month-name {
@@ -22,25 +22,31 @@
   /* background-color: rgba(255, 255, 255, 0.6); */
 }
 
-.DayWrapper {
+.DaysWrapper {
 	list-style-type: none;
   padding: 0;
   margin-top: var(--grid-2);
 }
 
-.DayWrapper-dayNames {
+.DaysWrapper-dayNames {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: var(--grid-1) 0;
+  justify-content: space-between;
+  /* TODO: move into text component */
   font-weight: bold;
 }
 
-.DayWrapper-days {
-  margin-top: var(--grid-half);
+.DaysWrapper-days {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  /* grid-gap: var(--grid-1) var(--grid-3); */
+  grid-gap: var(--grid-2) 0;
+  margin-top: var(--grid-1);
+  justify-content: space-between;
 }
 
 .Day {
-	display: inline-block;
-	width: calc(100% / 7);
-  vertical-align: top;
-  margin-top: var(--grid-1);
 }
 
 .Day--selected {
