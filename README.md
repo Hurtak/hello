@@ -2,8 +2,6 @@
 
 ## TODO
 
-- refactor that we only have one grid with months
-
 - settings
 
 - change image every x minutes?
