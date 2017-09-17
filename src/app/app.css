@@ -1,23 +1,27 @@
 /* Shared variables */
 
 :root {
-  --color-gray: gray;
-  --color-whiteTransparentDimmed:  rgba(255, 255, 255, 0.2);
-  --color-whiteTransparentDefault: rgba(255, 255, 255, 0.4);
-  --color-whiteTransparentBright:  rgba(255, 255, 255, 0.8);
+  /* Colors */
+  --color-gray-main: gray;
+  --color-gray-chrome: #f2f1f0;
+  --color-white-transparentDimmed:  rgba(255, 255, 255, 0.2);
+  --color-white-transparentDefault: rgba(255, 255, 255, 0.4);
+  --color-white-transparentBright:  rgba(255, 255, 255, 0.8);
 
-  --grid-quarter: 2px;
-  --grid-half:    4px;
-  --grid-1:       8px;
-  --grid-2:      16px;
-  --grid-3:      24px;
-  --grid-4:      32px;
-  --grid-5:      40px;
-  --grid-6:      48px;
-  --grid-7:      56px;
-  --grid-8:      64px;
-  --grid-9:      72px;
-  --grid-10:     80px;
+  /* Dimensions */
+  --grid-0-25:  2px;
+  --grid-0-5:   4px;
+  --grid-1:     8px;
+  --grid-1-5:  12px;
+  --grid-2:    16px;
+  --grid-3:    24px;
+  --grid-4:    32px;
+  --grid-5:    40px;
+  --grid-6:    48px;
+  --grid-7:    56px;
+  --grid-8:    64px;
+  --grid-9:    72px;
+  --grid-10:   80px;
 }
 
 /* Resets */
@@ -43,7 +47,7 @@ html {
 /* Main container styles */
 
 body {
-  background-color: #f2f1f0;
+  background-color: var(--color-gray-chrome);
 }
 
 .App {

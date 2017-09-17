@@ -2,12 +2,11 @@
 
 ## TODO
 
-- service worker update?
+- refactor that we only have one grid with monthss
+
 - settings
 
 - change image every x minutes?
-
-- refactor that we only have one grid with monthss
 
 - more image sources
 - have a cache of x images

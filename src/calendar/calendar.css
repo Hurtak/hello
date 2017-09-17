@@ -9,7 +9,7 @@
 
 .Month {
 	display: block;
-  background-color: var(--color-whiteTransparentDimmed);
+  background-color: var(--color-white-transparentDimmed);
   padding: var(--grid-2);
 }
 
@@ -61,7 +61,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background-color: var(--color-whiteTransparentDefault);
+  background-color: var(--color-white-transparentDefault);
   z-index: -1;
 }
 
@@ -75,7 +75,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: var(--grid-quarter) solid var(--color-whiteTransparentBright);
+  border: var(--grid-0-25) solid var(--color-white-transparentBright);
   z-index: -1;
 }
 

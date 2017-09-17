@@ -19,6 +19,6 @@
 .Text--alignRight  { text-align: right; }
 .Text--alignCenter { text-align: center; }
 
-/* Display Color */
-.Text--colorGray { color: var(--color-gray); }
+/* Color */
+.Text--colorGray { color: var(--color-gray-main); }
 

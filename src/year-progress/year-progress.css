@@ -2,14 +2,14 @@
   position: relative;
   width: 100%;
   height: var(--grid-8);
-  padding: var(--grid-quarter);
+  padding: var(--grid-0-25);
   margin-top: var(--grid-1);
-  border: var(--grid-quarter) solid var(--color-whiteTransparentDefault);
+  border: var(--grid-0-25) solid var(--color-white-transparentDefault);
 }
 
 .YearProgress-bar {
   height: 100%;
-  background-color: var(--color-whiteTransparentDefault);
+  background-color: var(--color-white-transparentDefault);
 }
 
 .YearProgress-textWrapper {
