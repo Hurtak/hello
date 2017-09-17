@@ -1,15 +1,18 @@
 import React from 'react'
+import './app.css'
+import Menu from '../menu/menu.js'
 import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
 // import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
-import './app.css'
 
 class App extends React.Component {
-  static apiUrl = 'https://unsplash.it/{width}/{height}?random&gravity=center'
+  static apiUrls = [
+    'https://unsplash.it/{width}/{height}?random&gravity=center'
+  ]
 
   state = {
-    backgroundImage: App.apiUrl
+    backgroundImage: App.apiUrls[0]
       .replace('{width}', window.screen.width)
       .replace('{height}', window.screen.height)
   }
@@ -45,6 +48,9 @@ class App extends React.Component {
             )
           })()}
         </main>
+        <aside className='App-menu'>
+          <Menu urlsOfImages={App.apiUrls} />
+        </aside>
       </div>
     )
   }

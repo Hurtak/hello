@@ -5,39 +5,50 @@ import './text.css'
 
 class Text extends React.Component {
   static propTypes = {
+    tag: propTypes.string,
     size: propTypes.oneOf(['heading', 'medium', 'small']).isRequired,
-    inline: propTypes.bool,
+    block: propTypes.bool,
     align: propTypes.oneOf(['left', 'center', 'right']),
     bold: propTypes.bool,
     color: propTypes.oneOf(['gray'])
   }
 
   render () {
-    const size = this.props.size || 'medium'
+    const {
+      tag: Tag = this.props.block ? 'div' : 'span',
+      size = 'medium',
+      color,
+      align,
+      block,
+      bold,
+      className,
+      ...restProps
+    } = this.props
 
     return (
-      <span
+      <Tag
         className={classnames(
           'Text',
           {
             'Text--sizeSmall': size === 'small',
             'Text--sizeMedium': size === 'medium',
 
-            'Text--colorGray': this.props.color === 'gray',
+            'Text--colorGray': color === 'gray',
 
-            'Text--alignLeft': this.props.align === 'left',
-            'Text--alignCenter': this.props.align === 'center',
-            'Text--alignRight': this.props.align === 'right',
+            'Text--alignLeft': align === 'left',
+            'Text--alignCenter': align === 'center',
+            'Text--alignRight': align === 'right',
 
-            'Text--displayInline': this.props.inline === true,
+            'Text--displayBlock': block === true,
 
-            'Text--weightBold': this.props.bold === true
+            'Text--weightBold': bold === true
           },
-          this.props.className
+          className
         )}
+        {...restProps}
       >
         {this.props.children}
-      </span>
+      </Tag>
     )
   }
 }

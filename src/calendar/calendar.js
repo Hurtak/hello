@@ -46,7 +46,7 @@ export default class Calendar extends React.Component {
               key={monthNumber}
             >
               <h2 className='Month-name'>
-                <Text size='medium' align='center'>
+                <Text block size='medium' align='center'>
                   {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
                 </Text>
               </h2>
@@ -60,7 +60,7 @@ export default class Calendar extends React.Component {
                     {Calendar.dayNames.map(dayName => {
                       return (
                         <div className='Day' key={dayName}>
-                          <Text size='medium' bold>
+                          <Text block size='medium' bold>
                             {dayName}
                           </Text>
                         </div>
@@ -106,7 +106,7 @@ export default class Calendar extends React.Component {
                         >
                           {/* Text now returns <p> element, this probably
                                should not be <p>. */}
-                          <Text size='medium' bold={isCurrentDay}>
+                          <Text block size='medium' bold={isCurrentDay}>
                             {dayNumber}
                           </Text>
                         </div>

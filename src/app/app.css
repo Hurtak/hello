@@ -51,11 +51,12 @@ body {
 }
 
 .App {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   padding: var(--grid-1);
   background-size: cover;
   background-position: center;
@@ -67,4 +68,12 @@ body {
   flex-direction: column;
   max-width: 1200px;
   width: 100%;
+}
+
+.App-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
 }

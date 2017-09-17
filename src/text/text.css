@@ -1,5 +1,4 @@
 .Text {
-  display: block;
   margin: 0;
   padding: 0;
   font-family: Monospace;
@@ -7,7 +6,7 @@
 }
 
 /* Display type */
-.Text--displayInline { display: inline; }
+.Text--displayBlock { display: block; }
 
 /* Size */
 .Text--sizeSmall  { font-size: 12px; }
