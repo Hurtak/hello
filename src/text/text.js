@@ -6,7 +6,7 @@ import './text.css'
 class Text extends React.Component {
   static propTypes = {
     tag: propTypes.string,
-    size: propTypes.oneOf(['heading', 'medium', 'small']).isRequired,
+    size: propTypes.oneOf(['medium', 'small']).isRequired,
     block: propTypes.bool,
     align: propTypes.oneOf(['left', 'center', 'right']),
     bold: propTypes.bool,
