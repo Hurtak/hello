@@ -2,11 +2,15 @@
 
 ## TODO
 
-- refactor that we only have one grid with monthss
+- refactor that we only have one grid with months
 
 - settings
 
 - change image every x minutes?
+
+- use chrome extension APIs
+  - point to filenames/firectories
+  - cache images in some cache folder
 
 - more image sources
 - have a cache of x images

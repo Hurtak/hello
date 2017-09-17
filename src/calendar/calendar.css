@@ -1,6 +1,6 @@
 .MonthWrapper {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4, auto);
   grid-gap: var(--grid-1);
 	list-style-type: none;
   margin: 0;
@@ -29,14 +29,14 @@
 
 .DaysWrapper-dayNames {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-template-columns: repeat(7, auto);
   grid-gap: var(--grid-1) 0;
   justify-content: space-between;
 }
 
 .DaysWrapper-days {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-template-columns: repeat(7, auto);
   /* grid-gap: var(--grid-1) var(--grid-3); */
   grid-gap: var(--grid-2) 0;
   margin-top: var(--grid-1);
