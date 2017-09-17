@@ -6,18 +6,19 @@
   line-height: 1;
 }
 
-.Text--inline {
-  display: inline;
-}
+/* Display type */
+.Text--displayInline { display: inline; }
 
-.Text--gray {
-  color: var(--color-gray);
-}
+/* Size */
+.Text--sizeSmall  { font-size: 12px; }
+.Text--sizeMedium { font-size: 14px; }
 
-.Text--small {
-  font-size: 12px;
-}
+/* Text modifiers */
+.Text--weightBold  { font-weight: bold; }
+.Text--alignLeft   { text-align: left; }
+.Text--alignRight  { text-align: right; }
+.Text--alignCenter { text-align: center; }
 
-.Text--medium {
-  font-size: 14px;
-}
+/* Display Color */
+.Text--colorGray { color: var(--color-gray); }
+

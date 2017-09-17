@@ -4,7 +4,6 @@ import classnames from 'classnames'
 import Text from '../text/text.js'
 import './calendar.css'
 
-// TODO: Refactor month layout to css grid.
 export default class Calendar extends React.Component {
   static propTypes = {
     time: propTypes.number.isRequired
@@ -47,7 +46,7 @@ export default class Calendar extends React.Component {
               key={monthNumber}
             >
               <h2 className='Month-name'>
-                <Text size='medium'>
+                <Text size='medium' align='center'>
                   {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
                 </Text>
               </h2>
@@ -62,7 +61,7 @@ export default class Calendar extends React.Component {
                       {Calendar.dayNames.map(dayName => {
                         return (
                           <div className='Day' key={dayName}>
-                            <Text size='medium'>
+                            <Text size='medium' bold>
                               {dayName}
                             </Text>
                           </div>
@@ -112,7 +111,7 @@ export default class Calendar extends React.Component {
                           >
                             {/* Text now returns <p> element, this probably
                                should not be <p>. */}
-                            <Text size='medium'>
+                            <Text size='medium' bold={isCurrentDay}>
                               {dayNumber}
                             </Text>
                           </div>

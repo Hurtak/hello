@@ -4,10 +4,11 @@ import classnames from 'classnames'
 import './text.css'
 
 class Text extends React.Component {
-  // TODO: revmap what sizes/colors/tags are used
   static propTypes = {
-    inline: propTypes.bool,
     size: propTypes.oneOf(['heading', 'medium', 'small']).isRequired,
+    inline: propTypes.bool,
+    align: propTypes.oneOf(['left', 'center', 'right']),
+    bold: propTypes.bool,
     color: propTypes.oneOf(['gray'])
   }
 
@@ -18,10 +19,19 @@ class Text extends React.Component {
       <span
         className={classnames(
           'Text',
-          `Text--${size}`,
           {
-            [`Text--${this.props.color}`]: Boolean(this.props.color),
-            'Text--inline': Boolean(this.props.inline)
+            'Text--sizeSmall': size === 'small',
+            'Text--sizeMedium': size === 'medium',
+
+            'Text--colorGray': this.props.color === 'gray',
+
+            'Text--alignLeft': this.props.align === 'left',
+            'Text--alignCenter': this.props.align === 'center',
+            'Text--alignRight': this.props.align === 'right',
+
+            'Text--displayInline': this.props.inline === true,
+
+            'Text--weightBold': this.props.bold === true
           },
           this.props.className
         )}

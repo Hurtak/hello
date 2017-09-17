@@ -14,7 +14,6 @@
 }
 
 .Month-name {
-  text-align: center;
   margin: 0;
 }
 
@@ -33,8 +32,6 @@
   grid-template-columns: auto auto auto auto auto auto auto;
   grid-gap: var(--grid-1) 0;
   justify-content: space-between;
-  /* TODO: move into text component */
-  font-weight: bold;
 }
 
 .DaysWrapper-days {
@@ -51,7 +48,6 @@
 
 .Day--selected {
   position: relative;
-  font-weight: bold;
   z-index: 0;
 }
 
