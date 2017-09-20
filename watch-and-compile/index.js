@@ -9,6 +9,7 @@ let scheduledRebuild = false
 let buildRunning = false
 let index = 0
 
+// TODO: remove previously builded directory
 chokidar.watch(dirSrc).on('all', (event, path) => {
   if (event === 'change') {
     index++
