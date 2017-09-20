@@ -2,6 +2,8 @@
 
 ## TODO
 
+- https://unsplash.it/1000/1000?image=1
+
 - settings
 
 - change image every x minutes?

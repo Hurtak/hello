@@ -8,7 +8,8 @@ import YearProgress from '../year-progress/year-progress.js'
 
 class App extends React.Component {
   static apiUrls = [
-    'https://unsplash.it/{width}/{height}?random&gravity=center'
+    // 'https://unsplash.it/{width}/{height}?random&gravity=center'
+    'https://unsplash.it/{width}/{height}?image=251&gravity=center'
   ]
 
   state = {
@@ -48,9 +49,9 @@ class App extends React.Component {
             )
           })()}
         </main>
-        <aside className='App-menu'>
+        {/* <aside className='App-menu'>
           <Menu urlsOfImages={App.apiUrls} />
-        </aside>
+        </aside> */}
       </div>
     )
   }
