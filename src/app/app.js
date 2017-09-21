@@ -6,16 +6,11 @@ import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
 
-class App extends React.Component {
-  static apiUrls = [
-    // 'https://unsplash.it/{width}/{height}?random&gravity=center'
-    'https://unsplash.it/{width}/{height}?image=251&gravity=center'
-  ]
+import img from '../img/47.jpg'
 
+class App extends React.Component {
   state = {
-    backgroundImage: App.apiUrls[0]
-      .replace('{width}', window.screen.width)
-      .replace('{height}', window.screen.height)
+    backgroundImage: img
   }
 
   render () {

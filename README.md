@@ -2,6 +2,8 @@
 
 ## TODO
 
+- fade in animation?
+
 - https://unsplash.it/1000/1000?image=1
 
 - settings
