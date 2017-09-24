@@ -1,16 +1,35 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import './app.css'
-import Menu from '../menu/menu.js'
 import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
-// import Clock from '../clock/clock.js'
+import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
 
 import img from '../img/47.jpg'
 
 class App extends React.Component {
+  static config = {
+    yearProgressDecimalPlaces: 8
+  }
+
   state = {
-    backgroundImage: img
+    backgroundImage: img,
+    menuOpened: true,
+    selectedView: 'CALENDAR' // 'CALENDAR' | 'CLOCK' | 'NOTHING'
+  }
+
+  toggleMenuOpenedState = () => {
+    this.setState(prevState => ({
+      menuOpened: !prevState.menuOpened
+    }))
+  }
+
+  setViewType = newViewType => {
+    this.setState({
+      selectedView: newViewType
+    })
   }
 
   render () {
@@ -22,32 +41,105 @@ class App extends React.Component {
         }}
       >
         <main className='App-content'>
-          {/* <ConditionalUpdater
-            updateEveryN={60 * 1000} // minute
-            component={time => <Clock time={time} />}
-          /> */}
-          <ConditionalUpdater
-            updateEveryN={24 * 60 * 60 * 1000} // day
-            component={time => <Calendar time={time} />}
-          />
           {(() => {
-            const year = 365 * 24 * 60 * 60 * 1000
-            const decimalPlaces = 8
+            switch (this.state.selectedView) {
+              case 'CALENDAR':
+                const yearInMs = 365 * 24 * 60 * 60 * 1000
+                return (
+                  <div>
+                    <ConditionalUpdater
+                      updateEveryN={24 * 60 * 60 * 1000} // day
+                      component={time => <Calendar time={time} />}
+                    />
+                    <ConditionalUpdater
+                      updateEveryN={
+                        yearInMs /
+                          100 /
+                          10 ** App.config.yearProgressDecimalPlaces
+                      }
+                      component={time => (
+                        <YearProgress
+                          time={time}
+                          decimalPlaces={App.config.yearProgressDecimalPlaces}
+                        />
+                      )}
+                    />
+                    )
+                  </div>
+                )
 
-            return (
-              <ConditionalUpdater
-                updateEveryN={year / 100 / 10 ** decimalPlaces}
-                component={time => (
-                  <YearProgress time={time} decimalPlaces={decimalPlaces} />
-                )}
-              />
-            )
+              case 'CLOCK':
+                return (
+                  <ConditionalUpdater
+                    updateEveryN={60 * 1000} // minute
+                    component={time => <Clock time={time} />}
+                  />
+                )
+
+              case 'NOTHING':
+                return null
+
+              default:
+                throw new Error('Unknown view')
+            }
           })()}
         </main>
-        {/* <aside className='App-menu'>
-          <Menu urlsOfImages={App.apiUrls} />
-        </aside> */}
+
+        <button className='MenuButton' onClick={this.toggleMenuOpenedState}>
+          Settings
+        </button>
+
+        <aside
+          className={classnames('App-menu', {
+            'App-menu--opened': this.state.menuOpened
+          })}
+        >
+          <section className='Menu'>
+            <h1>Calendar</h1>
+            <p>Something about this app</p>
+            <h2>View type</h2>
+            <MenuOption
+              onChange={() => this.setViewType('CALENDAR')}
+              checked={this.state.selectedView === 'CALENDAR'}
+            >
+              Calendar
+            </MenuOption>
+            <MenuOption
+              onChange={() => this.setViewType('CLOCK')}
+              checked={this.state.selectedView === 'CLOCK'}
+            >
+              Clock
+            </MenuOption>
+            <MenuOption
+              onChange={() => this.setViewType('NOTHING')}
+              checked={this.state.selectedView === 'NOTHING'}
+            >
+              Nothing
+            </MenuOption>
+          </section>
+        </aside>
       </div>
+    )
+  }
+}
+
+class MenuOption extends React.Component {
+  static propTypes = {
+    checked: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired
+  }
+
+  render () {
+    return (
+      <label>
+        <input
+          onChange={this.props.onChange}
+          type='radio'
+          name='menu-option'
+          checked={this.props.checked}
+        />
+        {this.props.children}
+      </label>
     )
   }
 }

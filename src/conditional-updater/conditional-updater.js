@@ -7,11 +7,6 @@ export default class ConditionarUpdater extends React.Component {
     component: propTypes.func.isRequired
   }
 
-  state = {
-    timer: null,
-    time: null
-  }
-
   constructor (props) {
     super(props)
 
@@ -20,8 +15,8 @@ export default class ConditionarUpdater extends React.Component {
       this.updateTimeAndStartTimeout()
     }, getNextTick(now, this.props.updateEveryN))
 
+    this.timer = timer
     this.state = {
-      timer: timer,
       time: now
     }
   }
@@ -34,21 +29,21 @@ export default class ConditionarUpdater extends React.Component {
       getNextTick(now, this.props.updateEveryN)
     )
 
+    this.timer = timer
     this.setState({
-      timer: timer,
       time: now
     })
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.props !== nextProps) {
-      clearTimeout(this.state.timer)
+      clearTimeout(this.timer)
       this.updateTimeAndStartTimeout()
     }
   }
 
-  componentWillUnmout () {
-    clearTimeout(this.state.timer)
+  componentWillUnmount () {
+    clearTimeout(this.timer)
   }
 
   render () {
