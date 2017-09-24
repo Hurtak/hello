@@ -2,9 +2,7 @@
   "name": "calendar",
   "version": "0.1.0",
   "dependencies": {
-    "chokidar": "^1.7.0",
     "classnames": "2.2.5",
-    "execa": "^0.8.0",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-dom": "15.6.1",
