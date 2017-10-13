@@ -6,17 +6,22 @@ import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
 import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
+import Age from '../age/age.js'
 
-import img from '../img/47.jpg'
+// import img from '../img/moonlight.jpg'
+
+import img from '../img/night.jpg'
+// import img from '../img/47.jpg'
 
 class App extends React.Component {
   static config = {
-    yearProgressDecimalPlaces: 8
+    yearProgressDecimalPlaces: 8,
+    ageDecimalPlaces: 8
   }
 
   state = {
     backgroundImage: img,
-    menuOpened: true,
+    menuOpened: false,
     selectedView: 'CALENDAR' // 'CALENDAR' | 'CLOCK' | 'NOTHING'
   }
 
@@ -51,7 +56,7 @@ class App extends React.Component {
                       updateEveryN={24 * 60 * 60 * 1000} // day
                       component={time => <Calendar time={time} />}
                     />
-                    <ConditionalUpdater
+                    {/* <ConditionalUpdater
                       updateEveryN={
                         yearInMs /
                           100 /
@@ -63,8 +68,18 @@ class App extends React.Component {
                           decimalPlaces={App.config.yearProgressDecimalPlaces}
                         />
                       )}
+                    /> */}
+                    <ConditionalUpdater
+                      updateEveryN={
+                        yearInMs / 100 / 10 ** App.config.ageDecimalPlaces
+                      }
+                      component={time => (
+                        <Age
+                          time={time}
+                          decimalPlaces={App.config.ageDecimalPlaces}
+                        />
+                      )}
                     />
-                    )
                   </div>
                 )
 

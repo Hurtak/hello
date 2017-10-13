@@ -4,9 +4,9 @@
   /* Colors */
   --color-gray-main: gray;
   --color-gray-chrome: #f2f1f0;
-  --color-white-transparentDimmed:  rgba(255, 255, 255, 0.2);
-  --color-white-transparentDefault: rgba(255, 255, 255, 0.4);
-  --color-white-transparentBright:  rgba(255, 255, 255, 0.8);
+  --color-white-transparentDimmed:  rgba(0, 0, 0, 0.2);
+  --color-white-transparentDefault: rgba(0, 0, 0, 0.4);
+  --color-white-transparentBright:  rgba(0, 0, 0, 0.8);
 
   /* Dimensions */
   --grid-0-25:  2px;

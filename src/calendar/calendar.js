@@ -1,5 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import glamorous from 'glamorous'
 import classnames from 'classnames'
 import Text from '../text/text.js'
 import './calendar.css'
@@ -36,20 +37,15 @@ export default class Calendar extends React.Component {
     const months = range(1, 12)
 
     return (
-      <ul className='MonthWrapper'>
+      <MonthsWrapper>
         {months.map(monthNumber => {
           return (
-            <li
-              className={classnames('Month', {
-                'Month--selected': monthNumber === currentMonth
-              })}
-              key={monthNumber}
-            >
-              <h2 className='Month-name'>
+            <Month selected={monthNumber === currentMonth} key={monthNumber}>
+              <MonthName>
                 <Text block size='medium' align='center'>
                   {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
                 </Text>
-              </h2>
+              </MonthName>
 
               {(() => {
                 const daysInMonth = getDaysInMonth(currentYear, monthNumber)
@@ -115,13 +111,46 @@ export default class Calendar extends React.Component {
                   </section>
                 )
               })()}
-            </li>
+            </Month>
           )
         })}
-      </ul>
+      </MonthsWrapper>
     )
   }
 }
+
+const grid = size => size * 8 + `px`
+const colors = {
+  grayMain: 'gray',
+  grayChrome: '#f2f1f0',
+  whiteTransparentDimmed: 'rgba(0, 0, 0, 0.2)',
+  whiteTransparentDefault: 'rgba(0, 0, 0, 0.4)',
+  whiteTransparentBright: 'rgba(0, 0, 0, 0.8)'
+}
+
+const MonthsWrapper = glamorous.ul({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, auto)',
+  gridGap: grid(1),
+  listStyleType: 'none',
+  margin: 0,
+  padding: 0
+})
+
+const Month = glamorous.li(
+  {
+    display: 'block',
+    backgroundColor: colors.whiteTransparentDimmed,
+    padding: grid(2)
+  },
+  props => ({
+    backgroundColor: props.selected ? 'rgba(0, 0, 0, 0.6)' : null
+  })
+)
+
+const MonthName = glamorous.h2({
+  margin: 0
+})
 
 export function getDaysInMonth (year, month) {
   return new Date(year, month, 0).getDate()
