@@ -1,9 +1,9 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import Text from '../text/text.js'
-import './age.css'
+import glamorous from 'glamorous'
+import * as styles from '../styles/styles.js'
 
-export default class Age extends React.Component {
+class Age extends React.Component {
   static propTypes = {
     decimalPlaces: propTypes.number.isRequired
   }
@@ -17,20 +17,25 @@ export default class Age extends React.Component {
     const years = (tsNow - tsBirthDate) / year
 
     return (
-      <div className='Age'>
-        <div
-          className='Age-bar'
-          style={{
-            width: 100 + '%'
-          }}
-        />
-        <div className='Age-textWrapper'>
-          <Text size='medium'>
-            {years.toFixed(this.props.decimalPlaces)}
-            %
-          </Text>
-        </div>
-      </div>
+      <AgeWrapper>
+        <AgeText>
+          {years.toFixed(this.props.decimalPlaces)}
+        </AgeText>
+      </AgeWrapper>
     )
   }
 }
+
+const AgeWrapper = glamorous.div({
+  marginTop: styles.grid(1),
+  padding: styles.grid(2),
+  backgroundColor: styles.colors.whiteTransparentDefault,
+  color: styles.colors.white
+})
+
+const AgeText = glamorous.div({
+  ...styles.fonts.medium,
+  textAlign: 'center'
+})
+
+export default Age

@@ -1,6 +1,7 @@
 const grid = size => `${size * 8}px`
 
 const colors = {
+  white: 'white',
   grayMain: 'gray',
   grayChrome: '#f2f1f0',
   whiteTransparentDimmed: 'rgba(0, 0, 0, 0.2)',
