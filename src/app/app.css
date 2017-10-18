@@ -24,32 +24,6 @@
   --grid-10:   80px;
 }
 
-/* Resets */
-
-body {
-  margin: 0;
-}
-
-/*
- * better box-sizing: border-box reset
- * @see: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
- */
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-/* Main container styles */
-
-body {
-  background-color: var(--color-gray-chrome);
-  position: relative; /* https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll */
-}
 
 .App {
   position: relative;

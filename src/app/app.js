@@ -7,11 +7,13 @@ import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
 import Age from '../age/age.js'
+import * as global from '../styles/global.js'
 
 // import img from '../img/moonlight.jpg'
-
 import img from '../img/night.jpg'
 // import img from '../img/47.jpg'
+
+global.init()
 
 class App extends React.Component {
   static config = {
