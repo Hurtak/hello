@@ -1,9 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import glamorous from 'glamorous'
-import classnames from 'classnames'
-import Text from '../text/text.js'
-import './calendar.css'
+import * as styles from '../styles/styles.js'
 
 export default class Calendar extends React.Component {
   static propTypes = {
@@ -42,9 +40,7 @@ export default class Calendar extends React.Component {
           return (
             <Month selected={monthNumber === currentMonth} key={monthNumber}>
               <MonthName>
-                <Text block size='medium' align='center'>
-                  {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
-                </Text>
+                {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
               </MonthName>
 
               {(() => {
@@ -52,14 +48,12 @@ export default class Calendar extends React.Component {
                 const days = range(1, daysInMonth)
 
                 return (
-                  <section className='DaysWrapper'>
+                  <DaysWrapper>
                     {Calendar.dayNames.map(dayName => {
                       return (
-                        <div className='Day' key={dayName}>
-                          <Text block size='medium' bold>
-                            {dayName}
-                          </Text>
-                        </div>
+                        <Day heading key={dayName}>
+                          {dayName}
+                        </Day>
                       )
                     })}
 
@@ -80,7 +74,7 @@ export default class Calendar extends React.Component {
                       const emptyItems = range(0, numberOfEmptyItems)
 
                       return emptyItems.map((item, index) => {
-                        return <div className='Day' key={item} />
+                        return <Day key={item} />
                       })
                     })()}
 
@@ -92,23 +86,19 @@ export default class Calendar extends React.Component {
                         monthNumber < currentMonth ||
                         (monthNumber === currentMonth && dayNumber < currentDay)
 
+                      // TODO: crossed not used ATM
                       return (
-                        <div
-                          className={classnames('Day', {
-                            'Day--selected': isCurrentDay,
-                            'Day--crossed': isDayFromPast
-                          })}
+                        <Day
+                          selected={isCurrentDay}
+                          crossed={isDayFromPast}
+                          currentDay={isCurrentDay}
                           key={dayNumber}
                         >
-                          {/* Text now returns <p> element, this probably
-                               should not be <p>. */}
-                          <Text block size='medium' bold={isCurrentDay}>
-                            {dayNumber}
-                          </Text>
-                        </div>
+                          {dayNumber}
+                        </Day>
                       )
                     })}
-                  </section>
+                  </DaysWrapper>
                 )
               })()}
             </Month>
@@ -119,19 +109,10 @@ export default class Calendar extends React.Component {
   }
 }
 
-const grid = size => size * 8 + `px`
-const colors = {
-  grayMain: 'gray',
-  grayChrome: '#f2f1f0',
-  whiteTransparentDimmed: 'rgba(0, 0, 0, 0.2)',
-  whiteTransparentDefault: 'rgba(0, 0, 0, 0.4)',
-  whiteTransparentBright: 'rgba(0, 0, 0, 0.8)'
-}
-
 const MonthsWrapper = glamorous.ul({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, auto)',
-  gridGap: grid(1),
+  gridGap: styles.grid(1),
   listStyleType: 'none',
   margin: 0,
   padding: 0
@@ -140,8 +121,8 @@ const MonthsWrapper = glamorous.ul({
 const Month = glamorous.li(
   {
     display: 'block',
-    backgroundColor: colors.whiteTransparentDimmed,
-    padding: grid(2)
+    backgroundColor: styles.colors.whiteTransparentDimmed,
+    padding: styles.grid(2)
   },
   props => ({
     backgroundColor: props.selected ? 'rgba(0, 0, 0, 0.6)' : null
@@ -149,8 +130,62 @@ const Month = glamorous.li(
 )
 
 const MonthName = glamorous.h2({
-  margin: 0
+  ...styles.fonts.medium,
+  display: 'block',
+  margin: 0,
+  textAlign: 'center'
 })
+
+const DaysWrapper = glamorous.div({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(7, auto)',
+  gridGap: `${styles.grid(1)} 0`,
+  justifyContent: 'space-between',
+  padding: 0,
+  marginTop: styles.grid(2),
+  listStyleType: 'none'
+})
+
+const Day = glamorous.div(
+  {
+    ...styles.fonts.medium
+  },
+  props => {
+    const css = []
+    if (props.heading) {
+      css.push({
+        ...css,
+        fontWeight: 'bold'
+      })
+    }
+    if (props.currentDay) {
+      css.push({
+        ...css,
+        fontWeight: 'bold'
+      })
+    }
+    if (props.selected) {
+      css.push({
+        ...css,
+        position: 'relative',
+        zIndex: 0,
+        '::after': {
+          content: '""',
+          display: 'block',
+          position: 'absolute',
+          left: '-2px',
+          top: '-4px',
+          width: '22px',
+          height: '22px',
+          backgroundColor: 'orange',
+          zIndex: -1
+        }
+      })
+    }
+
+    return css
+  }
+)
 
 export function getDaysInMonth (year, month) {
   return new Date(year, month, 0).getDate()
