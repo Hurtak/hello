@@ -2,6 +2,12 @@
 
 ## TODO
 
+- remove classlist
+- remove all css
+- test hover underline on image+text next to it
+- add normalize.css
+- remove global resets?
+
 - fade in animation?
 
 - https://unsplash.it/1000/1000?image=1

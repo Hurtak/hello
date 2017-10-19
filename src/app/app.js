@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import './app.css'
+import glamorous from 'glamorous'
 import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
 import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
 import Age from '../age/age.js'
+import * as styles from '../styles/styles.js'
 import * as global from '../styles/global.js'
 
 // import img from '../img/moonlight.jpg'
@@ -41,13 +41,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <div
-        className='App'
+      <AppWrapper
         style={{
           backgroundImage: `url("${this.state.backgroundImage}")`
         }}
       >
-        <main className='App-content'>
+        <AppContent>
           {(() => {
             switch (this.state.selectedView) {
               case 'CALENDAR':
@@ -100,18 +99,14 @@ class App extends React.Component {
                 throw new Error('Unknown view')
             }
           })()}
-        </main>
+        </AppContent>
 
-        <button className='MenuButton' onClick={this.toggleMenuOpenedState}>
+        <MenuButton onClick={this.toggleMenuOpenedState}>
           Settings
-        </button>
+        </MenuButton>
 
-        <aside
-          className={classnames('App-menu', {
-            'App-menu--opened': this.state.menuOpened
-          })}
-        >
-          <section className='Menu'>
+        <AppMenu opened={this.state.menuOpened}>
+          <Menu>
             <h1>Calendar</h1>
             <p>Something about this app</p>
             <h2>View type</h2>
@@ -133,9 +128,9 @@ class App extends React.Component {
             >
               Nothing
             </MenuOption>
-          </section>
-        </aside>
-      </div>
+          </Menu>
+        </AppMenu>
+      </AppWrapper>
     )
   }
 }
@@ -160,5 +155,56 @@ class MenuOption extends React.Component {
     )
   }
 }
+
+const AppWrapper = glamorous.div({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  padding: styles.grid(1),
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  // Menu is overflowing and is hidden on the right side
+  overflowX: 'hidden'
+})
+
+const AppContent = glamorous.main({
+  display: 'flex',
+  flexDirection: 'column',
+  maxWidth: '1200px',
+  width: '100%'
+})
+
+const AppMenu = glamorous.aside(
+  {
+    position: 'absolute',
+    top: '0',
+    left: '100%',
+    width: '300px',
+    height: '100%',
+    transition: '0.5s all ease'
+  },
+  props => {
+    if (props.opened) {
+      return { transform: 'translateX(-100%)' }
+    }
+  }
+)
+
+const Menu = glamorous.section({
+  padding: styles.grid(2),
+  height: '100%',
+  background: styles.colors.whiteTransparentBright,
+  boxShadow: `0 0px 3px 3px ${styles.colors.whiteTransparentDefault}`
+})
+
+const MenuButton = glamorous.button({
+  position: 'absolute',
+  left: styles.grid(1),
+  top: styles.grid(1)
+})
 
 export default App
