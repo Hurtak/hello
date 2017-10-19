@@ -151,21 +151,21 @@ const Day = glamorous.div(
     ...styles.fonts.medium
   },
   props => {
-    const css = []
+    let css = {}
     if (props.heading) {
-      css.push({
+      css = {
         ...css,
         fontWeight: 'bold'
-      })
+      }
     }
     if (props.currentDay) {
-      css.push({
+      css = {
         ...css,
         fontWeight: 'bold'
-      })
+      }
     }
     if (props.selected) {
-      css.push({
+      css = {
         ...css,
         position: 'relative',
         zIndex: 0,
@@ -180,7 +180,7 @@ const Day = glamorous.div(
           backgroundColor: 'orange',
           zIndex: -1
         }
-      })
+      }
     }
 
     return css
