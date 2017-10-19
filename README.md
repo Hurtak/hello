@@ -2,8 +2,6 @@
 
 ## TODO
 
-- add normalize.css
-
 - fade in animation?
 
 - https://unsplash.it/1000/1000?image=1
