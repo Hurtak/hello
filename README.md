@@ -2,7 +2,6 @@
 
 ## TODO
 
-- remove classlist
 - remove all css
 - test hover underline on image+text next to it
 - add normalize.css

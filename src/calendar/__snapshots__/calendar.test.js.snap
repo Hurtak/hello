@@ -2543,7 +2543,7 @@ exports[`Snapshot end of the year 1`] = `
         30
       </div>
       <div
-        className="css-94ibmi"
+        className="css-1i3l1aq"
       >
         31
       </div>
@@ -5109,7 +5109,7 @@ exports[`Snapshot leap year end 1`] = `
         30
       </div>
       <div
-        className="css-94ibmi"
+        className="css-1i3l1aq"
       >
         31
       </div>
@@ -5189,7 +5189,7 @@ exports[`Snapshot leap year start 1`] = `
         className="css-mgedoq"
       />
       <div
-        className="css-94ibmi"
+        className="css-1i3l1aq"
       >
         1
       </div>
@@ -7755,7 +7755,7 @@ exports[`Snapshot start of the year 1`] = `
         className="css-mgedoq"
       />
       <div
-        className="css-94ibmi"
+        className="css-1i3l1aq"
       >
         1
       </div>
