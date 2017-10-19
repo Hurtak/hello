@@ -2,6 +2,10 @@ import React from 'react'
 import propTypes from 'prop-types'
 
 export default class ConditionarUpdater extends React.Component {
+  static config = {
+    maximumRefreshRate: 1000 / 60 // 60fps
+  }
+
   static propTypes = {
     updateEveryN: propTypes.number.isRequired,
     component: propTypes.func.isRequired
@@ -13,7 +17,7 @@ export default class ConditionarUpdater extends React.Component {
     const now = Date.now()
     const timer = setTimeout(() => {
       this.updateTimeAndStartTimeout()
-    }, getNextTick(now, this.props.updateEveryN))
+    }, getNextTick(now, this.props.updateEveryN, ConditionarUpdater.config.maximumRefreshRate))
 
     this.timer = timer
     this.state = {
@@ -26,7 +30,11 @@ export default class ConditionarUpdater extends React.Component {
 
     const timer = setTimeout(
       this.updateTimeAndStartTimeout,
-      getNextTick(now, this.props.updateEveryN)
+      getNextTick(
+        now,
+        this.props.updateEveryN,
+        ConditionarUpdater.config.maximumRefreshRate
+      )
     )
 
     this.timer = timer
@@ -55,6 +63,10 @@ export default class ConditionarUpdater extends React.Component {
   }
 }
 
-export function getNextTick (now, updateEveryN) {
-  return updateEveryN - now % updateEveryN
+export function getNextTick (now, updateEveryN, minTickDelay) {
+  const nextTick = updateEveryN - now % updateEveryN
+
+  return typeof minTickDelay === 'number'
+    ? Math.max(nextTick, minTickDelay)
+    : nextTick
 }

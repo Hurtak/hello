@@ -89,7 +89,7 @@ class App extends React.Component {
                 return (
                   <ConditionalUpdater
                     updateEveryN={
-                      year / 100 / 10 ** App.config.yearProgressDecimalPlaces
+                      year / 10 ** App.config.yearProgressDecimalPlaces
                     }
                     component={time => (
                       <YearProgress
@@ -105,10 +105,7 @@ class App extends React.Component {
 
                 return (
                   <ConditionalUpdater
-                    updateEveryN={Math.max(
-                      1000 / 60, // 60fps
-                      year / 10 ** App.config.ageDecimalPlaces
-                    )}
+                    updateEveryN={year / 10 ** App.config.ageDecimalPlaces}
                     component={time => (
                       <Age
                         time={time}
