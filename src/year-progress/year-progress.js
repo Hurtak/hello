@@ -25,6 +25,7 @@ export default class YearProgress extends React.Component {
 const YearProgressWrapper = glamorous.div({
   position: 'relative',
   width: '100%',
+  boxSizing: 'border-box',
   height: styles.grid(8),
   padding: styles.grid(0.25),
   marginTop: styles.grid(1),

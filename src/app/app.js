@@ -1,30 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
+
 import ConditionalUpdater from '../conditional-updater/conditional-updater.js'
 import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
-// import YearProgress from '../year-progress/year-progress.js'
+import YearProgress from '../year-progress/year-progress.js'
 import Age from '../age/age.js'
 import * as styles from '../styles/styles.js'
 import * as global from '../styles/global.js'
 
 // import img from '../img/moonlight.jpg'
-import img from '../img/night.jpg'
-// import img from '../img/47.jpg'
+import light from '../img/night.jpg'
+import dark from '../img/47.jpg'
 
 global.init()
+
+const viewTypes = {
+  CLOCK: 'CLOCK',
+  CALENDAR: 'CALENDAR',
+  YEAR_PROGRESS: 'YEAR_PROGRESS',
+  AGE: 'AGE',
+  NOTHING: 'NOTHING'
+}
 
 class App extends React.Component {
   static config = {
     yearProgressDecimalPlaces: 8,
-    ageDecimalPlaces: 8
+    ageDecimalPlaces: 9
   }
 
   state = {
-    backgroundImage: img,
+    backgroundImage: light,
     menuOpened: false,
-    selectedView: 'CALENDAR' // 'CALENDAR' | 'CLOCK' | 'NOTHING'
+    selectedView: viewTypes.AGE
   }
 
   toggleMenuOpenedState = () => {
@@ -40,59 +49,77 @@ class App extends React.Component {
   }
 
   render () {
+    const second = 1000
+    const minute = 60 * second
+    const hour = 60 * minute
+    const day = 24 * hour
+    const year = 365 * day
+
     return (
       <AppWrapper
         style={{
           backgroundImage: `url("${this.state.backgroundImage}")`
         }}
+        onClick={() => {
+          this.setState(prevState => ({
+            backgroundImage: prevState.backgroundImage === light ? dark : light
+          }))
+        }}
       >
         <AppContent>
           {(() => {
             switch (this.state.selectedView) {
-              case 'CALENDAR':
-                const yearInMs = 365 * 24 * 60 * 60 * 1000
-                return (
-                  <div>
-                    <ConditionalUpdater
-                      updateEveryN={24 * 60 * 60 * 1000} // day
-                      component={time => <Calendar time={time} />}
-                    />
-                    {/* <ConditionalUpdater
-                      updateEveryN={
-                        yearInMs /
-                          100 /
-                          10 ** App.config.yearProgressDecimalPlaces
-                      }
-                      component={time => (
-                        <YearProgress
-                          time={time}
-                          decimalPlaces={App.config.yearProgressDecimalPlaces}
-                        />
-                      )}
-                    /> */}
-                    <ConditionalUpdater
-                      updateEveryN={
-                        yearInMs / 100 / 10 ** App.config.ageDecimalPlaces
-                      }
-                      component={time => (
-                        <Age
-                          time={time}
-                          decimalPlaces={App.config.ageDecimalPlaces}
-                        />
-                      )}
-                    />
-                  </div>
-                )
-
-              case 'CLOCK':
+              case viewTypes.CLOCK:
                 return (
                   <ConditionalUpdater
-                    updateEveryN={60 * 1000} // minute
+                    updateEveryN={minute}
                     component={time => <Clock time={time} />}
                   />
                 )
 
-              case 'NOTHING':
+              case viewTypes.CALENDAR:
+                return (
+                  <ConditionalUpdater
+                    updateEveryN={day}
+                    component={time => <Calendar time={time} />}
+                  />
+                )
+
+              case viewTypes.YEAR_PROGRESS:
+                return (
+                  <ConditionalUpdater
+                    updateEveryN={
+                      year / 100 / 10 ** App.config.yearProgressDecimalPlaces
+                    }
+                    component={time => (
+                      <YearProgress
+                        time={time}
+                        decimalPlaces={App.config.yearProgressDecimalPlaces}
+                      />
+                    )}
+                  />
+                )
+
+              case viewTypes.AGE:
+                const birthDate = new Date(1991, 3, 20).getTime()
+
+                return (
+                  <ConditionalUpdater
+                    updateEveryN={Math.max(
+                      1000 / 60, // 60fps
+                      year / 10 ** App.config.ageDecimalPlaces
+                    )}
+                    component={time => (
+                      <Age
+                        time={time}
+                        birthDate={birthDate}
+                        decimalPlaces={App.config.ageDecimalPlaces}
+                      />
+                    )}
+                  />
+                )
+
+              case viewTypes.NOTHING:
                 return null
 
               default:

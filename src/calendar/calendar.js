@@ -82,15 +82,9 @@ export default class Calendar extends React.Component {
                       const isCurrentDay =
                         monthNumber === currentMonth && dayNumber === currentDay
 
-                      const isDayFromPast =
-                        monthNumber < currentMonth ||
-                        (monthNumber === currentMonth && dayNumber < currentDay)
-
-                      // TODO: crossed not used ATM
                       return (
                         <Day
                           selected={isCurrentDay}
-                          crossed={isDayFromPast}
                           currentDay={isCurrentDay}
                           key={dayNumber}
                         >

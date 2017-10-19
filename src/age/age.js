@@ -5,6 +5,7 @@ import * as styles from '../styles/styles.js'
 
 class Age extends React.Component {
   static propTypes = {
+    birthDate: propTypes.number.isRequired,
     decimalPlaces: propTypes.number.isRequired
   }
 
@@ -12,9 +13,7 @@ class Age extends React.Component {
     const year = 365 * 24 * 60 * 60 * 1000
 
     const tsNow = new Date().getTime()
-    const tsBirthDate = new Date(1991, 3, 20).getTime()
-
-    const years = (tsNow - tsBirthDate) / year
+    const years = (tsNow - this.props.birthDate) / year
 
     return (
       <AgeWrapper>
