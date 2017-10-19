@@ -2,7 +2,6 @@
 
 ## TODO
 
-- test hover underline on image+text next to it
 - add normalize.css
 
 - fade in animation?
