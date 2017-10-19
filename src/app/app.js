@@ -157,6 +157,7 @@ class MenuOption extends React.Component {
 }
 
 const AppWrapper = glamorous.div({
+  boxSizing: 'border-box',
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
@@ -180,6 +181,7 @@ const AppContent = glamorous.main({
 
 const AppMenu = glamorous.aside(
   {
+    boxSizing: 'border-box',
     position: 'absolute',
     top: '0',
     left: '100%',
@@ -195,6 +197,7 @@ const AppMenu = glamorous.aside(
 )
 
 const Menu = glamorous.section({
+  boxSizing: 'border-box',
   padding: styles.grid(2),
   height: '100%',
   background: styles.colors.whiteTransparentBright,
