@@ -2,7 +2,6 @@ import React from 'react'
 import propTypes from 'prop-types'
 import glamorous from 'glamorous'
 import * as styles from '../styles/styles.js'
-import Text from '../text/text.js'
 
 export default class YearProgress extends React.Component {
   static propTypes = {
