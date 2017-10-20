@@ -1,7 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import glamorous from 'glamorous'
-import * as stylesGlobal from '../styles/styles-shared.js'
+import * as stylesShared from '../styles/styles-shared.js'
 
 export default class Calendar extends React.Component {
   static propTypes = {
@@ -106,7 +106,7 @@ export default class Calendar extends React.Component {
 const MonthsWrapper = glamorous.ul({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, auto)',
-  gridGap: stylesGlobal.grid(1),
+  gridGap: stylesShared.grid(1),
   listStyleType: 'none',
   margin: 0,
   padding: 0
@@ -115,8 +115,8 @@ const MonthsWrapper = glamorous.ul({
 const Month = glamorous.li(
   {
     display: 'block',
-    backgroundColor: stylesGlobal.colors.whiteTransparentDimmed,
-    padding: stylesGlobal.grid(2)
+    backgroundColor: stylesShared.colors.whiteTransparentDimmed,
+    padding: stylesShared.grid(2)
   },
   props => ({
     backgroundColor: props.selected ? 'rgba(0, 0, 0, 0.6)' : null
@@ -124,7 +124,7 @@ const Month = glamorous.li(
 )
 
 const MonthName = glamorous.h2({
-  ...stylesGlobal.fonts.medium,
+  ...stylesShared.fonts.medium,
   display: 'block',
   margin: 0,
   textAlign: 'center'
@@ -133,16 +133,16 @@ const MonthName = glamorous.h2({
 const DaysWrapper = glamorous.div({
   display: 'grid',
   gridTemplateColumns: 'repeat(7, auto)',
-  gridGap: `${stylesGlobal.grid(1)} 0`,
+  gridGap: `${stylesShared.grid(1)} 0`,
   justifyContent: 'space-between',
   padding: 0,
-  marginTop: stylesGlobal.grid(2),
+  marginTop: stylesShared.grid(2),
   listStyleType: 'none'
 })
 
 const Day = glamorous.div(
   {
-    ...stylesGlobal.fonts.medium
+    ...stylesShared.fonts.medium
   },
   props => {
     let css = {}
