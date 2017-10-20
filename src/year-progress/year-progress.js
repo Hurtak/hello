@@ -1,7 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import glamorous from 'glamorous'
-import * as styles from '../styles/styles.js'
+import * as stylesGlobal from '../styles/styles-shared.js'
 
 export default class YearProgress extends React.Component {
   static propTypes = {
@@ -26,15 +26,15 @@ const YearProgressWrapper = glamorous.div({
   position: 'relative',
   width: '100%',
   boxSizing: 'border-box',
-  height: styles.grid(8),
-  padding: styles.grid(0.25),
-  marginTop: styles.grid(1),
-  border: `${styles.grid(0.25)} solid ${styles.colors.whiteTransparentDefault}`
+  height: stylesGlobal.grid(8),
+  padding: stylesGlobal.grid(0.25),
+  marginTop: stylesGlobal.grid(1),
+  border: `${stylesGlobal.grid(0.25)} solid ${stylesGlobal.colors.whiteTransparentDefault}`
 })
 
 const YearProgressBar = glamorous.div({
   height: '100%',
-  backgroundColor: styles.colors.whiteTransparentDefault
+  backgroundColor: stylesGlobal.colors.whiteTransparentDefault
 })
 
 const YearProgressText = glamorous.div({
@@ -47,7 +47,7 @@ const YearProgressText = glamorous.div({
   alignItems: 'center',
   justifyContent: 'center',
   margin: 0,
-  ...styles.fonts.medium
+  ...stylesGlobal.fonts.medium
 })
 
 export function getYearProgress (timestamp) {

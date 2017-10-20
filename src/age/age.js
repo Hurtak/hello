@@ -1,7 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import glamorous from 'glamorous'
-import * as styles from '../styles/styles.js'
+import * as stylesGlobal from '../styles/styles-shared.js'
 
 class Age extends React.Component {
   static propTypes = {
@@ -26,14 +26,14 @@ class Age extends React.Component {
 }
 
 const AgeWrapper = glamorous.div({
-  marginTop: styles.grid(1),
-  padding: styles.grid(2),
-  backgroundColor: styles.colors.whiteTransparentDefault,
-  color: styles.colors.white
+  marginTop: stylesGlobal.grid(1),
+  padding: stylesGlobal.grid(2),
+  backgroundColor: stylesGlobal.colors.whiteTransparentDefault,
+  color: stylesGlobal.colors.white
 })
 
 const AgeText = glamorous.div({
-  ...styles.fonts.medium,
+  ...stylesGlobal.fonts.medium,
   textAlign: 'center'
 })
 

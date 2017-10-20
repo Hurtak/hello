@@ -7,14 +7,11 @@ import Clock from '../clock/clock.js'
 import Calendar from '../calendar/calendar.js'
 import YearProgress from '../year-progress/year-progress.js'
 import Age from '../age/age.js'
-import * as styles from '../styles/styles.js'
-import * as global from '../styles/global.js'
+import * as stylesShared from '../styles/styles-shared.js'
 
 // import img from '../img/moonlight.jpg'
 import light from '../img/night.jpg'
 import dark from '../img/47.jpg'
-
-global.init()
 
 const viewTypes = {
   CLOCK: 'CLOCK',
@@ -33,7 +30,7 @@ class App extends React.Component {
   state = {
     backgroundImage: light,
     menuOpened: false,
-    selectedView: viewTypes.AGE
+    selectedView: viewTypes.YEAR_PROGRESS
   }
 
   toggleMenuOpenedState = () => {
@@ -89,7 +86,7 @@ class App extends React.Component {
                 return (
                   <ConditionalUpdater
                     updateEveryN={
-                      year / 10 ** App.config.yearProgressDecimalPlaces
+                      year / 100 / 10 ** App.config.yearProgressDecimalPlaces
                     }
                     component={time => (
                       <YearProgress
@@ -188,7 +185,7 @@ const AppWrapper = glamorous.div({
   justifyContent: 'center',
   alignItems: 'center',
   height: '100vh',
-  padding: styles.grid(1),
+  padding: stylesShared.grid(1),
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
@@ -222,16 +219,16 @@ const AppMenu = glamorous.aside(
 
 const Menu = glamorous.section({
   boxSizing: 'border-box',
-  padding: styles.grid(2),
+  padding: stylesShared.grid(2),
   height: '100%',
-  background: styles.colors.whiteTransparentBright,
-  boxShadow: `0 0px 3px 3px ${styles.colors.whiteTransparentDefault}`
+  background: stylesShared.colors.whiteTransparentBright,
+  boxShadow: `0 0px 3px 3px ${stylesShared.colors.whiteTransparentDefault}`
 })
 
 const MenuButton = glamorous.button({
   position: 'absolute',
-  left: styles.grid(1),
-  top: styles.grid(1)
+  left: stylesShared.grid(1),
+  top: stylesShared.grid(1)
 })
 
 export default App
