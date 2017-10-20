@@ -2,6 +2,8 @@
 
 ## TODO
 
+- rename this project
+
 - figure out how to make calendar look nice on dark and light background
 - settings
 - change image every x minutes?
