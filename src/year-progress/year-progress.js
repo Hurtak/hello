@@ -38,6 +38,7 @@ const YearProgressBar = glamorous.div({
 })
 
 const YearProgressText = glamorous.div({
+  ...stylesShared.fonts.medium,
   position: 'absolute',
   left: 0,
   top: 0,
@@ -46,8 +47,7 @@ const YearProgressText = glamorous.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  margin: 0,
-  ...stylesShared.fonts.medium
+  margin: 0
 })
 
 export function getYearProgress (timestamp) {
