@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './app.js'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./app.js";
 
-const { it } = global
+const { it } = global;
 
-it('renders without crashing', () => {
-  ReactDOM.render(<App />, document.createElement('div'))
-})
+it("renders without crashing", () => {
+  ReactDOM.render(<App />, document.createElement("div"));
+});
