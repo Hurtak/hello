@@ -73,7 +73,7 @@ export default class Calendar extends React.Component {
                       const numberOfEmptyItems = firstDayIndex - 1;
                       const emptyItems = range(0, numberOfEmptyItems);
 
-                      return emptyItems.map((item, index) => {
+                      return emptyItems.map(item => {
                         return <Day key={item} />;
                       });
                     })()}
