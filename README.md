@@ -3,7 +3,6 @@
 ## TODO
 
 * settings
-  * close button
   * random/next/previous image
   * image index and total images indicator
   * image thems checkboxes (with number of images in each category)

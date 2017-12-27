@@ -14,6 +14,7 @@ import * as time from "../../shared/time.js";
 // import img from '../img/moonlight.jpg'
 import dark from "../../img/night.jpg";
 import light from "../../img/47.jpg";
+import iconCog from "../../icons/cog.svg";
 
 class App extends React.Component {
   static config = {
@@ -31,6 +32,12 @@ class App extends React.Component {
     this.setState(prevState => ({
       menuOpened: !prevState.menuOpened
     }));
+  };
+
+  closeMenu = () => {
+    this.setState({
+      menuOpened: false
+    });
   };
 
   setViewType = newViewType => {
@@ -115,13 +122,17 @@ class App extends React.Component {
           })()}
         </AppContent>
 
-        <MenuButton onClick={this.toggleMenuOpenedState}>Settings</MenuButton>
+        <MenuButton onClick={this.toggleMenuOpenedState}>
+          <MenuButtonIcon src={iconCog} />
+        </MenuButton>
 
         <AppMenu opened={this.state.menuOpened}>
           <MenuWrapper
+            opened={this.state.menuOpened}
             selectedView={this.state.selectedView}
             setViewType={this.setViewType}
             setRandomBackgroundImage={this.setRandomBackgroundImage}
+            closeMenu={this.closeMenu}
           />
         </AppMenu>
       </AppWrapper>
@@ -173,7 +184,18 @@ const AppMenu = glamorous.aside(
 const MenuButton = glamorous.button({
   position: "absolute",
   left: s.grid(1),
-  top: s.grid(1)
+  top: s.grid(1),
+  border: 0,
+  background: "rgba(255, 0, 0, 0.2)",
+  padding: "10px",
+  cursor: "pointer"
+});
+
+const MenuButtonIcon = glamorous.img({
+  display: "block",
+  width: "500px",
+  height: "400px",
+  objectFit: "contain"
 });
 
 export default App;
