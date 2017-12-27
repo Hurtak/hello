@@ -1,6 +1,6 @@
-const grid = size => `${size * 8}px`;
+export const grid = size => `${size * 8}px`;
 
-const colors = {
+export const colors = {
   white: "white",
   grayMain: "gray",
   grayChrome: "#f2f1f0",
@@ -8,6 +8,11 @@ const colors = {
   whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)",
   whiteTransparentDefault: "rgba(0, 0, 0, 0.4)",
   whiteTransparentBright: "rgba(0, 0, 0, 0.8)"
+};
+
+export const blur = {
+  default: "blur(5px)",
+  wide: "blur(80px)"
 };
 
 const fontShared = {
@@ -18,11 +23,9 @@ const fontShared = {
   lineHeight: 1
 };
 
-const fonts = {
+export const fonts = {
   medium: {
     ...fontShared,
     fontSize: "14px"
   }
 };
-
-export { grid, colors, fonts };

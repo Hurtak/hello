@@ -116,7 +116,7 @@ const MonthsWrapper = glamorous.ul({
 const Month = glamorous.li({
   display: "block",
   backgroundColor: stylesShared.colors.whiteTransparentALot,
-  backdropFilter: "blur(5px)",
+  backdropFilter: stylesShared.blur.default,
   padding: stylesShared.grid(2)
 });
 
