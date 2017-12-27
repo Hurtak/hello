@@ -160,7 +160,8 @@ const AppMenu = glamorous.aside(
     left: "100%",
     width: "400px",
     height: "100%",
-    transition: "0.5s all ease"
+    transition: "0.5s all ease",
+    zIndex: s.zIndex.menu
   },
   props => {
     if (props.opened) {

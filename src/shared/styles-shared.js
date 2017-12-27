@@ -1,5 +1,6 @@
 export const grid = size => `${size * 8}px`;
 
+// TODO: Delete unused variables.
 export const colors = {
   white: "white",
   grayMain: "gray",
@@ -28,4 +29,8 @@ export const fonts = {
     ...fontShared,
     fontSize: "14px"
   }
+};
+
+export const zIndex = {
+  menu: 10
 };

@@ -2,9 +2,13 @@
 
 ## TODO
 
-* rename this project
 * settings
-* change image every x minutes?
+  * close button
+  * random/next/previous image
+  * image index and total images indicator
+  * image thems checkboxes (with number of images in each category)
+  * change image every x minutes?
+* rename this project
 * fade in animation - like that chrome plugin
 * image sources
   * bing images
