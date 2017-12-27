@@ -1,5 +1,6 @@
 import React from "react";
 import glamorous from "glamorous";
+import ResizeObserver from "resize-observer-polyfill";
 import Menu from "../menu/menu.js";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.js";
 import Clock from "../clock/clock.js";
@@ -60,12 +61,18 @@ class App extends React.Component {
     }));
   };
 
-  componentDidMount() {
-    console.log(this.elAppMenu);
-    console.log(this.elAppMenu.scrollHeight);
-    this.setState({
-      menuHeight: this.elAppMenu.scrollHeight
+  listenOnMenuResize() {
+    // TODO: remove the listeners on componentWillUnmount?
+    const observer = new ResizeObserver(entries => {
+      this.setState({
+        menuHeight: entries[0].contentRect.height
+      });
     });
+    observer.observe(this.elAppMenu);
+  }
+
+  componentDidMount() {
+    this.listenOnMenuResize();
   }
 
   render() {

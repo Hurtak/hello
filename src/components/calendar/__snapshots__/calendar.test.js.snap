@@ -27,7 +27,7 @@ exports[`Snapshot end of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   display: block;
@@ -54,7 +54,7 @@ exports[`Snapshot end of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -65,7 +65,7 @@ exports[`Snapshot end of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
 }
@@ -75,7 +75,7 @@ exports[`Snapshot end of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -2674,7 +2674,7 @@ exports[`Snapshot leap year end 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   display: block;
@@ -2701,7 +2701,7 @@ exports[`Snapshot leap year end 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -2712,7 +2712,7 @@ exports[`Snapshot leap year end 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
 }
@@ -2722,7 +2722,7 @@ exports[`Snapshot leap year end 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -5335,7 +5335,7 @@ exports[`Snapshot leap year start 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   display: block;
@@ -5362,7 +5362,7 @@ exports[`Snapshot leap year start 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -5373,7 +5373,7 @@ exports[`Snapshot leap year start 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
 }
@@ -5383,7 +5383,7 @@ exports[`Snapshot leap year start 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -7996,7 +7996,7 @@ exports[`Snapshot start of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   display: block;
@@ -8023,7 +8023,7 @@ exports[`Snapshot start of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;
@@ -8034,7 +8034,7 @@ exports[`Snapshot start of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
 }
@@ -8044,7 +8044,7 @@ exports[`Snapshot start of the year 1`] = `
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Monospace;
+  font-family: Arial;
   line-height: 1;
   font-size: 14px;
   font-weight: bold;

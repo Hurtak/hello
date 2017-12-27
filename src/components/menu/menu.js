@@ -100,7 +100,7 @@ const ToggleButton = glamorous.button({
   top: s.dimensions.menuButtonSpacing,
   right: s.dimensions.menuButtonSpacing,
   border: 0,
-  background: "rgba(255, 0, 0, 0.2)",
+  background: "transparent",
   padding: s.dimensions.menuButtonPadding,
   cursor: "pointer"
 });

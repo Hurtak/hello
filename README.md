@@ -2,9 +2,13 @@
 
 ## TODO
 
-* settings open/close animation
 * stave stuff into localstorage
 * settings
+  * close button
+    * cog rotation and transformation to close button
+    * hover styles
+    * focus styles
+  * gather 3 categories of images, 3 iamges from each category
   * random/next/previous image
   * image index and total images indicator
   * image thems checkboxes (with number of images in each category)
@@ -29,3 +33,7 @@
   * chrome plugin
   * firefox plugin
   * web app - github pages hosted
+
+## Future improvements
+
+* Once ResizeObserver has good browser support, remove polyfill
