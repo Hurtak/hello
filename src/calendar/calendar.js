@@ -113,16 +113,12 @@ const MonthsWrapper = glamorous.ul({
   padding: 0
 });
 
-const Month = glamorous.li(
-  {
-    display: "block",
-    backgroundColor: stylesShared.colors.whiteTransparentDimmed,
-    padding: stylesShared.grid(2)
-  },
-  props => ({
-    backgroundColor: props.selected ? "rgba(0, 0, 0, 0.6)" : null
-  })
-);
+const Month = glamorous.li({
+  display: "block",
+  backgroundColor: stylesShared.colors.whiteTransparentALot,
+  backdropFilter: "blur(5px)",
+  padding: stylesShared.grid(2)
+});
 
 const MonthName = glamorous.h2({
   ...stylesShared.fonts.medium,

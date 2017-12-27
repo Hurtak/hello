@@ -2,8 +2,6 @@
 
 ## TODO
 
-* blur with
-  * https://iamvdo.me/en/blog/css-element-function?utm_content=buffer5c7ba&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer
 * rename this project
 
 * figure out how to make calendar look nice on dark and light background

@@ -10,8 +10,8 @@ import Age from "../age/age.js";
 import * as stylesShared from "../styles/styles-shared.js";
 
 // import img from '../img/moonlight.jpg'
-import light from "../img/night.jpg";
-import dark from "../img/47.jpg";
+import dark from "../img/night.jpg";
+import light from "../img/47.jpg";
 
 const viewTypes = {
   CLOCK: "CLOCK",
@@ -30,7 +30,7 @@ class App extends React.Component {
   state = {
     backgroundImage: light,
     menuOpened: false,
-    selectedView: viewTypes.YEAR_PROGRESS
+    selectedView: viewTypes.CALENDAR
   };
 
   toggleMenuOpenedState = () => {
