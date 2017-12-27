@@ -2,7 +2,6 @@
 
 ## TODO
 
-* stave stuff into localstorage
 * settings
   * close button
     * cog rotation and transformation to close button
@@ -13,7 +12,18 @@
   * image index and total images indicator
   * image thems checkboxes (with number of images in each category)
   * change image every x minutes?
+  * settings of age
 * rename this project
+* save stuff into localstorage
+* finish design for clock
+  * responsive design
+* finish design for age
+  * responsive design
+* finish design for calendar
+  * responsive design
+* finish design for year progress
+  * maybe get rid of this guy?
+  * responsive design
 * fade in animation - like that chrome plugin
 * remove year progress
 * image sources
