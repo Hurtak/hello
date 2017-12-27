@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import glamorous from "glamorous";
-import * as s from "../../shared/styles-shared.js";
+import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
 

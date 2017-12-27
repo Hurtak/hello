@@ -1,6 +1,6 @@
 import React from "react";
 import glamorous from "glamorous";
-import * as s from "../../shared/styles-shared.js";
+import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 
 export default class Calendar extends React.Component {

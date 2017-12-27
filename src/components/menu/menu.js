@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import glamorous from "glamorous";
-import * as s from "../../shared/styles-shared.js";
+import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 
 class Menu extends React.Component {

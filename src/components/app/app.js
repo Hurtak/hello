@@ -6,7 +6,7 @@ import Clock from "../clock/clock.js";
 import Calendar from "../calendar/calendar.js";
 import YearProgress from "../year-progress/year-progress.js";
 import Age from "../age/age.js";
-import * as s from "../../shared/styles-shared.js";
+import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
 
