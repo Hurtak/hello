@@ -1,6 +1,6 @@
 import React from "react";
 import glamorous from "glamorous";
-import MenuWrapper from "../menu/menu.js";
+import Menu from "../menu/menu.js";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.js";
 import Clock from "../clock/clock.js";
 import Calendar from "../calendar/calendar.js";
@@ -14,7 +14,6 @@ import * as time from "../../shared/time.js";
 // import img from '../img/moonlight.jpg'
 import dark from "../../img/night.jpg";
 import light from "../../img/47.jpg";
-import iconCog from "../../icons/cog.svg";
 
 class App extends React.Component {
   static config = {
@@ -22,14 +21,22 @@ class App extends React.Component {
     ageDecimalPlaces: 9
   };
 
-  state = {
-    backgroundImage: light,
-    menuOpened: false,
-    menuOpened: true,
-    selectedView: types.views.AGE
-  };
+  constructor() {
+    super();
 
-  toggleMenuOpenedState = () => {
+    this.elAppMenu = null;
+    this.state = {
+      backgroundImage: light,
+
+      menuOpened: false,
+      // menuOpened: true,
+      menuHeight: null,
+
+      selectedView: types.views.AGE
+    };
+  }
+
+  toggleMenu = () => {
     this.setState(prevState => ({
       menuOpened: !prevState.menuOpened
     }));
@@ -52,6 +59,14 @@ class App extends React.Component {
       backgroundImage: prevState.backgroundImage === light ? dark : light
     }));
   };
+
+  componentDidMount() {
+    console.log(this.elAppMenu);
+    console.log(this.elAppMenu.scrollHeight);
+    this.setState({
+      menuHeight: this.elAppMenu.scrollHeight
+    });
+  }
 
   render() {
     return (
@@ -126,19 +141,24 @@ class App extends React.Component {
           })()}
         </AppContent>
 
-        <MenuButton onClick={this.toggleMenuOpenedState}>
-          <MenuButtonIcon src={iconCog} />
-        </MenuButton>
-
-        <AppMenu opened={this.state.menuOpened}>
-          <MenuWrapper
-            opened={this.state.menuOpened}
-            selectedView={this.state.selectedView}
-            setViewType={this.setViewType}
-            setRandomBackgroundImage={this.setRandomBackgroundImage}
-            closeMenu={this.closeMenu}
-          />
-        </AppMenu>
+        <AppMenuWrapper
+          opened={this.state.menuOpened}
+          menuHeight={this.state.menuHeight}
+        >
+          <AppMenu
+            innerRef={el => {
+              this.elAppMenu = el;
+            }}
+          >
+            <Menu
+              opened={this.state.menuOpened}
+              selectedView={this.state.selectedView}
+              setViewType={this.setViewType}
+              setRandomBackgroundImage={this.setRandomBackgroundImage}
+              toggleMenu={this.toggleMenu}
+            />
+          </AppMenu>
+        </AppMenuWrapper>
       </AppWrapper>
     );
   }
@@ -167,39 +187,32 @@ const AppContent = glamorous.main({
   width: "100%"
 });
 
-const AppMenu = glamorous.aside(
+const AppMenuWrapper = glamorous.aside(
   {
-    boxSizing: "border-box",
     position: "absolute",
-    top: "0",
-    left: "100%",
-    width: "400px",
-    height: "100%",
+    // To make the overflow cropping from the right side
+    direction: "rtl",
+    top: s.grid(1),
+    right: s.grid(1),
+    width: s.dimensions.menuButtonSizeAndSpacing,
+    height: s.dimensions.menuButtonSizeAndSpacing,
     transition: "0.5s all ease",
+    overflow: "hidden",
     zIndex: s.zIndex.menu
   },
   props => {
     if (props.opened) {
-      return { transform: "translateX(-100%)" };
+      return {
+        width: s.dimensions.menuWidth,
+        height: props.menuHeight ? `${props.menuHeight}px` : "auto"
+      };
     }
   }
 );
 
-const MenuButton = glamorous.button({
-  position: "absolute",
-  left: s.grid(1),
-  top: s.grid(1),
-  border: 0,
-  background: "rgba(255, 0, 0, 0.2)",
-  padding: "10px",
-  cursor: "pointer"
-});
-
-const MenuButtonIcon = glamorous.img({
-  display: "block",
-  width: "500px",
-  height: "400px",
-  objectFit: "contain"
+const AppMenu = glamorous.div({
+  width: s.dimensions.menuWidth,
+  direction: "ltr"
 });
 
 export default App;

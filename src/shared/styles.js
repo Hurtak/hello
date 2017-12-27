@@ -2,6 +2,7 @@ import "glamor/reset"; // normalize.css
 import * as glamor from "glamor";
 
 export const grid = size => `${size * 8}px`;
+export const gridRaw = size => size * 8;
 
 // TODO: Delete unused variables.
 export const colors = {
@@ -47,6 +48,21 @@ export const text = {
 
 export const zIndex = {
   menu: 10
+};
+
+const menuButtonSize = gridRaw(5);
+const menuButtonPadding = gridRaw(1);
+const menuButtonSpacing = gridRaw(1);
+
+const menuButtonSizeAndSpacing =
+  menuButtonSize + 2 * menuButtonPadding + 2 * menuButtonSpacing;
+
+export const dimensions = {
+  menuWidth: "400px",
+  menuButtonSize: menuButtonSize + "px",
+  menuButtonPadding: menuButtonPadding + "px",
+  menuButtonSpacing: menuButtonSpacing + "px",
+  menuButtonSizeAndSpacing: menuButtonSizeAndSpacing + "px"
 };
 
 export function globalStyles() {

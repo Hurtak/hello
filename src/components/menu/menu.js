@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
+import iconCog from "../../icons/cog.svg";
 
 class Menu extends React.Component {
   static propTypes = {
@@ -10,15 +11,15 @@ class Menu extends React.Component {
     selectedView: PropTypes.oneOf(Object.values(types.views)),
     setViewType: PropTypes.func.isRequired,
     setRandomBackgroundImage: PropTypes.func.isRequired,
-    closeMenu: PropTypes.func.isRequired
+    toggleMenu: PropTypes.func.isRequired
   };
 
   render() {
     return (
       <MenuWrapper>
-        <TabIndexHandler disableTabbing={!this.props.opened}>
-          <button onClick={this.props.closeMenu}>Close</button>
-        </TabIndexHandler>
+        <ToggleButton onClick={this.props.toggleMenu}>
+          <ToggleButtonIcon src={iconCog} />
+        </ToggleButton>
 
         <Heading>Calendar</Heading>
         <Text>Something about this app</Text>
@@ -93,6 +94,24 @@ class TabIndexHandler extends React.Component {
   }
 }
 
+const ToggleButton = glamorous.button({
+  boxSizing: "border-box",
+  position: "absolute",
+  top: s.dimensions.menuButtonSpacing,
+  right: s.dimensions.menuButtonSpacing,
+  border: 0,
+  background: "rgba(255, 0, 0, 0.2)",
+  padding: s.dimensions.menuButtonPadding,
+  cursor: "pointer"
+});
+
+const ToggleButtonIcon = glamorous.img({
+  display: "block",
+  width: s.dimensions.menuButtonSize,
+  height: s.dimensions.menuButtonSize,
+  objectFit: "contain"
+});
+
 const Heading = glamorous.h1({
   ...s.text.text,
   ...s.text.heading
@@ -110,8 +129,9 @@ const Text = glamorous.p({
 
 const MenuWrapper = glamorous.section({
   boxSizing: "border-box",
+  position: "relative",
   padding: s.grid(2),
-  height: "100%",
+  overflow: "hidden",
   backdropFilter: s.blur.wide
 });
 
