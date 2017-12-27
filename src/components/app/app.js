@@ -26,7 +26,7 @@ class App extends React.Component {
     backgroundImage: light,
     menuOpened: false,
     menuOpened: true,
-    selectedView: types.views.CALENDAR
+    selectedView: types.views.AGE
   };
 
   toggleMenuOpenedState = () => {
@@ -68,6 +68,7 @@ class App extends React.Component {
                   <ConditionalUpdater
                     updateEveryN={time.minute}
                     component={time => <Clock time={time} />}
+                    key={this.state.selectedView}
                   />
                 );
 
@@ -76,6 +77,7 @@ class App extends React.Component {
                   <ConditionalUpdater
                     updateEveryN={time.day}
                     component={time => <Calendar time={time} />}
+                    key={this.state.selectedView}
                   />
                 );
 
@@ -93,13 +95,13 @@ class App extends React.Component {
                         decimalPlaces={App.config.yearProgressDecimalPlaces}
                       />
                     )}
+                    key={this.state.selectedView}
                   />
                 );
 
               case types.views.AGE: {
                 // TODO
                 const birthDate = new Date(1991, 3, 20).getTime();
-
                 return (
                   <ConditionalUpdater
                     updateEveryN={time.year / 10 ** App.config.ageDecimalPlaces}
@@ -110,6 +112,7 @@ class App extends React.Component {
                         decimalPlaces={App.config.ageDecimalPlaces}
                       />
                     )}
+                    key={this.state.selectedView}
                   />
                 );
               }

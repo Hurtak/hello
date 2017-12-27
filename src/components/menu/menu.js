@@ -27,6 +27,15 @@ class Menu extends React.Component {
 
         <TabIndexHandler disableTabbing={!this.props.opened}>
           <MenuOption
+            onChange={() => this.props.setViewType(types.views.CLOCK)}
+            checked={this.props.selectedView === types.views.CLOCK}
+          >
+            Clock
+          </MenuOption>
+        </TabIndexHandler>
+
+        <TabIndexHandler disableTabbing={!this.props.opened}>
+          <MenuOption
             onChange={() => this.props.setViewType(types.views.CALENDAR)}
             checked={this.props.selectedView === types.views.CALENDAR}
           >
@@ -36,10 +45,10 @@ class Menu extends React.Component {
 
         <TabIndexHandler disableTabbing={!this.props.opened}>
           <MenuOption
-            onChange={() => this.props.setViewType(types.views.CLOCK)}
-            checked={this.props.selectedView === types.views.CLOCK}
+            onChange={() => this.props.setViewType(types.views.AGE)}
+            checked={this.props.selectedView === types.views.AGE}
           >
-            Clock
+            Age
           </MenuOption>
         </TabIndexHandler>
 

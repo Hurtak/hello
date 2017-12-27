@@ -2,6 +2,8 @@
 
 ## TODO
 
+* settings open/close animation
+* stave stuff into localstorage
 * settings
   * random/next/previous image
   * image index and total images indicator
@@ -9,6 +11,7 @@
   * change image every x minutes?
 * rename this project
 * fade in animation - like that chrome plugin
+* remove year progress
 * image sources
   * bing images
   * https://unsplash.com/
