@@ -13,11 +13,13 @@ exports[`Snapshot end of the year 1`] = `
   -ms-grid-gap: 8px;
 }
 
-.glamor-524,
-[data-glamor-524] {
+.glamor-46,
+[data-glamor-46] {
   display: block;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
   padding: 16px;
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .glamor-0,
@@ -92,13 +94,6 @@ exports[`Snapshot end of the year 1`] = `
   height: 22px;
   background-color: orange;
   z-index: -1;
-}
-
-.glamor-46,
-[data-glamor-46] {
-  display: block;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 16px;
 }
 
 <ul
@@ -2433,7 +2428,7 @@ exports[`Snapshot end of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-524"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -2665,11 +2660,13 @@ exports[`Snapshot leap year end 1`] = `
   -ms-grid-gap: 8px;
 }
 
-.glamor-528,
-[data-glamor-528] {
+.glamor-46,
+[data-glamor-46] {
   display: block;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
   padding: 16px;
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .glamor-0,
@@ -2744,13 +2741,6 @@ exports[`Snapshot leap year end 1`] = `
   height: 22px;
   background-color: orange;
   z-index: -1;
-}
-
-.glamor-46,
-[data-glamor-46] {
-  display: block;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 16px;
 }
 
 <ul
@@ -5096,7 +5086,7 @@ exports[`Snapshot leap year end 1`] = `
     </div>
   </li>
   <li
-    className="glamor-528"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -5334,8 +5324,10 @@ exports[`Snapshot leap year start 1`] = `
 .glamor-46,
 [data-glamor-46] {
   display: block;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
   padding: 16px;
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .glamor-0,
@@ -5410,13 +5402,6 @@ exports[`Snapshot leap year start 1`] = `
   height: 22px;
   background-color: orange;
   z-index: -1;
-}
-
-.glamor-87,
-[data-glamor-87] {
-  display: block;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 16px;
 }
 
 <ul
@@ -5646,7 +5631,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -5847,7 +5832,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -6061,7 +6046,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -6279,7 +6264,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -6487,7 +6472,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -6699,7 +6684,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -6922,7 +6907,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -7133,7 +7118,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -7348,7 +7333,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -7553,7 +7538,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -7762,7 +7747,7 @@ exports[`Snapshot leap year start 1`] = `
     </div>
   </li>
   <li
-    className="glamor-87"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -8000,8 +7985,10 @@ exports[`Snapshot start of the year 1`] = `
 .glamor-46,
 [data-glamor-46] {
   display: block;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
   padding: 16px;
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .glamor-0,
@@ -8076,13 +8063,6 @@ exports[`Snapshot start of the year 1`] = `
   height: 22px;
   background-color: orange;
   z-index: -1;
-}
-
-.glamor-86,
-[data-glamor-86] {
-  display: block;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 16px;
 }
 
 <ul
@@ -8312,7 +8292,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -8508,7 +8488,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -8719,7 +8699,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -8934,7 +8914,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -9139,7 +9119,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -9348,7 +9328,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -9568,7 +9548,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -9776,7 +9756,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -9988,7 +9968,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -10211,7 +10191,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"
@@ -10417,7 +10397,7 @@ exports[`Snapshot start of the year 1`] = `
     </div>
   </li>
   <li
-    className="glamor-86"
+    className="glamor-46"
   >
     <h2
       className="glamor-0"

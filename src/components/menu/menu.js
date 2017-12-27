@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import glamorous from "glamorous";
-import * as stylesShared from "../styles/styles-shared.js";
+import * as s from "../../styles/styles-shared.js";
 
 const viewTypes = {
   CLOCK: "CLOCK",
@@ -17,10 +17,6 @@ class Menu extends React.Component {
     setViewType: PropTypes.func.isRequired,
     setRandomBackgroundImage: PropTypes.func.isRequired
   };
-
-  constructor() {
-    super();
-  }
 
   render() {
     return (
@@ -58,9 +54,9 @@ class Menu extends React.Component {
 
 const MenuWrapper = glamorous.section({
   boxSizing: "border-box",
-  padding: stylesShared.grid(2),
+  padding: s.grid(2),
   height: "100%",
-  backdropFilter: stylesShared.blur.wide
+  backdropFilter: s.blur.wide
 });
 
 class MenuOption extends React.Component {
@@ -86,8 +82,8 @@ class MenuOption extends React.Component {
 }
 
 const MenuOptionText = glamorous.span({
-  ...stylesShared.fonts.medium,
-  color: stylesShared.colors.white
+  ...s.fonts.medium,
+  color: s.colors.white
 });
 
 export default Menu;

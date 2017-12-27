@@ -1,6 +1,6 @@
 import "glamor/reset"; // normalize.css
 import * as glamor from "glamor";
-import * as stylesShared from "./styles-shared.js";
+import * as s from "./styles-shared.js";
 
 function init() {
   // Resets
@@ -10,7 +10,7 @@ function init() {
 
   // General styles
   glamor.css.global("body", {
-    backgroundColor: stylesShared.colors.grayChrome,
+    backgroundColor: s.colors.grayChrome,
 
     // https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll
     position: "relative"

@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import glamorous from "glamorous";
-import * as stylesShared from "../styles/styles-shared.js";
+import * as s from "../../styles/styles-shared.js";
 
 export default class YearProgress extends React.Component {
   static propTypes = {
@@ -26,20 +26,19 @@ const YearProgressWrapper = glamorous.div({
   position: "relative",
   width: "100%",
   boxSizing: "border-box",
-  height: stylesShared.grid(8),
-  padding: stylesShared.grid(0.25),
-  marginTop: stylesShared.grid(1),
-  border: `${stylesShared.grid(0.25)} solid ${stylesShared.colors
-    .whiteTransparentDefault}`
+  height: s.grid(8),
+  padding: s.grid(0.25),
+  marginTop: s.grid(1),
+  border: `${s.grid(0.25)} solid ${s.colors.whiteTransparentDefault}`
 });
 
 const YearProgressBar = glamorous.div({
   height: "100%",
-  backgroundColor: stylesShared.colors.whiteTransparentDefault
+  backgroundColor: s.colors.whiteTransparentDefault
 });
 
 const YearProgressText = glamorous.div({
-  ...stylesShared.fonts.medium,
+  ...s.fonts.medium,
   position: "absolute",
   left: 0,
   top: 0,

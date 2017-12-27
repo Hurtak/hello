@@ -6,12 +6,12 @@ import Clock from "../clock/clock.js";
 import Calendar from "../calendar/calendar.js";
 import YearProgress from "../year-progress/year-progress.js";
 import Age from "../age/age.js";
-import * as stylesShared from "../styles/styles-shared.js";
+import * as s from "../../styles/styles-shared.js";
 
 // TODO: move images somewhere else
 // import img from '../img/moonlight.jpg'
-import dark from "../img/night.jpg";
-import light from "../img/47.jpg";
+import dark from "../../img/night.jpg";
+import light from "../../img/47.jpg";
 
 const viewTypes = {
   CLOCK: "CLOCK",
@@ -146,7 +146,7 @@ const AppWrapper = glamorous.div({
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
-  padding: stylesShared.grid(1),
+  padding: s.grid(1),
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
@@ -180,8 +180,8 @@ const AppMenu = glamorous.aside(
 
 const MenuButton = glamorous.button({
   position: "absolute",
-  left: stylesShared.grid(1),
-  top: stylesShared.grid(1)
+  left: s.grid(1),
+  top: s.grid(1)
 });
 
 export default App;
