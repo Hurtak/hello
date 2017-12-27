@@ -131,20 +131,20 @@ class App extends React.Component {
             <p>Something about this app</p>
             <h2>View type</h2>
             <MenuOption
-              onChange={() => this.setViewType("CALENDAR")}
-              checked={this.state.selectedView === "CALENDAR"}
+              onChange={() => this.setViewType(viewTypes.CALENDAR)}
+              checked={this.state.selectedView === viewTypes.CALENDAR}
             >
               Calendar
             </MenuOption>
             <MenuOption
-              onChange={() => this.setViewType("CLOCK")}
-              checked={this.state.selectedView === "CLOCK"}
+              onChange={() => this.setViewType(viewTypes.CLOCK)}
+              checked={this.state.selectedView === viewTypes.CLOCK}
             >
               Clock
             </MenuOption>
             <MenuOption
-              onChange={() => this.setViewType("NOTHING")}
-              checked={this.state.selectedView === "NOTHING"}
+              onChange={() => this.setViewType(viewTypes.NOTHING)}
+              checked={this.state.selectedView === viewTypes.NOTHING}
             >
               Nothing
             </MenuOption>
@@ -158,7 +158,8 @@ class App extends React.Component {
 class MenuOption extends React.Component {
   static propTypes = {
     checked: PropTypes.bool.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    children: PropTypes.string.isRequired
   };
 
   render() {
@@ -170,11 +171,16 @@ class MenuOption extends React.Component {
           name="menu-option"
           checked={this.props.checked}
         />
-        {this.props.children}
+        <MenuOptionText>{this.props.children}</MenuOptionText>
       </label>
     );
   }
 }
+
+const MenuOptionText = glamorous.span({
+  ...stylesShared.fonts.medium,
+  color: stylesShared.colors.white
+});
 
 const AppWrapper = glamorous.div({
   boxSizing: "border-box",
