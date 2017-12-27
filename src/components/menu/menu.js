@@ -20,10 +20,10 @@ class Menu extends React.Component {
           <button onClick={this.props.closeMenu}>Close</button>
         </TabIndexHandler>
 
-        <h1>Calendar</h1>
-        <p>Something about this app</p>
+        <Heading>Calendar</Heading>
+        <Text>Something about this app</Text>
 
-        <h2>View type</h2>
+        <HeadingSmall>View type</HeadingSmall>
 
         <TabIndexHandler disableTabbing={!this.props.opened}>
           <MenuOption
@@ -52,7 +52,7 @@ class Menu extends React.Component {
           </MenuOption>
         </TabIndexHandler>
 
-        <h2>Background image</h2>
+        <HeadingSmall>Background image</HeadingSmall>
 
         <TabIndexHandler disableTabbing={!this.props.opened}>
           <button onClick={this.props.setRandomBackgroundImage}>
@@ -83,6 +83,21 @@ class TabIndexHandler extends React.Component {
     return El;
   }
 }
+
+const Heading = glamorous.h1({
+  ...s.text.text,
+  ...s.text.heading
+});
+
+const HeadingSmall = glamorous.h1({
+  ...s.text.text,
+  ...s.text.headingSmall
+});
+
+const Text = glamorous.p({
+  ...s.text.text,
+  ...s.text.medium
+});
 
 const MenuWrapper = glamorous.section({
   boxSizing: "border-box",
@@ -116,7 +131,8 @@ class MenuOption extends React.Component {
 }
 
 const MenuOptionText = glamorous.span({
-  ...s.fonts.medium,
+  ...s.text.text,
+  ...s.text.medium,
   color: s.colors.white
 });
 

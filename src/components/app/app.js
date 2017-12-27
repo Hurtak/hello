@@ -25,6 +25,7 @@ class App extends React.Component {
   state = {
     backgroundImage: light,
     menuOpened: false,
+    menuOpened: true,
     selectedView: types.views.CALENDAR
   };
 

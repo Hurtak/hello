@@ -19,18 +19,29 @@ export const blur = {
   wide: "blur(80px)"
 };
 
-const fontShared = {
-  margin: 0,
-  padding: 0,
-  color: "white",
-  fontFamily: "Monospace",
-  lineHeight: 1
-};
+export const text = {
+  text: {
+    margin: 0,
+    padding: 0,
+    color: colors.white,
+    fontFamily: "Arial",
+    lineHeight: 1
+  },
 
-export const fonts = {
+  // Size modifiers
+  heading: {
+    fontSize: "18px"
+  },
+  headingSmall: {
+    fontSize: "16px"
+  },
   medium: {
-    ...fontShared,
     fontSize: "14px"
+  },
+
+  // Appearence modifiers
+  monospace: {
+    fontFamily: "Monospace"
   }
 };
 
