@@ -6,20 +6,14 @@ import Clock from "../clock/clock.js";
 import Calendar from "../calendar/calendar.js";
 import YearProgress from "../year-progress/year-progress.js";
 import Age from "../age/age.js";
-import * as s from "../../styles/styles-shared.js";
+import * as s from "../../shared/styles-shared.js";
+import * as types from "../../shared/types.js";
+import * as time from "../../shared/time.js";
 
 // TODO: move images somewhere else
 // import img from '../img/moonlight.jpg'
 import dark from "../../img/night.jpg";
 import light from "../../img/47.jpg";
-
-const viewTypes = {
-  CLOCK: "CLOCK",
-  CALENDAR: "CALENDAR",
-  YEAR_PROGRESS: "YEAR_PROGRESS",
-  AGE: "AGE",
-  NOTHING: "NOTHING"
-};
 
 class App extends React.Component {
   static config = {
@@ -30,7 +24,7 @@ class App extends React.Component {
   state = {
     backgroundImage: light,
     menuOpened: false,
-    selectedView: viewTypes.CALENDAR
+    selectedView: types.views.CALENDAR
   };
 
   toggleMenuOpenedState = () => {
@@ -52,12 +46,6 @@ class App extends React.Component {
   };
 
   render() {
-    const second = 1000;
-    const minute = 60 * second;
-    const hour = 60 * minute;
-    const day = 24 * hour;
-    const year = 365 * day;
-
     return (
       <AppWrapper
         style={{
@@ -67,27 +55,29 @@ class App extends React.Component {
         <AppContent>
           {(() => {
             switch (this.state.selectedView) {
-              case viewTypes.CLOCK:
+              case types.views.CLOCK:
                 return (
                   <ConditionalUpdater
-                    updateEveryN={minute}
+                    updateEveryN={time.minute}
                     component={time => <Clock time={time} />}
                   />
                 );
 
-              case viewTypes.CALENDAR:
+              case types.views.CALENDAR:
                 return (
                   <ConditionalUpdater
-                    updateEveryN={day}
+                    updateEveryN={time.day}
                     component={time => <Calendar time={time} />}
                   />
                 );
 
-              case viewTypes.YEAR_PROGRESS:
+              case types.views.YEAR_PROGRESS:
                 return (
                   <ConditionalUpdater
                     updateEveryN={
-                      year / 100 / 10 ** App.config.yearProgressDecimalPlaces
+                      time.year /
+                      100 /
+                      10 ** App.config.yearProgressDecimalPlaces
                     }
                     component={time => (
                       <YearProgress
@@ -98,12 +88,13 @@ class App extends React.Component {
                   />
                 );
 
-              case viewTypes.AGE: {
+              case types.views.AGE: {
+                // TODO
                 const birthDate = new Date(1991, 3, 20).getTime();
 
                 return (
                   <ConditionalUpdater
-                    updateEveryN={year / 10 ** App.config.ageDecimalPlaces}
+                    updateEveryN={time.year / 10 ** App.config.ageDecimalPlaces}
                     component={time => (
                       <Age
                         time={time}
@@ -115,7 +106,7 @@ class App extends React.Component {
                 );
               }
 
-              case viewTypes.NOTHING:
+              case types.views.NOTHING:
                 return null;
 
               default:

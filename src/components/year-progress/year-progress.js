@@ -1,10 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
 import glamorous from "glamorous";
-import * as s from "../../styles/styles-shared.js";
+import * as s from "../../shared/styles-shared.js";
+import * as types from "../../shared/types.js";
 
 export default class YearProgress extends React.Component {
   static propTypes = {
+    time: types.timePropType,
     decimalPlaces: propTypes.number.isRequired
   };
 

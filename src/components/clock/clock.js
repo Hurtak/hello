@@ -1,6 +1,11 @@
 import React from "react";
+import * as types from "../../shared/types.js";
 
 export default class Clock extends React.Component {
+  static propTypes = {
+    time: types.timePropType
+  };
+
   render() {
     return <section>{formatTime(this.props.time)}</section>;
   }

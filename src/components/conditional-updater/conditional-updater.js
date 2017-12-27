@@ -1,9 +1,10 @@
 import React from "react";
 import propTypes from "prop-types";
+import * as time from "../../shared/time.js";
 
 export default class ConditionarUpdater extends React.Component {
   static config = {
-    maximumRefreshRate: 1000 / 60 // 60fps
+    maximumRefreshRate: time.second / 60 // 60 fps
   };
 
   static propTypes = {
