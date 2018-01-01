@@ -2,6 +2,7 @@
 
 ## TODO
 
+* rename this project
 * settings
   * close button
     * transformation to close button?
@@ -13,7 +14,6 @@
   * image thems checkboxes (with number of images in each category)
   * change image every x minutes?
   * settings of age
-* rename this project
 * save stuff into localstorage
 * finish design for clock
   * responsive design

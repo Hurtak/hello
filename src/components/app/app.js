@@ -1,6 +1,7 @@
 import React from "react";
 import glamorous from "glamorous";
 import ResizeObserver from "resize-observer-polyfill";
+import Unsplash from "unsplash-js";
 import Menu from "../menu/menu.js";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.js";
 import Clock from "../clock/clock.js";
@@ -11,10 +12,11 @@ import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
 
-// TODO: move images somewhere else
-// import img from '../img/moonlight.jpg'
-import dark from "../../img/night.jpg";
-import light from "../../img/47.jpg";
+const unsplash = new Unsplash({
+  applicationId:
+    "b3cb7c587939d02e81ceda270fdad22f5b0447ae92cec92503abebb6f9935328",
+  secret: "63aa959d4d73e2ebeb6c5d71fcbaaad2ea13f6b4461516c14c7012127c48426e"
+});
 
 class App extends React.Component {
   static config = {
@@ -27,7 +29,12 @@ class App extends React.Component {
 
     this.elAppMenu = null;
     this.state = {
-      backgroundImage: light,
+      screenWidth: window.screen.width,
+      screenHeight: window.screen.height,
+
+      image: window.localStorage.image
+        ? JSON.parse(window.localStorage.image)
+        : null,
 
       menuOpened: false,
       // menuOpened: true,
@@ -55,10 +62,13 @@ class App extends React.Component {
     });
   };
 
-  setRandomBackgroundImage = () => {
-    this.setState(prevState => ({
-      backgroundImage: prevState.backgroundImage === light ? dark : light
-    }));
+  setRandomImage = async () => {
+    const image = await this.getRandomImage();
+
+    localStorage.image = JSON.stringify(image);
+    this.setState({
+      image: image
+    });
   };
 
   listenOnMenuResize() {
@@ -71,15 +81,32 @@ class App extends React.Component {
     observer.observe(this.elAppMenu);
   }
 
-  componentDidMount() {
+  async getRandomImage() {
+    const request = await unsplash.photos.getRandomPhoto({
+      width: this.state.screenWidth,
+      height: this.state.screenHeight
+    });
+    const response = await request.json();
+
+    return response;
+  }
+
+  async componentDidMount() {
     this.listenOnMenuResize();
+
+    if (!this.state.image) {
+      await this.setRandomImage();
+    }
   }
 
   render() {
     return (
       <AppWrapper
         style={{
-          backgroundImage: `url("${this.state.backgroundImage}")`
+          // TODO: ckeck the url, it has crop parameter, we probably do not want that.
+          backgroundImage: this.state.image
+            ? `url("${this.state.image.urls.custom}")`
+            : null
         }}
       >
         <AppContent>
@@ -161,7 +188,7 @@ class App extends React.Component {
               opened={this.state.menuOpened}
               selectedView={this.state.selectedView}
               setViewType={this.setViewType}
-              setRandomBackgroundImage={this.setRandomBackgroundImage}
+              setRandomImage={this.setRandomImage}
               toggleMenu={this.toggleMenu}
             />
           </AppMenu>

@@ -10,7 +10,7 @@ class Menu extends React.Component {
     opened: PropTypes.bool.isRequired,
     selectedView: PropTypes.oneOf(Object.values(types.views)),
     setViewType: PropTypes.func.isRequired,
-    setRandomBackgroundImage: PropTypes.func.isRequired,
+    setRandomImage: PropTypes.func.isRequired,
     toggleMenu: PropTypes.func.isRequired
   };
 
@@ -65,9 +65,7 @@ class Menu extends React.Component {
         <HeadingSmall>Background image</HeadingSmall>
 
         <TabIndexHandler disableTabbing={!this.props.opened}>
-          <button onClick={this.props.setRandomBackgroundImage}>
-            Random image
-          </button>
+          <button onClick={this.props.setRandomImage}>Random image</button>
         </TabIndexHandler>
       </MenuWrapper>
     );
