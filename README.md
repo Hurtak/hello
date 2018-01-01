@@ -1,8 +1,7 @@
-# Calendar
+# Hello Friend
 
 ## TODO
 
-* rename this project
 * settings
   * close button
     * transformation to close button?
@@ -30,9 +29,6 @@
   * responsive design
 * fade in animation - like that chrome plugin
 * remove year progress
-* image sources
-  * bing images
-  * https://unsplash.com/
 * go through manifest.json
   * unnecessary permissins?
   * missing fields?

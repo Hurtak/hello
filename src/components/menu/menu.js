@@ -21,7 +21,7 @@ class Menu extends React.Component {
           <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
         </ToggleButton>
 
-        <Heading>Calendar</Heading>
+        <Heading>Hello Friend!</Heading>
         <Text>Something about this app</Text>
 
         <HeadingSmall>View type</HeadingSmall>
