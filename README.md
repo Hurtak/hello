@@ -1,4 +1,4 @@
-# calendar
+# Calendar
 
 ## TODO
 

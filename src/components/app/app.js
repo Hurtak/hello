@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import ResizeObserver from "resize-observer-polyfill";
 import Unsplash from "unsplash-js";
@@ -175,25 +176,79 @@ class App extends React.Component {
           })()}
         </AppContent>
 
-        <AppMenuWrapper
-          opened={this.state.menuOpened}
-          menuHeight={this.state.menuHeight}
-        >
-          <AppMenu
-            innerRef={el => {
-              this.elAppMenu = el;
-            }}
+        <OutsideClick onClickOutside={this.closeMenu}>
+          <AppMenuWrapper
+            opened={this.state.menuOpened}
+            menuHeight={this.state.menuHeight}
           >
-            <Menu
-              opened={this.state.menuOpened}
-              selectedView={this.state.selectedView}
-              setViewType={this.setViewType}
-              setRandomImage={this.setRandomImage}
-              toggleMenu={this.toggleMenu}
-            />
-          </AppMenu>
-        </AppMenuWrapper>
+            <AppMenu
+              innerRef={el => {
+                this.elAppMenu = el;
+              }}
+            >
+              <Menu
+                opened={this.state.menuOpened}
+                selectedView={this.state.selectedView}
+                setViewType={this.setViewType}
+                setRandomImage={this.setRandomImage}
+                toggleMenu={this.toggleMenu}
+              />
+            </AppMenu>
+          </AppMenuWrapper>
+        </OutsideClick>
       </AppWrapper>
+    );
+  }
+}
+
+class OutsideClick extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    onClickOutside: PropTypes.func.isRequired
+  };
+
+  constructor() {
+    super();
+    this.container = null;
+  }
+
+  onClick = e => {
+    const clickOutside = !this.container.contains(e.target);
+    if (clickOutside) {
+      this.props.onClickOutside();
+    }
+  };
+
+  handleListener(addListener) {
+    window[addListener ? "addEventListener" : "removeEventListener"](
+      "click",
+      this.onClick,
+      {
+        capture: true,
+        passive: true
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    this.handleListener(false);
+  }
+
+  componentDidMount() {
+    this.handleListener(true);
+  }
+
+  render() {
+    const { children, onClickOutside, ...restProps } = this.props;
+    return (
+      <div
+        ref={el => {
+          this.container = el;
+        }}
+        {...restProps}
+      >
+        {children}
+      </div>
     );
   }
 }
@@ -209,9 +264,7 @@ const AppWrapper = glamorous.div({
   padding: s.grid(1),
   backgroundSize: "cover",
   backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  // Menu is overflowing and is hidden on the right side
-  overflowX: "hidden"
+  backgroundRepeat: "no-repeat"
 });
 
 const AppContent = glamorous.main({
@@ -224,8 +277,7 @@ const AppContent = glamorous.main({
 const AppMenuWrapper = glamorous.aside(
   {
     position: "absolute",
-    // To make the overflow cropping from the right side
-    direction: "rtl",
+    direction: "rtl", // To make the overflow cropping from the right side
     top: s.grid(1),
     right: s.grid(1),
     width: s.dimensions.menuButtonSizeAndSpacing,
@@ -246,7 +298,7 @@ const AppMenuWrapper = glamorous.aside(
 
 const AppMenu = glamorous.div({
   width: s.dimensions.menuWidth,
-  direction: "ltr"
+  direction: "ltr" // Reset direction set in AppMenuWrapper
 });
 
 export default App;
