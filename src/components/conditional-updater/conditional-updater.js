@@ -4,6 +4,8 @@ import * as time from "../../shared/time.js";
 
 export default class ConditionarUpdater extends React.Component {
   static config = {
+    // TODO: detect browser refresh rate?
+    //       https://stackoverflow.com/questions/6131051
     maximumRefreshRate: time.second / 60 // 60 fps
   };
 

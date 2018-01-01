@@ -4,7 +4,7 @@
 
 * settings
   * close button
-    * cog rotation and transformation to close button
+    * transformation to close button?
     * hover styles
     * focus styles
   * gather 3 categories of images, 3 iamges from each category

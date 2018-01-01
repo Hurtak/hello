@@ -18,7 +18,7 @@ class Menu extends React.Component {
     return (
       <MenuWrapper>
         <ToggleButton onClick={this.props.toggleMenu}>
-          <ToggleButtonIcon src={iconCog} />
+          <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
         </ToggleButton>
 
         <Heading>Calendar</Heading>
@@ -105,12 +105,22 @@ const ToggleButton = glamorous.button({
   cursor: "pointer"
 });
 
-const ToggleButtonIcon = glamorous.img({
-  display: "block",
-  width: s.dimensions.menuButtonSize,
-  height: s.dimensions.menuButtonSize,
-  objectFit: "contain"
-});
+const ToggleButtonIcon = glamorous.img(
+  {
+    display: "block",
+    width: s.dimensions.menuButtonSize,
+    height: s.dimensions.menuButtonSize,
+    objectFit: "contain",
+    transition: "0.5s transform ease"
+  },
+  props => {
+    if (props.rotate) {
+      return {
+        transform: "rotate(-360deg)"
+      };
+    }
+  }
+);
 
 const Heading = glamorous.h1({
   ...s.text.text,
