@@ -14,6 +14,10 @@
   * image thems checkboxes (with number of images in each category)
   * change image every x minutes?
   * settings of age
+* loading new image
+  * when loading new image, add blur our, blur in efect
+  * show progress indicator
+  * set background image only once the whole image is downloaded
 * save stuff into localstorage
 * finish design for clock
   * responsive design
