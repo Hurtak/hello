@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "dependencies": {
     "glamor": "2.20.40",
-    "glamorous": "4.11.3",
+    "glamorous": "4.11.6",
     "jest-glamor-react": "3.3.0",
     "prop-types": "15.6.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
-    "react-scripts": "1.1.0",
+    "react-scripts": "1.1.1",
     "react-test-renderer": "16.2.0",
     "resize-observer-polyfill": "1.5.0",
     "unsplash-js": "4.8.0"
