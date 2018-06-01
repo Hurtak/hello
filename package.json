@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "dependencies": {
     "glamor": "2.20.40",
-    "glamorous": "4.12.1",
-    "jest-glamor-react": "4.2.1",
+    "glamorous": "4.13.0",
+    "jest-glamor-react": "4.3.0",
     "prop-types": "15.6.1",
-    "react": "16.3.1",
-    "react-dom": "16.3.1",
+    "react": "16.4.0",
+    "react-dom": "16.4.0",
     "react-scripts": "1.1.4",
-    "react-test-renderer": "16.3.1",
+    "react-test-renderer": "16.4.0",
     "resize-observer-polyfill": "1.5.0",
     "unsplash-js": "4.8.0"
   },
