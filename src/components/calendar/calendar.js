@@ -122,7 +122,6 @@ const Month = glamorous.li({
 
 const MonthName = glamorous.h2({
   ...s.text.text,
-  ...s.text.medium,
   display: "block",
   margin: 0,
   textAlign: "center"
@@ -141,7 +140,6 @@ const DaysWrapper = glamorous.div({
 const Day = glamorous.div(
   {
     ...s.text.text,
-    ...s.text.medium
   },
   props => {
     let css = {};

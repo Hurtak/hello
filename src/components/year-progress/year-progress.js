@@ -41,7 +41,6 @@ const YearProgressBar = glamorous.div({
 
 const YearProgressText = glamorous.div({
   ...s.text.text,
-  ...s.text.medium,
   position: "absolute",
   left: 0,
   top: 0,

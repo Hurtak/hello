@@ -32,7 +32,6 @@ const AgeWrapper = glamorous.div({
 
 const AgeText = glamorous.div({
   ...s.text.text,
-  ...s.text.medium,
   textAlign: "center"
 });
 

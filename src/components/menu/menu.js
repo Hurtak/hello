@@ -132,7 +132,6 @@ const HeadingSmall = glamorous.h1({
 
 const Text = glamorous.p({
   ...s.text.text,
-  ...s.text.medium
 });
 
 const MenuWrapper = glamorous.section({
@@ -153,7 +152,7 @@ class MenuOption extends React.Component {
 
   render() {
     return (
-      <label>
+      <MenuOptionLabel>
         <input
           onChange={this.props.onChange}
           type="radio"
@@ -162,14 +161,17 @@ class MenuOption extends React.Component {
           tabIndex={this.props.tabIndex}
         />
         <MenuOptionText>{this.props.children}</MenuOptionText>
-      </label>
+      </MenuOptionLabel>
     );
   }
 }
 
+const MenuOptionLabel = glamorous.label({
+  display: "block"
+});
+
 const MenuOptionText = glamorous.span({
   ...s.text.text,
-  ...s.text.medium,
   color: s.colors.white
 });
 

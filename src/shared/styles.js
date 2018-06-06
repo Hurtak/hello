@@ -24,9 +24,10 @@ export const text = {
   text: {
     margin: 0,
     padding: 0,
+    fontSize: "14px",
+    lineHeight: 1,
     color: colors.white,
     fontFamily: "Arial",
-    lineHeight: 1
   },
 
   // Size modifiers
@@ -35,9 +36,6 @@ export const text = {
   },
   headingSmall: {
     fontSize: "16px"
-  },
-  medium: {
-    fontSize: "14px"
   },
 
   // Appearence modifiers
