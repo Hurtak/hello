@@ -122,16 +122,16 @@ const ToggleButtonIcon = glamorous.img(
 
 const Heading = glamorous.h1({
   ...s.text.text,
-  ...s.text.heading
+  ...s.text.size18
 });
 
 const HeadingSmall = glamorous.h1({
   ...s.text.text,
-  ...s.text.headingSmall
+  ...s.text.size18
 });
 
 const Text = glamorous.p({
-  ...s.text.text,
+  ...s.text.text
 });
 
 const MenuWrapper = glamorous.section({

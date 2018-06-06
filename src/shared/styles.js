@@ -27,19 +27,19 @@ export const text = {
     fontSize: "14px",
     lineHeight: 1,
     color: colors.white,
-    fontFamily: "Arial",
+    fontFamily: "Arial"
   },
 
   // Size modifiers
-  heading: {
+  size18: {
     fontSize: "18px"
   },
-  headingSmall: {
+  size16: {
     fontSize: "16px"
   },
 
   // Appearence modifiers
-  monospace: {
+  familyMonospace: {
     fontFamily: "Monospace"
   }
 };

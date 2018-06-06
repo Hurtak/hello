@@ -2,6 +2,8 @@
 
 ## TODO
 
+- https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+  - keep selection while text changes
 - settings
   - bouncy transitions on settings box and cog
   - close button
@@ -19,9 +21,8 @@
   - show progress indicator
   - set background image only once the whole image is downloaded
 - save stuff into localstorage
+- some nicer font?
 - finish design for clock
-  - responsive design
-- finish design for age
   - responsive design
 - finish design for calendar
   - responsive design

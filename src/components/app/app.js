@@ -110,29 +110,33 @@ class App extends React.Component {
             : null
         }}
       >
-        <AppContent>
-          {(() => {
-            switch (this.state.selectedView) {
-              case types.views.CLOCK:
-                return (
+        {(() => {
+          switch (this.state.selectedView) {
+            case types.views.CLOCK:
+              return (
+                <AppContent center>
                   <ConditionalUpdater
                     updateEveryN={time.minute}
                     component={time => <Clock time={time} />}
                     key={this.state.selectedView}
                   />
-                );
+                </AppContent>
+              );
 
-              case types.views.CALENDAR:
-                return (
+            case types.views.CALENDAR:
+              return (
+                <AppContent center maxWidth>
                   <ConditionalUpdater
                     updateEveryN={time.day}
                     component={time => <Calendar time={time} />}
                     key={this.state.selectedView}
                   />
-                );
+                </AppContent>
+              );
 
-              case types.views.YEAR_PROGRESS:
-                return (
+            case types.views.YEAR_PROGRESS:
+              return (
+                <AppContent>
                   <ConditionalUpdater
                     updateEveryN={
                       time.year /
@@ -147,12 +151,14 @@ class App extends React.Component {
                     )}
                     key={this.state.selectedView}
                   />
-                );
+                </AppContent>
+              );
 
-              case types.views.AGE: {
-                // TODO
-                const birthDate = new Date(1991, 3, 20).getTime();
-                return (
+            case types.views.AGE: {
+              // TODO
+              const birthDate = new Date(1991, 3, 20).getTime();
+              return (
+                <AppContent>
                   <ConditionalUpdater
                     updateEveryN={time.year / 10 ** App.config.ageDecimalPlaces}
                     component={time => (
@@ -164,17 +170,17 @@ class App extends React.Component {
                     )}
                     key={this.state.selectedView}
                   />
-                );
-              }
-
-              case types.views.NOTHING:
-                return null;
-
-              default:
-                throw new Error("Unknown view");
+                </AppContent>
+              );
             }
-          })()}
-        </AppContent>
+
+            case types.views.NOTHING:
+              return null;
+
+            default:
+              throw new Error("Unknown view");
+          }
+        })()}
 
         <OutsideClick onClickOutside={this.closeMenu}>
           <AppMenuWrapper
@@ -267,12 +273,31 @@ const AppWrapper = glamorous.div({
   backgroundRepeat: "no-repeat"
 });
 
-const AppContent = glamorous.main({
-  display: "flex",
-  flexDirection: "column",
-  maxWidth: "1200px",
-  width: "100%"
-});
+const AppContent = glamorous.main(
+  {
+    display: "flex",
+    flex: "1 0 0",
+    flexDirection: "column",
+    width: "100%"
+  },
+  props => {
+    let styles = [];
+
+    if (props.maxWidth) {
+      styles.push({
+        maxWidth: "1200px"
+      });
+    }
+    if (props.center) {
+      styles.push({
+        justifyContent: "center",
+        alignItems: "center"
+      });
+    }
+
+    return styles;
+  }
+);
 
 const AppMenuWrapper = glamorous.aside(
   {

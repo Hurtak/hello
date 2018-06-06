@@ -58,14 +58,11 @@ export default class ConditionarUpdater extends React.Component {
   }
 
   render() {
-    return <section>{this.props.component(this.state.time)}</section>;
+    return this.props.component(this.state.time);
   }
 }
 
-export function getNextTick(now, updateEveryN, minTickDelay) {
-  const nextTick = updateEveryN - now % updateEveryN;
-
-  return typeof minTickDelay === "number"
-    ? Math.max(nextTick, minTickDelay)
-    : nextTick;
+export function getNextTick(now, updateEveryN, minTickDelay = 0) {
+  const nextTick = updateEveryN - (now % updateEveryN);
+  return Math.max(nextTick, minTickDelay);
 }
