@@ -16,23 +16,23 @@ class Age extends React.Component {
     const years = (this.props.time - this.props.birthDate) / time.year;
 
     return (
-      <AgePosition>
-        <AgePosition2>
+      <Wrapper>
+        <AgePosition>
           <AgeBox>
             <AgeText>{years.toFixed(this.props.decimalPlaces)}</AgeText>
           </AgeBox>
-        </AgePosition2>
-      </AgePosition>
+        </AgePosition>
+      </Wrapper>
     );
   }
 }
 
-const AgePosition = glamorous.div({
+const Wrapper = glamorous.div({
   position: "relative",
   flexGrow: 1
 });
 
-const AgePosition2 = glamorous.div({
+const AgePosition = glamorous.div({
   position: "absolute",
   bottom: "15%",
   width: "100%",

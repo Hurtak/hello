@@ -2,8 +2,6 @@
 
 ## TODO
 
-- https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
-  - keep selection while text changes
 - settings
   - bouncy transitions on settings box and cog
   - close button
