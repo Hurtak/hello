@@ -47,6 +47,10 @@
   - update existing fields
 - resolve all todos in code
 - properly fill package.json
+  - repository
+  - bump version to 1.0
+  - license
+  - author
 - fill github descriptions and stuff
 - support
   - chrome plugin
