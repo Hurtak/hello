@@ -6,10 +6,10 @@
     "glamorous": "4.13.1",
     "jest-glamor-react": "4.3.0",
     "prop-types": "15.6.1",
-    "react": "16.4.0",
-    "react-dom": "16.4.0",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
     "react-scripts": "1.1.4",
-    "react-test-renderer": "16.4.0",
+    "react-test-renderer": "16.4.1",
     "resize-observer-polyfill": "1.5.0",
     "unsplash-js": "4.8.0"
   },
