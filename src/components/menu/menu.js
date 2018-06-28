@@ -139,7 +139,7 @@ const MenuWrapper = glamorous.section({
   position: "relative",
   padding: s.grid(2),
   overflow: "hidden",
-  backdropFilter: s.blur.wide
+  backgroundColor: s.colors.whiteTransparentDefault
 });
 
 class MenuOption extends React.Component {

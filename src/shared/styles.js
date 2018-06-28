@@ -15,11 +15,6 @@ export const colors = {
   whiteTransparentBright: "rgba(0, 0, 0, 0.8)"
 };
 
-export const blur = {
-  default: "blur(5px)",
-  wide: "blur(80px)"
-};
-
 export const text = {
   text: {
     margin: 0,

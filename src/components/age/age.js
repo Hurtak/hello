@@ -29,7 +29,7 @@ class Age extends React.Component {
 
 const Wrapper = glamorous.div({
   position: "relative",
-  flexGrow: 1
+  flexGrow: "1"
 });
 
 const AgePosition = glamorous.div({
@@ -39,7 +39,7 @@ const AgePosition = glamorous.div({
   textAlign: "center"
 });
 
-const AgeBox = glamorous.span({
+const AgeBox = glamorous.div({
   display: "inline-block",
   padding: s.grid(2),
   backgroundColor: s.colors.whiteTransparentDefault
@@ -47,7 +47,7 @@ const AgeBox = glamorous.span({
 
 const AgeText = glamorous.span({
   ...s.text.text,
-  ...s.text.size16,
+  ...s.text.size18,
   ...s.text.familyMonospace,
   color: s.colors.white
 });

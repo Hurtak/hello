@@ -115,9 +115,8 @@ const MonthsWrapper = glamorous.ul({
 
 const Month = glamorous.li({
   display: "block",
-  backgroundColor: s.colors.whiteTransparentALot,
-  backdropFilter: s.blur.default,
-  padding: s.grid(2)
+  padding: s.grid(2),
+  backgroundColor: s.colors.whiteTransparentDefault
 });
 
 const MonthName = glamorous.h2({
@@ -139,7 +138,7 @@ const DaysWrapper = glamorous.div({
 
 const Day = glamorous.div(
   {
-    ...s.text.text,
+    ...s.text.text
   },
   props => {
     let css = {};
