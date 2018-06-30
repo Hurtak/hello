@@ -17,54 +17,60 @@ class Menu extends React.Component {
   render() {
     return (
       <MenuWrapper>
-        <ToggleButton onClick={this.props.toggleMenu}>
-          <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
-        </ToggleButton>
-
-        <Heading>Hello Friend!</Heading>
-        <Text>Something about this app</Text>
-
-        <HeadingSmall>View type</HeadingSmall>
-
         <TabIndexHandler disableTabbing={!this.props.opened}>
+          <ToggleButton
+            onClick={this.props.toggleMenu}
+            data-tabindexhandlerignore
+          >
+            <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
+          </ToggleButton>
+
+          <Heading>Hello Friend!</Heading>
+          <Text>Something about this app</Text>
+
+          <HeadingSmall>View type</HeadingSmall>
+
           <MenuOption
             onChange={() => this.props.setViewType(types.views.CLOCK)}
             checked={this.props.selectedView === types.views.CLOCK}
           >
             Clock
           </MenuOption>
-        </TabIndexHandler>
 
-        <TabIndexHandler disableTabbing={!this.props.opened}>
+          {/* <TabIndexHandler disableTabbing={!this.props.opened}>
           <MenuOption
             onChange={() => this.props.setViewType(types.views.CALENDAR)}
             checked={this.props.selectedView === types.views.CALENDAR}
           >
             Calendar
           </MenuOption>
-        </TabIndexHandler>
+        </TabIndexHandler> */}
 
-        <TabIndexHandler disableTabbing={!this.props.opened}>
+          {/* <TabIndexHandler disableTabbing={!this.props.opened}>
+          <MenuOption
+            onChange={() => this.props.setViewType(types.views.YEAR_PROGRESS)}
+            checked={this.props.selectedView === types.views.YEAR_PROGRESS}
+          >
+            Year progress
+          </MenuOption>
+        </TabIndexHandler> */}
+
           <MenuOption
             onChange={() => this.props.setViewType(types.views.AGE)}
             checked={this.props.selectedView === types.views.AGE}
           >
             Age
           </MenuOption>
-        </TabIndexHandler>
 
-        <TabIndexHandler disableTabbing={!this.props.opened}>
           <MenuOption
             onChange={() => this.props.setViewType(types.views.NOTHING)}
             checked={this.props.selectedView === types.views.NOTHING}
           >
             Nothing
           </MenuOption>
-        </TabIndexHandler>
 
-        <HeadingSmall>Background image</HeadingSmall>
+          <HeadingSmall>Background image</HeadingSmall>
 
-        <TabIndexHandler disableTabbing={!this.props.opened}>
           <button onClick={this.props.setRandomImage}>Random image</button>
         </TabIndexHandler>
       </MenuWrapper>
@@ -75,20 +81,73 @@ class Menu extends React.Component {
 class TabIndexHandler extends React.Component {
   static propTypes = {
     disableTabbing: PropTypes.bool.isRequired,
-    tabIndex: PropTypes.number,
-    children: PropTypes.element.isRequired
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element)
+    ]).isRequired
   };
 
+  constructor() {
+    super();
+
+    this.wrapper = null;
+    this.elements = [];
+  }
+
   render() {
-    const { children, disableTabbing, tabIndex } = this.props;
+    return <div ref={el => (this.wrapper = el)}>{this.props.children}</div>;
+  }
 
-    const El = React.Children.map(children, child =>
-      React.cloneElement(child, {
-        tabIndex: disableTabbing ? -1 : tabIndex
-      })
-    );
+  gatherElements() {
+    const elements = this.wrapper.querySelectorAll("button, input");
 
-    return El;
+    this.elements = [...elements].map(el => {
+      return {
+        tabIndex: el.getAttribute("tabindex"),
+        element: el
+      };
+    });
+  }
+
+  disableTabbing() {
+    for (const { element } of this.elements) {
+      if (element.hasAttribute("data-tabindexhandlerignore")) continue;
+
+      element.setAttribute("tabindex", -1);
+    }
+  }
+
+  enableTabbing() {
+    for (const { element, tabIndex } of this.elements) {
+      if (element.hasAttribute("data-tabindexhandlerignore")) continue;
+
+      if (tabIndex) {
+        element.setAttribute("tabindex", tabIndex);
+      } else {
+        element.removeAttribute("tabindex");
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.gatherElements();
+    this.disableTabbing();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.disableTabbing !== this.props.disableTabbing) {
+      if (this.props.disableTabbing) {
+        this.disableTabbing();
+      } else {
+        this.enableTabbing();
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.disableTabbing) {
+      this.enableTabbing();
+    }
   }
 }
 
@@ -145,7 +204,6 @@ const MenuWrapper = glamorous.section({
 class MenuOption extends React.Component {
   static propTypes = {
     checked: PropTypes.bool.isRequired,
-    tabIndex: PropTypes.number,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.string.isRequired
   };
@@ -158,7 +216,6 @@ class MenuOption extends React.Component {
           type="radio"
           name="menu-option"
           checked={this.props.checked}
-          tabIndex={this.props.tabIndex}
         />
         <MenuOptionText>{this.props.children}</MenuOptionText>
       </MenuOptionLabel>
