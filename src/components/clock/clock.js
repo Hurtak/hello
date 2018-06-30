@@ -69,17 +69,45 @@ const ClockBox = glamorous.div({
   textOverflow: "ellipsis"
 });
 
+const breakpoints = {
+  500: "@media (max-width: 500px)",
+  380: "@media (max-width: 380px)",
+  280: "@media (max-width: 280px)",
+  180: "@media (max-width: 180px)"
+};
+
 const ClockText = glamorous.div({
   ...s.text.text,
-  ...s.text.size18,
   ...s.text.familyMonospace,
   fontSize: s.grid(10),
   color: s.colors.white,
-  opacity: s.opacity.default
+  opacity: s.opacity.default,
+
+  [breakpoints[500]]: { fontSize: s.grid(8) },
+  [breakpoints[380]]: { fontSize: s.grid(6) },
+  [breakpoints[280]]: { fontSize: s.grid(4) },
+  [breakpoints[180]]: { fontSize: s.grid(3) }
 });
 
 const Colon = glamorous.span({
   position: "relative",
   top: s.size(-6),
-  margin: `0 ${s.size(-6)}`
+  margin: `0 ${s.size(-6)}`,
+
+  [breakpoints[500]]: {
+    top: s.size(-5),
+    margin: `0 ${s.size(-5)}`
+  },
+  [breakpoints[380]]: {
+    top: s.size(-4),
+    margin: `0 ${s.size(-4)}`
+  },
+  [breakpoints[280]]: {
+    top: s.size(-3),
+    margin: `0 ${s.size(-3)}`
+  },
+  [breakpoints[180]]: {
+    top: s.size(-2),
+    margin: `0 ${s.size(-2)}`
+  }
 });

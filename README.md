@@ -2,11 +2,10 @@
 
 ## TODO
 
-- finish design for clock
-  - responsive design
 - age settings
 - hide menu settings
 - menu design
+- conditional updated is broken when we change clocks showSeconds prop, overall behavior seems strange investigate!
 
 ---
 
