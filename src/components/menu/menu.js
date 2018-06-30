@@ -99,7 +99,9 @@ class TabIndexHandler extends React.Component {
   }
 
   gatherElements() {
-    const elements = this.wrapper.querySelectorAll("button, input");
+    const elements = this.wrapper.querySelectorAll(
+      "button, input, select, textarea"
+    );
 
     this.elements = [...elements].map(el => {
       return {
