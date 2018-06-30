@@ -47,10 +47,10 @@ export default class ConditionarUpdater extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      clearTimeout(this.timer);
-      this.updateTimeAndStartTimeout();
-    }
+    if (this.props === nextProps) return;
+
+    clearTimeout(this.timer);
+    this.updateTimeAndStartTimeout();
   }
 
   componentWillUnmount() {

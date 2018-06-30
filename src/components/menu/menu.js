@@ -9,9 +9,17 @@ class Menu extends React.Component {
   static propTypes = {
     opened: PropTypes.bool.isRequired,
     selectedView: PropTypes.oneOf(Object.values(types.views)),
+
+    clockShowSeconds: PropTypes.bool.isRequired,
+    onClockShowSecondsChange: PropTypes.func.isRequired,
+
     setViewType: PropTypes.func.isRequired,
     setRandomImage: PropTypes.func.isRequired,
     toggleMenu: PropTypes.func.isRequired
+  };
+
+  clockShowSecondsChange = e => {
+    this.props.onClockShowSecondsChange(!this.props.clockShowSeconds);
   };
 
   render() {
@@ -36,6 +44,16 @@ class Menu extends React.Component {
           >
             Clock
           </MenuOption>
+          <section>
+            <label>
+              <input
+                type="checkbox"
+                checked={this.props.clockShowSeconds}
+                onChange={this.clockShowSecondsChange}
+              />
+              Show seconds
+            </label>
+          </section>
 
           {/* <TabIndexHandler disableTabbing={!this.props.opened}>
           <MenuOption
@@ -156,6 +174,7 @@ class TabIndexHandler extends React.Component {
 const ToggleButton = glamorous.button({
   boxSizing: "border-box",
   position: "absolute",
+  userSelect: "none",
   top: s.dimensions.menuButtonSpacing,
   right: s.dimensions.menuButtonSpacing,
   border: 0,

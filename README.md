@@ -4,7 +4,9 @@
 
 - finish design for clock
   - responsive design
+- age settings
 - hide menu settings
+- menu design
 
 ---
 
@@ -25,9 +27,11 @@
   - show progress indicator
   - set background image only once the whole image is downloaded
 - save stuff into localstorage
+- fix tests
 
 ---
 
+- remove Lato font if it is not used anywhere
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?

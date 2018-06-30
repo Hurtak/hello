@@ -6,7 +6,6 @@ import Unsplash from "unsplash-js";
 import Menu from "../menu/menu.js";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.js";
 import Clock from "../clock/clock.js";
-import Calendar from "../calendar/calendar.js";
 import YearProgress from "../year-progress/year-progress.js";
 import Age from "../age/age.js";
 import * as s from "../../shared/styles.js";
@@ -38,10 +37,11 @@ class App extends React.Component {
         : null,
 
       menuOpened: false,
-      // menuOpened: true,
       menuHeight: null,
 
-      selectedView: types.views.AGE
+      selectedView: types.views.CLOCK,
+
+      clockShowSeconds: true
     };
   }
 
@@ -69,6 +69,12 @@ class App extends React.Component {
     localStorage.image = JSON.stringify(image);
     this.setState({
       image: image
+    });
+  };
+
+  setClockShowSeconds = clockShowSeconds => {
+    this.setState({
+      clockShowSeconds
     });
   };
 
@@ -116,23 +122,30 @@ class App extends React.Component {
               return (
                 <AppContent center>
                   <ConditionalUpdater
-                    updateEveryN={time.minute}
-                    component={time => <Clock time={time} />}
+                    updateEveryN={
+                      this.state.clockShowSeconds ? time.second : time.minute
+                    }
+                    component={time => (
+                      <Clock
+                        time={time}
+                        showSeconds={this.state.clockShowSeconds}
+                      />
+                    )}
                     key={this.state.selectedView}
                   />
                 </AppContent>
               );
 
-            case types.views.CALENDAR:
-              return (
-                <AppContent center maxWidth>
-                  <ConditionalUpdater
-                    updateEveryN={time.day}
-                    component={time => <Calendar time={time} />}
-                    key={this.state.selectedView}
-                  />
-                </AppContent>
-              );
+            // case types.views.CALENDAR:
+            //   return (
+            //     <AppContent center maxWidth>
+            //       <ConditionalUpdater
+            //         updateEveryN={time.day}
+            //         component={time => <Calendar time={time} />}
+            //         key={this.state.selectedView}
+            //       />
+            //     </AppContent>
+            //   );
 
             case types.views.YEAR_PROGRESS:
               return (
@@ -157,6 +170,7 @@ class App extends React.Component {
             case types.views.AGE: {
               // TODO
               const birthDate = new Date(1991, 3, 20).getTime();
+
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -195,6 +209,8 @@ class App extends React.Component {
               <Menu
                 opened={this.state.menuOpened}
                 selectedView={this.state.selectedView}
+                clockShowSeconds={this.state.clockShowSeconds}
+                onClockShowSecondsChange={this.setClockShowSeconds}
                 setViewType={this.setViewType}
                 setRandomImage={this.setRandomImage}
                 toggleMenu={this.toggleMenu}

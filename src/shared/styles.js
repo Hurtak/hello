@@ -3,6 +3,7 @@ import * as glamor from "glamor";
 
 export const grid = size => `${size * 8}px`;
 export const gridRaw = size => size * 8;
+export const size = size => `${size}px`;
 
 // TODO: Delete unused variables.
 export const colors = {

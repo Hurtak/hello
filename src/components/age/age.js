@@ -29,7 +29,8 @@ class Age extends React.Component {
 
 const Wrapper = glamorous.div({
   position: "relative",
-  flexGrow: "1"
+  flexGrow: "1",
+  userSelect: "none"
 });
 
 const AgePosition = glamorous.div({
@@ -43,10 +44,7 @@ const AgePosition = glamorous.div({
 const AgeBox = glamorous.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
-  textAlign: "center",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis"
+  overflow: "hidden"
 });
 
 const AgeText = glamorous.div({
@@ -54,7 +52,11 @@ const AgeText = glamorous.div({
   ...s.text.size18,
   ...s.text.familyMonospace,
   color: s.colors.white,
-  opacity: s.opacity.default
+  opacity: s.opacity.default,
+  textAlign: "center",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis"
 });
 
 export default Age;
