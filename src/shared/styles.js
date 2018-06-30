@@ -10,9 +10,9 @@ export const colors = {
   grayMain: "gray",
   grayChrome: "#f2f1f0",
   whiteTransparentALot: "rgba(0, 0, 0, 0.1)", // TODO: rename
-  whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)",
-  whiteTransparentDefault: "rgba(0, 0, 0, 0.4)",
-  whiteTransparentBright: "rgba(0, 0, 0, 0.8)"
+  whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)", // TODO: rename
+  whiteTransparentDefault: "rgba(0, 0, 0, 0.4)", // TODO: rename
+  whiteTransparentBright: "rgba(255, 255, 255, 0.7)"
 };
 
 export const text = {
@@ -35,9 +35,16 @@ export const text = {
 
   // Appearence modifiers
   familyMonospace: {
-    fontFamily: "Lato, Monospace",
+    fontFamily: "Monospace"
+  },
+  familyLato: {
+    fontFamily: "Lato",
     letterSpacing: "0.6px"
   }
+};
+
+export const opacity = {
+  default: 0.8
 };
 
 export const zIndex = {

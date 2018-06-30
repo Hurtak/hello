@@ -170,7 +170,8 @@ const ToggleButtonIcon = glamorous.img(
     width: s.dimensions.menuButtonSize,
     height: s.dimensions.menuButtonSize,
     objectFit: "contain",
-    transition: "0.5s transform ease"
+    transition: "0.5s transform ease",
+    opacity: s.opacity.default
   },
   props => {
     if (props.rotate) {

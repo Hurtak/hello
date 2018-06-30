@@ -18,7 +18,9 @@ class Age extends React.Component {
     return (
       <Wrapper>
         <AgePosition>
-          <AgeBox>{years.toFixed(this.props.decimalPlaces)}</AgeBox>
+          <AgeBox>
+            <AgeText>{years.toFixed(this.props.decimalPlaces)}</AgeText>
+          </AgeBox>
         </AgePosition>
       </Wrapper>
     );
@@ -39,17 +41,20 @@ const AgePosition = glamorous.div({
 });
 
 const AgeBox = glamorous.div({
-  ...s.text.text,
-  ...s.text.size16,
-  ...s.text.familyMonospace,
-  display: "inline-block",
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
-  color: s.colors.white,
   textAlign: "center",
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis"
+});
+
+const AgeText = glamorous.div({
+  ...s.text.text,
+  ...s.text.size18,
+  ...s.text.familyMonospace,
+  color: s.colors.white,
+  opacity: s.opacity.default
 });
 
 export default Age;
