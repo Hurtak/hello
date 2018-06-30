@@ -35,7 +35,8 @@ export const text = {
 
   // Appearence modifiers
   familyMonospace: {
-    fontFamily: "Monospace"
+    fontFamily: "Lato, Monospace",
+    letterSpacing: "0.6px"
   }
 };
 

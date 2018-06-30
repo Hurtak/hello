@@ -2,7 +2,6 @@
 
 ## TODO
 
-- finish design for age
 - finish design for clock
   - responsive design
 
@@ -44,7 +43,6 @@
 
 ---
 
-- some nicer font?
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
