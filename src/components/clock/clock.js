@@ -91,23 +91,24 @@ const ClockText = glamorous.div({
 
 const Colon = glamorous.span({
   position: "relative",
-  top: s.size(-6),
+  top: s.size(-9),
   margin: `0 ${s.size(-6)}`,
+  fontSize: "0.8em",
 
   [breakpoints[500]]: {
-    top: s.size(-5),
+    top: s.size(-8),
     margin: `0 ${s.size(-5)}`
   },
   [breakpoints[380]]: {
-    top: s.size(-4),
+    top: s.size(-6),
     margin: `0 ${s.size(-4)}`
   },
   [breakpoints[280]]: {
-    top: s.size(-3),
+    top: s.size(-4),
     margin: `0 ${s.size(-3)}`
   },
   [breakpoints[180]]: {
-    top: s.size(-2),
+    top: s.size(-3),
     margin: `0 ${s.size(-2)}`
   }
 });

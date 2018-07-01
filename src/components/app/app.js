@@ -47,21 +47,15 @@ class App extends React.Component {
   }
 
   toggleMenu = () => {
-    this.setState(prevState => ({
-      menuOpened: !prevState.menuOpened
-    }));
+    this.setState(prevState => ({ menuOpened: !prevState.menuOpened }));
   };
 
   closeMenu = () => {
-    this.setState({
-      menuOpened: false
-    });
+    this.setState({ menuOpened: false });
   };
 
   setViewType = newViewType => {
-    this.setState({
-      selectedView: newViewType
-    });
+    this.setState({ selectedView: newViewType });
   };
 
   setRandomImage = async () => {
@@ -74,9 +68,7 @@ class App extends React.Component {
   };
 
   setClockShowSeconds = clockShowSeconds => {
-    this.setState({
-      clockShowSeconds
-    });
+    this.setState({ clockShowSeconds });
   };
 
   listenOnMenuResize() {
