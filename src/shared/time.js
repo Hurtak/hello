@@ -12,15 +12,15 @@ export function addLeadingZero(input) {
   return input;
 }
 
-export function dateToDateInputValue(timestamp) {
+export function timestampToDateInputValue(timestamp) {
   const date = new Date(timestamp);
 
   const value =
-    date.getFullYear() +
+    date.getUTCFullYear() +
     "-" +
-    addLeadingZero(date.getMonth() + 1) +
+    addLeadingZero(date.getUTCMonth() + 1) +
     "-" +
-    addLeadingZero(date.getDate());
+    addLeadingZero(date.getUTCDate());
 
   return value;
 }

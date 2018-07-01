@@ -22,7 +22,7 @@ export default class Clock extends React.Component {
   }
 }
 
-class Time extends React.Component {
+export class Time extends React.Component {
   static propTypes = {
     time: types.timePropType,
     showSeconds: PropTypes.bool

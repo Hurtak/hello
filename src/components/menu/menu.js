@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
-import { dateToDateInputValue } from "../../shared/time.js";
+import { timestampToDateInputValue } from "../../shared/time.js";
 import iconCog from "../../icons/cog.svg";
 
 class Menu extends React.Component {
@@ -94,8 +94,10 @@ class Menu extends React.Component {
             <label>
               Your age
               {(() => {
-                const max = dateToDateInputValue(Date.now());
-                const value = dateToDateInputValue(this.props.ageDateOfBirth);
+                const max = timestampToDateInputValue(Date.now());
+                const value = timestampToDateInputValue(
+                  this.props.ageDateOfBirth
+                );
 
                 return (
                   <input
