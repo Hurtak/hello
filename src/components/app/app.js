@@ -37,12 +37,13 @@ class App extends React.Component {
         ? JSON.parse(window.localStorage.image)
         : null,
 
-      menuOpened: false,
+      menuOpened: true,
       menuHeight: null,
 
       selectedView: types.views.CLOCK,
 
-      clockShowSeconds: true
+      clockShowSeconds: true,
+      ageDateOfBirth: Date.UTC(1990, 0, 1)
     };
   }
 
@@ -69,6 +70,10 @@ class App extends React.Component {
 
   setClockShowSeconds = clockShowSeconds => {
     this.setState({ clockShowSeconds });
+  };
+
+  setAgeDateOfBirth = ageDateOfBirth => {
+    this.setState({ ageDateOfBirth });
   };
 
   listenOnMenuResize() {
@@ -100,7 +105,7 @@ class App extends React.Component {
   }
 
   render() {
-    const whiteList = ["selectedView", "clockShowSeconds"];
+    const whiteList = ["selectedView", "clockShowSeconds", "ageDateOfBirth"];
     const savedStateToStorage = Object.keys(this.state).filter(
       key => !whiteList.includes(key)
     );
@@ -168,9 +173,6 @@ class App extends React.Component {
               );
 
             case types.views.AGE: {
-              // TODO
-              const birthDate = new Date(1991, 3, 20).getTime();
-
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -178,7 +180,7 @@ class App extends React.Component {
                     component={time => (
                       <Age
                         time={time}
-                        birthDate={birthDate}
+                        birthDate={this.state.ageDateOfBirth}
                         decimalPlaces={App.config.ageDecimalPlaces}
                       />
                     )}
@@ -211,6 +213,8 @@ class App extends React.Component {
                 selectedView={this.state.selectedView}
                 clockShowSeconds={this.state.clockShowSeconds}
                 onClockShowSecondsChange={this.setClockShowSeconds}
+                ageDateOfBirth={this.state.ageDateOfBirth}
+                onAgeDateOfBirthChange={this.setAgeDateOfBirth}
                 setViewType={this.setViewType}
                 setRandomImage={this.setRandomImage}
                 toggleMenu={this.toggleMenu}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
+import { addLeadingZero } from "../../shared/time.js";
 
 export default class Clock extends React.Component {
   static propTypes = {
@@ -48,15 +49,6 @@ class Time extends React.Component {
       </React.Fragment>
     );
   }
-}
-
-export function addLeadingZero(input) {
-  input = String(input);
-  while (input.length < 2) {
-    input = "0" + input;
-  }
-
-  return input;
 }
 
 const ClockBox = glamorous.div({

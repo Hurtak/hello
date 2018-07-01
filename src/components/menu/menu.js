@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
+import { dateToDateInputValue } from "../../shared/time.js";
 import iconCog from "../../icons/cog.svg";
 
 class Menu extends React.Component {
@@ -13,6 +14,9 @@ class Menu extends React.Component {
     clockShowSeconds: PropTypes.bool.isRequired,
     onClockShowSecondsChange: PropTypes.func.isRequired,
 
+    ageDateOfBirth: PropTypes.number.isRequired,
+    onAgeDateOfBirthChange: PropTypes.func.isRequired,
+
     setViewType: PropTypes.func.isRequired,
     setRandomImage: PropTypes.func.isRequired,
     toggleMenu: PropTypes.func.isRequired
@@ -20,6 +24,12 @@ class Menu extends React.Component {
 
   clockShowSecondsChange = e => {
     this.props.onClockShowSecondsChange(!this.props.clockShowSeconds);
+  };
+
+  ageDateOfBirthChange = e => {
+    const [year, month, day] = e.target.value.split("-").map(Number);
+    const timestamp = Date.UTC(year, month - 1, day);
+    this.props.onAgeDateOfBirthChange(timestamp);
   };
 
   render() {
@@ -38,13 +48,13 @@ class Menu extends React.Component {
 
           <HeadingSmall>View type</HeadingSmall>
 
-          <MenuOption
-            onChange={() => this.props.setViewType(types.views.CLOCK)}
-            checked={this.props.selectedView === types.views.CLOCK}
-          >
-            Clock
-          </MenuOption>
           <section>
+            <MenuOption
+              onChange={() => this.props.setViewType(types.views.CLOCK)}
+              checked={this.props.selectedView === types.views.CLOCK}
+            >
+              Clock
+            </MenuOption>
             <label>
               <input
                 type="checkbox"
@@ -73,12 +83,31 @@ class Menu extends React.Component {
             </MenuOption>
           </TabIndexHandler> */}
 
-          <MenuOption
-            onChange={() => this.props.setViewType(types.views.AGE)}
-            checked={this.props.selectedView === types.views.AGE}
-          >
-            Age
-          </MenuOption>
+          <section>
+            <MenuOption
+              onChange={() => this.props.setViewType(types.views.AGE)}
+              checked={this.props.selectedView === types.views.AGE}
+            >
+              Age
+            </MenuOption>
+
+            <label>
+              Your age
+              {(() => {
+                const max = dateToDateInputValue(Date.now());
+                const value = dateToDateInputValue(this.props.ageDateOfBirth);
+
+                return (
+                  <input
+                    type="date"
+                    max={max}
+                    value={value}
+                    onChange={this.ageDateOfBirthChange}
+                  />
+                );
+              })()}
+            </label>
+          </section>
 
           <MenuOption
             onChange={() => this.props.setViewType(types.views.NOTHING)}
