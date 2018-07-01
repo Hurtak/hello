@@ -25,7 +25,6 @@
   - when loading new image, add blur our, blur in efect
   - show progress indicator
   - set background image only once the whole image is downloaded
-- save stuff into localstorage
 - fix tests
 
 ---

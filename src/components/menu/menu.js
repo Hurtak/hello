@@ -56,22 +56,22 @@ class Menu extends React.Component {
           </section>
 
           {/* <TabIndexHandler disableTabbing={!this.props.opened}>
-          <MenuOption
-            onChange={() => this.props.setViewType(types.views.CALENDAR)}
-            checked={this.props.selectedView === types.views.CALENDAR}
-          >
-            Calendar
-          </MenuOption>
-        </TabIndexHandler> */}
+            <MenuOption
+              onChange={() => this.props.setViewType(types.views.CALENDAR)}
+              checked={this.props.selectedView === types.views.CALENDAR}
+            >
+              Calendar
+            </MenuOption>
+          </TabIndexHandler> */}
 
           {/* <TabIndexHandler disableTabbing={!this.props.opened}>
-          <MenuOption
-            onChange={() => this.props.setViewType(types.views.YEAR_PROGRESS)}
-            checked={this.props.selectedView === types.views.YEAR_PROGRESS}
-          >
-            Year progress
-          </MenuOption>
-        </TabIndexHandler> */}
+            <MenuOption
+              onChange={() => this.props.setViewType(types.views.YEAR_PROGRESS)}
+              checked={this.props.selectedView === types.views.YEAR_PROGRESS}
+            >
+              Year progress
+            </MenuOption>
+          </TabIndexHandler> */}
 
           <MenuOption
             onChange={() => this.props.setViewType(types.views.AGE)}

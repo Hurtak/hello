@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import ResizeObserver from "resize-observer-polyfill";
+import SimpleStorage from "react-simple-storage";
 import Unsplash from "unsplash-js";
 import Menu from "../menu/menu.js";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.js";
@@ -107,6 +108,11 @@ class App extends React.Component {
   }
 
   render() {
+    const whiteList = ["selectedView", "clockShowSeconds"];
+    const savedStateToStorage = Object.keys(this.state).filter(
+      key => !whiteList.includes(key)
+    );
+
     return (
       <AppWrapper
         style={{
@@ -116,6 +122,8 @@ class App extends React.Component {
             : null
         }}
       >
+        <SimpleStorage parent={this} blacklist={savedStateToStorage} />
+
         {(() => {
           switch (this.state.selectedView) {
             case types.views.CLOCK:
