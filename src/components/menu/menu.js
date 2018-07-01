@@ -14,7 +14,8 @@ class Menu extends React.Component {
     clockShowSeconds: PropTypes.bool.isRequired,
     onClockShowSecondsChange: PropTypes.func.isRequired,
 
-    ageDateOfBirth: PropTypes.number.isRequired,
+    ageDateOfBirthValue: PropTypes.string.isRequired,
+    ageDateOfBirthTimestamp: PropTypes.number.isRequired,
     onAgeDateOfBirthChange: PropTypes.func.isRequired,
 
     setViewType: PropTypes.func.isRequired,
@@ -27,9 +28,21 @@ class Menu extends React.Component {
   };
 
   ageDateOfBirthChange = e => {
-    const [year, month, day] = e.target.value.split("-").map(Number);
-    const timestamp = Date.UTC(year, month - 1, day);
-    this.props.onAgeDateOfBirthChange(timestamp);
+    const valueRaw = e.target.value;
+    const valueValid = valueRaw.length > 0;
+
+    const timestamp = (() => {
+      if (!valueValid) return null;
+
+      const [year, month, day] = valueRaw.split("-").map(Number);
+      const timestamp = Date.UTC(year, month - 1, day);
+      return timestamp;
+    })();
+
+    this.props.onAgeDateOfBirthChange({
+      inputValue: valueRaw,
+      parsedTimestamp: timestamp
+    });
   };
 
   render() {
@@ -92,22 +105,14 @@ class Menu extends React.Component {
             </MenuOption>
 
             <label>
-              Your age
-              {(() => {
-                const max = timestampToDateInputValue(Date.now());
-                const value = timestampToDateInputValue(
-                  this.props.ageDateOfBirth
-                );
-
-                return (
-                  <input
-                    type="date"
-                    max={max}
-                    value={value}
-                    onChange={this.ageDateOfBirthChange}
-                  />
-                );
-              })()}
+              Your date of birth
+              <input
+                type="date"
+                min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+                max={timestampToDateInputValue(Date.now())}
+                value={this.props.ageDateOfBirthValue}
+                onChange={this.ageDateOfBirthChange}
+              />
             </label>
           </section>
 

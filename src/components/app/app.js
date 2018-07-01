@@ -43,7 +43,8 @@ class App extends React.Component {
       selectedView: types.views.CLOCK,
 
       clockShowSeconds: true,
-      ageDateOfBirth: Date.UTC(1990, 0, 1)
+      ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
+      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1))
     };
   }
 
@@ -72,8 +73,13 @@ class App extends React.Component {
     this.setState({ clockShowSeconds });
   };
 
-  setAgeDateOfBirth = ageDateOfBirth => {
-    this.setState({ ageDateOfBirth });
+  setAgeDateOfBirth = ({ inputValue, parsedTimestamp }) => {
+    this.setState(prevState => ({
+      ageDateOfBirthValue: inputValue,
+      ageDateOfBirthTimestamp: parsedTimestamp
+        ? parsedTimestamp
+        : prevState.ageDateOfBirthTimestamp
+    }));
   };
 
   listenOnMenuResize() {
@@ -105,7 +111,12 @@ class App extends React.Component {
   }
 
   render() {
-    const whiteList = ["selectedView", "clockShowSeconds", "ageDateOfBirth"];
+    const whiteList = [
+      "selectedView",
+      "clockShowSeconds",
+      "ageDateOfBirthTimestamp",
+      "ageDateOfBirthValue"
+    ];
     const savedStateToStorage = Object.keys(this.state).filter(
       key => !whiteList.includes(key)
     );
@@ -180,7 +191,7 @@ class App extends React.Component {
                     component={time => (
                       <Age
                         time={time}
-                        birthDate={this.state.ageDateOfBirth}
+                        birthDate={this.state.ageDateOfBirthTimestamp}
                         decimalPlaces={App.config.ageDecimalPlaces}
                       />
                     )}
@@ -213,7 +224,8 @@ class App extends React.Component {
                 selectedView={this.state.selectedView}
                 clockShowSeconds={this.state.clockShowSeconds}
                 onClockShowSecondsChange={this.setClockShowSeconds}
-                ageDateOfBirth={this.state.ageDateOfBirth}
+                ageDateOfBirthValue={this.state.ageDateOfBirthValue}
+                ageDateOfBirthTimestamp={this.state.ageDateOfBirthTimestamp}
                 onAgeDateOfBirthChange={this.setAgeDateOfBirth}
                 setViewType={this.setViewType}
                 setRandomImage={this.setRandomImage}
