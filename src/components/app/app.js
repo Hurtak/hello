@@ -24,7 +24,8 @@ class App extends React.Component {
     yearProgressDecimalPlaces: 8,
     ageDecimalPlaces: 9,
 
-    savedSettings: [
+    savedState: [
+      "image",
       "selectedView",
       "clockShowSeconds",
       "ageDateOfBirthTimestamp",
@@ -41,8 +42,9 @@ class App extends React.Component {
       screenWidth: window.screen.width,
       screenHeight: window.screen.height,
 
-      image: window.localStorage.image
-        ? JSON.parse(window.localStorage.image)
+      // TODO: https://github.com/ryanjyost/react-simple-storage/issues/6
+      image: window.localStorage._image
+        ? JSON.parse(window.localStorage._image)
         : null,
 
       menuOpened: true,
@@ -71,11 +73,7 @@ class App extends React.Component {
 
   setRandomImage = async () => {
     const image = await this.getRandomImage();
-
-    localStorage.image = JSON.stringify(image);
-    this.setState({
-      image: image
-    });
+    this.setState({ image: image });
   };
 
   setClockShowSeconds = clockShowSeconds => {
@@ -125,7 +123,7 @@ class App extends React.Component {
 
   render() {
     const savedStateToStorage = Object.keys(this.state).filter(
-      key => !App.config.savedSettings.includes(key)
+      key => !App.config.savedState.includes(key)
     );
 
     return (

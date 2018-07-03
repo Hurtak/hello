@@ -2,14 +2,13 @@
 
 ## TODO
 
-- loading new image
-  - when loading new image, add blur our, blur in efect
-  - show progress indicator
-  - set background image only once the whole image is downloaded
+- unsplash
+  - choose predefined sets of images (animals, landscapes...)
+  - choose our own set
+  - change image every x minutes?
   - random/next/previous image
   - image index and total images indicator
-  - image thems checkboxes (with number of images in each category)
-  - change image every x minutes?
+  - image thems checkboxes (with number of images in each category)??
 
 ---
 
@@ -32,6 +31,7 @@
 
 ## Later TODOS
 
+- when loading new image, add blur our, blur in efect
 - settings
   - bouncy transitions on settings box and cog
   - close button
