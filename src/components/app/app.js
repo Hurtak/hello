@@ -216,86 +216,32 @@ class App extends React.Component {
           }
         })()}
 
-        <OutsideClick onClickOutside={this.closeMenu}>
-          <AppMenuWrapper
-            opened={this.state.menuOpened}
-            menuHeight={this.state.menuHeight}
+        <AppMenuWrapper
+          opened={this.state.menuOpened}
+          menuHeight={this.state.menuHeight}
+        >
+          <AppMenu
+            innerRef={el => {
+              this.elAppMenu = el;
+            }}
           >
-            <AppMenu
-              innerRef={el => {
-                this.elAppMenu = el;
-              }}
-            >
-              <Menu
-                opened={this.state.menuOpened}
-                toggleMenu={this.toggleMenu}
-                selectedView={this.state.selectedView}
-                setViewType={this.setViewType}
-                clockShowSeconds={this.state.clockShowSeconds}
-                onClockShowSecondsChange={this.setClockShowSeconds}
-                ageDateOfBirthValue={this.state.ageDateOfBirthValue}
-                ageDateOfBirthTimestamp={this.state.ageDateOfBirthTimestamp}
-                onAgeDateOfBirthChange={this.setAgeDateOfBirth}
-                settingsHidden={this.state.settingsHidden}
-                onSettingsHiddenChange={this.setSettingsHidden}
-                setRandomImage={this.setRandomImage}
-              />
-            </AppMenu>
-          </AppMenuWrapper>
-        </OutsideClick>
+            <Menu
+              opened={this.state.menuOpened}
+              toggleMenu={this.toggleMenu}
+              selectedView={this.state.selectedView}
+              setViewType={this.setViewType}
+              clockShowSeconds={this.state.clockShowSeconds}
+              onClockShowSecondsChange={this.setClockShowSeconds}
+              ageDateOfBirthValue={this.state.ageDateOfBirthValue}
+              ageDateOfBirthTimestamp={this.state.ageDateOfBirthTimestamp}
+              onAgeDateOfBirthChange={this.setAgeDateOfBirth}
+              settingsHidden={this.state.settingsHidden}
+              onSettingsHiddenChange={this.setSettingsHidden}
+              setRandomImage={this.setRandomImage}
+            />
+          </AppMenu>
+        </AppMenuWrapper>
       </AppWrapper>
-    );
-  }
-}
-
-class OutsideClick extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    onClickOutside: PropTypes.func.isRequired
-  };
-
-  constructor() {
-    super();
-    this.container = null;
-  }
-
-  onClick = e => {
-    const clickOutside = !this.container.contains(e.target);
-    if (clickOutside) {
-      this.props.onClickOutside();
-    }
-  };
-
-  handleListener(addListener) {
-    window[addListener ? "addEventListener" : "removeEventListener"](
-      "click",
-      this.onClick,
-      {
-        capture: true,
-        passive: true
-      }
-    );
-  }
-
-  componentWillUnmount() {
-    this.handleListener(false);
-  }
-
-  componentDidMount() {
-    this.handleListener(true);
-  }
-
-  render() {
-    const { children, onClickOutside, ...restProps } = this.props;
-    return (
-      <div
-        ref={el => {
-          this.container = el;
-        }}
-        {...restProps}
-      >
-        {children}
-      </div>
     );
   }
 }
