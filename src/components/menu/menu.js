@@ -9,6 +9,8 @@ import iconCog from "../../icons/cog.svg";
 class Menu extends React.Component {
   static propTypes = {
     opened: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+
     selectedView: PropTypes.oneOf(Object.values(types.views)),
 
     clockShowSeconds: PropTypes.bool.isRequired,
@@ -18,9 +20,11 @@ class Menu extends React.Component {
     ageDateOfBirthTimestamp: PropTypes.number.isRequired,
     onAgeDateOfBirthChange: PropTypes.func.isRequired,
 
+    settingsHidden: PropTypes.bool.isRequired,
+    onSettingsHiddenChange: PropTypes.func.isRequired,
+
     setViewType: PropTypes.func.isRequired,
-    setRandomImage: PropTypes.func.isRequired,
-    toggleMenu: PropTypes.func.isRequired
+    setRandomImage: PropTypes.func.isRequired
   };
 
   clockShowSecondsChange = e => {
@@ -45,9 +49,15 @@ class Menu extends React.Component {
     });
   };
 
+  settingsHiddenChange = e => {
+    this.props.onSettingsHiddenChange(!this.props.settingsHidden);
+  };
+
   render() {
     return (
-      <MenuWrapper>
+      <MenuWrapper
+        settingsHidden={this.props.settingsHidden && !this.props.opened}
+      >
         <TabIndexHandler disableTabbing={!this.props.opened}>
           <ToggleButton
             onClick={this.props.toggleMenu}
@@ -68,14 +78,17 @@ class Menu extends React.Component {
             >
               Clock
             </MenuOption>
-            <label>
-              <input
-                type="checkbox"
-                checked={this.props.clockShowSeconds}
-                onChange={this.clockShowSecondsChange}
-              />
-              Show seconds
-            </label>
+
+            {this.props.selectedView === types.views.CLOCK && (
+              <label>
+                <input
+                  type="checkbox"
+                  checked={this.props.clockShowSeconds}
+                  onChange={this.clockShowSecondsChange}
+                />
+                Show seconds
+              </label>
+            )}
           </section>
 
           {/* <TabIndexHandler disableTabbing={!this.props.opened}>
@@ -104,28 +117,50 @@ class Menu extends React.Component {
               Age
             </MenuOption>
 
+            {this.props.selectedView === types.views.AGE && (
+              <label>
+                Your date of birth
+                <input
+                  type="date"
+                  min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+                  max={timestampToDateInputValue(Date.now())}
+                  value={this.props.ageDateOfBirthValue}
+                  onChange={this.ageDateOfBirthChange}
+                />
+              </label>
+            )}
+          </section>
+
+          <section>
+            <MenuOption
+              onChange={() => this.props.setViewType(types.views.NOTHING)}
+              checked={this.props.selectedView === types.views.NOTHING}
+            >
+              Nothing
+            </MenuOption>
+          </section>
+
+          <section>
+            <HeadingSmall>Hide settings</HeadingSmall>
+            <Text>
+              Settings button will be hidden unless you hover the mouse over the
+              area where the button is
+            </Text>
             <label>
-              Your date of birth
               <input
-                type="date"
-                min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
-                max={timestampToDateInputValue(Date.now())}
-                value={this.props.ageDateOfBirthValue}
-                onChange={this.ageDateOfBirthChange}
+                type="checkbox"
+                checked={this.props.settingsHidden}
+                onChange={this.settingsHiddenChange}
               />
+              Hide settings
             </label>
           </section>
 
-          <MenuOption
-            onChange={() => this.props.setViewType(types.views.NOTHING)}
-            checked={this.props.selectedView === types.views.NOTHING}
-          >
-            Nothing
-          </MenuOption>
+          <section>
+            <HeadingSmall>Background image</HeadingSmall>
 
-          <HeadingSmall>Background image</HeadingSmall>
-
-          <button onClick={this.props.setRandomImage}>Random image</button>
+            <button onClick={this.props.setRandomImage}>Random image</button>
+          </section>
         </TabIndexHandler>
       </MenuWrapper>
     );
@@ -190,7 +225,7 @@ class TabIndexHandler extends React.Component {
     this.disableTabbing();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     if (prevProps.disableTabbing !== this.props.disableTabbing) {
       if (this.props.disableTabbing) {
         this.disableTabbing();
@@ -225,7 +260,7 @@ const ToggleButtonIcon = glamorous.img(
     width: s.dimensions.menuButtonSize,
     height: s.dimensions.menuButtonSize,
     objectFit: "contain",
-    transition: "0.5s transform ease",
+    transition: s.animations.default,
     opacity: s.opacity.default
   },
   props => {
@@ -251,13 +286,26 @@ const Text = glamorous.p({
   ...s.text.text
 });
 
-const MenuWrapper = glamorous.section({
-  boxSizing: "border-box",
-  position: "relative",
-  padding: s.grid(2),
-  overflow: "hidden",
-  backgroundColor: s.colors.whiteTransparentDefault
-});
+const MenuWrapper = glamorous.section(
+  {
+    boxSizing: "border-box",
+    position: "relative",
+    padding: s.grid(2),
+    overflow: "hidden",
+    backgroundColor: s.colors.whiteTransparentDefault
+  },
+  props => {
+    if (props.settingsHidden) {
+      return {
+        opacity: 0,
+        transition: s.animations.default,
+        ":hover": {
+          opacity: 1
+        }
+      };
+    }
+  }
+);
 
 class MenuOption extends React.Component {
   static propTypes = {

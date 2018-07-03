@@ -44,6 +44,10 @@ export const text = {
   }
 };
 
+export const animations = {
+  default: "0.5s all ease"
+};
+
 export const opacity = {
   default: 0.8
 };

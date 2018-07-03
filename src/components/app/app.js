@@ -22,7 +22,15 @@ const unsplash = new Unsplash({
 class App extends React.Component {
   static config = {
     yearProgressDecimalPlaces: 8,
-    ageDecimalPlaces: 9
+    ageDecimalPlaces: 9,
+
+    savedSettings: [
+      "selectedView",
+      "clockShowSeconds",
+      "ageDateOfBirthTimestamp",
+      "ageDateOfBirthValue",
+      "settingsHidden"
+    ]
   };
 
   constructor() {
@@ -44,7 +52,8 @@ class App extends React.Component {
 
       clockShowSeconds: true,
       ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
-      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1))
+      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
+      settingsHidden: false
     };
   }
 
@@ -82,6 +91,10 @@ class App extends React.Component {
     }));
   };
 
+  setSettingsHidden = settingsHidden => {
+    this.setState({ settingsHidden });
+  };
+
   listenOnMenuResize() {
     // TODO: remove the listeners on componentWillUnmount?
     const observer = new ResizeObserver(entries => {
@@ -111,14 +124,8 @@ class App extends React.Component {
   }
 
   render() {
-    const whiteList = [
-      "selectedView",
-      "clockShowSeconds",
-      "ageDateOfBirthTimestamp",
-      "ageDateOfBirthValue"
-    ];
     const savedStateToStorage = Object.keys(this.state).filter(
-      key => !whiteList.includes(key)
+      key => !App.config.savedSettings.includes(key)
     );
 
     return (
@@ -221,15 +228,17 @@ class App extends React.Component {
             >
               <Menu
                 opened={this.state.menuOpened}
+                toggleMenu={this.toggleMenu}
                 selectedView={this.state.selectedView}
+                setViewType={this.setViewType}
                 clockShowSeconds={this.state.clockShowSeconds}
                 onClockShowSecondsChange={this.setClockShowSeconds}
                 ageDateOfBirthValue={this.state.ageDateOfBirthValue}
                 ageDateOfBirthTimestamp={this.state.ageDateOfBirthTimestamp}
                 onAgeDateOfBirthChange={this.setAgeDateOfBirth}
-                setViewType={this.setViewType}
+                settingsHidden={this.state.settingsHidden}
+                onSettingsHiddenChange={this.setSettingsHidden}
                 setRandomImage={this.setRandomImage}
-                toggleMenu={this.toggleMenu}
               />
             </AppMenu>
           </AppMenuWrapper>
