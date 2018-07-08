@@ -11,7 +11,8 @@ class Menu extends React.Component {
     opened: PropTypes.bool.isRequired,
     toggleMenu: PropTypes.func.isRequired,
 
-    selectedView: PropTypes.oneOf(Object.values(types.views)),
+    selectedView: PropTypes.oneOf(Object.values(types.views)).isRequired,
+    onSelectedViewChange: PropTypes.func.isRequired,
 
     clockShowSeconds: PropTypes.bool.isRequired,
     onClockShowSecondsChange: PropTypes.func.isRequired,
@@ -20,10 +21,12 @@ class Menu extends React.Component {
     ageDateOfBirthTimestamp: PropTypes.number.isRequired,
     onAgeDateOfBirthChange: PropTypes.func.isRequired,
 
+    imageSource: PropTypes.oneOf(Object.values(types.imageSources)),
+    onImageSourceChange: PropTypes.func.isRequired,
+
     settingsHidden: PropTypes.bool.isRequired,
     onSettingsHiddenChange: PropTypes.func.isRequired,
 
-    setViewType: PropTypes.func.isRequired,
     setRandomImage: PropTypes.func.isRequired
   };
 
@@ -73,7 +76,10 @@ class Menu extends React.Component {
 
           <section>
             <MenuOption
-              onChange={() => this.props.setViewType(types.views.CLOCK)}
+              name="view"
+              onChange={() =>
+                this.props.onSelectedViewChange(types.views.CLOCK)
+              }
               checked={this.props.selectedView === types.views.CLOCK}
             >
               Clock
@@ -93,7 +99,8 @@ class Menu extends React.Component {
 
           {/* <TabIndexHandler disableTabbing={!this.props.opened}>
             <MenuOption
-              onChange={() => this.props.setViewType(types.views.CALENDAR)}
+              name="view"
+              onChange={() => this.props.onSelectedViewChange(types.views.CALENDAR)}
               checked={this.props.selectedView === types.views.CALENDAR}
             >
               Calendar
@@ -102,7 +109,8 @@ class Menu extends React.Component {
 
           {/* <TabIndexHandler disableTabbing={!this.props.opened}>
             <MenuOption
-              onChange={() => this.props.setViewType(types.views.YEAR_PROGRESS)}
+              name="view"
+              onChange={() => this.props.onSelectedViewChange(types.views.YEAR_PROGRESS)}
               checked={this.props.selectedView === types.views.YEAR_PROGRESS}
             >
               Year progress
@@ -111,7 +119,8 @@ class Menu extends React.Component {
 
           <section>
             <MenuOption
-              onChange={() => this.props.setViewType(types.views.AGE)}
+              name="view"
+              onChange={() => this.props.onSelectedViewChange(types.views.AGE)}
               checked={this.props.selectedView === types.views.AGE}
             >
               Age
@@ -133,11 +142,41 @@ class Menu extends React.Component {
 
           <section>
             <MenuOption
-              onChange={() => this.props.setViewType(types.views.NOTHING)}
+              name="view"
+              onChange={() =>
+                this.props.onSelectedViewChange(types.views.NOTHING)
+              }
               checked={this.props.selectedView === types.views.NOTHING}
             >
               Nothing
             </MenuOption>
+          </section>
+
+          <section>
+            <HeadingSmall>Image source</HeadingSmall>
+
+            <MenuOption
+              name="images"
+              onChange={() =>
+                this.props.onImageSourceChange(types.imageSources.LOCAL)
+              }
+              checked={this.props.imageSource === types.imageSources.LOCAL}
+            >
+              Predefined
+            </MenuOption>
+            <MenuOption
+              name="images"
+              onChange={() =>
+                this.props.onImageSourceChange(types.imageSources.UNSPLASH)
+              }
+              checked={this.props.imageSource === types.imageSources.UNSPLASH}
+            >
+              Unsplash
+            </MenuOption>
+
+            {this.props.imageSource === types.imageSources.UNSPLASH && (
+              <button onClick={this.props.setRandomImage}>Random image</button>
+            )}
           </section>
 
           <section>
@@ -154,12 +193,6 @@ class Menu extends React.Component {
               />
               Hide settings
             </label>
-          </section>
-
-          <section>
-            <HeadingSmall>Background image</HeadingSmall>
-
-            <button onClick={this.props.setRandomImage}>Random image</button>
           </section>
         </TabIndexHandler>
       </MenuWrapper>
@@ -309,6 +342,7 @@ const MenuWrapper = glamorous.section(
 
 class MenuOption extends React.Component {
   static propTypes = {
+    name: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.string.isRequired
@@ -320,7 +354,7 @@ class MenuOption extends React.Component {
         <input
           onChange={this.props.onChange}
           type="radio"
-          name="menu-option"
+          name={this.props.name}
           checked={this.props.checked}
         />
         <MenuOptionText>{this.props.children}</MenuOptionText>

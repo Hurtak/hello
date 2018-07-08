@@ -30,6 +30,7 @@ class App extends React.Component {
       "clockShowSeconds",
       "ageDateOfBirthTimestamp",
       "ageDateOfBirthValue",
+      "imageSource",
       "settingsHidden"
     ]
   };
@@ -51,10 +52,10 @@ class App extends React.Component {
       menuHeight: null,
 
       selectedView: types.views.CLOCK,
-
       clockShowSeconds: true,
       ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
       ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
+      imageSource: types.imageSources.LOCAL,
       settingsHidden: false
     };
   }
@@ -89,6 +90,10 @@ class App extends React.Component {
     }));
   };
 
+  setImageSource = imageSource => {
+    this.setState({ imageSource });
+  };
+
   setSettingsHidden = settingsHidden => {
     this.setState({ settingsHidden });
   };
@@ -104,10 +109,34 @@ class App extends React.Component {
   }
 
   async getRandomImage() {
-    const request = await unsplash.photos.getRandomPhoto({
-      width: this.state.screenWidth,
-      height: this.state.screenHeight
-    });
+    let request = null;
+
+    try {
+      request = await unsplash.photos.getRandomPhoto({
+        width: this.state.screenWidth,
+        height: this.state.screenHeight
+        // query: "Seal"
+        // featured: true
+      });
+    } catch (error) {
+      return {
+        error: true,
+        data: error
+      };
+    }
+
+    if (request.status !== 200) {
+      const text = await request.text();
+      return {
+        error: true,
+        data: {
+          status: response.status,
+          body: text
+        }
+      };
+    }
+
+    // TODO: error handling
     const response = await request.json();
 
     return response;
@@ -227,12 +256,14 @@ class App extends React.Component {
               opened={this.state.menuOpened}
               toggleMenu={this.toggleMenu}
               selectedView={this.state.selectedView}
-              setViewType={this.setViewType}
+              onSelectedViewChange={this.setViewType}
               clockShowSeconds={this.state.clockShowSeconds}
               onClockShowSecondsChange={this.setClockShowSeconds}
               ageDateOfBirthValue={this.state.ageDateOfBirthValue}
               ageDateOfBirthTimestamp={this.state.ageDateOfBirthTimestamp}
               onAgeDateOfBirthChange={this.setAgeDateOfBirth}
+              imageSource={this.state.imageSource}
+              onImageSourceChange={this.setImageSource}
               settingsHidden={this.state.settingsHidden}
               onSettingsHiddenChange={this.setSettingsHidden}
               setRandomImage={this.setRandomImage}

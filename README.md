@@ -9,6 +9,8 @@
   - random/next/previous image
   - image index and total images indicator
   - image thems checkboxes (with number of images in each category)??
+  - send app for review to get full developer API key (current one is very limited)
+- add backup image when user does not have image loaded yet or when there is no internet?
 
 ---
 

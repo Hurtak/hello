@@ -8,4 +8,9 @@ export const views = {
   NOTHING: "NOTHING"
 };
 
+export const imageSources = {
+  LOCAL: "LOCAL",
+  UNSPLASH: "UNSPLASH"
+};
+
 export const timePropType = propTypes.number.isRequired;
