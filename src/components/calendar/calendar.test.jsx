@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Calendar, * as CalendarFunctions from "./calendar.js";
+import Calendar, * as CalendarFunctions from "./calendar.jsx";
 
 const { it, expect } = global;
 

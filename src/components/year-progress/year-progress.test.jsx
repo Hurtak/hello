@@ -1,4 +1,4 @@
-import * as YearProgressFuntions from "./year-progress.js";
+import * as YearProgressFuntions from "./year-progress.jsx";
 
 const { it, expect } = global;
 

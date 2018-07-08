@@ -1,4 +1,4 @@
-import * as ConditionalUpdaterFn from "./conditional-updater.js";
+import * as ConditionalUpdaterFn from "./conditional-updater.jsx";
 
 const { it, expect } = global;
 
