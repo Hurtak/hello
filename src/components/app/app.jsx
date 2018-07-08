@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import glamorous from "glamorous";
 import ResizeObserver from "resize-observer-polyfill";
 import SimpleStorage from "react-simple-storage";
@@ -130,7 +129,7 @@ class App extends React.Component {
       return {
         error: true,
         data: {
-          status: response.status,
+          status: request.status,
           body: text
         }
       };
