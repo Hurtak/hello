@@ -7,6 +7,7 @@ import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
 import Clock from "../clock/clock.jsx";
 import YearProgress from "../year-progress/year-progress.jsx";
 import Age from "../age/age.jsx";
+import * as imageService from "../background-image/image-service.js";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
@@ -47,10 +48,7 @@ class App extends React.Component {
       imageSource: types.imageSources.LOCAL,
       settingsHidden: false,
 
-      // TODO: https://github.com/ryanjyost/react-simple-storage/issues/6
-      image: window.localStorage._image
-        ? JSON.parse(window.localStorage._image)
-        : null
+      image: null
     };
   }
 
@@ -67,7 +65,7 @@ class App extends React.Component {
   };
 
   setRandomImage = async () => {
-    const image = await this.getRandomImage(
+    const image = await imageService.getRandomImage(
       this.screen.width,
       this.screen.height
     );
@@ -107,11 +105,13 @@ class App extends React.Component {
 
   async componentDidMount() {
     this.listenOnMenuResize();
+  }
 
+  onAppStateHydratedFromLocalStorage = async () => {
     if (!this.state.image) {
       await this.setRandomImage();
     }
-  }
+  };
 
   render() {
     const savedStateToStorage = Object.keys(this.state).filter(
@@ -127,7 +127,11 @@ class App extends React.Component {
             : null
         }}
       >
-        <SimpleStorage parent={this} blacklist={savedStateToStorage} />
+        <SimpleStorage
+          parent={this}
+          blacklist={savedStateToStorage}
+          onParentStateHydrated={this.onAppStateHydratedFromLocalStorage}
+        />
 
         {(() => {
           switch (this.state.selectedView) {
