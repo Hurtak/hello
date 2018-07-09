@@ -2,7 +2,6 @@ import React from "react";
 import glamorous from "glamorous";
 import ResizeObserver from "resize-observer-polyfill";
 import SimpleStorage from "react-simple-storage";
-import Unsplash from "unsplash-js";
 import Menu from "../menu/menu.jsx";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
 import Clock from "../clock/clock.jsx";
@@ -11,12 +10,6 @@ import Age from "../age/age.jsx";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
-
-const unsplash = new Unsplash({
-  applicationId:
-    "b3cb7c587939d02e81ceda270fdad22f5b0447ae92cec92503abebb6f9935328",
-  secret: "63aa959d4d73e2ebeb6c5d71fcbaaad2ea13f6b4461516c14c7012127c48426e"
-});
 
 class App extends React.Component {
   static config = {
@@ -38,15 +31,12 @@ class App extends React.Component {
     super();
 
     this.elAppMenu = null;
+    this.screen = {
+      width: window.screen.width,
+      heigth: window.screen.height
+    };
+
     this.state = {
-      screenWidth: window.screen.width,
-      screenHeight: window.screen.height,
-
-      // TODO: https://github.com/ryanjyost/react-simple-storage/issues/6
-      image: window.localStorage._image
-        ? JSON.parse(window.localStorage._image)
-        : null,
-
       menuOpened: true,
       menuHeight: null,
 
@@ -55,7 +45,12 @@ class App extends React.Component {
       ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
       ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
       imageSource: types.imageSources.LOCAL,
-      settingsHidden: false
+      settingsHidden: false,
+
+      // TODO: https://github.com/ryanjyost/react-simple-storage/issues/6
+      image: window.localStorage._image
+        ? JSON.parse(window.localStorage._image)
+        : null
     };
   }
 
@@ -72,7 +67,10 @@ class App extends React.Component {
   };
 
   setRandomImage = async () => {
-    const image = await this.getRandomImage();
+    const image = await this.getRandomImage(
+      this.screen.width,
+      this.screen.height
+    );
     this.setState({ image: image });
   };
 
@@ -105,40 +103,6 @@ class App extends React.Component {
       });
     });
     observer.observe(this.elAppMenu);
-  }
-
-  async getRandomImage() {
-    let request = null;
-
-    try {
-      request = await unsplash.photos.getRandomPhoto({
-        width: this.state.screenWidth,
-        height: this.state.screenHeight
-        // query: "Seal"
-        // featured: true
-      });
-    } catch (error) {
-      return {
-        error: true,
-        data: error
-      };
-    }
-
-    if (request.status !== 200) {
-      const text = await request.text();
-      return {
-        error: true,
-        data: {
-          status: request.status,
-          body: text
-        }
-      };
-    }
-
-    // TODO: error handling
-    const response = await request.json();
-
-    return response;
   }
 
   async componentDidMount() {
