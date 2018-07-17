@@ -7,6 +7,15 @@
   - when loading takes
     - less than x ms, transition between images
     - more than x ms, animate to background, then animate to new image
+- create ImageSource class abstraction
+  - counstructor
+    - image source
+    - config
+  - methods
+    - getImage
+    - nextImage
+    - previousImage
+    - getAllCollection or something?
 - unsplash
   - choose predefined sets of images (animals, landscapes...)
   - choose our own set
