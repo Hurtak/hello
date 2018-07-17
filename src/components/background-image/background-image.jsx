@@ -1,12 +1,72 @@
 import React from "react";
 import PropTypes from "prop-types";
+import glamorous from "glamorous";
 
-class ComponentName extends React.Component {
+export default class BackgroundImage extends React.Component {
   static propTypes = {
-    url: PropTypes.string.isRequired
+    url: PropTypes.string
   };
 
+  constructor() {
+    super();
+
+    this.state = {
+      imageLoaded: false
+    };
+  }
+
+  handleImageLoading(url) {
+    if (!url) {
+      this.setState({ imageLoaded: false });
+      return;
+    }
+
+    const image = document.createElement("img");
+    image.src = url;
+
+    if (image.complete) {
+      // browser finished downloading the image
+      this.setState({ imageLoaded: true });
+    } else {
+      // image is not loaded yet
+      image.onload = () => {
+        this.setState({ imageLoaded: true });
+      };
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      this.handleImageLoading(this.props.url);
+    }
+  }
+
+  componentDidMount() {
+    this.handleImageLoading(this.props.url);
+  }
+
   render() {
-    return <div style={{ backgroundImage: `url(${this.props.url})` }} />;
+    return (
+      <Image
+        style={{
+          backgroundImage: (() => {
+            if (!this.state.imageLoaded) return null;
+            if (!this.props.url) return null;
+            return `url(${this.props.url})`;
+          })()
+        }}
+      />
+    );
   }
 }
+
+const Image = glamorous.div({
+  position: "absolute",
+  left: 0,
+  top: 0,
+  width: "100%",
+  height: "100%",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center"
+});

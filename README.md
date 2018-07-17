@@ -2,6 +2,11 @@
 
 ## TODO
 
+- image component
+  - add fadeout animation when switching images
+  - when loading takes
+    - less than x ms, transition between images
+    - more than x ms, animate to background, then animate to new image
 - unsplash
   - choose predefined sets of images (animals, landscapes...)
   - choose our own set
@@ -11,6 +16,9 @@
   - image thems checkboxes (with number of images in each category)??
   - send app for review to get full developer API key (current one is very limited)
 - add backup image when user does not have image loaded yet or when there is no internet?
+- glamor.css.global("body", { backgroundColor: colors.grayChrome, }
+  - problem this is inserted at runtime so we wee white screen splash from default styles?
+  - or maybe even if we had css file we would seee this splash?
 
 ---
 

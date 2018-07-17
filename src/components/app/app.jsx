@@ -7,6 +7,7 @@ import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
 import Clock from "../clock/clock.jsx";
 import YearProgress from "../year-progress/year-progress.jsx";
 import Age from "../age/age.jsx";
+import BackgroundImage from "../background-image/background-image.jsx";
 import * as imageService from "../background-image/image-service.js";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
@@ -129,18 +130,15 @@ class App extends React.Component {
     );
 
     return (
-      <AppWrapper
-        style={{
-          // TODO: ckeck the url, it has crop parameter, we probably do not want that.
-          backgroundImage: this.state.image
-            ? `url("${this.state.image.urls.custom}")`
-            : null
-        }}
-      >
+      <AppWrapper>
         <SimpleStorage
           parent={this}
           blacklist={savedStateToStorage}
           onParentStateHydrated={this.onAppStateHydratedFromLocalStorage}
+        />
+
+        <BackgroundImage
+          url={this.state.image ? this.state.image.urls.custom : null}
         />
 
         {(() => {
@@ -262,10 +260,7 @@ const AppWrapper = glamorous.div({
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
-  padding: s.grid(1),
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat"
+  padding: s.grid(1)
 });
 
 const AppContent = glamorous.main(

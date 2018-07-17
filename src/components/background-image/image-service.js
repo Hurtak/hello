@@ -9,6 +9,7 @@ export const unsplash = new Unsplash({
 export async function getRandomImage(width, height) {
   let request = null;
 
+  // TODO: ckeck the url, it has crop parameter, we probably do not want that.
   try {
     request = await unsplash.photos.getRandomPhoto({
       width: width,
