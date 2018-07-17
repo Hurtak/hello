@@ -27,10 +27,13 @@ class Menu extends React.Component {
     settingsHidden: PropTypes.bool.isRequired,
     onSettingsHiddenChange: PropTypes.func.isRequired,
 
-    setRandomImage: PropTypes.func.isRequired
+    setRandomImage: PropTypes.func.isRequired,
+
+    isDev: PropTypes.bool.isRequired,
+    onResetAppState: PropTypes.func.isRequired
   };
 
-  clockShowSecondsChange = e => {
+  clockShowSecondsChange = () => {
     this.props.onClockShowSecondsChange(!this.props.clockShowSeconds);
   };
 
@@ -52,8 +55,12 @@ class Menu extends React.Component {
     });
   };
 
-  settingsHiddenChange = e => {
+  settingsHiddenChange = () => {
     this.props.onSettingsHiddenChange(!this.props.settingsHidden);
+  };
+
+  resetAppState = () => {
+    this.props.onResetAppState();
   };
 
   render() {
@@ -194,6 +201,14 @@ class Menu extends React.Component {
               Hide settings
             </label>
           </section>
+
+          {this.props.isDev && (
+            <section>
+              <HeadingSmall>Dev menu</HeadingSmall>
+              <Text>This menu is only visible in development mode</Text>
+              <button onClick={this.resetAppState}>Reset app state</button>
+            </section>
+          )}
         </TabIndexHandler>
       </MenuWrapper>
     );
@@ -201,12 +216,10 @@ class Menu extends React.Component {
 }
 
 class TabIndexHandler extends React.Component {
+  // TODO: too much magic instead of explicit props passing?
   static propTypes = {
     disableTabbing: PropTypes.bool.isRequired,
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element)
-    ]).isRequired
+    children: PropTypes.node.isRequired
   };
 
   constructor() {

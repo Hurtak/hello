@@ -1,6 +1,6 @@
 import React from "react";
 import glamorous from "glamorous";
-import SimpleStorage from "react-simple-storage";
+import SimpleStorage, { clearStorage } from "react-simple-storage";
 import ResizeObserver from "resize-observer-polyfill";
 import Menu from "../menu/menu.jsx";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
@@ -11,6 +11,7 @@ import * as imageService from "../background-image/image-service.js";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
+import { isDev } from "../../shared/dev.js";
 
 class App extends React.Component {
   static config = {
@@ -28,6 +29,20 @@ class App extends React.Component {
     ]
   };
 
+  static initialState = {
+    menuOpened: true,
+    menuHeight: null,
+
+    selectedView: types.views.CLOCK,
+    clockShowSeconds: true,
+    ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
+    ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
+    imageSource: types.imageSources.LOCAL,
+    settingsHidden: false,
+
+    image: null
+  };
+
   constructor() {
     super();
 
@@ -37,19 +52,7 @@ class App extends React.Component {
       heigth: window.screen.height
     };
 
-    this.state = {
-      menuOpened: true,
-      menuHeight: null,
-
-      selectedView: types.views.CLOCK,
-      clockShowSeconds: true,
-      ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
-      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
-      imageSource: types.imageSources.LOCAL,
-      settingsHidden: false,
-
-      image: null
-    };
+    this.state = App.initialState;
   }
 
   toggleMenu = () => {
@@ -111,6 +114,13 @@ class App extends React.Component {
     if (!this.state.image) {
       await this.setRandomImage();
     }
+  };
+
+  resetAppState = () => {
+    this.setState(App.initialState, () => {
+      clearStorage();
+      window.location.reload();
+    });
   };
 
   render() {
@@ -234,6 +244,8 @@ class App extends React.Component {
               settingsHidden={this.state.settingsHidden}
               onSettingsHiddenChange={this.setSettingsHidden}
               setRandomImage={this.setRandomImage}
+              isDev={isDev}
+              onResetAppState={this.resetAppState}
             />
           </AppMenu>
         </AppMenuWrapper>
