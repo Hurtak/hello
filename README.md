@@ -2,7 +2,6 @@
 
 ## TODO
 
-- clear localstorage
 - unsplash
   - choose predefined sets of images (animals, landscapes...)
   - choose our own set
