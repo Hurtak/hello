@@ -2,6 +2,8 @@
 
 ## TODO
 
+- menu design
+  - responsive
 - create ImageSource class abstraction
   - counstructor
     - image source
@@ -15,12 +17,11 @@
 
 ---
 
+- change fonts
 - glamor.css.global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
   - or maybe even if we had css file we would seee this splash?
-- change fonts
 - decimal places in age
-- menu design
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
