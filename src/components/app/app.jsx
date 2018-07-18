@@ -48,11 +48,6 @@ class App extends React.Component {
     super();
 
     this.elAppMenu = null;
-    this.screen = {
-      width: window.screen.width,
-      heigth: window.screen.height
-    };
-
     this.state = App.initialState;
   }
 
@@ -69,11 +64,9 @@ class App extends React.Component {
   };
 
   setRandomImage = async () => {
-    const image = await imageService.getRandomImage(
-      this.screen.width,
-      this.screen.height
-    );
-    this.setState({ image: image });
+    // TODO: error handling
+    const image = await imageService.getRandomImage();
+    this.setState({ image: image.data });
   };
 
   setClockShowSeconds = clockShowSeconds => {
@@ -138,9 +131,7 @@ class App extends React.Component {
         />
 
         <BackgroundWrapper>
-          <BackgroundImage
-            url={this.state.image ? this.state.image.urls.custom : null}
-          />
+          <BackgroundImage url={this.state.image} />
         </BackgroundWrapper>
 
         {(() => {

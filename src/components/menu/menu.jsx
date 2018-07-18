@@ -174,14 +174,14 @@ class Menu extends React.Component {
             <MenuOption
               name="images"
               onChange={() =>
-                this.props.onImageSourceChange(types.imageSources.UNSPLASH)
+                this.props.onImageSourceChange(types.imageSources.BING)
               }
-              checked={this.props.imageSource === types.imageSources.UNSPLASH}
+              checked={this.props.imageSource === types.imageSources.BING}
             >
-              Unsplash
+              Bing image of the day
             </MenuOption>
 
-            {this.props.imageSource === types.imageSources.UNSPLASH && (
+            {this.props.imageSource === types.imageSources.BING && (
               <button onClick={this.props.setRandomImage}>Random image</button>
             )}
           </section>

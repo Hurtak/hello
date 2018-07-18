@@ -1,42 +1,82 @@
-import Unsplash from "unsplash-js";
+const corsProxy = "https://cors-anywhere.herokuapp.com";
+// const corsProxy = "https://api.codetabs.com/cors-proxy";
 
-export const unsplash = new Unsplash({
-  applicationId:
-    "cd83d15de30e4f6b38d2c9b7244a94e566897918adc4ec2443a7b4b63c13f7d0",
-  secret: "24b1a9f07202e16997c870da7a6bf53ef0af99dde91317a18981da7b55e4afc9"
-});
+const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
+bingImage.searchParams.set("format", "js"); // get JSON as response-type
+bingImage.searchParams.set("idx", "0"); // TODO: what is this?
+bingImage.searchParams.set("n", 1); // number of images
+bingImage.searchParams.set("mkt", "en-US"); // region
 
-export async function getRandomImage(width, height) {
+const bingImageUrl = bingImage.toString();
+
+const errorTypes = {
+  FETCH_ERROR: "FETCH_ERROR",
+  STATUS_NOT_200: "STATUS_NOT_200",
+  ERROR_PARSING_JSON: "ERROR_PARSING_JSON",
+  MISSING_DATA: "MISSING_DATA"
+};
+
+export async function getRandomImage() {
   let request = null;
 
-  // TODO: ckeck the url, it has crop parameter, we probably do not want that.
   try {
-    request = await unsplash.photos.getRandomPhoto({
-      width: width,
-      height: height
-      // query: "Seal"
-      // featured: true
+    request = await fetch(`${corsProxy}/${bingImageUrl}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
     });
   } catch (error) {
-    return {
+    const res = {
       error: true,
+      errorType: errorTypes.FETCH_ERROR,
       data: error
     };
+    console.log(res);
+    return res;
   }
+  console.log(request);
 
   if (request.status !== 200) {
-    const text = await request.text();
-    return {
+    const text = await request.text(); // TODO: try catch this
+    const res = {
       error: true,
+      errorType: errorTypes.STATUS_NOT_200,
       data: {
         status: request.status,
         body: text
       }
     };
+    console.log(res);
+    return res;
   }
 
-  // TODO: error handling
-  const response = await request.json();
+  let response = null;
+  try {
+    response = await request.json();
+  } catch (error) {
+    const res = {
+      error: true,
+      errorType: errorTypes.ERROR_PARSING_JSON,
+      data: error
+    };
+    console.log(res);
+    return res;
+  }
 
-  return response;
+  const imageUrl = (() => {
+    if (!response) return null;
+    if (!response.images) return null;
+    if (!response.images[0]) return null;
+    if (!response.images[0].url) return null;
+    if (typeof response.images[0].url !== "string") return null;
+    return "http://www.bing.com" + response.images[0].url;
+  })();
+
+  console.log(imageUrl);
+
+  return {
+    error: false,
+    data: imageUrl
+  };
 }

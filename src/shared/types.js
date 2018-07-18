@@ -10,7 +10,7 @@ export const views = {
 
 export const imageSources = {
   LOCAL: "LOCAL",
-  UNSPLASH: "UNSPLASH"
+  BING: "BING"
 };
 
 export const timePropType = propTypes.number.isRequired;

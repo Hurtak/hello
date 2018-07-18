@@ -11,22 +11,10 @@
     - nextImage
     - previousImage
     - getAllCollection or something?
+- add backup image when user does not have image loaded yet or when there is no internet?
 
 ---
 
-- add bing image of the day
-  - https://stackoverflow.com/questions/10639914/is-there-a-way-to-get-bings-photo-of-the-day
-  - just image of the day or some customization? (we can fetch more than 1 image)
-- get rid of unsplash?
-  - unsplash
-    - choose predefined sets of images (animals, landscapes...)
-    - choose our own set
-    - change image every x minutes?
-    - random/next/previous image
-    - image index and total images indicator
-    - image thems checkboxes (with number of images in each category)??
-    - send app for review to get full developer API key (current one is very limited)
-- add backup image when user does not have image loaded yet or when there is no internet?
 - glamor.css.global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
   - or maybe even if we had css file we would seee this splash?

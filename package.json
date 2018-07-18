@@ -11,8 +11,7 @@
     "react-scripts": "1.1.4",
     "react-simple-storage": "1.2.1",
     "react-test-renderer": "16.4.1",
-    "resize-observer-polyfill": "1.5.0",
-    "unsplash-js": "4.8.0"
+    "resize-observer-polyfill": "1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
