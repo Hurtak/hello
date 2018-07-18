@@ -71,5 +71,5 @@ const Image = glamorous.div({
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  transition: "0.3s opacity ease"
+  transition: "opacity 0.3s ease"
 });
