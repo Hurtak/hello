@@ -2,8 +2,8 @@ import Unsplash from "unsplash-js";
 
 export const unsplash = new Unsplash({
   applicationId:
-    "b3cb7c587939d02e81ceda270fdad22f5b0447ae92cec92503abebb6f9935328",
-  secret: "63aa959d4d73e2ebeb6c5d71fcbaaad2ea13f6b4461516c14c7012127c48426e"
+    "cd83d15de30e4f6b38d2c9b7244a94e566897918adc4ec2443a7b4b63c13f7d0",
+  secret: "24b1a9f07202e16997c870da7a6bf53ef0af99dde91317a18981da7b55e4afc9"
 });
 
 export async function getRandomImage(width, height) {
