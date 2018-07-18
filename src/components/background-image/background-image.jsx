@@ -7,11 +7,12 @@ export default class BackgroundImage extends React.Component {
     url: PropTypes.string
   };
 
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
-      imageLoaded: false
+      imageLoaded: false,
+      previousUrl: props.url || null
     };
   }
 
@@ -53,7 +54,8 @@ export default class BackgroundImage extends React.Component {
             if (!this.state.imageLoaded) return null;
             if (!this.props.url) return null;
             return `url(${this.props.url})`;
-          })()
+          })(),
+          opacity: this.state.imageLoaded ? 1 : 0
         }}
       />
     );
@@ -68,5 +70,6 @@ const Image = glamorous.div({
   height: "100%",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  backgroundPosition: "center"
+  backgroundPosition: "center",
+  transition: "0.3s opacity ease"
 });
