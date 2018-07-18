@@ -137,9 +137,11 @@ class App extends React.Component {
           onParentStateHydrated={this.onAppStateHydratedFromLocalStorage}
         />
 
-        <BackgroundImage
-          url={this.state.image ? this.state.image.urls.custom : null}
-        />
+        <BackgroundWrapper>
+          <BackgroundImage
+            url={this.state.image ? this.state.image.urls.custom : null}
+          />
+        </BackgroundWrapper>
 
         {(() => {
           switch (this.state.selectedView) {
@@ -268,7 +270,8 @@ const AppContent = glamorous.main(
     display: "flex",
     flex: "1 0 0",
     flexDirection: "column",
-    width: "100%"
+    width: "100%",
+    zIndex: s.zIndex.content
   },
   props => {
     let styles = [];
@@ -288,6 +291,10 @@ const AppContent = glamorous.main(
     return styles;
   }
 );
+
+const BackgroundWrapper = glamorous.div({
+  zIndex: s.zIndex.background
+});
 
 const AppMenuWrapper = glamorous.aside(
   {

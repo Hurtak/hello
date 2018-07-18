@@ -53,7 +53,9 @@ export const opacity = {
 };
 
 export const zIndex = {
-  menu: 10
+  menu: 10,
+  content: 9,
+  background: 8
 };
 
 const menuButtonSize = gridRaw(5);
