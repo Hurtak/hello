@@ -6,7 +6,7 @@ import {
   imageSourceTypes,
   fetchErrorTypes
 } from "../../shared/types.js";
-import staticImages from "./static-images.js";
+import images from "../../images/images.js";
 
 export default class ImageService extends React.Component {
   static propTypes = {
@@ -40,7 +40,7 @@ export default class ImageService extends React.Component {
   }
 
   imageChange = () => {
-    const numberOfImages = staticImages.length;
+    const numberOfImages = images.length;
 
     const index = (() => {
       const getIndex = () => getRandomInt(0, numberOfImages - 1);
@@ -57,14 +57,15 @@ export default class ImageService extends React.Component {
       }
     })();
 
-    const image = staticImages[index];
+    const imageData = images[index];
 
     this.setState({ previousImageIndex: index }, () => {
       this.props.onImageChange({
-        imageUrl: image,
+        imageUrl: imageData.url,
         imageData: {
           currentImageIndex: index,
-          numberOfImages: numberOfImages
+          numberOfImages: numberOfImages,
+          ...imageData
         }
       });
     });

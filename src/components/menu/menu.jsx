@@ -29,7 +29,11 @@ class Menu extends React.Component {
       PropTypes.shape(
         {
           currentImageIndex: PropTypes.number.isRequired,
-          numberOfImages: PropTypes.number.isRequired
+          numberOfImages: PropTypes.number.isRequired,
+          url: PropTypes.string.isRequired,
+          name: PropTypes.string,
+          location: PropTypes.string,
+          source: PropTypes.string
         },
         PropTypes.shape({
           xxx: PropTypes.string.isRequired
@@ -198,6 +202,15 @@ class Menu extends React.Component {
                       this.props.imageData.numberOfImages
                     }
                   </Text>
+                  {this.props.imageData.name && (
+                    <Text>name: {this.props.imageData.name}</Text>
+                  )}
+                  {this.props.imageData.location && (
+                    <Text>location: {this.props.imageData.location}</Text>
+                  )}
+                  {this.props.imageData.source && (
+                    <Text>source: {this.props.imageData.source}</Text>
+                  )}
                   <button onClick={this.nextImage}>Next image</button>
                 </section>
               )}
