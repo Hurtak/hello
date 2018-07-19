@@ -1,79 +1,82 @@
-const corsProxy = "https://cors-anywhere.herokuapp.com";
-// const corsProxy = "https://api.codetabs.com/cors-proxy";
+import get from "lodash/get";
+import { corsProxyTypes, fetchErrorTypes } from "../../shared/types.js";
 
-const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
-bingImage.searchParams.set("format", "js"); // get JSON as response-type
-bingImage.searchParams.set("idx", "0"); // TODO: what is this?
-bingImage.searchParams.set("n", 1); // number of images
-bingImage.searchParams.set("mkt", "en-US"); // region
+const bingImageUrl = (() => {
+  const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
+  bingImage.searchParams.set("format", "js"); // get JSON as response-type
+  bingImage.searchParams.set("idx", "0"); // TODO: what is this?
+  bingImage.searchParams.set("n", 1); // number of images
+  bingImage.searchParams.set("mkt", "en-US"); // region
 
-const bingImageUrl = bingImage.toString();
+  return bingImage.toString();
+})();
 
-const errorTypes = {
-  FETCH_ERROR: "FETCH_ERROR",
-  STATUS_NOT_200: "STATUS_NOT_200",
-  ERROR_PARSING_JSON: "ERROR_PARSING_JSON",
-  MISSING_DATA: "MISSING_DATA"
-};
+function getCorsProxyUrl(corsProxyType, proxedUrl) {
+  switch (corsProxyType) {
+    case corsProxyTypes.CORS_ANYWHERE:
+      return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
+    case corsProxyTypes.CODETABS:
+      return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(
+        proxedUrl
+      )}`;
+    default:
+      throw new Error(`Unknown corsProxyType: ${corsProxyType}`);
+  }
+}
+
+function makeError(type, data) {
+  const res = {
+    error: true,
+    data: {
+      errorType: type,
+      errorData: data
+    }
+  };
+  console.log(res);
+
+  return res;
+}
 
 export async function getRandomImage() {
   let request = null;
 
+  const url = getCorsProxyUrl(corsProxyTypes.CODETABS, bingImageUrl);
   try {
-    request = await fetch(`${corsProxy}/${bingImageUrl}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+    request = await fetch(url, {
+      headers: { Accept: "application/json" }
     });
   } catch (error) {
-    const res = {
-      error: true,
-      errorType: errorTypes.FETCH_ERROR,
-      data: error
-    };
-    console.log(res);
-    return res;
+    return makeError(fetchErrorTypes.FETCH_ERROR, error);
   }
-  console.log(request);
 
   if (request.status !== 200) {
-    const text = await request.text(); // TODO: try catch this
-    const res = {
-      error: true,
-      errorType: errorTypes.STATUS_NOT_200,
-      data: {
-        status: request.status,
-        body: text
-      }
-    };
-    console.log(res);
-    return res;
+    let text = null;
+
+    try {
+      text = await request.text();
+    } catch (error) {
+      return makeError(fetchErrorTypes.ERROR_PARSING_RESPONSE, error);
+    }
+
+    return makeError(fetchErrorTypes.STATUS_NOT_200, {
+      status: request.status,
+      body: text
+    });
   }
 
   let response = null;
   try {
     response = await request.json();
   } catch (error) {
-    const res = {
-      error: true,
-      errorType: errorTypes.ERROR_PARSING_JSON,
-      data: error
-    };
-    console.log(res);
-    return res;
+    return makeError(fetchErrorTypes.ERROR_PARSING_RESPONSE, error);
   }
 
-  const imageUrl = (() => {
-    if (!response) return null;
-    if (!response.images) return null;
-    if (!response.images[0]) return null;
-    if (!response.images[0].url) return null;
-    if (typeof response.images[0].url !== "string") return null;
-    return "http://www.bing.com" + response.images[0].url;
-  })();
+  const urlImageOfTheDay = get(response, "images[0].url");
+  if (!urlImageOfTheDay) {
+    return makeError(fetchErrorTypes.MISSING_DATA, response);
+  }
 
-  console.log(imageUrl);
+  const imageUrl = "https://www.bing.com" + urlImageOfTheDay;
 
   return {
     error: false,

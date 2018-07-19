@@ -11,7 +11,7 @@ class Menu extends React.Component {
     opened: PropTypes.bool.isRequired,
     toggleMenu: PropTypes.func.isRequired,
 
-    selectedView: PropTypes.oneOf(Object.values(types.views)).isRequired,
+    selectedView: PropTypes.oneOf(Object.values(types.viewTypes)).isRequired,
     onSelectedViewChange: PropTypes.func.isRequired,
 
     clockShowSeconds: PropTypes.bool.isRequired,
@@ -21,7 +21,7 @@ class Menu extends React.Component {
     ageDateOfBirthTimestamp: PropTypes.number.isRequired,
     onAgeDateOfBirthChange: PropTypes.func.isRequired,
 
-    imageSource: PropTypes.oneOf(Object.values(types.imageSources)),
+    imageSource: PropTypes.oneOf(Object.values(types.imageSourceTypes)),
     onImageSourceChange: PropTypes.func.isRequired,
 
     settingsHidden: PropTypes.bool.isRequired,
@@ -85,14 +85,14 @@ class Menu extends React.Component {
             <MenuOption
               name="view"
               onChange={() =>
-                this.props.onSelectedViewChange(types.views.CLOCK)
+                this.props.onSelectedViewChange(types.viewTypes.CLOCK)
               }
-              checked={this.props.selectedView === types.views.CLOCK}
+              checked={this.props.selectedView === types.viewTypes.CLOCK}
             >
               Clock
             </MenuOption>
 
-            {this.props.selectedView === types.views.CLOCK && (
+            {this.props.selectedView === types.viewTypes.CLOCK && (
               <label>
                 <input
                   type="checkbox"
@@ -127,13 +127,15 @@ class Menu extends React.Component {
           <section>
             <MenuOption
               name="view"
-              onChange={() => this.props.onSelectedViewChange(types.views.AGE)}
-              checked={this.props.selectedView === types.views.AGE}
+              onChange={() =>
+                this.props.onSelectedViewChange(types.viewTypes.AGE)
+              }
+              checked={this.props.selectedView === types.viewTypes.AGE}
             >
               Age
             </MenuOption>
 
-            {this.props.selectedView === types.views.AGE && (
+            {this.props.selectedView === types.viewTypes.AGE && (
               <label>
                 Your date of birth
                 <input
@@ -151,9 +153,9 @@ class Menu extends React.Component {
             <MenuOption
               name="view"
               onChange={() =>
-                this.props.onSelectedViewChange(types.views.NOTHING)
+                this.props.onSelectedViewChange(types.viewTypes.NOTHING)
               }
-              checked={this.props.selectedView === types.views.NOTHING}
+              checked={this.props.selectedView === types.viewTypes.NOTHING}
             >
               Nothing
             </MenuOption>
@@ -165,23 +167,24 @@ class Menu extends React.Component {
             <MenuOption
               name="images"
               onChange={() =>
-                this.props.onImageSourceChange(types.imageSources.LOCAL)
+                this.props.onImageSourceChange(types.imageSourceTypes.LOCAL)
               }
-              checked={this.props.imageSource === types.imageSources.LOCAL}
+              checked={this.props.imageSource === types.imageSourceTypes.LOCAL}
             >
               Predefined
             </MenuOption>
+
             <MenuOption
               name="images"
               onChange={() =>
-                this.props.onImageSourceChange(types.imageSources.BING)
+                this.props.onImageSourceChange(types.imageSourceTypes.BING)
               }
-              checked={this.props.imageSource === types.imageSources.BING}
+              checked={this.props.imageSource === types.imageSourceTypes.BING}
             >
               Bing image of the day
             </MenuOption>
 
-            {this.props.imageSource === types.imageSources.BING && (
+            {this.props.imageSource === types.imageSourceTypes.BING && (
               <button onClick={this.props.setRandomImage}>Random image</button>
             )}
           </section>

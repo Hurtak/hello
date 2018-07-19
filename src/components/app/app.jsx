@@ -34,11 +34,11 @@ class App extends React.Component {
     menuOpened: true,
     menuHeight: null,
 
-    selectedView: types.views.CLOCK,
+    selectedView: types.viewTypes.CLOCK,
     clockShowSeconds: true,
     ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
     ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
-    imageSource: types.imageSources.LOCAL,
+    imageSource: types.imageSourceTypes.LOCAL,
     settingsHidden: false,
 
     image: null
@@ -136,7 +136,7 @@ class App extends React.Component {
 
         {(() => {
           switch (this.state.selectedView) {
-            case types.views.CLOCK:
+            case types.viewTypes.CLOCK:
               return (
                 <AppContent center>
                   <ConditionalUpdater
@@ -165,7 +165,7 @@ class App extends React.Component {
             //     </AppContent>
             //   );
 
-            case types.views.YEAR_PROGRESS:
+            case types.viewTypes.YEAR_PROGRESS:
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -185,7 +185,7 @@ class App extends React.Component {
                 </AppContent>
               );
 
-            case types.views.AGE: {
+            case types.viewTypes.AGE: {
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -203,7 +203,7 @@ class App extends React.Component {
               );
             }
 
-            case types.views.NOTHING:
+            case types.viewTypes.NOTHING:
               return null;
 
             default:
