@@ -21,13 +21,26 @@ class Menu extends React.Component {
     ageDateOfBirthTimestamp: PropTypes.number.isRequired,
     onAgeDateOfBirthChange: PropTypes.func.isRequired,
 
-    imageSource: PropTypes.oneOf(Object.values(types.imageSourceTypes)),
+    imageSource: PropTypes.oneOf(Object.values(types.imageSourceTypes))
+      .isRequired,
     onImageSourceChange: PropTypes.func.isRequired,
+
+    imageData: PropTypes.oneOfType([
+      PropTypes.shape(
+        {
+          currentImageIndex: PropTypes.number.isRequired,
+          numberOfImages: PropTypes.number.isRequired
+        },
+        PropTypes.shape({
+          xxx: PropTypes.string.isRequired
+        })
+      )
+    ]),
+
+    onNextImageClick: PropTypes.func.isRequired,
 
     settingsHidden: PropTypes.bool.isRequired,
     onSettingsHiddenChange: PropTypes.func.isRequired,
-
-    setRandomImage: PropTypes.func.isRequired,
 
     isDev: PropTypes.bool.isRequired,
     onResetAppState: PropTypes.func.isRequired
@@ -57,6 +70,10 @@ class Menu extends React.Component {
 
   settingsHiddenChange = () => {
     this.props.onSettingsHiddenChange(!this.props.settingsHidden);
+  };
+
+  nextImage = () => {
+    this.props.onNextImageClick();
   };
 
   resetAppState = () => {
@@ -173,6 +190,17 @@ class Menu extends React.Component {
             >
               Predefined
             </MenuOption>
+            {this.props.imageSource === types.imageSourceTypes.LOCAL &&
+              this.props.imageData && (
+                <section>
+                  <Text>
+                    image: {this.props.imageData.currentImageIndex + 1}/{
+                      this.props.imageData.numberOfImages
+                    }
+                  </Text>
+                  <button onClick={this.nextImage}>Next image</button>
+                </section>
+              )}
 
             <MenuOption
               name="images"
@@ -183,10 +211,6 @@ class Menu extends React.Component {
             >
               Bing image of the day
             </MenuOption>
-
-            {this.props.imageSource === types.imageSourceTypes.BING && (
-              <button onClick={this.props.setRandomImage}>Random image</button>
-            )}
           </section>
 
           <section>

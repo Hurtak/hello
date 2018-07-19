@@ -8,7 +8,7 @@ import Clock from "../clock/clock.jsx";
 import YearProgress from "../year-progress/year-progress.jsx";
 import Age from "../age/age.jsx";
 import BackgroundImage from "../background-image/background-image.jsx";
-import * as imageService from "../background-image/image-service.js";
+import ImageService from "../image-service/image-service.jsx";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
@@ -20,7 +20,6 @@ class App extends React.Component {
     ageDecimalPlaces: 9,
 
     savedState: [
-      "image",
       "selectedView",
       "clockShowSeconds",
       "ageDateOfBirthTimestamp",
@@ -41,13 +40,15 @@ class App extends React.Component {
     imageSource: types.imageSourceTypes.LOCAL,
     settingsHidden: false,
 
-    image: null
+    imageUrl: null,
+    imageData: null
   };
 
   constructor() {
     super();
 
     this.elAppMenu = null;
+    this.imageServiceMethods = null;
     this.state = App.initialState;
   }
 
@@ -61,12 +62,6 @@ class App extends React.Component {
 
   setViewType = newViewType => {
     this.setState({ selectedView: newViewType });
-  };
-
-  setRandomImage = async () => {
-    // TODO: error handling
-    const image = await imageService.getRandomImage();
-    this.setState({ image: image.data });
   };
 
   setClockShowSeconds = clockShowSeconds => {
@@ -90,6 +85,18 @@ class App extends React.Component {
     this.setState({ settingsHidden });
   };
 
+  setImage = ({ imageUrl, imageData }) => {
+    this.setState({ imageUrl, imageData });
+  };
+
+  nextImage = () => {
+    this.imageServiceMethods.nextImage();
+  };
+
+  imageServiceInit = ({ methods }) => {
+    this.imageServiceMethods = methods;
+  };
+
   listenOnMenuResize() {
     // TODO: remove the listeners on componentWillUnmount?
     const observer = new ResizeObserver(entries => {
@@ -105,9 +112,7 @@ class App extends React.Component {
   }
 
   onAppStateHydratedFromLocalStorage = async () => {
-    if (!this.state.image) {
-      await this.setRandomImage();
-    }
+    // TODO: remove???
   };
 
   resetAppState = () => {
@@ -130,8 +135,15 @@ class App extends React.Component {
           onParentStateHydrated={this.onAppStateHydratedFromLocalStorage}
         />
 
+        <ImageService
+          imageSource={this.state.imageSource}
+          onImageChange={this.setImage}
+          onInit={this.imageServiceInit}
+          key={this.state.imageSource}
+        />
+
         <BackgroundWrapper>
-          <BackgroundImage url={this.state.image} />
+          <BackgroundImage url={this.state.imageUrl} />
         </BackgroundWrapper>
 
         {(() => {
@@ -232,9 +244,10 @@ class App extends React.Component {
               onAgeDateOfBirthChange={this.setAgeDateOfBirth}
               imageSource={this.state.imageSource}
               onImageSourceChange={this.setImageSource}
+              imageData={this.state.imageData}
+              onNextImageClick={this.nextImage}
               settingsHidden={this.state.settingsHidden}
               onSettingsHiddenChange={this.setSettingsHidden}
-              setRandomImage={this.setRandomImage}
               isDev={isDev}
               onResetAppState={this.resetAppState}
             />
