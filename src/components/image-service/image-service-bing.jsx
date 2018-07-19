@@ -1,83 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
 import get from "lodash/get";
-import {
-  corsProxyTypes,
-  imageSourceTypes,
-  fetchErrorTypes
-} from "../../shared/types.js";
+import { corsProxyTypes, fetchErrorTypes } from "../../shared/types.js";
 import images from "../../images/images.js";
 
-export default class ImageService extends React.Component {
+export default class ImageServiceBing extends React.Component {
   static propTypes = {
-    imageSource: PropTypes.oneOf(Object.values(imageSourceTypes)).isRequired,
     onImageChange: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
-
-    // this.timer = setInterval(() => {
-    //   this.imageChange();
-    // }, 1000);
-    this.state = {
-      previousImageIndex: null
-    };
-
-    props.onInit({
-      methods: {
-        nextImage: this.imageChange
-      }
-    });
   }
 
   componentDidMount() {
     this.imageChange();
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+  imageChange = async () => {
+    const imageData = await getBingImageOfTheDay();
+    // TODO: if error
 
-  imageChange = () => {
-    const numberOfImages = images.length;
+    const image = imageData.data;
+    const urlBing = "https://www.bing.com";
 
-    const index = (() => {
-      const getIndex = () => getRandomInt(0, numberOfImages - 1);
-
-      if (numberOfImages < 2 || this.state.previousImageIndex === null) {
-        return getIndex();
+    this.props.onImageChange({
+      imageUrl: urlBing + image.url,
+      imageData: {
+        title: image.copyright,
+        link: image.copyrightlink,
+        quiz: urlBing + image.quiz
       }
-
-      while (true) {
-        const index = getIndex();
-        if (index !== this.state.previousImageIndex) {
-          return index;
-        }
-      }
-    })();
-
-    const imageData = images[index];
-
-    this.setState({ previousImageIndex: index }, () => {
-      this.props.onImageChange({
-        imageUrl: imageData.url,
-        imageData: {
-          currentImageIndex: index,
-          numberOfImages: numberOfImages,
-          ...imageData
-        }
-      });
     });
   };
 
   render() {
     return null;
   }
-}
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const bingImageUrl = (() => {
@@ -137,16 +96,18 @@ async function getBingImageOfTheDay() {
     return makeError(fetchErrorTypes.ERROR_PARSING_RESPONSE, error);
   }
 
-  const urlImageOfTheDay = get(response, "images[0].url");
-  if (!urlImageOfTheDay) {
+  const image = get(response, "images[0]");
+  const dataValid = (() => {
+    const url = get(image, "url");
+    return typeof url === "string" && url.length > 0;
+  })();
+  if (!dataValid) {
     return makeError(fetchErrorTypes.MISSING_DATA, response);
   }
 
-  const imageUrl = "https://www.bing.com" + urlImageOfTheDay;
-
   return {
     error: false,
-    data: imageUrl
+    data: image
   };
 }
 

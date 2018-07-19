@@ -26,19 +26,19 @@ class Menu extends React.Component {
     onImageSourceChange: PropTypes.func.isRequired,
 
     imageData: PropTypes.oneOfType([
-      PropTypes.shape(
-        {
-          currentImageIndex: PropTypes.number.isRequired,
-          numberOfImages: PropTypes.number.isRequired,
-          url: PropTypes.string.isRequired,
-          name: PropTypes.string,
-          location: PropTypes.string,
-          source: PropTypes.string
-        },
-        PropTypes.shape({
-          xxx: PropTypes.string.isRequired
-        })
-      )
+      PropTypes.shape({
+        currentImageIndex: PropTypes.number.isRequired,
+        numberOfImages: PropTypes.number.isRequired,
+        url: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        location: PropTypes.string,
+        source: PropTypes.string
+      }),
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired,
+        quiz: PropTypes.string.isRequired
+      })
     ]),
 
     onNextImageClick: PropTypes.func.isRequired,
@@ -209,7 +209,9 @@ class Menu extends React.Component {
                     <Text>location: {this.props.imageData.location}</Text>
                   )}
                   {this.props.imageData.source && (
-                    <Text>source: {this.props.imageData.source}</Text>
+                    <Text>
+                      <a href={this.props.imageData.source}>source</a>
+                    </Text>
                   )}
                   <button onClick={this.nextImage}>Next image</button>
                 </section>
@@ -224,6 +226,24 @@ class Menu extends React.Component {
             >
               Bing image of the day
             </MenuOption>
+            {this.props.imageSource === types.imageSourceTypes.BING &&
+              this.props.imageData && (
+                <section>
+                  {this.props.imageData.title && (
+                    <Text>title: {this.props.imageData.title}</Text>
+                  )}
+                  {this.props.imageData.link && (
+                    <Text>
+                      <a href={this.props.imageData.link}>link</a>
+                    </Text>
+                  )}
+                  {this.props.imageData.quiz && (
+                    <Text>
+                      <a href={this.props.imageData.quiz}>quiz</a>
+                    </Text>
+                  )}
+                </section>
+              )}
           </section>
 
           <section>

@@ -8,7 +8,8 @@ import Clock from "../clock/clock.jsx";
 import YearProgress from "../year-progress/year-progress.jsx";
 import Age from "../age/age.jsx";
 import BackgroundImage from "../background-image/background-image.jsx";
-import ImageServiceStatic from "../image-service/image-service-static.jsx";
+import ImageServiceLocal from "../image-service/image-service-local.jsx";
+import ImageServiceBing from "../image-service/image-service-bing.jsx";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
@@ -135,12 +136,15 @@ class App extends React.Component {
           onParentStateHydrated={this.onAppStateHydratedFromLocalStorage}
         />
 
-        <ImageServiceStatic
-          imageSource={this.state.imageSource}
-          onImageChange={this.setImage}
-          onInit={this.imageServiceInit}
-          key={this.state.imageSource}
-        />
+        {this.state.imageSource === types.imageSourceTypes.LOCAL && (
+          <ImageServiceLocal
+            onInit={this.imageServiceInit}
+            onImageChange={this.setImage}
+          />
+        )}
+        {this.state.imageSource === types.imageSourceTypes.BING && (
+          <ImageServiceBing onImageChange={this.setImage} />
+        )}
 
         <BackgroundWrapper>
           <BackgroundImage url={this.state.imageUrl} />

@@ -4,13 +4,15 @@
 
 - images
   - bing image of the day
-    - download once a day?
-    - how to determine if day ended?
-    - maybe download once a hour, if there is new image download it and cache it, then display new image on subsequent page visits?
+    - download once a hour?
+    - what happense when we have outdated data?
+    - display new image on subsequent page visits?
+  - error handling
     - show error when image cannot be loaded
     - backup background when image cannot be loaded
     - when no internet auto fallback to offline images?
     - when no internet disable menu settings and show error message
+- background image transition does not work for local images
 
 ---
 
