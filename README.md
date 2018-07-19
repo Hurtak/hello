@@ -2,21 +2,26 @@
 
 ## TODO
 
-- menu design
-  - responsive
-- create ImageSource class abstraction
-  - counstructor
-    - image source
-    - config
-  - methods
-    - getImage
-    - nextImage
-    - previousImage
-    - getAllCollection or something?
-- add backup image when user does not have image loaded yet or when there is no internet?
+- images
+  - bing image of the day
+    - download once a day?
+    - how to determine if day ended?
+    - maybe download once a hour, if there is new image download it and cache it, then display new image on subsequent page visits?
+    - no settings
+    - show error when image cannot be loaded
+    - backup background when image cannot be loaded
+    - when no internet auto fallback to offline images?
+    - when no internet disable menu settings and show error message
+  - regular images
+    - next/previous/random buttons with "5/20" type of indicator
+    - settings?
+      - how often change (day, hour, new tab)
+      - how to change, random or cycle from start?
 
 ---
 
+- menu design
+  - responsive
 - change fonts
 - glamor.css.global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
