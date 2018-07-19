@@ -3,10 +3,6 @@
 ## TODO
 
 - images
-  - regular images
-    - image cycling
-    - settings?
-      - how often change (day, hour, new tab)
   - bing image of the day
     - download once a day?
     - how to determine if day ended?
