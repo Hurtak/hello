@@ -2,6 +2,16 @@
 
 ## TODO
 
+- menu design
+- add more images!
+- go through manifest.json
+  - unnecessary permissins?
+  - missing fields?
+  - update existing fields
+- release!!
+
+## Later TODOS
+
 - images
   - bing image of the day
     - download once a hour?
@@ -13,34 +23,23 @@
     - when no internet auto fallback to offline images?
     - when no internet disable menu settings and show error message
 - background image transition does not work for local images
-
----
-
-- menu design
-  - responsive
+- responsive menu
 - change fonts
 - glamor.css.global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
   - or maybe even if we had css file we would seee this splash?
 - decimal places in age
-- go through manifest.json
-  - unnecessary permissins?
-  - missing fields?
-  - update existing fields
 - properly fill package.json
   - repository
   - bump version to 1.0
   - license
   - author
 - fill github descriptions and stuff
+- user-select: none na vsechno?
 - support
   - chrome plugin
   - firefox plugin
   - web app - github pages hosted
-- user-select: none na vsechno?
-
-## Later TODOS
-
 - bing images - select country
   - https://bingwallpaper.com/
   - what are allowed countries?

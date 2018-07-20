@@ -8,10 +8,6 @@ export default class ImageServiceBing extends React.Component {
     onImageChange: PropTypes.func.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.imageChange();
   }
