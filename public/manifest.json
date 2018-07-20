@@ -1,14 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  "description": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "name": "Hello friend",
+  "description": "New landing screen",
   "version": "1.0.0",
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
   "author": "Petr Huřťák",
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "offline_enabled": true
 }

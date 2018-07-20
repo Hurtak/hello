@@ -31,7 +31,7 @@ class App extends React.Component {
   };
 
   static initialState = {
-    menuOpened: true,
+    menuOpened: false,
     menuHeight: null,
 
     selectedView: types.viewTypes.CLOCK,
