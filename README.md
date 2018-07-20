@@ -3,6 +3,9 @@
 ## TODO
 
 - menu design
+  - app description
+  - link to github
+  - link to twitter
 - add more images!
 - go through manifest.json
   - unnecessary permissins?
