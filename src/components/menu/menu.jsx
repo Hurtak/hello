@@ -36,8 +36,7 @@ class Menu extends React.Component {
       }),
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired,
-        quiz: PropTypes.string.isRequired
+        link: PropTypes.string.isRequired
       })
     ]),
 
@@ -235,11 +234,6 @@ class Menu extends React.Component {
                   {this.props.imageData.link && (
                     <Text>
                       <a href={this.props.imageData.link}>link</a>
-                    </Text>
-                  )}
-                  {this.props.imageData.quiz && (
-                    <Text>
-                      <a href={this.props.imageData.quiz}>quiz</a>
                     </Text>
                   )}
                 </section>

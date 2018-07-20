@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import get from "lodash/get";
 import { corsProxyTypes, fetchErrorTypes } from "../../shared/types.js";
-import images from "../../images/images.js";
 
 export default class ImageServiceBing extends React.Component {
   static propTypes = {
@@ -28,8 +27,7 @@ export default class ImageServiceBing extends React.Component {
       imageUrl: urlBing + image.url,
       imageData: {
         title: image.copyright,
-        link: image.copyrightlink,
-        quiz: urlBing + image.quiz
+        link: image.copyrightlink
       }
     });
   };
@@ -44,6 +42,7 @@ const bingImageUrl = (() => {
   bingImage.searchParams.set("format", "js"); // get JSON as response-type
   bingImage.searchParams.set("idx", "0"); // TODO: what is this?
   bingImage.searchParams.set("n", 1); // number of images
+  // TODO: different regions?
   bingImage.searchParams.set("mkt", "en-US"); // region
 
   return bingImage.toString();

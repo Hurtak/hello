@@ -41,6 +41,10 @@
 
 ## Later TODOS
 
+- bing images - select country
+  - https://bingwallpaper.com/
+  - what are allowed countries?
+  - maybe deted default one automatically?
 - when loading new image, add blur our, blur in efect
 - settings
   - bouncy transitions on settings box and cog
