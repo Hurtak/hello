@@ -17,6 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "zip": "cd build && zip -r -X \"../build.zip\" *",
     "test": "react-scripts test --env=jsdom --snapshotSerializers=jest-glamor-react"
   }
 }
