@@ -11,7 +11,6 @@
   - unnecessary permissins?
   - missing fields?
   - update existing fields
-- release!!
 
 ## Later TODOS
 
@@ -47,6 +46,7 @@
   - https://bingwallpaper.com/
   - what are allowed countries?
   - maybe deted default one automatically?
+- release!!
 - when loading new image, add blur our, blur in efect
 - settings
   - bouncy transitions on settings box and cog
@@ -64,7 +64,6 @@
 - finish design for year progress
   - maybe get rid of this guy?
   - responsive design
-- fade in animation - like that chrome plugin
 
 ## Future improvements
 
