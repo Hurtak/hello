@@ -22,7 +22,12 @@ export default class ImageServiceBing extends React.Component {
     this.props.onImageChange({
       imageUrl: urlBing + image.url,
       imageData: {
-        title: image.copyright,
+        title: (() => {
+          const title = image.copyright;
+          if (!title) return null;
+          // "Image title (© copyright)" => "Image title"
+          return title.replace(/ \(©.+?\)/, "");
+        })(),
         link: image.copyrightlink
       }
     });
