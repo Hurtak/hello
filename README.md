@@ -2,6 +2,15 @@
 
 ## TODO
 
+- static image
+  - do not show same image twice in a row
+- new localstorage library
+  - prefix handling
+    - each component unique prefix?
+  - clearing of localstorage
+
+---
+
 - menu design
   - app description
   - link to github

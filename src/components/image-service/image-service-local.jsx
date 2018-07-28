@@ -1,18 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import images from "../../images/images.js";
+import {
+  initLocalStorage,
+  saveToLocalStorage
+} from "../../shared/local-storage.js";
 
 export default class ImageServiceLocal extends React.Component {
   static propTypes = {
     onImageChange: PropTypes.func.isRequired
   };
 
+  static config = {
+    savedState: ["previousImageIndex"]
+  };
+
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = initLocalStorage(ImageServiceLocal.config.savedState, {
       previousImageIndex: null
-    };
+    });
 
     props.onInit({
       methods: {
@@ -23,6 +31,10 @@ export default class ImageServiceLocal extends React.Component {
 
   componentDidMount() {
     this.imageChange();
+  }
+
+  componentDidUpdate() {
+    saveToLocalStorage(ImageServiceLocal.config.savedState, this.state);
   }
 
   imageChange = () => {
