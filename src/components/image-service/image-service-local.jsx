@@ -18,9 +18,13 @@ export default class ImageServiceLocal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = initLocalStorage(ImageServiceLocal.config.savedState, {
-      previousImageIndex: null
-    });
+    this.state = initLocalStorage(
+      ImageServiceLocal.config.savedState,
+      ImageServiceLocal.name,
+      {
+        previousImageIndex: null
+      }
+    );
 
     props.onInit({
       methods: {
@@ -34,7 +38,11 @@ export default class ImageServiceLocal extends React.Component {
   }
 
   componentDidUpdate() {
-    saveToLocalStorage(ImageServiceLocal.config.savedState, this.state);
+    saveToLocalStorage(
+      ImageServiceLocal.config.savedState,
+      ImageServiceLocal.name,
+      this.state
+    );
   }
 
   imageChange = () => {

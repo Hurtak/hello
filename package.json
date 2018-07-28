@@ -10,7 +10,6 @@
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-scripts": "1.1.4",
-    "react-simple-storage": "1.2.2",
     "react-test-renderer": "16.4.1",
     "resize-observer-polyfill": "1.5.0"
   },

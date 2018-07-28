@@ -1,6 +1,5 @@
 import React from "react";
 import glamorous from "glamorous";
-import SimpleStorage, { clearStorage } from "react-simple-storage";
 import ResizeObserver from "resize-observer-polyfill";
 import Menu from "../menu/menu.jsx";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
@@ -13,6 +12,11 @@ import ImageServiceBing from "../image-service/image-service-bing.jsx";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
+import {
+  initLocalStorage,
+  saveToLocalStorage,
+  clearLocalStorage
+} from "../../shared/local-storage";
 import { isDev } from "../../shared/dev.js";
 
 class App extends React.Component {
@@ -30,27 +34,26 @@ class App extends React.Component {
     ]
   };
 
-  static initialState = {
-    menuOpened: false,
-    menuHeight: null,
-
-    selectedView: types.viewTypes.CLOCK,
-    clockShowSeconds: true,
-    ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
-    ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
-    imageSource: types.imageSourceTypes.LOCAL,
-    settingsHidden: false,
-
-    imageUrl: null,
-    imageData: null
-  };
-
   constructor() {
     super();
 
     this.elAppMenu = null;
     this.imageServiceMethods = null;
-    this.state = App.initialState;
+
+    this.state = initLocalStorage(App.config.savedState, App.name, {
+      menuOpened: false,
+      menuHeight: null,
+
+      selectedView: types.viewTypes.CLOCK,
+      clockShowSeconds: true,
+      ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
+      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
+      imageSource: types.imageSourceTypes.LOCAL,
+      settingsHidden: false,
+
+      imageUrl: null,
+      imageData: null
+    });
   }
 
   toggleMenu = () => {
@@ -108,34 +111,22 @@ class App extends React.Component {
     observer.observe(this.elAppMenu);
   }
 
-  async componentDidMount() {
+  resetAppState = () => {
+    clearLocalStorage();
+    window.location.reload();
+  };
+
+  componentDidMount() {
     this.listenOnMenuResize();
   }
 
-  onAppStateHydratedFromLocalStorage = async () => {
-    // TODO: remove???
-  };
-
-  resetAppState = () => {
-    this.setState(App.initialState, () => {
-      clearStorage();
-      window.location.reload();
-    });
-  };
+  componentDidUpdate() {
+    saveToLocalStorage(App.config.savedState, App.name, this.state);
+  }
 
   render() {
-    const savedStateToStorage = Object.keys(this.state).filter(
-      key => !App.config.savedState.includes(key)
-    );
-
     return (
       <AppWrapper>
-        <SimpleStorage
-          parent={this}
-          blacklist={savedStateToStorage}
-          onParentStateHydrated={this.onAppStateHydratedFromLocalStorage}
-        />
-
         {this.state.imageSource === types.imageSourceTypes.LOCAL && (
           <ImageServiceLocal
             onInit={this.imageServiceInit}

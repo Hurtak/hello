@@ -1,12 +1,17 @@
-const prefix = "_XXX_";
+// TODO: revisit API?
+const localStorageKeyPrefix = "STORAGE-";
 
-export function initLocalStorage(keysToSave, state) {
+function getPrefixedKey(key, componentId) {
+  return localStorageKeyPrefix + (componentId ? componentId + "-" : "") + key;
+}
+
+export function initLocalStorage(keysToSave, componentId, state) {
   const newState = { ...state };
 
   for (const [key, value] of Object.entries(newState)) {
     if (!keysToSave.includes(key)) continue;
 
-    const keyLocalStorage = `${prefix}${key}`;
+    const keyLocalStorage = getPrefixedKey(key, componentId);
 
     const savedItem = window.localStorage[keyLocalStorage];
     if (typeof savedItem === "string") {
@@ -19,11 +24,21 @@ export function initLocalStorage(keysToSave, state) {
   return newState;
 }
 
-export function saveToLocalStorage(keysToSave, state) {
+export function saveToLocalStorage(keysToSave, componentId, state) {
   for (const [key, value] of Object.entries(state)) {
     if (!keysToSave.includes(key)) continue;
 
-    const keyLocalStorage = `${prefix}${key}`;
+    const keyLocalStorage = getPrefixedKey(key, componentId);
     window.localStorage[keyLocalStorage] = JSON.stringify(value);
+  }
+}
+
+export function clearLocalStorage() {
+  const keysToDelete = Object.keys(window.localStorage).filter(key =>
+    key.startsWith(localStorageKeyPrefix)
+  );
+
+  for (const key of keysToDelete) {
+    delete window.localStorage[key];
   }
 }
