@@ -88,7 +88,7 @@ class Menu extends React.Component {
       <MenuWrapper
         settingsHidden={this.props.settingsHidden && !this.props.opened}
       >
-        <TabIndexHandler disableTabbing={!this.props.opened}>
+        <TabIndexHandler disableTabbing={this.props.opened === false}>
           <ToggleButton
             onClick={this.props.toggleMenu}
             data-tabindexhandlerignore
@@ -270,11 +270,14 @@ class Menu extends React.Component {
 }
 
 class TabIndexHandler extends React.Component {
-  // TODO: too much magic instead of explicit props passing?
+  // NOTE: If any element had tabindex attribute, this component would remove it
+
   static propTypes = {
     disableTabbing: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired
   };
+
+  static skipAttribute = "data-tabindexhandlerignore";
 
   constructor() {
     super();
@@ -289,49 +292,42 @@ class TabIndexHandler extends React.Component {
 
   gatherElements() {
     const elements = this.wrapper.querySelectorAll(
-      "button, input, select, textarea"
+      "button, a, input, select, textarea"
     );
 
-    this.elements = [...elements].map(el => {
-      return {
-        tabIndex: el.getAttribute("tabindex"),
-        element: el
-      };
-    });
+    this.elements = [...elements];
   }
 
   disableTabbing() {
-    for (const { element } of this.elements) {
-      if (element.hasAttribute("data-tabindexhandlerignore")) continue;
-
+    for (const element of this.elements) {
+      if (element.hasAttribute(TabIndexHandler.skipAttribute)) continue;
       element.setAttribute("tabindex", -1);
     }
   }
 
   enableTabbing() {
-    for (const { element, tabIndex } of this.elements) {
-      if (element.hasAttribute("data-tabindexhandlerignore")) continue;
-
-      if (tabIndex) {
-        element.setAttribute("tabindex", tabIndex);
-      } else {
-        element.removeAttribute("tabindex");
-      }
+    for (const element of this.elements) {
+      if (element.hasAttribute(TabIndexHandler.skipAttribute)) continue;
+      element.removeAttribute("tabindex");
     }
   }
 
   componentDidMount() {
-    this.gatherElements();
-    this.disableTabbing();
+    this.handleTabbing();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.disableTabbing !== this.props.disableTabbing) {
-      if (this.props.disableTabbing) {
-        this.disableTabbing();
-      } else {
-        this.enableTabbing();
-      }
+      this.handleTabbing();
+    }
+  }
+
+  handleTabbing() {
+    this.gatherElements();
+    if (this.props.disableTabbing) {
+      this.disableTabbing();
+    } else {
+      this.enableTabbing();
     }
   }
 

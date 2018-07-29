@@ -6,11 +6,14 @@
   - app description
   - link to github
   - link to twitter
+- fix tabindex handler
+  - some way to disable tabbing of all elements inside of div?
 - add more images!
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
   - update existing fields
+- release
 
 ## Later TODOS
 
