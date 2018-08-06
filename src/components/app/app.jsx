@@ -22,7 +22,7 @@ import { isDev } from "../../shared/dev.js";
 class App extends React.Component {
   static config = {
     yearProgressDecimalPlaces: 8,
-    ageDecimalPlaces: 9,
+    ageDecimalPlaces: 3,
 
     savedState: [
       "selectedView",
