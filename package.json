@@ -5,16 +5,16 @@
     "glamor": "2.20.40",
     "glamorous": "4.13.1",
     "jest-glamor-react": "4.3.1",
-    "lodash": "4.17.10",
+    "lodash": "4.17.11",
     "prop-types": "15.6.2",
-    "react": "16.5.0",
-    "react-dom": "16.5.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
     "react-scripts": "1.1.5",
-    "react-test-renderer": "16.5.0",
+    "react-test-renderer": "16.5.2",
     "resize-observer-polyfill": "1.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "zip": "cd build && zip -r -X \"../build.zip\" *",
     "test": "react-scripts test --env=jsdom --snapshotSerializers=jest-glamor-react"
