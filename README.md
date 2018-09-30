@@ -71,5 +71,6 @@
 
 ## Future improvements
 
-- Once ResizeObserver has good browser support, remove polyfill
+- once `ResizeObserver` has good browser support, remove polyfill
+- once `inert` has good browser support, remove polyfill
 - once backdrop-filter is supported, start using it instead of transparent background color
