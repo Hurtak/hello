@@ -1,6 +1,7 @@
 import React from "react";
 import glamorous from "glamorous";
-import ResizeObserver from "resize-observer-polyfill";
+import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
+import "wicg-inert"; // TODO: remove once widely supported
 import Menu from "../menu/menu.jsx";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
 import Clock from "../clock/clock.jsx";

@@ -88,16 +88,13 @@ class Menu extends React.Component {
       <MenuWrapper
         settingsHidden={this.props.settingsHidden && !this.props.opened}
       >
-        <TabIndexHandler disableTabbing={this.props.opened === false}>
-          <ToggleButton
-            onClick={this.props.toggleMenu}
-            data-tabindexhandlerignore
-          >
-            <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
-          </ToggleButton>
+        <ToggleButton onClick={this.props.toggleMenu}>
+          <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
+        </ToggleButton>
 
+        <div inert={this.props.opened === false ? "true" : null}>
           <Heading>Hello Friend!</Heading>
-          <Text>Something about this app</Text>
+          <Text>New</Text>
 
           <HeadingSmall>View type</HeadingSmall>
 
@@ -124,7 +121,7 @@ class Menu extends React.Component {
             )}
           </section>
 
-          {/* <TabIndexHandler disableTabbing={!this.props.opened}>
+          {/*
             <MenuOption
               name="view"
               onChange={() => this.props.onSelectedViewChange(types.views.CALENDAR)}
@@ -132,9 +129,9 @@ class Menu extends React.Component {
             >
               Calendar
             </MenuOption>
-          </TabIndexHandler> */}
+           */}
 
-          {/* <TabIndexHandler disableTabbing={!this.props.opened}>
+          {/*
             <MenuOption
               name="view"
               onChange={() => this.props.onSelectedViewChange(types.views.YEAR_PROGRESS)}
@@ -142,7 +139,7 @@ class Menu extends React.Component {
             >
               Year progress
             </MenuOption>
-          </TabIndexHandler> */}
+          */}
 
           <section>
             <MenuOption
@@ -197,9 +194,8 @@ class Menu extends React.Component {
               this.props.imageData && (
                 <section>
                   <Text>
-                    image: {this.props.imageData.currentImageIndex + 1}/{
-                      this.props.imageData.numberOfImages
-                    }
+                    image: {this.props.imageData.currentImageIndex + 1}/
+                    {this.props.imageData.numberOfImages}
                   </Text>
                   {this.props.imageData.name && (
                     <Text>name: {this.props.imageData.name}</Text>
@@ -263,78 +259,9 @@ class Menu extends React.Component {
               <button onClick={this.resetAppState}>Reset app state</button>
             </section>
           )}
-        </TabIndexHandler>
+        </div>
       </MenuWrapper>
     );
-  }
-}
-
-class TabIndexHandler extends React.Component {
-  // NOTE: If any element had tabindex attribute, this component would remove it
-
-  static propTypes = {
-    disableTabbing: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired
-  };
-
-  static skipAttribute = "data-tabindexhandlerignore";
-
-  constructor() {
-    super();
-
-    this.wrapper = null;
-    this.elements = [];
-  }
-
-  render() {
-    return <div ref={el => (this.wrapper = el)}>{this.props.children}</div>;
-  }
-
-  gatherElements() {
-    const elements = this.wrapper.querySelectorAll(
-      "button, a, input, select, textarea"
-    );
-
-    this.elements = [...elements];
-  }
-
-  disableTabbing() {
-    for (const element of this.elements) {
-      if (element.hasAttribute(TabIndexHandler.skipAttribute)) continue;
-      element.setAttribute("tabindex", -1);
-    }
-  }
-
-  enableTabbing() {
-    for (const element of this.elements) {
-      if (element.hasAttribute(TabIndexHandler.skipAttribute)) continue;
-      element.removeAttribute("tabindex");
-    }
-  }
-
-  componentDidMount() {
-    this.handleTabbing();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.disableTabbing !== this.props.disableTabbing) {
-      this.handleTabbing();
-    }
-  }
-
-  handleTabbing() {
-    this.gatherElements();
-    if (this.props.disableTabbing) {
-      this.disableTabbing();
-    } else {
-      this.enableTabbing();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.disableTabbing) {
-      this.enableTabbing();
-    }
   }
 }
 

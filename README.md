@@ -6,17 +6,17 @@
   - app description
   - link to github
   - link to twitter
-- fix tabindex handler
-  - some way to disable tabbing of all elements inside of div?
 - add more images!
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
   - update existing fields
+- check STRV checklist
 - release
 
 ## Later TODOS
 
+- docs
 - images
   - bing image of the day
     - download once a hour?
@@ -30,6 +30,7 @@
 - background image transition does not work for local images
 - responsive menu
 - change fonts
+- tweet about this!
 - glamor.css.global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
   - or maybe even if we had css file we would seee this splash?
