@@ -74,6 +74,8 @@ export const dimensions = {
 };
 
 export const GlobalStyles = createGlobalStyle`
+  ${styledNormalize}
+
   body {
     margin: 0;
     background-color: ${colors.grayChrome};
