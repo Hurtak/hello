@@ -89,7 +89,7 @@ class Menu extends React.Component {
         settingsHidden={this.props.settingsHidden && !this.props.opened}
       >
         <ToggleButton onClick={this.props.toggleMenu}>
-          <ToggleButtonIcon src={iconCog} rotate={this.props.opened} />
+          <ToggleButtonIcon src={iconCog} rotated={this.props.opened} />
         </ToggleButton>
 
         <div inert={this.props.opened === false ? "true" : null}>
@@ -287,7 +287,7 @@ const ToggleButtonIcon = styled.img(
     opacity: s.opacity.default
   },
   props => {
-    if (props.rotate) {
+    if (props.rotated) {
       return {
         transform: "rotate(-360deg)"
       };

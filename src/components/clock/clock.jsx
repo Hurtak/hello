@@ -51,15 +51,15 @@ export class Time extends React.Component {
   }
 }
 
-const ClockBox = styled.div`
-  padding: ${s.grid(2)} ${s.grid(2.5)};
-  background-color: ${s.colors.whiteTransparentDefault};
-  user-select: none;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
+const ClockBox = styled.div({
+  padding: `${s.grid(2)} ${s.grid(2.5)}`,
+  backgroundColor: s.colors.whiteTransparentDefault,
+  userSelect: "none",
+  textAlign: "center",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis"
+});
 
 const breakpoints = {
   500: "@media (max-width: 500px)",
