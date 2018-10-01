@@ -128,6 +128,8 @@ class App extends React.Component {
   render() {
     return (
       <AppWrapper>
+        <s.GlobalStyles />
+
         {this.state.imageSource === types.imageSourceTypes.LOCAL && (
           <ImageServiceLocal
             onInit={this.imageServiceInit}
