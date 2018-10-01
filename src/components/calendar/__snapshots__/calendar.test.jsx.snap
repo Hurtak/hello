@@ -4,7 +4,7 @@ exports[`Snapshot end of the year 1`] = `
 .c0 {
   display: grid;
   grid-template-columns: repeat(4,auto);
-  grid-gap: 8px;
+  grid-gap: 0.5rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -12,14 +12,14 @@ exports[`Snapshot end of the year 1`] = `
 
 .c1 {
   display: block;
-  padding: 16px;
+  padding: 1rem;
   background-color: rgba(0,0,0,0.4);
 }
 
 .c2 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -30,20 +30,20 @@ exports[`Snapshot end of the year 1`] = `
 .c3 {
   display: grid;
   grid-template-columns: repeat(7,auto);
-  grid-gap: 8px 0;
+  grid-gap: 0.5rem 0;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0;
-  margin-top: 16px;
+  margin-top: 1rem;
   list-style-type: none;
 }
 
 .c4 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -53,7 +53,7 @@ exports[`Snapshot end of the year 1`] = `
 .c5 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -62,7 +62,7 @@ exports[`Snapshot end of the year 1`] = `
 .c6 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -3015,7 +3015,7 @@ exports[`Snapshot leap year end 1`] = `
 .c0 {
   display: grid;
   grid-template-columns: repeat(4,auto);
-  grid-gap: 8px;
+  grid-gap: 0.5rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -3023,14 +3023,14 @@ exports[`Snapshot leap year end 1`] = `
 
 .c1 {
   display: block;
-  padding: 16px;
+  padding: 1rem;
   background-color: rgba(0,0,0,0.4);
 }
 
 .c2 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -3041,20 +3041,20 @@ exports[`Snapshot leap year end 1`] = `
 .c3 {
   display: grid;
   grid-template-columns: repeat(7,auto);
-  grid-gap: 8px 0;
+  grid-gap: 0.5rem 0;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0;
-  margin-top: 16px;
+  margin-top: 1rem;
   list-style-type: none;
 }
 
 .c4 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -3064,7 +3064,7 @@ exports[`Snapshot leap year end 1`] = `
 .c5 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -3073,7 +3073,7 @@ exports[`Snapshot leap year end 1`] = `
 .c6 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -6041,7 +6041,7 @@ exports[`Snapshot leap year start 1`] = `
 .c0 {
   display: grid;
   grid-template-columns: repeat(4,auto);
-  grid-gap: 8px;
+  grid-gap: 0.5rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -6049,14 +6049,14 @@ exports[`Snapshot leap year start 1`] = `
 
 .c1 {
   display: block;
-  padding: 16px;
+  padding: 1rem;
   background-color: rgba(0,0,0,0.4);
 }
 
 .c2 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -6067,20 +6067,20 @@ exports[`Snapshot leap year start 1`] = `
 .c3 {
   display: grid;
   grid-template-columns: repeat(7,auto);
-  grid-gap: 8px 0;
+  grid-gap: 0.5rem 0;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0;
-  margin-top: 16px;
+  margin-top: 1rem;
   list-style-type: none;
 }
 
 .c4 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -6090,7 +6090,7 @@ exports[`Snapshot leap year start 1`] = `
 .c5 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -6099,7 +6099,7 @@ exports[`Snapshot leap year start 1`] = `
 .c6 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -9067,7 +9067,7 @@ exports[`Snapshot start of the year 1`] = `
 .c0 {
   display: grid;
   grid-template-columns: repeat(4,auto);
-  grid-gap: 8px;
+  grid-gap: 0.5rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -9075,14 +9075,14 @@ exports[`Snapshot start of the year 1`] = `
 
 .c1 {
   display: block;
-  padding: 16px;
+  padding: 1rem;
   background-color: rgba(0,0,0,0.4);
 }
 
 .c2 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -9093,20 +9093,20 @@ exports[`Snapshot start of the year 1`] = `
 .c3 {
   display: grid;
   grid-template-columns: repeat(7,auto);
-  grid-gap: 8px 0;
+  grid-gap: 0.5rem 0;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0;
-  margin-top: 16px;
+  margin-top: 1rem;
   list-style-type: none;
 }
 
 .c4 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -9116,7 +9116,7 @@ exports[`Snapshot start of the year 1`] = `
 .c5 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
@@ -9125,7 +9125,7 @@ exports[`Snapshot start of the year 1`] = `
 .c6 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   color: white;
   font-family: Arial;
