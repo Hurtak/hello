@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import styledNormalize from "styled-normalize";
 
-export const grid = size => `${size * 8}px`;
-export const gridRaw = size => size * 8;
-export const size = size => `${size}px`;
+export const grid = gridMultiple => `${size(gridRaw(gridMultiple))}`;
+const gridRaw = gridMultiple => gridMultiple * 8;
+export const size = px => `${px / 16}rem`;
 
 // TODO: Delete unused variables.
 export const colors = {
@@ -20,18 +20,18 @@ export const text = {
   text: {
     margin: 0,
     padding: 0,
-    fontSize: "14px",
+    fontSize: size(14),
     lineHeight: 1,
     color: colors.white,
     fontFamily: "Arial"
   },
 
   // Size modifiers
-  size18: {
-    fontSize: "18px"
-  },
   size16: {
-    fontSize: "16px"
+    fontSize: size(16)
+  },
+  size18: {
+    fontSize: size(18)
   },
 
   // Appearence modifiers
@@ -66,16 +66,14 @@ const menuButtonSizeAndSpacing =
   menuButtonSize + 2 * menuButtonPadding + 2 * menuButtonSpacing;
 
 export const dimensions = {
-  menuWidth: "400px",
-  menuButtonSize: menuButtonSize + "px",
-  menuButtonPadding: menuButtonPadding + "px",
-  menuButtonSpacing: menuButtonSpacing + "px",
-  menuButtonSizeAndSpacing: menuButtonSizeAndSpacing + "px"
+  menuWidth: size(400),
+  menuButtonSize: size(menuButtonSize),
+  menuButtonPadding: size(menuButtonPadding),
+  menuButtonSpacing: size(menuButtonSpacing),
+  menuButtonSizeAndSpacing: size(menuButtonSizeAndSpacing)
 };
 
 export const GlobalStyles = createGlobalStyle`
-  ${styledNormalize}
-
   body {
     margin: 0;
     background-color: ${colors.grayChrome};

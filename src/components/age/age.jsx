@@ -49,10 +49,10 @@ const AgeBox = styled.div({
 
 const AgeText = styled.div({
   ...s.text.text,
-  ...s.text.size18,
   ...s.text.familyMonospace,
   color: s.colors.white,
   opacity: s.opacity.default,
+  fontSize: s.size(24),
   textAlign: "center",
   whiteSpace: "nowrap",
   overflow: "hidden",

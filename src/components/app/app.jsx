@@ -281,7 +281,7 @@ const AppContent = styled.main(
 
     if (props.maxWidth) {
       styles.push({
-        maxWidth: "1200px"
+        maxWidth: s.size(1200)
       });
     }
 
@@ -316,7 +316,7 @@ const AppMenuWrapper = styled.aside(
     if (props.opened) {
       return {
         width: s.dimensions.menuWidth,
-        height: props.menuHeight ? `${props.menuHeight}px` : "auto"
+        height: props.menuHeight ? s.size(props.menuHeight) : "auto"
       };
     }
   }
