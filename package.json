@@ -21,6 +21,7 @@
     "test": "react-scripts test --env=jsdom"
   },
   "browserslist": [
-    "last 8 Chrome versions"
+    "last 4 chrome versions",
+    "last 4 firefox versions"
   ]
 }
