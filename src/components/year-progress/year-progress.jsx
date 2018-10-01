@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import glamorous from "glamorous";
+import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 
@@ -24,7 +24,7 @@ export default class YearProgress extends React.Component {
   }
 }
 
-const YearProgressWrapper = glamorous.div({
+const YearProgressWrapper = styled.div({
   position: "relative",
   width: "100%",
   boxSizing: "border-box",
@@ -34,12 +34,12 @@ const YearProgressWrapper = glamorous.div({
   border: `${s.grid(0.25)} solid ${s.colors.whiteTransparentDefault}`
 });
 
-const YearProgressBar = glamorous.div({
+const YearProgressBar = styled.div({
   height: "100%",
   backgroundColor: s.colors.whiteTransparentDefault
 });
 
-const YearProgressText = glamorous.div({
+const YearProgressText = styled.div({
   ...s.text.text,
   position: "absolute",
   left: 0,

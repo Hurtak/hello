@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Calendar, * as CalendarFunctions from "./calendar.jsx";
+import "jest-styled-components";
 
 const { it, expect } = global;
 

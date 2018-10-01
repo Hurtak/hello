@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import glamorous from "glamorous";
+import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import { timestampToDateInputValue } from "../../shared/time.js";
@@ -265,7 +265,7 @@ class Menu extends React.Component {
   }
 }
 
-const ToggleButton = glamorous.button({
+const ToggleButton = styled.button({
   boxSizing: "border-box",
   position: "absolute",
   userSelect: "none",
@@ -277,7 +277,7 @@ const ToggleButton = glamorous.button({
   cursor: "pointer"
 });
 
-const ToggleButtonIcon = glamorous.img(
+const ToggleButtonIcon = styled.img(
   {
     display: "block",
     width: s.dimensions.menuButtonSize,
@@ -295,21 +295,21 @@ const ToggleButtonIcon = glamorous.img(
   }
 );
 
-const Heading = glamorous.h1({
+const Heading = styled.h1({
   ...s.text.text,
   ...s.text.size18
 });
 
-const HeadingSmall = glamorous.h1({
+const HeadingSmall = styled.h1({
   ...s.text.text,
   ...s.text.size18
 });
 
-const Text = glamorous.p({
+const Text = styled.p({
   ...s.text.text
 });
 
-const MenuWrapper = glamorous.section(
+const MenuWrapper = styled.section(
   {
     boxSizing: "border-box",
     position: "relative",
@@ -353,11 +353,11 @@ class MenuOption extends React.Component {
   }
 }
 
-const MenuOptionLabel = glamorous.label({
+const MenuOptionLabel = styled.label({
   display: "block"
 });
 
-const MenuOptionText = glamorous.span({
+const MenuOptionText = styled.span({
   ...s.text.text,
   color: s.colors.white
 });

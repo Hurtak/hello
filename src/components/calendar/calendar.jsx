@@ -1,5 +1,5 @@
 import React from "react";
-import glamorous from "glamorous";
+import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 
@@ -104,7 +104,7 @@ export default class Calendar extends React.Component {
   }
 }
 
-const MonthsWrapper = glamorous.ul({
+const MonthsWrapper = styled.ul({
   display: "grid",
   gridTemplateColumns: "repeat(4, auto)",
   gridGap: s.grid(1),
@@ -113,20 +113,20 @@ const MonthsWrapper = glamorous.ul({
   padding: 0
 });
 
-const Month = glamorous.li({
+const Month = styled.li({
   display: "block",
   padding: s.grid(2),
   backgroundColor: s.colors.whiteTransparentDefault
 });
 
-const MonthName = glamorous.h2({
+const MonthName = styled.h2({
   ...s.text.text,
   display: "block",
   margin: 0,
   textAlign: "center"
 });
 
-const DaysWrapper = glamorous.div({
+const DaysWrapper = styled.div({
   display: "grid",
   gridTemplateColumns: "repeat(7, auto)",
   gridGap: `${s.grid(1)} 0`,
@@ -136,7 +136,7 @@ const DaysWrapper = glamorous.div({
   listStyleType: "none"
 });
 
-const Day = glamorous.div(
+const Day = styled.div(
   {
     ...s.text.text
   },

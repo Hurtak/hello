@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import glamorous from "glamorous";
+import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
@@ -27,13 +27,13 @@ class Age extends React.Component {
   }
 }
 
-const Wrapper = glamorous.div({
+const Wrapper = styled.div({
   position: "relative",
   flexGrow: "1",
   userSelect: "none"
 });
 
-const AgePosition = glamorous.div({
+const AgePosition = styled.div({
   position: "absolute",
   display: "flex",
   justifyContent: "center",
@@ -41,13 +41,13 @@ const AgePosition = glamorous.div({
   width: "100%"
 });
 
-const AgeBox = glamorous.div({
+const AgeBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
   overflow: "hidden"
 });
 
-const AgeText = glamorous.div({
+const AgeText = styled.div({
   ...s.text.text,
   ...s.text.size18,
   ...s.text.familyMonospace,

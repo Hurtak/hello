@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import glamorous from "glamorous";
+import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import { addLeadingZero } from "../../shared/time.js";
@@ -51,15 +51,15 @@ export class Time extends React.Component {
   }
 }
 
-const ClockBox = glamorous.div({
-  padding: `${s.grid(2)} ${s.grid(2.5)}`,
-  backgroundColor: s.colors.whiteTransparentDefault,
-  userSelect: "none",
-  textAlign: "center",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis"
-});
+const ClockBox = styled.div`
+  padding: ${s.grid(2)} ${s.grid(2.5)};
+  background-color: ${s.colors.whiteTransparentDefault};
+  user-select: none;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 const breakpoints = {
   500: "@media (max-width: 500px)",
@@ -68,7 +68,7 @@ const breakpoints = {
   180: "@media (max-width: 180px)"
 };
 
-const ClockText = glamorous.div({
+const ClockText = styled.div({
   ...s.text.text,
   ...s.text.familyMonospace,
   fontSize: s.grid(10),
@@ -81,7 +81,7 @@ const ClockText = glamorous.div({
   [breakpoints[180]]: { fontSize: s.grid(3) }
 });
 
-const Colon = glamorous.span({
+const Colon = styled.span({
   position: "relative",
   top: s.size(-9),
   margin: `0 ${s.size(-6)}`,

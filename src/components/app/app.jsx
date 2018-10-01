@@ -1,5 +1,5 @@
 import React from "react";
-import glamorous from "glamorous";
+import styled from "styled-components";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
 import Menu from "../menu/menu.jsx";
@@ -223,8 +223,9 @@ class App extends React.Component {
           opened={this.state.menuOpened}
           menuHeight={this.state.menuHeight}
         >
+          {/* TODO: new ref api? */}
           <AppMenu
-            innerRef={el => {
+            ref={el => {
               this.elAppMenu = el;
             }}
           >
@@ -254,7 +255,7 @@ class App extends React.Component {
   }
 }
 
-const AppWrapper = glamorous.div({
+const AppWrapper = styled.div({
   boxSizing: "border-box",
   position: "relative",
   display: "flex",
@@ -265,7 +266,7 @@ const AppWrapper = glamorous.div({
   padding: s.grid(1)
 });
 
-const AppContent = glamorous.main(
+const AppContent = styled.main(
   {
     display: "flex",
     flex: "1 0 0",
@@ -281,6 +282,7 @@ const AppContent = glamorous.main(
         maxWidth: "1200px"
       });
     }
+
     if (props.center) {
       styles.push({
         justifyContent: "center",
@@ -292,11 +294,11 @@ const AppContent = glamorous.main(
   }
 );
 
-const BackgroundWrapper = glamorous.div({
+const BackgroundWrapper = styled.div({
   zIndex: s.zIndex.background
 });
 
-const AppMenuWrapper = glamorous.aside(
+const AppMenuWrapper = styled.aside(
   {
     position: "absolute",
     direction: "rtl", // To make the overflow cropping from the right side
@@ -318,7 +320,7 @@ const AppMenuWrapper = glamorous.aside(
   }
 );
 
-const AppMenu = glamorous.div({
+const AppMenu = styled.div({
   width: s.dimensions.menuWidth,
   direction: "ltr" // Reset direction set in AppMenuWrapper
 });

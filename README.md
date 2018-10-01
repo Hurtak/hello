@@ -31,7 +31,7 @@
 - responsive menu
 - change fonts
 - tweet about this!
-- glamor.css.global("body", { backgroundColor: colors.grayChrome, }
+- global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
   - or maybe even if we had css file we would seee this splash?
 - decimal places in age

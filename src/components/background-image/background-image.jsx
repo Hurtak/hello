@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import glamorous from "glamorous";
+import styled from "styled-components";
 
 export default class BackgroundImage extends React.Component {
   static propTypes = {
@@ -78,7 +78,7 @@ export default class BackgroundImage extends React.Component {
   }
 }
 
-const Image = glamorous.div(
+const Image = styled.div(
   {
     position: "absolute",
     left: 0,
