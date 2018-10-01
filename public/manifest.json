@@ -6,6 +6,7 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "content_security_policy": "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='",
   "author": "Petr Huřťák",
   "permissions": ["storage"],
   "offline_enabled": true
