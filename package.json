@@ -18,7 +18,7 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "zip": "cd build && zip -r -X \"../build.zip\" *",
-    "test": "react-scripts test --env=jsdom"
+    "test": "react-scripts test"
   },
   "browserslist": [
     "last 4 chrome versions",
