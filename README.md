@@ -6,6 +6,7 @@
   - app description
   - link to github
   - link to twitter
+  - cleanup menu?
 - add more images!
 - go through manifest.json
   - unnecessary permissins?

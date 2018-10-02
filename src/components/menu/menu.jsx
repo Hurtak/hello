@@ -94,176 +94,178 @@ class Menu extends React.Component {
 
         <div inert={this.props.opened === false ? "true" : null}>
           <Heading>Hello Friend!</Heading>
-          <Text>New</Text>
+          <Text>
+            This is your new cool new tab page. Enjoy a nice background from
+            Bing every day or have a look at some nice background that I
+            preselected. There is also a bunch of useful that you can display in
+            front of the background, like clock and stuff!
+          </Text>
 
-          <HeadingSmall>View type</HeadingSmall>
+          <MenuSectionsWrapper>
+            <MenuSection title="View type">
+              <MenuOption
+                name="view"
+                onChange={() =>
+                  this.props.onSelectedViewChange(types.viewTypes.CLOCK)
+                }
+                checked={this.props.selectedView === types.viewTypes.CLOCK}
+              >
+                Clock
+              </MenuOption>
 
-          <section>
-            <MenuOption
-              name="view"
-              onChange={() =>
-                this.props.onSelectedViewChange(types.viewTypes.CLOCK)
-              }
-              checked={this.props.selectedView === types.viewTypes.CLOCK}
-            >
-              Clock
-            </MenuOption>
+              <MenuOption
+                name="view"
+                onChange={() =>
+                  this.props.onSelectedViewChange(types.viewTypes.AGE)
+                }
+                checked={this.props.selectedView === types.viewTypes.AGE}
+              >
+                Age
+              </MenuOption>
 
-            {this.props.selectedView === types.viewTypes.CLOCK && (
+              <MenuOption
+                name="view"
+                onChange={() =>
+                  this.props.onSelectedViewChange(types.viewTypes.NOTHING)
+                }
+                checked={this.props.selectedView === types.viewTypes.NOTHING}
+              >
+                Nothing
+              </MenuOption>
+
+              {this.props.selectedView === types.viewTypes.CLOCK && (
+                <label>
+                  <Text>
+                    <input
+                      type="checkbox"
+                      checked={this.props.clockShowSeconds}
+                      onChange={this.clockShowSecondsChange}
+                    />
+                    Show seconds
+                  </Text>
+                </label>
+              )}
+
+              {this.props.selectedView === types.viewTypes.AGE && (
+                <label>
+                  Your date of birth
+                  <input
+                    type="date"
+                    min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+                    max={timestampToDateInputValue(Date.now())}
+                    value={this.props.ageDateOfBirthValue}
+                    onChange={this.ageDateOfBirthChange}
+                  />
+                </label>
+              )}
+            </MenuSection>
+
+            <MenuSection title="Background">
+              <MenuOption
+                name="images"
+                onChange={() =>
+                  this.props.onImageSourceChange(types.imageSourceTypes.LOCAL)
+                }
+                checked={
+                  this.props.imageSource === types.imageSourceTypes.LOCAL
+                }
+              >
+                Predefined
+              </MenuOption>
+              {this.props.imageSource === types.imageSourceTypes.LOCAL &&
+                this.props.imageData && (
+                  <section>
+                    <Text>
+                      image: {this.props.imageData.currentImageIndex + 1}/
+                      {this.props.imageData.numberOfImages}
+                    </Text>
+                    {this.props.imageData.name && (
+                      <Text>name: {this.props.imageData.name}</Text>
+                    )}
+                    {this.props.imageData.location && (
+                      <Text>location: {this.props.imageData.location}</Text>
+                    )}
+                    {this.props.imageData.source && (
+                      <Text>
+                        <a href={this.props.imageData.source}>source</a>
+                      </Text>
+                    )}
+                    <button onClick={this.nextImage}>Next image</button>
+                  </section>
+                )}
+
+              <MenuOption
+                name="images"
+                onChange={() =>
+                  this.props.onImageSourceChange(types.imageSourceTypes.BING)
+                }
+                checked={this.props.imageSource === types.imageSourceTypes.BING}
+              >
+                Bing image of the day
+              </MenuOption>
+              {this.props.imageSource === types.imageSourceTypes.BING &&
+                this.props.imageData && (
+                  <section>
+                    {this.props.imageData.title && (
+                      <Text>title: {this.props.imageData.title}</Text>
+                    )}
+                    {this.props.imageData.link && (
+                      <Text>
+                        <a href={this.props.imageData.link}>link</a>
+                      </Text>
+                    )}
+                  </section>
+                )}
+            </MenuSection>
+
+            <MenuSection title="Hide settings">
+              <Text>
+                Settings button will be hidden unless you hover the mouse over
+                the area where the button is
+              </Text>
               <label>
                 <input
                   type="checkbox"
-                  checked={this.props.clockShowSeconds}
-                  onChange={this.clockShowSecondsChange}
+                  checked={this.props.settingsHidden}
+                  onChange={this.settingsHiddenChange}
                 />
-                Show seconds
+                Hide settings
               </label>
+            </MenuSection>
+
+            {this.props.isDev && (
+              <MenuSection title="Dev menu">
+                <Text>This menu is only visible in development mode</Text>
+                <button onClick={this.resetAppState}>Reset app state</button>
+              </MenuSection>
             )}
-          </section>
-
-          {/*
-            <MenuOption
-              name="view"
-              onChange={() => this.props.onSelectedViewChange(types.views.CALENDAR)}
-              checked={this.props.selectedView === types.views.CALENDAR}
-            >
-              Calendar
-            </MenuOption>
-           */}
-
-          {/*
-            <MenuOption
-              name="view"
-              onChange={() => this.props.onSelectedViewChange(types.views.YEAR_PROGRESS)}
-              checked={this.props.selectedView === types.views.YEAR_PROGRESS}
-            >
-              Year progress
-            </MenuOption>
-          */}
-
-          <section>
-            <MenuOption
-              name="view"
-              onChange={() =>
-                this.props.onSelectedViewChange(types.viewTypes.AGE)
-              }
-              checked={this.props.selectedView === types.viewTypes.AGE}
-            >
-              Age
-            </MenuOption>
-
-            {this.props.selectedView === types.viewTypes.AGE && (
-              <label>
-                Your date of birth
-                <input
-                  type="date"
-                  min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
-                  max={timestampToDateInputValue(Date.now())}
-                  value={this.props.ageDateOfBirthValue}
-                  onChange={this.ageDateOfBirthChange}
-                />
-              </label>
-            )}
-          </section>
-
-          <section>
-            <MenuOption
-              name="view"
-              onChange={() =>
-                this.props.onSelectedViewChange(types.viewTypes.NOTHING)
-              }
-              checked={this.props.selectedView === types.viewTypes.NOTHING}
-            >
-              Nothing
-            </MenuOption>
-          </section>
-
-          <section>
-            <HeadingSmall>Image source</HeadingSmall>
-
-            <MenuOption
-              name="images"
-              onChange={() =>
-                this.props.onImageSourceChange(types.imageSourceTypes.LOCAL)
-              }
-              checked={this.props.imageSource === types.imageSourceTypes.LOCAL}
-            >
-              Predefined
-            </MenuOption>
-            {this.props.imageSource === types.imageSourceTypes.LOCAL &&
-              this.props.imageData && (
-                <section>
-                  <Text>
-                    image: {this.props.imageData.currentImageIndex + 1}/
-                    {this.props.imageData.numberOfImages}
-                  </Text>
-                  {this.props.imageData.name && (
-                    <Text>name: {this.props.imageData.name}</Text>
-                  )}
-                  {this.props.imageData.location && (
-                    <Text>location: {this.props.imageData.location}</Text>
-                  )}
-                  {this.props.imageData.source && (
-                    <Text>
-                      <a href={this.props.imageData.source}>source</a>
-                    </Text>
-                  )}
-                  <button onClick={this.nextImage}>Next image</button>
-                </section>
-              )}
-
-            <MenuOption
-              name="images"
-              onChange={() =>
-                this.props.onImageSourceChange(types.imageSourceTypes.BING)
-              }
-              checked={this.props.imageSource === types.imageSourceTypes.BING}
-            >
-              Bing image of the day
-            </MenuOption>
-            {this.props.imageSource === types.imageSourceTypes.BING &&
-              this.props.imageData && (
-                <section>
-                  {this.props.imageData.title && (
-                    <Text>title: {this.props.imageData.title}</Text>
-                  )}
-                  {this.props.imageData.link && (
-                    <Text>
-                      <a href={this.props.imageData.link}>link</a>
-                    </Text>
-                  )}
-                </section>
-              )}
-          </section>
-
-          <section>
-            <HeadingSmall>Hide settings</HeadingSmall>
-            <Text>
-              Settings button will be hidden unless you hover the mouse over the
-              area where the button is
-            </Text>
-            <label>
-              <input
-                type="checkbox"
-                checked={this.props.settingsHidden}
-                onChange={this.settingsHiddenChange}
-              />
-              Hide settings
-            </label>
-          </section>
-
-          {this.props.isDev && (
-            <section>
-              <HeadingSmall>Dev menu</HeadingSmall>
-              <Text>This menu is only visible in development mode</Text>
-              <button onClick={this.resetAppState}>Reset app state</button>
-            </section>
-          )}
+          </MenuSectionsWrapper>
         </div>
       </MenuWrapper>
     );
   }
 }
+
+const MenuWrapper = styled.section(
+  {
+    boxSizing: "border-box",
+    position: "relative",
+    padding: s.grid(2),
+    overflow: "hidden",
+    backgroundColor: s.colors.whiteTransparentDefault
+  },
+  props => {
+    if (props.settingsHidden) {
+      return {
+        opacity: 0,
+        transition: s.animations.default,
+        ":hover": {
+          opacity: 1
+        }
+      };
+    }
+  }
+);
 
 const ToggleButton = styled.button({
   boxSizing: "border-box",
@@ -309,26 +311,32 @@ const Text = styled.p({
   ...s.text.text
 });
 
-const MenuWrapper = styled.section(
-  {
-    boxSizing: "border-box",
-    position: "relative",
-    padding: s.grid(2),
-    overflow: "hidden",
-    backgroundColor: s.colors.whiteTransparentDefault
-  },
-  props => {
-    if (props.settingsHidden) {
-      return {
-        opacity: 0,
-        transition: s.animations.default,
-        ":hover": {
-          opacity: 1
-        }
-      };
-    }
+const MenuSectionsWrapper = styled.div({
+  marginTop: s.grid(3)
+});
+
+const MenuSectionStyled = styled.section({
+  marginTop: s.grid(2),
+  ":first-child": {
+    marginTop: 0
   }
-);
+});
+
+class MenuSection extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
+  };
+
+  render() {
+    return (
+      <MenuSectionStyled>
+        <HeadingSmall>{this.props.title}</HeadingSmall>
+        {this.props.children}
+      </MenuSectionStyled>
+    );
+  }
+}
 
 class MenuOption extends React.Component {
   static propTypes = {
