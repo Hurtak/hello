@@ -3,10 +3,9 @@ import styledNormalize from "styled-normalize";
 
 const gridRaw = gridMultiple => gridMultiple * 8;
 export const grid = gridMultiple => `${size(gridRaw(gridMultiple))}`;
-export const gridPx = gridMultiple => `${sizePx(gridRaw(gridMultiple))}`;
+export const gridPx = gridMultiple => `${gridRaw(gridMultiple)}px`;
 
 export const size = px => `${px / 16}rem`;
-export const sizePx = px => `${px}px`;
 
 export const breakpointPxToEm = px => `${px / 16}em`;
 
