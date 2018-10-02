@@ -54,7 +54,7 @@ export default class BackgroundImage extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Image
           topImage
           style={{
@@ -73,7 +73,7 @@ export default class BackgroundImage extends React.Component {
             }}
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

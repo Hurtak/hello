@@ -36,17 +36,17 @@ export class Time extends React.Component {
     const seconds = addLeadingZero(date.getSeconds());
 
     return (
-      <React.Fragment>
+      <>
         {hours}
         <Colon>:</Colon>
         {minutes}
         {this.props.showSeconds && (
-          <React.Fragment>
+          <>
             <Colon>:</Colon>
             {seconds}
-          </React.Fragment>
+          </>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
