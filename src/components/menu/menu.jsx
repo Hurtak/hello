@@ -218,10 +218,11 @@ class Menu extends React.Component {
                 )}
             </MenuSection>
 
-            <MenuSection title="Hide settings">
+            <MenuSection title="Minimalistic version">
               <Text>
                 Settings button will be hidden unless you hover the mouse over
-                the area where the button is
+                the area where the button is. Also bunch of useless text (like
+                this paragraph) will be hidden.
               </Text>
               <label>
                 <input
@@ -229,8 +230,19 @@ class Menu extends React.Component {
                   checked={this.props.settingsHidden}
                   onChange={this.settingsHiddenChange}
                 />
-                Hide settings
+                Hide stuff
               </label>
+            </MenuSection>
+
+            <MenuSection title="Contact">
+              <Text>
+                If you find any bugs or if you would like to tell me how much
+                you like this swell plugin you can do so on following channels.
+                Also this plugin is open source, so you contribute on GitHub!
+              </Text>
+              <a href="">Github</a>
+              <a href="">Mail</a>
+              <a href="">Twitter</a>
             </MenuSection>
 
             {this.props.isDev && (
