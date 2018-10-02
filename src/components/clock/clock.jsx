@@ -62,45 +62,45 @@ const ClockBox = styled.div({
 });
 
 const breakpoints = {
-  500: "@media (max-width: 500px)",
-  380: "@media (max-width: 380px)",
-  280: "@media (max-width: 280px)",
-  180: "@media (max-width: 180px)"
+  500: `@media (max-width: ${s.breakpointPxToEm(500)})`,
+  380: `@media (max-width: ${s.breakpointPxToEm(380)})`,
+  280: `@media (max-width: ${s.breakpointPxToEm(280)})`,
+  180: `@media (max-width: ${s.breakpointPxToEm(180)})`
 };
 
 const ClockText = styled.div({
   ...s.text.text,
   ...s.text.familyMonospace,
-  fontSize: s.grid(10),
+  fontSize: s.gridPx(10),
   color: s.colors.white,
   opacity: s.opacity.default,
 
-  [breakpoints[500]]: { fontSize: s.grid(8) },
-  [breakpoints[380]]: { fontSize: s.grid(6) },
-  [breakpoints[280]]: { fontSize: s.grid(4) },
-  [breakpoints[180]]: { fontSize: s.grid(3) }
+  [breakpoints[500]]: { fontSize: s.gridPx(8) },
+  [breakpoints[380]]: { fontSize: s.gridPx(6) },
+  [breakpoints[280]]: { fontSize: s.gridPx(4) },
+  [breakpoints[180]]: { fontSize: s.gridPx(3) }
 });
 
 const Colon = styled.span({
   position: "relative",
-  top: s.size(-9),
-  margin: `0 ${s.size(-6)}`,
+  top: "-9px",
+  margin: "0 -6px",
   fontSize: "0.8em",
 
   [breakpoints[500]]: {
-    top: s.size(-8),
-    margin: `0 ${s.size(-5)}`
+    top: "-8px",
+    margin: "0 -5px"
   },
   [breakpoints[380]]: {
-    top: s.size(-6),
-    margin: `0 ${s.size(-4)}`
+    top: "-6px",
+    margin: "0 -4px"
   },
   [breakpoints[280]]: {
-    top: s.size(-4),
-    margin: `0 ${s.size(-3)}`
+    top: "-4px",
+    margin: "0 -3px"
   },
   [breakpoints[180]]: {
-    top: s.size(-3),
-    margin: `0 ${s.size(-2)}`
+    top: "-3px",
+    margin: "0 -2px"
   }
 });

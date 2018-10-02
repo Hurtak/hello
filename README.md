@@ -12,6 +12,7 @@
   - missing fields?
   - update existing fields
 - check STRV checklist
+- Text component?
 - release
 
 ## Later TODOS
