@@ -92,6 +92,8 @@ class Menu extends React.Component {
           <ToggleButtonIcon src={iconCog} rotated={this.props.opened} />
         </ToggleButton>
 
+        <ToggleButtonSpacer />
+
         <div inert={this.props.opened === false ? "true" : null}>
           <Heading>Hello Friend!</Heading>
           <Text>
@@ -240,9 +242,9 @@ class Menu extends React.Component {
                 you like this swell plugin you can do so on following channels.
                 Also this plugin is open source, so you contribute on GitHub!
               </Text>
-              <a href="">Github</a>
-              <a href="">Mail</a>
-              <a href="">Twitter</a>
+              <a href="https://github.com/hurtak/hello-friend">Github</a>
+              <a href="https://twitter.com/PetrHurtak">Twitter</a>
+              <a href="mailto:petr.hurtak@gmail.com">Mail</a>
             </MenuSection>
 
             {this.props.isDev && (
@@ -289,6 +291,13 @@ const ToggleButton = styled.button({
   background: "transparent",
   padding: s.dimensions.menuButtonPadding,
   cursor: "pointer"
+});
+
+// TODO: maybe some better solution?
+const ToggleButtonSpacer = styled.div({
+  float: "right",
+  width: s.grid(8),
+  height: s.grid(8)
 });
 
 const ToggleButtonIcon = styled.img(
