@@ -95,7 +95,7 @@ class Menu extends React.Component {
         <ToggleButtonSpacer />
 
         <div inert={this.props.opened === false ? "true" : null}>
-          <Heading>Hello Friend!</Heading>
+          <Heading>Hello Friend &ndash; New Tab Page</Heading>
           <Text>
             This is your new cool new tab page. Enjoy a nice background from
             Bing every day or have a look at some nice background that I
@@ -104,6 +104,66 @@ class Menu extends React.Component {
           </Text>
 
           <MenuSectionsWrapper>
+            <MenuSection title="Background image">
+              <MenuOption
+                name="images"
+                onChange={() =>
+                  this.props.onImageSourceChange(types.imageSourceTypes.BING)
+                }
+                checked={this.props.imageSource === types.imageSourceTypes.BING}
+              >
+                Bing image of the day
+              </MenuOption>
+
+              <MenuOption
+                name="images"
+                onChange={() =>
+                  this.props.onImageSourceChange(types.imageSourceTypes.LOCAL)
+                }
+                checked={
+                  this.props.imageSource === types.imageSourceTypes.LOCAL
+                }
+              >
+                Predefined
+              </MenuOption>
+
+              {this.props.imageSource === types.imageSourceTypes.BING &&
+                this.props.imageData && (
+                  <section>
+                    {this.props.imageData.title && (
+                      <Text>title: {this.props.imageData.title}</Text>
+                    )}
+                    {this.props.imageData.link && (
+                      <Text>
+                        <a href={this.props.imageData.link}>link</a>
+                      </Text>
+                    )}
+                  </section>
+                )}
+
+              {this.props.imageSource === types.imageSourceTypes.LOCAL &&
+                this.props.imageData && (
+                  <section>
+                    <Text>
+                      image: {this.props.imageData.currentImageIndex + 1}/
+                      {this.props.imageData.numberOfImages}
+                    </Text>
+                    {this.props.imageData.name && (
+                      <Text>name: {this.props.imageData.name}</Text>
+                    )}
+                    {this.props.imageData.location && (
+                      <Text>location: {this.props.imageData.location}</Text>
+                    )}
+                    {this.props.imageData.source && (
+                      <Text>
+                        <a href={this.props.imageData.source}>source</a>
+                      </Text>
+                    )}
+                    <button onClick={this.nextImage}>Next image</button>
+                  </section>
+                )}
+            </MenuSection>
+
             <MenuSection title="View type">
               <MenuOption
                 name="view"
@@ -160,64 +220,6 @@ class Menu extends React.Component {
                   />
                 </label>
               )}
-            </MenuSection>
-
-            <MenuSection title="Background">
-              <MenuOption
-                name="images"
-                onChange={() =>
-                  this.props.onImageSourceChange(types.imageSourceTypes.LOCAL)
-                }
-                checked={
-                  this.props.imageSource === types.imageSourceTypes.LOCAL
-                }
-              >
-                Predefined
-              </MenuOption>
-              {this.props.imageSource === types.imageSourceTypes.LOCAL &&
-                this.props.imageData && (
-                  <section>
-                    <Text>
-                      image: {this.props.imageData.currentImageIndex + 1}/
-                      {this.props.imageData.numberOfImages}
-                    </Text>
-                    {this.props.imageData.name && (
-                      <Text>name: {this.props.imageData.name}</Text>
-                    )}
-                    {this.props.imageData.location && (
-                      <Text>location: {this.props.imageData.location}</Text>
-                    )}
-                    {this.props.imageData.source && (
-                      <Text>
-                        <a href={this.props.imageData.source}>source</a>
-                      </Text>
-                    )}
-                    <button onClick={this.nextImage}>Next image</button>
-                  </section>
-                )}
-
-              <MenuOption
-                name="images"
-                onChange={() =>
-                  this.props.onImageSourceChange(types.imageSourceTypes.BING)
-                }
-                checked={this.props.imageSource === types.imageSourceTypes.BING}
-              >
-                Bing image of the day
-              </MenuOption>
-              {this.props.imageSource === types.imageSourceTypes.BING &&
-                this.props.imageData && (
-                  <section>
-                    {this.props.imageData.title && (
-                      <Text>title: {this.props.imageData.title}</Text>
-                    )}
-                    {this.props.imageData.link && (
-                      <Text>
-                        <a href={this.props.imageData.link}>link</a>
-                      </Text>
-                    )}
-                  </section>
-                )}
             </MenuSection>
 
             <MenuSection title="Minimalistic version">
