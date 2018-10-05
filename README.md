@@ -5,6 +5,7 @@
 - menu design
   - cleanup menu?
 - add more images!
+- bing images - choose locale
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
