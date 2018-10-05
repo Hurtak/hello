@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Hello friend",
-  "description": "New landing screen",
+  "name": "Hello Friend – New Tab Page",
+  "description": "TODO",
   "version": "1.0.0",
   "chrome_url_overrides": {
     "newtab": "index.html"
