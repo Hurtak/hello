@@ -41,12 +41,13 @@ export default class ImageServiceBing extends React.Component {
 }
 
 const bingImageUrl = (() => {
+  // Some related docs: https://github.com/timothymctim/Bing-wallpapers
+  // Locale (the "mkt" parameter) is determined automatically based on the IP address.
+
   const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
   bingImage.searchParams.set("format", "js"); // get JSON as response-type
   bingImage.searchParams.set("idx", "0"); // TODO: what is this?
   bingImage.searchParams.set("n", 1); // number of images
-  // TODO: different regions?
-  bingImage.searchParams.set("mkt", "en-US"); // region
 
   return bingImage.toString();
 })();

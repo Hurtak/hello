@@ -3,13 +3,12 @@
 ## TODO
 
 - menu design
-  - bing images
-    - choose locale
-    - cache/predownload image
   - menu texts
   - menu structure
   - menu styles
   - cleanup menu with unstated?
+  - bing images
+    - cache/predownload image
 - Text component?
 - add more images!
 - go through manifest.json
@@ -55,7 +54,6 @@
   - https://bingwallpaper.com/
   - what are allowed countries?
   - maybe deted default one automatically?
-- release!!
 - when loading new image, add blur our, blur in efect
 - settings
   - bouncy transitions on settings box and cog
