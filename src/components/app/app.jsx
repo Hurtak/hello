@@ -42,9 +42,12 @@ class App extends React.Component {
     this.imageServiceMethods = null;
 
     this.state = initLocalStorage(App.config.savedState, App.name, {
+      // Menu states
       menuOpened: false,
+      menuOpened: true,
       menuHeight: null,
 
+      // App settings
       selectedView: types.viewTypes.CLOCK,
       clockShowSeconds: true,
       ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
@@ -52,8 +55,12 @@ class App extends React.Component {
       imageSource: types.imageSourceTypes.LOCAL,
       settingsHidden: false,
 
+      // Background image
       imageUrl: null,
-      imageData: null
+      imageData: null,
+
+      // Other
+      online: navigator.onLine
     });
   }
 
@@ -94,8 +101,8 @@ class App extends React.Component {
     this.setState({ imageUrl, imageData });
   };
 
-  nextImage = () => {
-    this.imageServiceMethods.nextImage();
+  callImageServiceMethod = methodName => {
+    this.imageServiceMethods[methodName]();
   };
 
   imageServiceInit = ({ methods }) => {
@@ -244,7 +251,7 @@ class App extends React.Component {
               imageSource={this.state.imageSource}
               onImageSourceChange={this.setImageSource}
               imageData={this.state.imageData}
-              onNextImageClick={this.nextImage}
+              onImageServiceCall={this.callImageServiceMethod}
               settingsHidden={this.state.settingsHidden}
               onSettingsHiddenChange={this.setSettingsHidden}
               isDev={isDev}

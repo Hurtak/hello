@@ -26,21 +26,23 @@ class Menu extends React.Component {
     onImageSourceChange: PropTypes.func.isRequired,
 
     imageData: PropTypes.oneOfType([
+      // Image service local
       PropTypes.shape({
-        currentImageIndex: PropTypes.number.isRequired,
+        imageIndex: PropTypes.number.isRequired,
         numberOfImages: PropTypes.number.isRequired,
         url: PropTypes.string.isRequired,
         name: PropTypes.string,
         location: PropTypes.string,
         source: PropTypes.string
       }),
+      // Image service Bing
       PropTypes.shape({
         title: PropTypes.string.isRequired,
         link: PropTypes.string.isRequired
       })
     ]),
 
-    onNextImageClick: PropTypes.func.isRequired,
+    onImageServiceCall: PropTypes.func.isRequired,
 
     settingsHidden: PropTypes.bool.isRequired,
     onSettingsHiddenChange: PropTypes.func.isRequired,
@@ -75,8 +77,8 @@ class Menu extends React.Component {
     this.props.onSettingsHiddenChange(!this.props.settingsHidden);
   };
 
-  nextImage = () => {
-    this.props.onNextImageClick();
+  imageServiceMethodCall = methodName => {
+    this.props.onImageServiceCall(methodName);
   };
 
   resetAppState = () => {
@@ -144,8 +146,26 @@ class Menu extends React.Component {
               {this.props.imageSource === types.imageSourceTypes.LOCAL &&
                 this.props.imageData && (
                   <section>
+                    <button
+                      onClick={() =>
+                        this.imageServiceMethodCall("previousImage")
+                      }
+                    >
+                      Prev
+                    </button>
+                    <button
+                      onClick={() => this.imageServiceMethodCall("randomImage")}
+                    >
+                      Random image
+                    </button>
+                    <button
+                      onClick={() => this.imageServiceMethodCall("nextImage")}
+                    >
+                      Next
+                    </button>
+
                     <Text>
-                      image: {this.props.imageData.currentImageIndex + 1}/
+                      image: {this.props.imageData.imageIndex + 1}/
                       {this.props.imageData.numberOfImages}
                     </Text>
                     {this.props.imageData.name && (
@@ -159,7 +179,6 @@ class Menu extends React.Component {
                         <a href={this.props.imageData.source}>source</a>
                       </Text>
                     )}
-                    <button onClick={this.nextImage}>Next image</button>
                   </section>
                 )}
             </MenuSection>

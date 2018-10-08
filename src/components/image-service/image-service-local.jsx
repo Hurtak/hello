@@ -12,7 +12,7 @@ export default class ImageServiceLocal extends React.Component {
   };
 
   static config = {
-    savedState: ["previousImageIndex"]
+    savedState: ["imageIndex"]
   };
 
   constructor(props) {
@@ -22,19 +22,82 @@ export default class ImageServiceLocal extends React.Component {
       ImageServiceLocal.config.savedState,
       ImageServiceLocal.name,
       {
-        previousImageIndex: null
+        imageIndex: null,
+        numberOfImages: images.length
       }
     );
 
     props.onInit({
       methods: {
-        nextImage: this.imageChange
+        randomImage: this.randomImage,
+        nextImage: () => this.shiftImageIndex(1),
+        previousImage: () => this.shiftImageIndex(-1)
       }
     });
   }
 
+  randomImage = () => {
+    this.setImageIndex(prevState => {
+      const numberOfImages = prevState.numberOfImages;
+
+      const index = (() => {
+        const getIndex = () => getRandomInt(0, numberOfImages - 1);
+
+        if (numberOfImages < 2 || prevState.imageIndex === null) {
+          return getIndex();
+        }
+
+        while (true) {
+          const index = getIndex();
+          if (index !== prevState.imageIndex) {
+            return index;
+          }
+        }
+      })();
+
+      return index;
+    });
+  };
+
+  shiftImageIndex = change => {
+    this.setImageIndex(prevState => {
+      let newIndex = prevState.imageIndex + change;
+      if (newIndex > prevState.numberOfImages - 1) {
+        newIndex = 0;
+      } else if (newIndex < 0) {
+        newIndex = prevState.numberOfImages - 1;
+      }
+
+      return newIndex;
+    });
+  };
+
+  setImageIndex = cb => {
+    this.setState(
+      prevState => {
+        const newIndex = cb(prevState);
+
+        return {
+          imageIndex: newIndex
+        };
+      },
+      () => {
+        const imageData = images[this.state.imageIndex];
+
+        this.props.onImageChange({
+          imageUrl: imageData.url,
+          imageData: {
+            imageIndex: this.state.imageIndex,
+            numberOfImages: this.state.numberOfImages,
+            ...imageData
+          }
+        });
+      }
+    );
+  };
+
   componentDidMount() {
-    this.imageChange();
+    this.randomImage();
   }
 
   componentDidUpdate() {
@@ -44,38 +107,6 @@ export default class ImageServiceLocal extends React.Component {
       this.state
     );
   }
-
-  imageChange = () => {
-    const numberOfImages = images.length;
-
-    const index = (() => {
-      const getIndex = () => getRandomInt(0, numberOfImages - 1);
-
-      if (numberOfImages < 2 || this.state.previousImageIndex === null) {
-        return getIndex();
-      }
-
-      while (true) {
-        const index = getIndex();
-        if (index !== this.state.previousImageIndex) {
-          return index;
-        }
-      }
-    })();
-
-    const imageData = images[index];
-
-    this.setState({ previousImageIndex: index }, () => {
-      this.props.onImageChange({
-        imageUrl: imageData.url,
-        imageData: {
-          currentImageIndex: index,
-          numberOfImages: numberOfImages,
-          ...imageData
-        }
-      });
-    });
-  };
 
   render() {
     return null;
