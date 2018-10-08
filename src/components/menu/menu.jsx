@@ -135,6 +135,11 @@ class Menu extends React.Component {
                     {this.props.imageData.title && (
                       <Text>title: {this.props.imageData.title}</Text>
                     )}
+                    {this.props.imageData.description && (
+                      <Text>
+                        description: {this.props.imageData.description}
+                      </Text>
+                    )}
                     {this.props.imageData.link && (
                       <Text>
                         <a href={this.props.imageData.link}>link</a>

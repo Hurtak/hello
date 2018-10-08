@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import get from "lodash/get";
 import { corsProxyTypes, fetchErrorTypes } from "../../shared/types.js";
+import { getCorsProxyUrl } from "../../shared/cors-proxy.js";
 
 export default class ImageServiceBing extends React.Component {
   static propTypes = {
@@ -22,11 +23,12 @@ export default class ImageServiceBing extends React.Component {
     this.props.onImageChange({
       imageUrl: urlBing + image.url,
       imageData: {
-        title: (() => {
-          const title = image.copyright;
-          if (!title) return null;
-          // "Image title (© copyright)" => "Image title"
-          return title.replace(/ \(©.+?\)/, "");
+        title: image.title || null,
+        description: (() => {
+          const description = image.copyright;
+          if (!description) return null;
+          // "Image description (© copyright)" => "Image description"
+          return description.replace(/ \(©.+?\)/, "");
         })(),
         link: image.copyrightlink
       }
@@ -48,19 +50,6 @@ const bingImageUrl = (() => {
 
   return bingImage.toString();
 })();
-
-function getCorsProxyUrl(corsProxyType, proxedUrl) {
-  switch (corsProxyType) {
-    case corsProxyTypes.CODETABS:
-      return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(
-        proxedUrl
-      )}`;
-    case corsProxyTypes.CORS_ANYWHERE:
-      return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
-    default:
-      throw new Error(`Unknown corsProxyType: ${corsProxyType}`);
-  }
-}
 
 async function getBingImageOfTheDay() {
   let request = null;

@@ -3,17 +3,20 @@
 ## TODO
 
 - menu design
-  - cleanup menu?
+  - bing images
+    - choose locale
+    - cache/predownload image
+  - menu texts
+  - menu structure
+  - menu styles
+  - cleanup menu with unstated?
+- Text component?
 - add more images!
-- bing images
-  - choose locale
-  - cache/predownload image
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
   - update existing fields
 - check STRV checklist
-- Text component?
 - release
 
 ## Later TODOS
