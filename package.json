@@ -7,11 +7,11 @@
     "prop-types": "15.6.2",
     "react": "16.5.2",
     "react-dom": "16.5.2",
-    "react-scripts": "2.0.4",
+    "react-scripts": "2.0.5",
     "react-test-renderer": "16.5.2",
     "resize-observer-polyfill": "1.5.0",
-    "styled-components": "4.0.0-beta.9",
-    "styled-normalize": "8.0.1",
+    "styled-components": "4.0.2",
+    "styled-normalize": "8.0.2",
     "wicg-inert": "2.0.0"
   },
   "scripts": {
