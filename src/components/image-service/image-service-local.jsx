@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import images from "../../images/images.js";
 import {
   initLocalStorage,
@@ -8,7 +8,7 @@ import {
 
 export default class ImageServiceLocal extends React.Component {
   static propTypes = {
-    onImageChange: PropTypes.func.isRequired
+    onImageChange: propTypes.func.isRequired
   };
 
   static config = {

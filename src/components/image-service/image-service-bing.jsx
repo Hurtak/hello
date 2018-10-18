@@ -1,12 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import get from "lodash/get";
 import { corsProxyTypes, fetchErrorTypes } from "../../shared/types.js";
 import { getCorsProxyUrl } from "../../shared/cors-proxy.js";
 
 export default class ImageServiceBing extends React.Component {
   static propTypes = {
-    onImageChange: PropTypes.func.isRequired
+    onImageChange: propTypes.func.isRequired
   };
 
   componentDidMount() {

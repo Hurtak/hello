@@ -176,6 +176,11 @@ const Day = styled.div(
     return css;
   }
 );
+Day.propTypes = {
+  heading: propTypes.bool,
+  currentDay: propTypes.bool.isRequired,
+  selected: propTypes.bool.isRequired
+};
 
 export function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();

@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 export default class BackgroundImage extends React.Component {
   static propTypes = {
-    url: PropTypes.string
+    url: propTypes.string
   };
 
   constructor(props) {

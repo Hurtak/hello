@@ -4,25 +4,23 @@ import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 
-export default class YearProgress extends React.Component {
-  static propTypes = {
-    time: types.timePropType,
-    decimalPlaces: propTypes.number.isRequired
-  };
+const YearProgress = props => {
+  const progress = getYearProgress(props.time);
 
-  render() {
-    const progress = getYearProgress(this.props.time);
-
-    return (
-      <YearProgressWrapper>
-        <YearProgressBar style={{ width: progress * 100 + "%" }} />
-        <YearProgressText>
-          {(progress * 100).toFixed(this.props.decimalPlaces)}%
-        </YearProgressText>
-      </YearProgressWrapper>
-    );
-  }
-}
+  return (
+    <YearProgressWrapper>
+      <YearProgressBar style={{ width: progress * 100 + "%" }} />
+      <YearProgressText>
+        {(progress * 100).toFixed(props.decimalPlaces)}%
+      </YearProgressText>
+    </YearProgressWrapper>
+  );
+};
+YearProgress.propTypes = {
+  time: types.timePropType,
+  decimalPlaces: propTypes.number.isRequired
+};
+export default YearProgress;
 
 const YearProgressWrapper = styled.div({
   position: "relative",

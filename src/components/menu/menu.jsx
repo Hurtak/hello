@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
@@ -8,47 +8,47 @@ import iconCog from "../../icons/cog.svg";
 
 class Menu extends React.Component {
   static propTypes = {
-    opened: PropTypes.bool.isRequired,
-    toggleMenu: PropTypes.func.isRequired,
+    opened: propTypes.bool.isRequired,
+    toggleMenu: propTypes.func.isRequired,
 
-    selectedView: PropTypes.oneOf(Object.values(types.viewTypes)).isRequired,
-    onSelectedViewChange: PropTypes.func.isRequired,
+    selectedView: propTypes.oneOf(Object.values(types.viewTypes)).isRequired,
+    onSelectedViewChange: propTypes.func.isRequired,
 
-    clockShowSeconds: PropTypes.bool.isRequired,
-    onClockShowSecondsChange: PropTypes.func.isRequired,
+    clockShowSeconds: propTypes.bool.isRequired,
+    onClockShowSecondsChange: propTypes.func.isRequired,
 
-    ageDateOfBirthValue: PropTypes.string.isRequired,
-    ageDateOfBirthTimestamp: PropTypes.number.isRequired,
-    onAgeDateOfBirthChange: PropTypes.func.isRequired,
+    ageDateOfBirthValue: propTypes.string.isRequired,
+    ageDateOfBirthTimestamp: propTypes.number.isRequired,
+    onAgeDateOfBirthChange: propTypes.func.isRequired,
 
-    imageSource: PropTypes.oneOf(Object.values(types.imageSourceTypes))
+    imageSource: propTypes.oneOf(Object.values(types.imageSourceTypes))
       .isRequired,
-    onImageSourceChange: PropTypes.func.isRequired,
+    onImageSourceChange: propTypes.func.isRequired,
 
-    imageData: PropTypes.oneOfType([
+    imageData: propTypes.oneOfType([
       // Image service local
-      PropTypes.shape({
-        imageIndex: PropTypes.number.isRequired,
-        numberOfImages: PropTypes.number.isRequired,
-        url: PropTypes.string.isRequired,
-        name: PropTypes.string,
-        location: PropTypes.string,
-        source: PropTypes.string
+      propTypes.shape({
+        imageIndex: propTypes.number.isRequired,
+        numberOfImages: propTypes.number.isRequired,
+        url: propTypes.string.isRequired,
+        name: propTypes.string,
+        location: propTypes.string,
+        source: propTypes.string
       }),
       // Image service Bing
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
+      propTypes.shape({
+        title: propTypes.string.isRequired,
+        link: propTypes.string.isRequired
       })
     ]),
 
-    onImageServiceCall: PropTypes.func.isRequired,
+    onImageServiceCall: propTypes.func.isRequired,
 
-    settingsHidden: PropTypes.bool.isRequired,
-    onSettingsHiddenChange: PropTypes.func.isRequired,
+    settingsHidden: propTypes.bool.isRequired,
+    onSettingsHiddenChange: propTypes.func.isRequired,
 
-    isDev: PropTypes.bool.isRequired,
-    onResetAppState: PropTypes.func.isRequired
+    isDev: propTypes.bool.isRequired,
+    onResetAppState: propTypes.func.isRequired
   };
 
   clockShowSecondsChange = () => {
@@ -107,7 +107,7 @@ class Menu extends React.Component {
 
           <MenuSectionsWrapper>
             <MenuSection title="Background image">
-              <MenuOption
+              <Radio
                 name="images"
                 onChange={() =>
                   this.props.onImageSourceChange(types.imageSourceTypes.BING)
@@ -115,9 +115,9 @@ class Menu extends React.Component {
                 checked={this.props.imageSource === types.imageSourceTypes.BING}
               >
                 Bing image of the day
-              </MenuOption>
+              </Radio>
 
-              <MenuOption
+              <Radio
                 name="images"
                 onChange={() =>
                   this.props.onImageSourceChange(types.imageSourceTypes.LOCAL)
@@ -127,7 +127,7 @@ class Menu extends React.Component {
                 }
               >
                 Predefined
-              </MenuOption>
+              </Radio>
 
               {this.props.imageSource === types.imageSourceTypes.BING &&
                 this.props.imageData && (
@@ -189,7 +189,7 @@ class Menu extends React.Component {
             </MenuSection>
 
             <MenuSection title="View type">
-              <MenuOption
+              <Radio
                 name="view"
                 onChange={() =>
                   this.props.onSelectedViewChange(types.viewTypes.CLOCK)
@@ -197,9 +197,9 @@ class Menu extends React.Component {
                 checked={this.props.selectedView === types.viewTypes.CLOCK}
               >
                 Clock
-              </MenuOption>
+              </Radio>
 
-              <MenuOption
+              <Radio
                 name="view"
                 onChange={() =>
                   this.props.onSelectedViewChange(types.viewTypes.AGE)
@@ -207,9 +207,9 @@ class Menu extends React.Component {
                 checked={this.props.selectedView === types.viewTypes.AGE}
               >
                 Age
-              </MenuOption>
+              </Radio>
 
-              <MenuOption
+              <Radio
                 name="view"
                 onChange={() =>
                   this.props.onSelectedViewChange(types.viewTypes.NOTHING)
@@ -217,7 +217,7 @@ class Menu extends React.Component {
                 checked={this.props.selectedView === types.viewTypes.NOTHING}
               >
                 Nothing
-              </MenuOption>
+              </Radio>
 
               {this.props.selectedView === types.viewTypes.CLOCK && (
                 <label>
@@ -306,6 +306,9 @@ const MenuWrapper = styled.section(
     }
   }
 );
+MenuWrapper.propTypes = {
+  settingsHidden: propTypes.bool
+};
 
 const ToggleButton = styled.button({
   boxSizing: "border-box",
@@ -319,7 +322,6 @@ const ToggleButton = styled.button({
   cursor: "pointer"
 });
 
-// TODO: maybe some better solution?
 const ToggleButtonSpacer = styled.div({
   float: "right",
   width: s.grid(8),
@@ -343,15 +345,20 @@ const ToggleButtonIcon = styled.img(
     }
   }
 );
+ToggleButtonIcon.propTypes = {
+  rotated: propTypes.bool
+};
 
 const Heading = styled.h1({
   ...s.text.text,
-  ...s.text.size18
+  ...s.text.size18,
+  paddingBottom: "0.25em"
 });
 
-const HeadingSmall = styled.h1({
+const HeadingSmall = styled.h2({
   ...s.text.text,
-  ...s.text.size18
+  ...s.text.size16,
+  paddingBottom: "0.25em"
 });
 
 const Text = styled.p({
@@ -369,52 +376,43 @@ const MenuSectionStyled = styled.section({
   }
 });
 
-class MenuSection extends React.Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    children: PropTypes.node.isRequired
-  };
+const MenuSection = props => (
+  <MenuSectionStyled>
+    <HeadingSmall>{props.title}</HeadingSmall>
+    {props.children}
+  </MenuSectionStyled>
+);
+MenuSection.propTypes = {
+  title: propTypes.string.isRequired,
+  children: propTypes.node.isRequired
+};
 
-  render() {
-    return (
-      <MenuSectionStyled>
-        <HeadingSmall>{this.props.title}</HeadingSmall>
-        {this.props.children}
-      </MenuSectionStyled>
-    );
-  }
-}
+const Radio = props => (
+  <RadioLabel>
+    <input
+      onChange={props.onChange}
+      type="radio"
+      name={props.name}
+      checked={props.checked}
+    />
+    <RadioText>{props.children}</RadioText>
+  </RadioLabel>
+);
+Radio.propTypes = {
+  name: propTypes.string.isRequired,
+  checked: propTypes.bool.isRequired,
+  onChange: propTypes.func.isRequired,
+  children: propTypes.string.isRequired
+};
 
-class MenuOption extends React.Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    checked: PropTypes.bool.isRequired,
-    onChange: PropTypes.func.isRequired,
-    children: PropTypes.string.isRequired
-  };
-
-  render() {
-    return (
-      <MenuOptionLabel>
-        <input
-          onChange={this.props.onChange}
-          type="radio"
-          name={this.props.name}
-          checked={this.props.checked}
-        />
-        <MenuOptionText>{this.props.children}</MenuOptionText>
-      </MenuOptionLabel>
-    );
-  }
-}
-
-const MenuOptionLabel = styled.label({
+const RadioLabel = styled.label({
   display: "block"
 });
 
-const MenuOptionText = styled.span({
+const RadioText = styled.span({
   ...s.text.text,
-  color: s.colors.white
+  color: s.colors.white,
+  marginLeft: s.grid(1)
 });
 
 export default Menu;

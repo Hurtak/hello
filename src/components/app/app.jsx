@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 import styled from "styled-components";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
@@ -328,6 +329,10 @@ const AppMenuWrapper = styled.aside(
     }
   }
 );
+AppMenuWrapper.propTypes = {
+  opened: propTypes.bool,
+  menuHeight: propTypes.number
+};
 
 const AppMenu = styled.div({
   width: s.dimensions.menuWidth,

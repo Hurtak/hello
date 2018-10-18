@@ -12,6 +12,7 @@
     "resize-observer-polyfill": "1.5.0",
     "styled-components": "4.0.2",
     "styled-normalize": "8.0.2",
+    "why-did-you-update": "^0.1.1",
     "wicg-inert": "2.0.0"
   },
   "scripts": {

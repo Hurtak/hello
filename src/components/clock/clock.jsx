@@ -1,55 +1,48 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import styled from "styled-components";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import { addLeadingZero } from "../../shared/time.js";
 
-export default class Clock extends React.Component {
-  static propTypes = {
-    time: types.timePropType,
-    showSeconds: PropTypes.bool
-  };
+const Clock = props => (
+  <ClockBox>
+    <ClockText>
+      <Time time={props.time} showSeconds={props.showSeconds} />
+    </ClockText>
+  </ClockBox>
+);
+Clock.propTypes = {
+  time: types.timePropType,
+  showSeconds: propTypes.bool
+};
+export default Clock;
 
-  render() {
-    return (
-      <ClockBox>
-        <ClockText>
-          <Time time={this.props.time} showSeconds={this.props.showSeconds} />
-        </ClockText>
-      </ClockBox>
-    );
-  }
-}
+const Time = props => {
+  const date = new Date(props.time);
 
-export class Time extends React.Component {
-  static propTypes = {
-    time: types.timePropType,
-    showSeconds: PropTypes.bool
-  };
+  const hours = addLeadingZero(date.getHours());
+  const minutes = addLeadingZero(date.getMinutes());
+  const seconds = addLeadingZero(date.getSeconds());
 
-  render() {
-    const date = new Date(this.props.time);
-
-    const hours = addLeadingZero(date.getHours());
-    const minutes = addLeadingZero(date.getMinutes());
-    const seconds = addLeadingZero(date.getSeconds());
-
-    return (
-      <>
-        {hours}
-        <Colon>:</Colon>
-        {minutes}
-        {this.props.showSeconds && (
-          <>
-            <Colon>:</Colon>
-            {seconds}
-          </>
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {hours}
+      <Colon>:</Colon>
+      {minutes}
+      {props.showSeconds && (
+        <>
+          <Colon>:</Colon>
+          {seconds}
+        </>
+      )}
+    </>
+  );
+};
+Time.propTypes = {
+  time: types.timePropType,
+  showSeconds: propTypes.bool
+};
 
 const ClockBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,

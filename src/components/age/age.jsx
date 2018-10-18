@@ -5,27 +5,25 @@ import * as s from "../../shared/styles.js";
 import * as types from "../../shared/types.js";
 import * as time from "../../shared/time.js";
 
-class Age extends React.Component {
-  static propTypes = {
-    time: types.timePropType,
-    birthDate: propTypes.number.isRequired,
-    decimalPlaces: propTypes.number.isRequired
-  };
+const Age = props => {
+  const years = (props.time - props.birthDate) / time.year;
 
-  render() {
-    const years = (this.props.time - this.props.birthDate) / time.year;
-
-    return (
-      <Wrapper>
-        <AgePosition>
-          <AgeBox>
-            <AgeText>{years.toFixed(this.props.decimalPlaces)}</AgeText>
-          </AgeBox>
-        </AgePosition>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <AgePosition>
+        <AgeBox>
+          <AgeText>{years.toFixed(props.decimalPlaces)}</AgeText>
+        </AgeBox>
+      </AgePosition>
+    </Wrapper>
+  );
+};
+Age.propTypes = {
+  time: types.timePropType,
+  birthDate: propTypes.number.isRequired,
+  decimalPlaces: propTypes.number.isRequired
+};
+export default Age;
 
 const Wrapper = styled.div({
   position: "relative",
@@ -58,5 +56,3 @@ const AgeText = styled.div({
   overflow: "hidden",
   textOverflow: "ellipsis"
 });
-
-export default Age;
