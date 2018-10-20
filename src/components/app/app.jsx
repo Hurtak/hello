@@ -26,8 +26,8 @@ class App extends React.Component {
     ageDecimalPlaces: 3
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.elAppMenu = null;
     this.imageServiceMethods = null;
