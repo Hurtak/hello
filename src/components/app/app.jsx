@@ -11,29 +11,19 @@ import Age from "../age/age.jsx";
 import BackgroundImage from "../background-image/background-image.jsx";
 import ImageServiceLocal from "../image-service/image-service-local.jsx";
 import ImageServiceBing from "../image-service/image-service-bing.jsx";
+import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";
-import * as types from "../../shared/types.js";
+import * as constants from "../../shared/constants.js";
 import * as time from "../../shared/time.js";
-import {
-  initLocalStorage,
-  saveToLocalStorage,
-  clearLocalStorage
-} from "../../shared/local-storage";
-import { isDev } from "../../shared/dev.js";
 
 class App extends React.Component {
+  static propTypes = {
+    app: appStateProps
+  };
+
   static config = {
     yearProgressDecimalPlaces: 8,
-    ageDecimalPlaces: 3,
-
-    savedState: [
-      "selectedView",
-      "clockShowSeconds",
-      "ageDateOfBirthTimestamp",
-      "ageDateOfBirthValue",
-      "imageSource",
-      "settingsHidden"
-    ]
+    ageDecimalPlaces: 3
   };
 
   constructor() {
@@ -42,61 +32,15 @@ class App extends React.Component {
     this.elAppMenu = null;
     this.imageServiceMethods = null;
 
-    this.state = initLocalStorage(App.config.savedState, App.name, {
+    this.state = {
       // Menu states
-      menuOpened: false,
-      menuOpened: true,
       menuHeight: null,
-
-      // App settings
-      selectedView: types.viewTypes.CLOCK,
-      clockShowSeconds: true,
-      ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
-      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
-      imageSource: types.imageSourceTypes.LOCAL,
-      settingsHidden: false,
 
       // Background image
       imageUrl: null,
-      imageData: null,
-
-      // Other
-      online: navigator.onLine
-    });
+      imageData: null
+    };
   }
-
-  toggleMenu = () => {
-    this.setState(prevState => ({ menuOpened: !prevState.menuOpened }));
-  };
-
-  closeMenu = () => {
-    this.setState({ menuOpened: false });
-  };
-
-  setViewType = newViewType => {
-    this.setState({ selectedView: newViewType });
-  };
-
-  setClockShowSeconds = clockShowSeconds => {
-    this.setState({ clockShowSeconds });
-  };
-
-  setAgeDateOfBirth = ({ inputValue, parsedTimestamp }) => {
-    this.setState(prevState => ({
-      ageDateOfBirthValue: inputValue,
-      ageDateOfBirthTimestamp: parsedTimestamp
-        ? parsedTimestamp
-        : prevState.ageDateOfBirthTimestamp
-    }));
-  };
-
-  setImageSource = imageSource => {
-    this.setState({ imageSource });
-  };
-
-  setSettingsHidden = settingsHidden => {
-    this.setState({ settingsHidden });
-  };
 
   setImage = ({ imageUrl, imageData }) => {
     this.setState({ imageUrl, imageData });
@@ -120,17 +64,8 @@ class App extends React.Component {
     observer.observe(this.elAppMenu);
   }
 
-  resetAppState = () => {
-    clearLocalStorage();
-    window.location.reload();
-  };
-
   componentDidMount() {
     this.listenOnMenuResize();
-  }
-
-  componentDidUpdate() {
-    saveToLocalStorage(App.config.savedState, App.name, this.state);
   }
 
   render() {
@@ -138,13 +73,15 @@ class App extends React.Component {
       <AppWrapper>
         <s.GlobalStyles />
 
-        {this.state.imageSource === types.imageSourceTypes.LOCAL && (
+        {this.props.app.state.imageSource ===
+          constants.imageSourceTypes.LOCAL && (
           <ImageServiceLocal
             onInit={this.imageServiceInit}
             onImageChange={this.setImage}
           />
         )}
-        {this.state.imageSource === types.imageSourceTypes.BING && (
+        {this.props.app.state.imageSource ===
+          constants.imageSourceTypes.BING && (
           <ImageServiceBing onImageChange={this.setImage} />
         )}
 
@@ -153,21 +90,23 @@ class App extends React.Component {
         </BackgroundWrapper>
 
         {(() => {
-          switch (this.state.selectedView) {
-            case types.viewTypes.CLOCK:
+          switch (this.props.app.state.selectedView) {
+            case constants.viewTypes.CLOCK:
               return (
                 <AppContent center>
                   <ConditionalUpdater
                     updateEveryN={
-                      this.state.clockShowSeconds ? time.second : time.minute
+                      this.props.app.state.clockShowSeconds
+                        ? time.second
+                        : time.minute
                     }
                     component={time => (
                       <Clock
                         time={time}
-                        showSeconds={this.state.clockShowSeconds}
+                        showSeconds={this.props.app.state.clockShowSeconds}
                       />
                     )}
-                    key={this.state.selectedView}
+                    key={this.props.app.state.selectedView}
                   />
                 </AppContent>
               );
@@ -178,12 +117,12 @@ class App extends React.Component {
             //       <ConditionalUpdater
             //         updateEveryN={time.day}
             //         component={time => <Calendar time={time} />}
-            //         key={this.state.selectedView}
+            //         key={this.props.app.state.selectedView}
             //       />
             //     </AppContent>
             //   );
 
-            case types.viewTypes.YEAR_PROGRESS:
+            case constants.viewTypes.YEAR_PROGRESS:
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -198,12 +137,12 @@ class App extends React.Component {
                         decimalPlaces={App.config.yearProgressDecimalPlaces}
                       />
                     )}
-                    key={this.state.selectedView}
+                    key={this.props.app.state.selectedView}
                   />
                 </AppContent>
               );
 
-            case types.viewTypes.AGE: {
+            case constants.viewTypes.AGE: {
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -211,17 +150,17 @@ class App extends React.Component {
                     component={time => (
                       <Age
                         time={time}
-                        birthDate={this.state.ageDateOfBirthTimestamp}
+                        birthDate={this.props.app.state.ageDateOfBirthTimestamp}
                         decimalPlaces={App.config.ageDecimalPlaces}
                       />
                     )}
-                    key={this.state.selectedView}
+                    key={this.props.app.state.selectedView}
                   />
                 </AppContent>
               );
             }
 
-            case types.viewTypes.NOTHING:
+            case constants.viewTypes.NOTHING:
               return null;
 
             default:
@@ -230,7 +169,7 @@ class App extends React.Component {
         })()}
 
         <AppMenuWrapper
-          opened={this.state.menuOpened}
+          opened={this.props.app.state.menuOpened}
           menuHeight={this.state.menuHeight}
         >
           {/* TODO: new ref api? */}
@@ -240,23 +179,10 @@ class App extends React.Component {
             }}
           >
             <Menu
-              opened={this.state.menuOpened}
-              toggleMenu={this.toggleMenu}
-              selectedView={this.state.selectedView}
-              onSelectedViewChange={this.setViewType}
-              clockShowSeconds={this.state.clockShowSeconds}
-              onClockShowSecondsChange={this.setClockShowSeconds}
-              ageDateOfBirthValue={this.state.ageDateOfBirthValue}
-              ageDateOfBirthTimestamp={this.state.ageDateOfBirthTimestamp}
-              onAgeDateOfBirthChange={this.setAgeDateOfBirth}
-              imageSource={this.state.imageSource}
-              onImageSourceChange={this.setImageSource}
+              opened={this.props.app.state.menuOpened}
               imageData={this.state.imageData}
               onImageServiceCall={this.callImageServiceMethod}
-              settingsHidden={this.state.settingsHidden}
-              onSettingsHiddenChange={this.setSettingsHidden}
-              isDev={isDev}
-              onResetAppState={this.resetAppState}
+              isDev={constants.isDev}
             />
           </AppMenu>
         </AppMenuWrapper>
@@ -264,6 +190,7 @@ class App extends React.Component {
     );
   }
 }
+export default withAppState(App);
 
 const AppWrapper = styled.div({
   boxSizing: "border-box",
@@ -338,5 +265,3 @@ const AppMenu = styled.div({
   width: s.dimensions.menuWidth,
   direction: "ltr" // Reset direction set in AppMenuWrapper
 });
-
-export default App;

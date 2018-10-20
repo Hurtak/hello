@@ -1,11 +1,12 @@
 import React from "react";
+import propTypes from "prop-types";
 import styled from "styled-components";
 import * as s from "../../shared/styles.js";
-import * as types from "../../shared/types.js";
+import * as constants from "../../shared/constants.js";
 
 export default class Calendar extends React.Component {
   static propTypes = {
-    time: types.timePropType
+    time: constants.timePropType
   };
 
   static monthNames = [
@@ -79,9 +80,9 @@ export default class Calendar extends React.Component {
                     })()}
 
                     {days.map(dayNumber => {
-                      const isCurrentDay =
-                        monthNumber === currentMonth &&
-                        dayNumber === currentDay;
+                      const isCurrentDay = Boolean(
+                        monthNumber === currentMonth && dayNumber === currentDay
+                      );
 
                       return (
                         <Day
@@ -178,8 +179,8 @@ const Day = styled.div(
 );
 Day.propTypes = {
   heading: propTypes.bool,
-  currentDay: propTypes.bool.isRequired,
-  selected: propTypes.bool.isRequired
+  currentDay: propTypes.bool,
+  selected: propTypes.bool
 };
 
 export function getDaysInMonth(year, month) {

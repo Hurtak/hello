@@ -1,5 +1,11 @@
 import propTypes from "prop-types";
 
+// Enviroment
+
+export const isDev = process.env.NODE_ENV !== "production";
+
+// App
+
 export const viewTypes = {
   CLOCK: "CLOCK",
   // CALENDAR: "CALENDAR",
@@ -23,8 +29,10 @@ export const fetchErrorTypes = {
   STATUS_NOT_200: "STATUS_NOT_200",
   ERROR_PARSING_BODY_TEXT: "ERROR_PARSING_BODY_TEXT",
   ERROR_PARSING_JSON: "ERROR_PARSING_JSON",
-  ERROR_: "ERROR_",
+  ERROR: "ERROR",
   MISSING_DATA: "MISSING_DATA"
 };
+
+// Prop types
 
 export const timePropType = propTypes.number.isRequired;

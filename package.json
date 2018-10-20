@@ -12,14 +12,15 @@
     "resize-observer-polyfill": "1.5.0",
     "styled-components": "4.0.2",
     "styled-normalize": "8.0.2",
-    "why-did-you-update": "^0.1.1",
+    "unstated": "2.1.1",
+    "why-did-you-update": "0.1.1",
     "wicg-inert": "2.0.0"
   },
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "zip": "cd build && zip -r -X \"../build.zip\" *",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "zip": "cd build && zip -r -X \"../build.zip\" *"
   },
   "browserslist": [
     "last 4 chrome versions",

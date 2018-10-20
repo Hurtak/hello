@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 import * as s from "../../shared/styles.js";
-import * as types from "../../shared/types.js";
+import * as types from "../../shared/constants.js";
 import * as time from "../../shared/time.js";
 
 const Age = props => {
