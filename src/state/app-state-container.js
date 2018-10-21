@@ -1,6 +1,8 @@
 import { Container } from "unstated";
+import { getBingImageOfTheDay } from "../shared/api.js";
 import * as types from "../shared/constants.js";
 import * as time from "../shared/time.js";
+import images from "../images/images.js";
 
 const savedState = [
   "selectedView",
@@ -19,19 +21,69 @@ export default class AppStateContainer extends Container {
       // Menu states
       menuOpened: false,
 
+      // Background image
+      imageLocal: null,
+      imageBing: null,
+
       // App settings
       selectedView: types.viewTypes.CLOCK,
-
       imageSource: types.imageSourceTypes.LOCAL,
-
       clockShowSeconds: false,
-
       ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
       ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
-
       settingsHidden: false
     });
   }
+
+  //
+  // Image
+  //
+
+  initImage = async () => {
+    // TODO: possible race condition if we switch settings multiple times?
+    this._setState(state => {
+      // TODO: we should not acces state directly but in setState callback
+      switch (state.imageSource) {
+        case types.imageSourceTypes.LOCAL: {
+          return {
+            imageLocal: {
+              imageIndex: null,
+              numberOfImages: images.length
+            }
+          };
+        }
+
+        case types.imageSourceTypes.BING: {
+          this.fetchBingImage();
+        }
+      }
+    });
+  };
+
+  fetchBingImage = async () => {
+    await this._setState(state => ({
+      imageBing: {
+        ...state.imageBing,
+        isFetching: true
+      }
+    }));
+
+    const imageData = await getBingImageOfTheDay();
+    if (!imageData.error) {
+      await this._setState({
+        imageBing: {
+          isFetching: false,
+          ...imageData.data
+        }
+      });
+    } else {
+      // TODO: handle and dispaly errors
+    }
+  };
+
+  //
+  // Settings
+  //
 
   toggleMenu = async () => {
     await this._setState(state => ({
@@ -66,10 +118,18 @@ export default class AppStateContainer extends Container {
     await this._setState(state => ({ settingsHidden: !state.settingsHidden }));
   };
 
+  //
+  // Debug
+  //
+
   resetAppState = async () => {
     clearLocalStorage();
     window.location.reload();
   };
+
+  //
+  // Local helper functions
+  //
 
   _setState = async (...args) => {
     await this.setState(...args);
@@ -121,4 +181,10 @@ function clearLocalStorage() {
 
 function getPrefixedStorageKey(key) {
   return localStorageKeyPrefix + key;
+}
+
+// Misc functions
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

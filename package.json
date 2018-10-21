@@ -1,5 +1,5 @@
 {
-  "name": "hello-friend",
+  "name": "hello",
   "version": "0.1.0",
   "dependencies": {
     "jest-styled-components": "6.2.1",

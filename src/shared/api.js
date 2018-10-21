@@ -76,9 +76,9 @@ export async function getBingImageOfTheDay() {
     });
   }
 
-  const image = get(response, "images[0]");
+  const imageData = get(response, "images[0]");
   const dataValid = (() => {
-    const url = get(image, "url");
+    const url = get(imageData, "url");
     return typeof url === "string" && url.length > 0;
   })();
   if (!dataValid) {
@@ -91,7 +91,23 @@ export async function getBingImageOfTheDay() {
 
   return httpData({
     error: false,
-    data: image
+    data: {
+      url: "https://www.bing.com" + imageData.url,
+
+      title: imageData.title || null,
+      description: (() => {
+        const description = imageData.copyright;
+        if (!description) return null;
+        // "Image description (© copyright)" => "Image description"
+        return description.replace(/ \(©.+?\)/, "");
+      })(),
+      link: (() => {
+        const link = imageData.copyrightlink;
+        if (!link) return null;
+        if (link === "javascript:void(0)") return null;
+        return link;
+      })()
+    }
   });
 }
 

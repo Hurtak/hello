@@ -102,3 +102,6 @@ const Image = styled.div(
     }
   }
 );
+Image.propTypes = {
+  topImage: propTypes.bool
+};

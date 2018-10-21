@@ -2,6 +2,8 @@
 
 ## TODO
 
+- refactoring
+- renema to hello
 - menu design
   - menu texts
   - menu structure

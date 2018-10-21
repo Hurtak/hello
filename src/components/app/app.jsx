@@ -9,11 +9,10 @@ import Clock from "../clock/clock.jsx";
 import YearProgress from "../year-progress/year-progress.jsx";
 import Age from "../age/age.jsx";
 import BackgroundImage from "../background-image/background-image.jsx";
-import ImageServiceLocal from "../image-service/image-service-local.jsx";
-import ImageServiceBing from "../image-service/image-service-bing.jsx";
 import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";
 import * as constants from "../../shared/constants.js";
+import * as types from "../../shared/constants.js";
 import * as time from "../../shared/time.js";
 
 class App extends React.Component {
@@ -30,29 +29,12 @@ class App extends React.Component {
     super(props);
 
     this.elAppMenu = null;
-    this.imageServiceMethods = null;
 
     this.state = {
       // Menu states
-      menuHeight: null,
-
-      // Background image
-      imageUrl: null,
-      imageData: null
+      menuHeight: null
     };
   }
-
-  setImage = ({ imageUrl, imageData }) => {
-    this.setState({ imageUrl, imageData });
-  };
-
-  callImageServiceMethod = methodName => {
-    this.imageServiceMethods[methodName]();
-  };
-
-  imageServiceInit = ({ methods }) => {
-    this.imageServiceMethods = methods;
-  };
 
   listenOnMenuResize() {
     // TODO: remove the listeners on componentWillUnmount?
@@ -64,8 +46,9 @@ class App extends React.Component {
     observer.observe(this.elAppMenu);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.listenOnMenuResize();
+    await this.props.app.initImage();
   }
 
   render() {
@@ -73,20 +56,21 @@ class App extends React.Component {
       <AppWrapper>
         <s.GlobalStyles />
 
-        {this.props.app.state.imageSource ===
-          constants.imageSourceTypes.LOCAL && (
-          <ImageServiceLocal
-            onInit={this.imageServiceInit}
-            onImageChange={this.setImage}
-          />
-        )}
-        {this.props.app.state.imageSource ===
-          constants.imageSourceTypes.BING && (
-          <ImageServiceBing onImageChange={this.setImage} />
-        )}
-
         <BackgroundWrapper>
-          <BackgroundImage url={this.state.imageUrl} />
+          <BackgroundImage
+            url={(() => {
+              switch (this.props.app.state.imageSource) {
+                case types.imageSourceTypes.LOCAL:
+                  return this.props.app.state.imageLocal.url;
+                case types.imageSourceTypes.BING:
+                  return this.props.app.state.imageBing
+                    ? this.props.app.state.imageBing.url
+                    : null;
+                default:
+                  return null;
+              }
+            })()}
+          />
         </BackgroundWrapper>
 
         {(() => {
@@ -180,8 +164,6 @@ class App extends React.Component {
           >
             <Menu
               opened={this.props.app.state.menuOpened}
-              imageData={this.state.imageData}
-              onImageServiceCall={this.callImageServiceMethod}
               isDev={constants.isDev}
             />
           </AppMenu>

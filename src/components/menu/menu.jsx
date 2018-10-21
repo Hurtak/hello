@@ -11,26 +11,6 @@ import iconCog from "../../icons/cog.svg";
 class Menu extends React.Component {
   static propTypes = {
     opened: propTypes.bool.isRequired,
-
-    imageData: propTypes.oneOfType([
-      // Image service local
-      propTypes.shape({
-        imageIndex: propTypes.number.isRequired,
-        numberOfImages: propTypes.number.isRequired,
-        url: propTypes.string.isRequired,
-        name: propTypes.string,
-        location: propTypes.string,
-        source: propTypes.string
-      }),
-      // Image service Bing
-      propTypes.shape({
-        title: propTypes.string.isRequired,
-        link: propTypes.string.isRequired
-      })
-    ]),
-
-    onImageServiceCall: propTypes.func.isRequired,
-
     isDev: propTypes.bool.isRequired
   };
 
@@ -50,10 +30,6 @@ class Menu extends React.Component {
       inputValue: valueRaw,
       parsedTimestamp: timestamp
     });
-  };
-
-  imageServiceMethodCall = methodName => {
-    this.props.onImageServiceCall(methodName);
   };
 
   render() {
@@ -105,62 +81,46 @@ class Menu extends React.Component {
                   </Radio>
 
                   {app.state.imageSource === types.imageSourceTypes.BING &&
-                    this.props.imageData && (
+                    app.state.imageBing && (
                       <section>
-                        {this.props.imageData.title && (
-                          <Text>title: {this.props.imageData.title}</Text>
+                        {app.state.imageBing.title && (
+                          <Text>title: {app.state.imageBing.title}</Text>
                         )}
-                        {this.props.imageData.description && (
+                        {app.state.imageBing.description && (
                           <Text>
-                            description: {this.props.imageData.description}
+                            description: {app.state.imageBing.description}
                           </Text>
                         )}
-                        {this.props.imageData.link && (
+                        {app.state.imageBing.link && (
                           <Text>
-                            <a href={this.props.imageData.link}>link</a>
+                            <a href={app.state.imageBing.link}>link</a>
                           </Text>
                         )}
                       </section>
                     )}
 
                   {app.state.imageSource === types.imageSourceTypes.LOCAL &&
-                    this.props.imageData && (
+                    app.state.imageLocal && (
                       <section>
-                        <button
-                          onClick={() =>
-                            this.imageServiceMethodCall("previousImage")
-                          }
-                        >
-                          Prev
-                        </button>
-                        <button
-                          onClick={() =>
-                            this.imageServiceMethodCall("randomImage")
-                          }
-                        >
+                        <button onClick={app.localImagePrevious}>Prev</button>
+                        <button onClick={app.localImageRandom}>
                           Random image
                         </button>
-                        <button
-                          onClick={() =>
-                            this.imageServiceMethodCall("nextImage")
-                          }
-                        >
-                          Next
-                        </button>
+                        <button onClick={app.localImageNext}>Next</button>
 
                         <Text>
-                          image: {this.props.imageData.imageIndex + 1}/
-                          {this.props.imageData.numberOfImages}
+                          image: {app.state.imageLocal.imageIndex + 1}/
+                          {app.state.imageLocal.numberOfImages}
                         </Text>
-                        {this.props.imageData.name && (
-                          <Text>name: {this.props.imageData.name}</Text>
+                        {app.state.imageLocal.name && (
+                          <Text>name: {app.state.imageLocal.name}</Text>
                         )}
-                        {this.props.imageData.location && (
-                          <Text>location: {this.props.imageData.location}</Text>
+                        {app.state.imageLocal.location && (
+                          <Text>location: {app.state.imageLocal.location}</Text>
                         )}
-                        {this.props.imageData.source && (
+                        {app.state.imageLocal.source && (
                           <Text>
-                            <a href={this.props.imageData.source}>source</a>
+                            <a href={app.state.imageLocal.source}>source</a>
                           </Text>
                         )}
                       </section>

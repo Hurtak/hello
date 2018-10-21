@@ -1,32 +1,12 @@
 import React from "react";
-import propTypes from "prop-types";
 import images from "../../images/images.js";
-import {
-  initLocalStorage,
-  saveToLocalStorage
-} from "../../shared/local-storage.js";
 
 export default class ImageServiceLocal extends React.Component {
-  static propTypes = {
-    onImageChange: propTypes.func.isRequired
-  };
-
   static config = {
     savedState: ["imageIndex"]
   };
 
   constructor(props) {
-    super(props);
-
-    this.state = initLocalStorage(
-      ImageServiceLocal.config.savedState,
-      ImageServiceLocal.name,
-      {
-        imageIndex: null,
-        numberOfImages: images.length
-      }
-    );
-
     props.onInit({
       methods: {
         randomImage: this.randomImage,
@@ -99,20 +79,4 @@ export default class ImageServiceLocal extends React.Component {
   componentDidMount() {
     this.randomImage();
   }
-
-  componentDidUpdate() {
-    saveToLocalStorage(
-      ImageServiceLocal.config.savedState,
-      ImageServiceLocal.name,
-      this.state
-    );
-  }
-
-  render() {
-    return null;
-  }
-}
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
