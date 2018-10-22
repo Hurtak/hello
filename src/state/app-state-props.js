@@ -20,13 +20,11 @@ const appStatePropTypes = propTypes.shape({
     }),
     imageBing: propTypes.shape({
       url: propTypes.string.isRequired,
-
-      isFetching: propTypes.bool,
-
       title: propTypes.string,
       link: propTypes.string,
       description: propTypes.string.isRequired
     }),
+    imageBingFetching: propTypes.bool.isRequired,
 
     // App settings
     selectedView: propTypes.oneOf(Object.values(types.viewTypes)).isRequired,

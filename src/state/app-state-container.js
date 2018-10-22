@@ -25,6 +25,7 @@ export default class AppStateContainer extends Container {
       imageLocal: null,
       imagesLocal: images,
       imageBing: null,
+      imageBingFetching: false,
 
       // App settings
       selectedView: types.viewTypes.CLOCK,
@@ -64,20 +65,20 @@ export default class AppStateContainer extends Container {
   // Image - Bing
 
   fetchImageBing = async () => {
-    await this._setState(state => ({
-      imageBing: {
-        ...state.imageBing,
-        isFetching: true
-      }
-    }));
+    await this._setState({
+      imageBingFetching: true
+    });
 
     const imageData = await getBingImageOfTheDay();
     if (!imageData.error) {
       await this._setState({
         imageBing: {
-          isFetching: false,
-          ...imageData.data
-        }
+          url: imageData.data.url,
+          title: imageData.data.title,
+          link: imageData.data.link,
+          description: imageData.data.description
+        },
+        imageBingFetching: false
       });
     } else {
       // TODO: handle and dispaly errors
