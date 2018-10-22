@@ -7,30 +7,26 @@ const appStatePropTypes = propTypes.shape({
     menuOpened: propTypes.bool.isRequired,
 
     // Background image
-    image: propTypes.oneOfType([
-      // Image service local
+    imagesLocal: propTypes.arrayOf(
       propTypes.shape({
         url: propTypes.string.isRequired,
-
-        imageIndex: propTypes.number.isRequired,
-        numberOfImages: propTypes.number.isRequired,
-
         name: propTypes.string,
         location: propTypes.string,
-        source: propTypes.string
-      }),
-
-      // Image service Bing
-      propTypes.shape({
-        url: propTypes.string.isRequired,
-
-        isFetching: propTypes.bool,
-
-        title: propTypes.string,
-        link: propTypes.string,
-        description: propTypes.string.isRequired
+        source: propTypes.string.isRequired
       })
-    ]),
+    ),
+    imageLocal: propTypes.shape({
+      index: propTypes.number.isRequired
+    }),
+    imageBing: propTypes.shape({
+      url: propTypes.string.isRequired,
+
+      isFetching: propTypes.bool,
+
+      title: propTypes.string,
+      link: propTypes.string,
+      description: propTypes.string.isRequired
+    }),
 
     // App settings
     selectedView: propTypes.oneOf(Object.values(types.viewTypes)).isRequired,

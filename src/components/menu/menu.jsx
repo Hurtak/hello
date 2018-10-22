@@ -1,8 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Subscribe } from "unstated";
 import styled from "styled-components";
-import AppState from "../../state/app-state-container.js";
+import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";
 import * as types from "../../shared/constants.js";
 import { timestampToDateInputValue } from "../../shared/time.js";
@@ -10,11 +9,12 @@ import iconCog from "../../icons/cog.svg";
 
 class Menu extends React.Component {
   static propTypes = {
+    app: appStateProps,
     opened: propTypes.bool.isRequired,
     isDev: propTypes.bool.isRequired
   };
 
-  ageDateOfBirthChange = (e, app) => {
+  ageDateOfBirthChange = e => {
     const valueRaw = e.target.value;
     const valueValid = valueRaw.length > 0;
 
@@ -26,7 +26,7 @@ class Menu extends React.Component {
       return timestamp;
     })();
 
-    app.setAgeDateOfBirth({
+    this.props.app.setAgeDateOfBirth({
       inputValue: valueRaw,
       parsedTimestamp: timestamp
     });
@@ -34,193 +34,224 @@ class Menu extends React.Component {
 
   render() {
     return (
-      <Subscribe to={[AppState]}>
-        {app => (
-          <MenuWrapper
-            settingsHidden={app.state.settingsHidden && !this.props.opened}
-          >
-            <ToggleButton onClick={app.toggleMenu}>
-              <ToggleButtonIcon src={iconCog} rotated={this.props.opened} />
-            </ToggleButton>
+      <MenuWrapper
+        settingsHidden={
+          this.props.app.state.settingsHidden && !this.props.opened
+        }
+      >
+        <ToggleButton onClick={this.props.app.toggleMenu}>
+          <ToggleButtonIcon src={iconCog} rotated={this.props.opened} />
+        </ToggleButton>
 
-            <ToggleButtonSpacer />
+        <ToggleButtonSpacer />
 
-            <div inert={this.props.opened === false ? "true" : null}>
-              <Heading>Hello Friend &ndash; New Tab Page</Heading>
-              <Text>
-                This is your new cool new tab page. Enjoy a nice background from
-                Bing every day or have a look at some nice background that I
-                preselected. There is also a bunch of useful that you can
-                display in front of the background, like clock and stuff!
-              </Text>
+        <div inert={this.props.opened === false ? "true" : null}>
+          <Heading>Hello Friend &ndash; New Tab Page</Heading>
+          <Text>
+            This is your new cool new tab page. Enjoy a nice background from
+            Bing every day or have a look at some nice background that I
+            preselected. There is also a bunch of useful that you can display in
+            front of the background, like clock and stuff!
+          </Text>
 
-              <MenuSectionsWrapper>
-                <MenuSection title="Background image">
-                  <Radio
-                    name="images"
-                    onChange={() =>
-                      app.setImageSource(types.imageSourceTypes.BING)
-                    }
-                    checked={
-                      app.state.imageSource === types.imageSourceTypes.BING
-                    }
-                  >
-                    Bing image of the day
-                  </Radio>
+          <MenuSectionsWrapper>
+            <MenuSection title="Background image">
+              <Radio
+                name="images"
+                onChange={() =>
+                  this.props.app.setImageSource(types.imageSourceTypes.BING)
+                }
+                checked={
+                  this.props.app.state.imageSource ===
+                  types.imageSourceTypes.BING
+                }
+              >
+                Bing image of the day
+              </Radio>
 
-                  <Radio
-                    name="images"
-                    onChange={() =>
-                      app.setImageSource(types.imageSourceTypes.LOCAL)
-                    }
-                    checked={
-                      app.state.imageSource === types.imageSourceTypes.LOCAL
-                    }
-                  >
-                    Predefined
-                  </Radio>
+              <Radio
+                name="images"
+                onChange={() =>
+                  this.props.app.setImageSource(types.imageSourceTypes.LOCAL)
+                }
+                checked={
+                  this.props.app.state.imageSource ===
+                  types.imageSourceTypes.LOCAL
+                }
+              >
+                Predefined
+              </Radio>
 
-                  {app.state.imageSource === types.imageSourceTypes.BING &&
-                    app.state.imageBing && (
-                      <section>
-                        {app.state.imageBing.title && (
-                          <Text>title: {app.state.imageBing.title}</Text>
-                        )}
-                        {app.state.imageBing.description && (
-                          <Text>
-                            description: {app.state.imageBing.description}
-                          </Text>
-                        )}
-                        {app.state.imageBing.link && (
-                          <Text>
-                            <a href={app.state.imageBing.link}>link</a>
-                          </Text>
-                        )}
-                      </section>
+              {this.props.app.state.imageSource ===
+                types.imageSourceTypes.BING &&
+                this.props.app.state.imageBing && (
+                  <section>
+                    {this.props.app.state.imageBing.title && (
+                      <Text>title: {this.props.app.state.imageBing.title}</Text>
                     )}
-
-                  {app.state.imageSource === types.imageSourceTypes.LOCAL &&
-                    app.state.imageLocal && (
-                      <section>
-                        <button onClick={app.localImagePrevious}>Prev</button>
-                        <button onClick={app.localImageRandom}>
-                          Random image
-                        </button>
-                        <button onClick={app.localImageNext}>Next</button>
-
-                        <Text>
-                          image: {app.state.imageLocal.imageIndex + 1}/
-                          {app.state.imageLocal.numberOfImages}
-                        </Text>
-                        {app.state.imageLocal.name && (
-                          <Text>name: {app.state.imageLocal.name}</Text>
-                        )}
-                        {app.state.imageLocal.location && (
-                          <Text>location: {app.state.imageLocal.location}</Text>
-                        )}
-                        {app.state.imageLocal.source && (
-                          <Text>
-                            <a href={app.state.imageLocal.source}>source</a>
-                          </Text>
-                        )}
-                      </section>
-                    )}
-                </MenuSection>
-
-                <MenuSection title="View type">
-                  <Radio
-                    name="view"
-                    onChange={() => app.setViewType(types.viewTypes.CLOCK)}
-                    checked={app.state.selectedView === types.viewTypes.CLOCK}
-                  >
-                    Clock
-                  </Radio>
-
-                  <Radio
-                    name="view"
-                    onChange={() => app.setViewType(types.viewTypes.AGE)}
-                    checked={app.state.selectedView === types.viewTypes.AGE}
-                  >
-                    Age
-                  </Radio>
-
-                  <Radio
-                    name="view"
-                    onChange={() => app.setViewType(types.viewTypes.NOTHING)}
-                    checked={app.state.selectedView === types.viewTypes.NOTHING}
-                  >
-                    Nothing
-                  </Radio>
-
-                  {app.state.selectedView === types.viewTypes.CLOCK && (
-                    <label>
+                    {this.props.app.state.imageBing.description && (
                       <Text>
-                        <input
-                          type="checkbox"
-                          checked={app.state.clockShowSeconds}
-                          onChange={app.toggleClockShowSeconds}
-                        />
-                        Show seconds
+                        description:{" "}
+                        {this.props.app.state.imageBing.description}
                       </Text>
-                    </label>
-                  )}
+                    )}
+                    {this.props.app.state.imageBing.link && (
+                      <Text>
+                        <a href={this.props.app.state.imageBing.link}>link</a>
+                      </Text>
+                    )}
+                  </section>
+                )}
 
-                  {app.state.selectedView === types.viewTypes.AGE && (
-                    <label>
-                      Your date of birth
-                      <input
-                        type="date"
-                        min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
-                        max={timestampToDateInputValue(Date.now())}
-                        value={app.state.ageDateOfBirthValue}
-                        onChange={e => this.ageDateOfBirthChange(e, app)}
-                      />
-                    </label>
-                  )}
-                </MenuSection>
+              {this.props.app.state.imageSource ===
+                types.imageSourceTypes.LOCAL &&
+                this.props.app.state.imageLocal && (
+                  <section>
+                    <button
+                      onClick={() => this.props.app.shiftImageLocalIndex(-1)}
+                    >
+                      Prev
+                    </button>
+                    <button onClick={this.props.app.setImageLocalRandom}>
+                      Random image
+                    </button>
+                    <button
+                      onClick={() => this.props.app.shiftImageLocalIndex(1)}
+                    >
+                      Next
+                    </button>
 
-                <MenuSection title="Minimalistic version">
+                    {(() => {
+                      const image = this.props.app.state.imagesLocal[
+                        this.props.app.state.imageLocal.index
+                      ];
+
+                      return (
+                        <>
+                          <Text>
+                            image: {this.props.app.state.imageLocal.index + 1}/
+                            {this.props.app.state.imagesLocal.length}
+                          </Text>
+                          {image.name && <Text>name: {image.name}</Text>}
+                          {image.location && (
+                            <Text>location: {image.location}</Text>
+                          )}
+                          {image.source && (
+                            <Text>
+                              <a href={image.source}>source</a>
+                            </Text>
+                          )}
+                        </>
+                      );
+                    })()}
+                  </section>
+                )}
+            </MenuSection>
+
+            <MenuSection title="View type">
+              <Radio
+                name="view"
+                onChange={() =>
+                  this.props.app.setViewType(types.viewTypes.CLOCK)
+                }
+                checked={
+                  this.props.app.state.selectedView === types.viewTypes.CLOCK
+                }
+              >
+                Clock
+              </Radio>
+
+              <Radio
+                name="view"
+                onChange={() => this.props.app.setViewType(types.viewTypes.AGE)}
+                checked={
+                  this.props.app.state.selectedView === types.viewTypes.AGE
+                }
+              >
+                Age
+              </Radio>
+
+              <Radio
+                name="view"
+                onChange={() =>
+                  this.props.app.setViewType(types.viewTypes.NOTHING)
+                }
+                checked={
+                  this.props.app.state.selectedView === types.viewTypes.NOTHING
+                }
+              >
+                Nothing
+              </Radio>
+
+              {this.props.app.state.selectedView === types.viewTypes.CLOCK && (
+                <label>
                   <Text>
-                    Settings button will be hidden unless you hover the mouse
-                    over the area where the button is. Also bunch of useless
-                    text (like this paragraph) will be hidden.
-                  </Text>
-                  <label>
                     <input
                       type="checkbox"
-                      checked={app.state.settingsHidden}
-                      onChange={app.toggleSettingsHidden}
+                      checked={this.props.app.state.clockShowSeconds}
+                      onChange={this.props.app.toggleClockShowSeconds}
                     />
-                    Hide stuff
-                  </label>
-                </MenuSection>
-
-                <MenuSection title="Contact">
-                  <Text>
-                    If you find any bugs or if you would like to tell me how
-                    much you like this swell plugin you can do so on following
-                    channels. Also this plugin is open source, so you contribute
-                    on GitHub!
+                    Show seconds
                   </Text>
-                  <a href="https://github.com/hurtak/hello-friend">Github</a>
-                  <a href="https://twitter.com/PetrHurtak">Twitter</a>
-                  <a href="mailto:petr.hurtak@gmail.com">Mail</a>
-                </MenuSection>
+                </label>
+              )}
 
-                {this.props.isDev && (
-                  <MenuSection title="Dev menu">
-                    <Text>This menu is only visible in development mode</Text>
-                    <button onClick={app.resetAppState}>Reset app state</button>
-                  </MenuSection>
-                )}
-              </MenuSectionsWrapper>
-            </div>
-          </MenuWrapper>
-        )}
-      </Subscribe>
+              {this.props.app.state.selectedView === types.viewTypes.AGE && (
+                <label>
+                  Your date of birth
+                  <input
+                    type="date"
+                    min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+                    max={timestampToDateInputValue(Date.now())}
+                    value={this.props.app.state.ageDateOfBirthValue}
+                    onChange={e => this.ageDateOfBirthChange(e)}
+                  />
+                </label>
+              )}
+            </MenuSection>
+
+            <MenuSection title="Minimalistic version">
+              <Text>
+                Settings button will be hidden unless you hover the mouse over
+                the area where the button is. Also bunch of useless text (like
+                this paragraph) will be hidden.
+              </Text>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={this.props.app.state.settingsHidden}
+                  onChange={this.props.app.toggleSettingsHidden}
+                />
+                Hide stuff
+              </label>
+            </MenuSection>
+
+            <MenuSection title="Contact">
+              <Text>
+                If you find any bugs or if you would like to tell me how much
+                you like this swell plugin you can do so on following channels.
+                Also this plugin is open source, so you contribute on GitHub!
+              </Text>
+              <a href="https://github.com/hurtak/hello-friend">Github</a>
+              <a href="https://twitter.com/PetrHurtak">Twitter</a>
+              <a href="mailto:petr.hurtak@gmail.com">Mail</a>
+            </MenuSection>
+
+            {this.props.isDev && (
+              <MenuSection title="Dev menu">
+                <Text>This menu is only visible in development mode</Text>
+                <button onClick={this.props.app.resetAppState}>
+                  Reset app state
+                </button>
+              </MenuSection>
+            )}
+          </MenuSectionsWrapper>
+        </div>
+      </MenuWrapper>
     );
   }
 }
+export default withAppState(Menu);
 
 const MenuWrapper = styled.section(
   {
@@ -350,5 +381,3 @@ const RadioText = styled.span({
   color: s.colors.white,
   marginLeft: s.grid(1)
 });
-
-export default Menu;

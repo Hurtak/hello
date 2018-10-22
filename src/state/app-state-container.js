@@ -19,10 +19,11 @@ export default class AppStateContainer extends Container {
 
     this.state = initLocalStorage({
       // Menu states
-      menuOpened: false,
+      menuOpened: true,
 
       // Background image
       imageLocal: null,
+      imagesLocal: images,
       imageBing: null,
 
       // App settings
@@ -45,22 +46,24 @@ export default class AppStateContainer extends Container {
       // TODO: we should not acces state directly but in setState callback
       switch (state.imageSource) {
         case types.imageSourceTypes.LOCAL: {
-          return {
-            imageLocal: {
-              imageIndex: null,
-              numberOfImages: images.length
-            }
-          };
+          this.setImageLocalRandom();
+          return {};
         }
 
         case types.imageSourceTypes.BING: {
-          this.fetchBingImage();
+          this.fetchImageBing();
+          return {};
         }
+
+        default:
+          return {};
       }
     });
   };
 
-  fetchBingImage = async () => {
+  // Image - Bing
+
+  fetchImageBing = async () => {
     await this._setState(state => ({
       imageBing: {
         ...state.imageBing,
@@ -79,6 +82,56 @@ export default class AppStateContainer extends Container {
     } else {
       // TODO: handle and dispaly errors
     }
+  };
+
+  // Image - Local
+
+  shiftImageLocalIndex = async change => {
+    await this._setImageLocalIndex(state => {
+      let newIndex = state.imageLocal.index + change;
+      if (newIndex > state.imagesLocal.length - 1) {
+        newIndex = 0;
+      } else if (newIndex < 0) {
+        newIndex = state.imagesLocal.length - 1;
+      }
+
+      return newIndex;
+    });
+  };
+
+  setImageLocalRandom = () => {
+    this._setImageLocalIndex(state => {
+      const numberOfImages = state.imagesLocal.length;
+
+      const index = (() => {
+        const getIndex = () => getRandomInt(0, numberOfImages - 1);
+
+        if (numberOfImages < 2 || state.imageLocal === null) {
+          return getIndex();
+        }
+
+        while (true) {
+          const index = getIndex();
+          if (index !== state.imageLocal.index) {
+            return index;
+          }
+        }
+      })();
+
+      return index;
+    });
+  };
+
+  _setImageLocalIndex = async cb => {
+    await this._setState(state => {
+      const newIndex = cb(state);
+
+      return {
+        imageLocal: {
+          index: newIndex
+        }
+      };
+    });
   };
 
   //

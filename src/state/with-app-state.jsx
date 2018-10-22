@@ -6,7 +6,9 @@ export default function withAppState(Component) {
   return class extends React.Component {
     render() {
       return (
-        <Subscribe to={[AppState]}>{app => <Component app={app} />}</Subscribe>
+        <Subscribe to={[AppState]}>
+          {app => <Component app={app} {...this.props} />}
+        </Subscribe>
       );
     }
   };

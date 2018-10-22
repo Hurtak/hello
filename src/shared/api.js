@@ -104,6 +104,8 @@ export async function getBingImageOfTheDay() {
       link: (() => {
         const link = imageData.copyrightlink;
         if (!link) return null;
+
+        // eslint-disable-next-line no-script-url
         if (link === "javascript:void(0)") return null;
         return link;
       })()
