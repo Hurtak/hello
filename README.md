@@ -2,15 +2,15 @@
 
 ## TODO
 
-- refactoring
-- renema to hello
 - menu design
   - menu texts
   - menu structure
   - menu styles
   - cleanup menu with unstated?
+  - show offline indicator?
   - bing images
     - cache/predownload image
+- renema to hello
 - Text component?
 - add more images!
 - go through manifest.json

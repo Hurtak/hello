@@ -57,24 +57,7 @@ class App extends React.Component {
         <s.GlobalStyles />
 
         <BackgroundWrapper>
-          <BackgroundImage
-            url={(() => {
-              switch (this.props.app.state.imageSource) {
-                case types.imageSourceTypes.LOCAL:
-                  return this.props.app.state.imageLocal
-                    ? this.props.app.state.imagesLocal[
-                        this.props.app.state.imageLocal.index
-                      ].url
-                    : null;
-                case types.imageSourceTypes.BING:
-                  return this.props.app.state.imageBing
-                    ? this.props.app.state.imageBing.url
-                    : null;
-                default:
-                  return null;
-              }
-            })()}
-          />
+          <BackgroundImage url={this.props.app.computed.imageUrl} />
         </BackgroundWrapper>
 
         {(() => {

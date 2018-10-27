@@ -50,7 +50,7 @@ export async function getBingImageOfTheDay() {
     } catch (error) {
       return httpData({
         error: true,
-        errorType: fetchErrorTypes.ERROR_PARSING_RESPONSE,
+        errorType: fetchErrorTypes.STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE,
         data: error
       });
     }
@@ -84,7 +84,7 @@ export async function getBingImageOfTheDay() {
   if (!dataValid) {
     return httpData({
       error: true,
-      errorType: fetchErrorTypes.MISSING_DATA,
+      errorType: fetchErrorTypes.MISSING_DATA_IN_RESPONSE,
       data: response
     });
   }

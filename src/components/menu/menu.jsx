@@ -56,15 +56,43 @@ class Menu extends React.Component {
 
           <MenuSectionsWrapper>
             <MenuSection title="Background image">
+              {!this.props.app.state.online && (
+                <div>
+                  You are currently offline, falling back to local images
+                </div>
+              )}
+              {this.props.app.state.imageBing &&
+                this.props.app.state.imageBing.error && (
+                  <div>
+                    {/* TODO: proper error matching */}
+                    <p>Error</p>
+                    <p>
+                      error:{" "}
+                      {JSON.stringify(this.props.app.state.imageBing.error)}
+                    </p>
+                    <p>errorType: {this.props.app.state.imageBing.errorType}</p>
+                    <p>
+                      errorData:{" "}
+                      {String(this.props.app.state.imageBing.errorData)}
+                    </p>
+                    <pre>
+                      <code>
+                        {JSON.stringify(this.props.app.state.imageBing)}
+                      </code>
+                    </pre>
+                  </div>
+                )}
+
               <Radio
                 name="images"
                 onChange={() =>
                   this.props.app.setImageSource(types.imageSourceTypes.BING)
                 }
                 checked={
-                  this.props.app.state.imageSource ===
+                  this.props.app.computed.imageSourceWithFallback ===
                   types.imageSourceTypes.BING
                 }
+                disabled={this.props.app.state.online === false}
               >
                 Bing image of the day
               </Radio>
@@ -75,14 +103,14 @@ class Menu extends React.Component {
                   this.props.app.setImageSource(types.imageSourceTypes.LOCAL)
                 }
                 checked={
-                  this.props.app.state.imageSource ===
+                  this.props.app.computed.imageSourceWithFallback ===
                   types.imageSourceTypes.LOCAL
                 }
               >
                 Predefined
               </Radio>
 
-              {this.props.app.state.imageSource ===
+              {this.props.app.computed.imageSourceWithFallback ===
                 types.imageSourceTypes.BING &&
                 this.props.app.state.imageBing && (
                   <section>
@@ -103,49 +131,46 @@ class Menu extends React.Component {
                   </section>
                 )}
 
-              {this.props.app.state.imageSource ===
-                types.imageSourceTypes.LOCAL &&
-                this.props.app.state.imageLocal && (
-                  <section>
-                    <button
-                      onClick={() => this.props.app.shiftImageLocalIndex(-1)}
-                    >
-                      Prev
-                    </button>
-                    <button onClick={this.props.app.setImageLocalRandom}>
-                      Random image
-                    </button>
-                    <button
-                      onClick={() => this.props.app.shiftImageLocalIndex(1)}
-                    >
-                      Next
-                    </button>
+              {this.props.app.computed.imageSourceWithFallback ===
+                types.imageSourceTypes.LOCAL && (
+                <section>
+                  <button
+                    onClick={() => this.props.app.shiftImageLocalIndex(-1)}
+                  >
+                    Prev
+                  </button>
+                  <button onClick={this.props.app.setImageLocalRandom}>
+                    Random image
+                  </button>
+                  <button
+                    onClick={() => this.props.app.shiftImageLocalIndex(1)}
+                  >
+                    Next
+                  </button>
 
-                    {(() => {
-                      const image = this.props.app.state.imagesLocal[
-                        this.props.app.state.imageLocal.index
-                      ];
+                  {(() => {
+                    const image = this.props.app.computed.imageLocal;
 
-                      return (
-                        <>
+                    return (
+                      <>
+                        <Text>
+                          image: {this.props.app.state.imageLocalIndex + 1}/
+                          {this.props.app.computed.imagesLocal.length}
+                        </Text>
+                        {image.name && <Text>name: {image.name}</Text>}
+                        {image.location && (
+                          <Text>location: {image.location}</Text>
+                        )}
+                        {image.source && (
                           <Text>
-                            image: {this.props.app.state.imageLocal.index + 1}/
-                            {this.props.app.state.imagesLocal.length}
+                            <a href={image.source}>source</a>
                           </Text>
-                          {image.name && <Text>name: {image.name}</Text>}
-                          {image.location && (
-                            <Text>location: {image.location}</Text>
-                          )}
-                          {image.source && (
-                            <Text>
-                              <a href={image.source}>source</a>
-                            </Text>
-                          )}
-                        </>
-                      );
-                    })()}
-                  </section>
-                )}
+                        )}
+                      </>
+                    );
+                  })()}
+                </section>
+              )}
             </MenuSection>
 
             <MenuSection title="View type">
@@ -361,6 +386,7 @@ const Radio = props => (
       type="radio"
       name={props.name}
       checked={props.checked}
+      disabled={props.disabled}
     />
     <RadioText>{props.children}</RadioText>
   </RadioLabel>
@@ -368,6 +394,7 @@ const Radio = props => (
 Radio.propTypes = {
   name: propTypes.string.isRequired,
   checked: propTypes.bool.isRequired,
+  disabled: propTypes.bool,
   onChange: propTypes.func.isRequired,
   children: propTypes.string.isRequired
 };

@@ -14,27 +14,57 @@ const savedState = [
 ];
 
 export default class AppStateContainer extends Container {
-  constructor(props) {
-    super(props);
+  state = initLocalStorage({
+    // Browser state
+    online: navigator.onLine,
 
-    this.state = initLocalStorage({
-      // Menu states
-      menuOpened: true,
+    // Menu states
+    menuOpened: true,
 
-      // Background image
-      imageLocal: null,
+    // Background image
+    imageLocalIndex: null,
+    imageBing: null,
+    imageBingFetching: false,
+
+    // App settings
+    selectedView: types.viewTypes.CLOCK,
+    imageSource: types.imageSourceTypes.BING,
+    clockShowSeconds: false,
+    ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
+    ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
+    settingsHidden: false
+  });
+
+  get computed() {
+    const app = this;
+
+    return {
       imagesLocal: images,
-      imageBing: null,
-      imageBingFetching: false,
+      get imageLocal() {
+        return images[app.state.imageLocalIndex || 0];
+      },
+      get imageSourceWithFallback() {
+        return app.state.online
+          ? app.state.imageSource
+          : types.imageSourceTypes.LOCAL;
+      },
+      get imageUrl() {
+        // TODO: maybe display cached image if it would be possible?
 
-      // App settings
-      selectedView: types.viewTypes.CLOCK,
-      imageSource: types.imageSourceTypes.LOCAL,
-      clockShowSeconds: false,
-      ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
-      ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
-      settingsHidden: false
-    });
+        const urlLocal = app.computed.imageLocal.url;
+
+        switch (app.computed.imageSourceWithFallback) {
+          case types.imageSourceTypes.LOCAL:
+            return urlLocal;
+          case types.imageSourceTypes.BING:
+            return app.state.imageBing && app.state.imageBing.error === false
+              ? app.state.imageBing.data.url
+              : urlLocal;
+          default:
+            return null;
+        }
+      }
+    };
   }
 
   //
@@ -42,24 +72,21 @@ export default class AppStateContainer extends Container {
   //
 
   initImage = async () => {
+    // TODO: we should not acces state directly but in setState callback?
     // TODO: possible race condition if we switch settings multiple times?
-    this._setState(state => {
-      // TODO: we should not acces state directly but in setState callback
-      switch (state.imageSource) {
-        case types.imageSourceTypes.LOCAL: {
-          this.setImageLocalRandom();
-          return {};
-        }
-
-        case types.imageSourceTypes.BING: {
-          this.fetchImageBing();
-          return {};
-        }
-
-        default:
-          return {};
+    switch (this.computed.imageSourceWithFallback) {
+      case types.imageSourceTypes.LOCAL: {
+        this.setImageLocalRandom();
+        break;
       }
-    });
+
+      case types.imageSourceTypes.BING: {
+        this.fetchImageBing();
+        break;
+      }
+
+      default:
+    }
   };
 
   // Image - Bing
@@ -70,30 +97,21 @@ export default class AppStateContainer extends Container {
     });
 
     const imageData = await getBingImageOfTheDay();
-    if (!imageData.error) {
-      await this._setState({
-        imageBing: {
-          url: imageData.data.url,
-          title: imageData.data.title,
-          link: imageData.data.link,
-          description: imageData.data.description
-        },
-        imageBingFetching: false
-      });
-    } else {
-      // TODO: handle and dispaly errors
-    }
+    await this._setState({
+      imageBing: imageData,
+      imageBingFetching: false
+    });
   };
 
   // Image - Local
 
   shiftImageLocalIndex = async change => {
     await this._setImageLocalIndex(state => {
-      let newIndex = state.imageLocal.index + change;
-      if (newIndex > state.imagesLocal.length - 1) {
+      let newIndex = state.imageLocalIndex + change;
+      if (newIndex > this.computed.imagesLocal.length - 1) {
         newIndex = 0;
       } else if (newIndex < 0) {
-        newIndex = state.imagesLocal.length - 1;
+        newIndex = this.computed.imagesLocal.length - 1;
       }
 
       return newIndex;
@@ -102,18 +120,18 @@ export default class AppStateContainer extends Container {
 
   setImageLocalRandom = () => {
     this._setImageLocalIndex(state => {
-      const numberOfImages = state.imagesLocal.length;
+      const numberOfImages = this.computed.imagesLocal.length;
 
       const index = (() => {
         const getIndex = () => getRandomInt(0, numberOfImages - 1);
 
-        if (numberOfImages < 2 || state.imageLocal === null) {
+        if (numberOfImages < 2 || state.imageLocalIndex === null) {
           return getIndex();
         }
 
         while (true) {
           const index = getIndex();
-          if (index !== state.imageLocal.index) {
+          if (index !== state.imageLocalIndex) {
             return index;
           }
         }
@@ -128,9 +146,7 @@ export default class AppStateContainer extends Container {
       const newIndex = cb(state);
 
       return {
-        imageLocal: {
-          index: newIndex
-        }
+        imageLocalIndex: newIndex
       };
     });
   };
@@ -191,6 +207,10 @@ export default class AppStateContainer extends Container {
   };
 }
 
+// Local storage
+
+const localStorageKeyPrefix = "STORAGE-";
+
 function initLocalStorage(state) {
   const newState = { ...state };
 
@@ -209,10 +229,6 @@ function initLocalStorage(state) {
 
   return newState;
 }
-
-// Local storage
-
-const localStorageKeyPrefix = "STORAGE-";
 
 function saveToLocalStorage(state) {
   for (const [key, value] of Object.entries(state)) {
