@@ -44,22 +44,29 @@ export default class AppStateContainer extends Container {
         return images[app.state.imageLocalIndex || 0];
       },
       get imageSourceWithFallback() {
-        return app.state.online
-          ? app.state.imageSource
-          : constants.imageSourceTypes.LOCAL;
+        switch (app.state.imageSource) {
+          case constants.imageSourceTypes.LOCAL:
+            return constants.imageSourceTypes.LOCAL;
+          case constants.imageSourceTypes.BING:
+            if (!app.state.online) return constants.imageSourceTypes.LOCAL;
+            if (app.state.imageBing && app.state.imageBing.error === true)
+              return constants.imageSourceTypes.LOCAL;
+            return constants.imageSourceTypes.BING;
+          default:
+            return null;
+        }
       },
       get imageUrl() {
         // TODO: maybe display cached image if it would be possible?
 
         const urlLocal = app.computed.imageLocal.url;
-
         switch (app.computed.imageSourceWithFallback) {
           case constants.imageSourceTypes.LOCAL:
             return urlLocal;
           case constants.imageSourceTypes.BING:
-            return app.state.imageBing && app.state.imageBing.error === false
-              ? app.state.imageBing.data.url
-              : urlLocal;
+            if (app.state.imageBingFetching === true) return null;
+            if (!app.state.imageBing) return null;
+            return app.state.imageBing.data.url;
           default:
             return null;
         }
