@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 import * as s from "../../shared/styles.js";
-import * as types from "../../shared/constants.js";
+import * as constants from "../../shared/constants.js";
 
 const YearProgress = props => {
   const progress = getYearProgress(props.time);
@@ -17,7 +17,7 @@ const YearProgress = props => {
   );
 };
 YearProgress.propTypes = {
-  time: types.timePropType,
+  time: constants.timePropType,
   decimalPlaces: propTypes.number.isRequired
 };
 export default YearProgress;

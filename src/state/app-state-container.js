@@ -1,6 +1,6 @@
 import { Container } from "unstated";
 import { getBingImageOfTheDay } from "../shared/api.js";
-import * as types from "../shared/constants.js";
+import * as constants from "../shared/constants.js";
 import * as time from "../shared/time.js";
 import images from "../images/images.js";
 
@@ -19,7 +19,7 @@ export default class AppStateContainer extends Container {
     online: navigator.onLine,
 
     // Menu states
-    menuOpened: true,
+    menuOpened: false,
 
     // Background image
     imageLocalIndex: null,
@@ -27,8 +27,8 @@ export default class AppStateContainer extends Container {
     imageBingFetching: false,
 
     // App settings
-    selectedView: types.viewTypes.CLOCK,
-    imageSource: types.imageSourceTypes.BING,
+    selectedView: constants.viewTypes.CLOCK,
+    imageSource: constants.imageSourceTypes.BING,
     clockShowSeconds: false,
     ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
     ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
@@ -46,7 +46,7 @@ export default class AppStateContainer extends Container {
       get imageSourceWithFallback() {
         return app.state.online
           ? app.state.imageSource
-          : types.imageSourceTypes.LOCAL;
+          : constants.imageSourceTypes.LOCAL;
       },
       get imageUrl() {
         // TODO: maybe display cached image if it would be possible?
@@ -54,9 +54,9 @@ export default class AppStateContainer extends Container {
         const urlLocal = app.computed.imageLocal.url;
 
         switch (app.computed.imageSourceWithFallback) {
-          case types.imageSourceTypes.LOCAL:
+          case constants.imageSourceTypes.LOCAL:
             return urlLocal;
-          case types.imageSourceTypes.BING:
+          case constants.imageSourceTypes.BING:
             return app.state.imageBing && app.state.imageBing.error === false
               ? app.state.imageBing.data.url
               : urlLocal;
@@ -75,12 +75,12 @@ export default class AppStateContainer extends Container {
     // TODO: we should not acces state directly but in setState callback?
     // TODO: possible race condition if we switch settings multiple times?
     switch (this.computed.imageSourceWithFallback) {
-      case types.imageSourceTypes.LOCAL: {
+      case constants.imageSourceTypes.LOCAL: {
         this.setImageLocalRandom();
         break;
       }
 
-      case types.imageSourceTypes.BING: {
+      case constants.imageSourceTypes.BING: {
         this.fetchImageBing();
         break;
       }

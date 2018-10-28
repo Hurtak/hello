@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import styled from "styled-components";
 import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";
-import * as types from "../../shared/constants.js";
+import * as constants from "../../shared/constants.js";
 import { timestampToDateInputValue } from "../../shared/time.js";
 import iconCog from "../../icons/cog.svg";
 
@@ -86,11 +86,11 @@ class Menu extends React.Component {
               <Radio
                 name="images"
                 onChange={() =>
-                  this.props.app.setImageSource(types.imageSourceTypes.BING)
+                  this.props.app.setImageSource(constants.imageSourceTypes.BING)
                 }
                 checked={
                   this.props.app.computed.imageSourceWithFallback ===
-                  types.imageSourceTypes.BING
+                  constants.imageSourceTypes.BING
                 }
                 disabled={this.props.app.state.online === false}
               >
@@ -100,18 +100,20 @@ class Menu extends React.Component {
               <Radio
                 name="images"
                 onChange={() =>
-                  this.props.app.setImageSource(types.imageSourceTypes.LOCAL)
+                  this.props.app.setImageSource(
+                    constants.imageSourceTypes.LOCAL
+                  )
                 }
                 checked={
                   this.props.app.computed.imageSourceWithFallback ===
-                  types.imageSourceTypes.LOCAL
+                  constants.imageSourceTypes.LOCAL
                 }
               >
                 Predefined
               </Radio>
 
               {this.props.app.computed.imageSourceWithFallback ===
-                types.imageSourceTypes.BING &&
+                constants.imageSourceTypes.BING &&
                 this.props.app.state.imageBing && (
                   <section>
                     {this.props.app.state.imageBing.title && (
@@ -132,7 +134,7 @@ class Menu extends React.Component {
                 )}
 
               {this.props.app.computed.imageSourceWithFallback ===
-                types.imageSourceTypes.LOCAL && (
+                constants.imageSourceTypes.LOCAL && (
                 <section>
                   <button
                     onClick={() => this.props.app.shiftImageLocalIndex(-1)}
@@ -177,10 +179,11 @@ class Menu extends React.Component {
               <Radio
                 name="view"
                 onChange={() =>
-                  this.props.app.setViewType(types.viewTypes.CLOCK)
+                  this.props.app.setViewType(constants.viewTypes.CLOCK)
                 }
                 checked={
-                  this.props.app.state.selectedView === types.viewTypes.CLOCK
+                  this.props.app.state.selectedView ===
+                  constants.viewTypes.CLOCK
                 }
               >
                 Clock
@@ -188,9 +191,11 @@ class Menu extends React.Component {
 
               <Radio
                 name="view"
-                onChange={() => this.props.app.setViewType(types.viewTypes.AGE)}
+                onChange={() =>
+                  this.props.app.setViewType(constants.viewTypes.AGE)
+                }
                 checked={
-                  this.props.app.state.selectedView === types.viewTypes.AGE
+                  this.props.app.state.selectedView === constants.viewTypes.AGE
                 }
               >
                 Age
@@ -199,16 +204,18 @@ class Menu extends React.Component {
               <Radio
                 name="view"
                 onChange={() =>
-                  this.props.app.setViewType(types.viewTypes.NOTHING)
+                  this.props.app.setViewType(constants.viewTypes.NOTHING)
                 }
                 checked={
-                  this.props.app.state.selectedView === types.viewTypes.NOTHING
+                  this.props.app.state.selectedView ===
+                  constants.viewTypes.NOTHING
                 }
               >
                 Nothing
               </Radio>
 
-              {this.props.app.state.selectedView === types.viewTypes.CLOCK && (
+              {this.props.app.state.selectedView ===
+                constants.viewTypes.CLOCK && (
                 <label>
                   <Text>
                     <input
@@ -221,7 +228,8 @@ class Menu extends React.Component {
                 </label>
               )}
 
-              {this.props.app.state.selectedView === types.viewTypes.AGE && (
+              {this.props.app.state.selectedView ===
+                constants.viewTypes.AGE && (
                 <label>
                   Your date of birth
                   <input

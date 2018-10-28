@@ -12,7 +12,6 @@ import BackgroundImage from "../background-image/background-image.jsx";
 import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";
 import * as constants from "../../shared/constants.js";
-import * as types from "../../shared/constants.js";
 import * as time from "../../shared/time.js";
 
 class App extends React.Component {

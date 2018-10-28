@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import * as types from "../shared/constants.js";
+import * as constants from "../shared/constants.js";
 
 const appStatePropTypes = propTypes.shape({
   state: propTypes.shape({
@@ -27,9 +27,10 @@ const appStatePropTypes = propTypes.shape({
     imageBingFetching: propTypes.bool.isRequired,
 
     // App settings
-    selectedView: propTypes.oneOf(Object.values(types.viewTypes)).isRequired,
+    selectedView: propTypes.oneOf(Object.values(constants.viewTypes))
+      .isRequired,
 
-    imageSource: propTypes.oneOf(Object.values(types.imageSourceTypes)),
+    imageSource: propTypes.oneOf(Object.values(constants.imageSourceTypes)),
 
     clockShowSeconds: propTypes.bool.isRequired,
 

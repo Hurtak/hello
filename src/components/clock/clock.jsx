@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 import * as s from "../../shared/styles.js";
-import * as types from "../../shared/constants.js";
+import * as constants from "../../shared/constants.js";
 import { addLeadingZero } from "../../shared/time.js";
 
 const Clock = props => (
@@ -13,7 +13,7 @@ const Clock = props => (
   </ClockBox>
 );
 Clock.propTypes = {
-  time: types.timePropType,
+  time: constants.timePropType,
   showSeconds: propTypes.bool
 };
 export default Clock;
@@ -40,7 +40,7 @@ const Time = props => {
   );
 };
 Time.propTypes = {
-  time: types.timePropType,
+  time: constants.timePropType,
   showSeconds: propTypes.bool
 };
 
