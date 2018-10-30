@@ -1,12 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
-import * as s from "../../shared/styles.js";
-import * as constants from "../../shared/constants.js";
+import * as s from "../../shared/styles.ts";
+// import * as constants from "../../shared/constants.ts";
 
 export default class Calendar extends React.Component {
   static propTypes = {
-    time: constants.timePropType
+    // time: constants.timePropType
   };
 
   static monthNames = [

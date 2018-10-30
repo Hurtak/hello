@@ -4,15 +4,15 @@ export const hour = 60 * minute;
 export const day = 24 * hour;
 export const year = 365 * day;
 
-export function addLeadingZero(input) {
-  input = String(input);
-  while (input.length < 2) {
-    input = "0" + input;
+export function addLeadingZero(input: number) {
+  let res = String(input);
+  while (res.length < 2) {
+    res = "0" + res;
   }
-  return input;
+  return res;
 }
 
-export function timestampToDateInputValue(timestamp) {
+export function timestampToDateInputValue(timestamp: number): string {
   const date = new Date(timestamp);
 
   const value =

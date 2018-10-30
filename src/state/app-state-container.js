@@ -1,7 +1,6 @@
 import { Container } from "unstated";
-import { getBingImageOfTheDay } from "../shared/api.js";
-import * as constants from "../shared/constants.js";
-import * as time from "../shared/time.js";
+import { getBingImageOfTheDay } from "../shared/api.ts";
+import * as time from "../shared/time.ts";
 import images from "../images/images.ts";
 
 const savedState = [
@@ -27,8 +26,8 @@ export default class AppStateContainer extends Container {
     imageBingFetching: false,
 
     // App settings
-    selectedView: constants.viewTypes.CLOCK,
-    imageSource: constants.imageSourceTypes.BING,
+    selectedView: "CLOCK",
+    imageSource: "BING",
     clockShowSeconds: false,
     ageDateOfBirthTimestamp: Date.UTC(1990, 0, 1),
     ageDateOfBirthValue: time.timestampToDateInputValue(Date.UTC(1990, 0, 1)),
@@ -45,13 +44,13 @@ export default class AppStateContainer extends Container {
       },
       get imageSourceWithFallback() {
         switch (app.state.imageSource) {
-          case constants.imageSourceTypes.LOCAL:
-            return constants.imageSourceTypes.LOCAL;
-          case constants.imageSourceTypes.BING:
-            if (!app.state.online) return constants.imageSourceTypes.LOCAL;
+          case "LOCAL":
+            return "LOCAL";
+          case "BING":
+            if (!app.state.online) return "LOCAL";
             if (app.state.imageBing && app.state.imageBing.error === true)
-              return constants.imageSourceTypes.LOCAL;
-            return constants.imageSourceTypes.BING;
+              return "LOCAL";
+            return "BING";
           default:
             return null;
         }
@@ -61,9 +60,9 @@ export default class AppStateContainer extends Container {
 
         const urlLocal = app.computed.imageLocal.url;
         switch (app.computed.imageSourceWithFallback) {
-          case constants.imageSourceTypes.LOCAL:
+          case "LOCAL":
             return urlLocal;
-          case constants.imageSourceTypes.BING:
+          case "BING":
             if (app.state.imageBingFetching === true) return null;
             if (!app.state.imageBing) return null;
             return app.state.imageBing.data.url;
@@ -82,12 +81,12 @@ export default class AppStateContainer extends Container {
     // TODO: we should not acces state directly but in setState callback?
     // TODO: possible race condition if we switch settings multiple times?
     switch (this.computed.imageSourceWithFallback) {
-      case constants.imageSourceTypes.LOCAL: {
+      case "LOCAL": {
         this.setImageLocalRandom();
         break;
       }
 
-      case constants.imageSourceTypes.BING: {
+      case "BING": {
         this.fetchImageBing();
         break;
       }

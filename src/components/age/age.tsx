@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import * as s from "../../shared/styles.js";
-import * as time from "../../shared/time.js";
+import * as s from "../../shared/styles";
+import * as time from "../../shared/time";
 import * as types from "../../shared/types";
 
 interface IAge {

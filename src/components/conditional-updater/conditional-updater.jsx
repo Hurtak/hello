@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import * as time from "../../shared/time.js";
+import * as time from "../../shared/time.ts";
 
 export default class ConditionarUpdater extends React.Component {
   static config = {

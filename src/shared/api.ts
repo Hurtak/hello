@@ -1,13 +1,16 @@
 import get from "lodash/get";
-import { corsProxyTypes, fetchErrorTypes } from "./constants.js";
+import * as types from "./types";
 
-export function getCorsProxyUrl(corsProxyType, proxedUrl) {
+export function getCorsProxyUrl(
+  corsProxyType: types.CorsProxyType,
+  proxedUrl: string
+): string {
   switch (corsProxyType) {
-    case corsProxyTypes.CODETABS:
+    case "CODETABS":
       return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(
         proxedUrl
       )}`;
-    case corsProxyTypes.CORS_ANYWHERE:
+    case "CORS_ANYWHERE":
       return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
     default:
       throw new Error(`Unknown corsProxyType: ${corsProxyType}`);
@@ -29,7 +32,7 @@ export const bingImageUrl = (() => {
 export async function getBingImageOfTheDay() {
   let request = null;
 
-  const url = getCorsProxyUrl(corsProxyTypes.CODETABS, bingImageUrl);
+  const url = getCorsProxyUrl("CODETABS", bingImageUrl);
   try {
     request = await fetch(url, {
       headers: { Accept: "application/json" }
@@ -37,7 +40,7 @@ export async function getBingImageOfTheDay() {
   } catch (error) {
     return httpData({
       error: true,
-      errorType: fetchErrorTypes.FETCH_ERROR,
+      errorType: "FETCH_ERROR",
       data: error
     });
   }
@@ -50,14 +53,14 @@ export async function getBingImageOfTheDay() {
     } catch (error) {
       return httpData({
         error: true,
-        errorType: fetchErrorTypes.STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE,
+        errorType: "STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE",
         data: error
       });
     }
 
     return httpData({
       error: true,
-      errorType: fetchErrorTypes.STATUS_NOT_200,
+      errorType: "STATUS_NOT_200",
       data: {
         status: request.status,
         body: text
@@ -71,7 +74,7 @@ export async function getBingImageOfTheDay() {
   } catch (error) {
     return httpData({
       error: true,
-      errorType: fetchErrorTypes.ERROR_PARSING_JSON,
+      errorType: "ERROR_PARSING_JSON",
       data: error
     });
   }
@@ -84,7 +87,7 @@ export async function getBingImageOfTheDay() {
   if (!dataValid) {
     return httpData({
       error: true,
-      errorType: fetchErrorTypes.MISSING_DATA_IN_RESPONSE,
+      errorType: "MISSING_DATA_IN_RESPONSE",
       data: response
     });
   }
@@ -113,19 +116,31 @@ export async function getBingImageOfTheDay() {
   });
 }
 
-function httpData({ error, errorType, data }) {
+export type HttpData<Resp> =
+  | {
+      error: true;
+      errorType: types.FetchErrorType;
+      data: any; // TODO
+    }
+  | {
+      error: false;
+      data: Resp; // TODO
+    };
+
+// TODO: no any?
+function httpData(data: HttpData<any>): HttpData<any> {
   let res;
-  if (error) {
+  if (data.error) {
     res = {
-      error: error,
-      errorType: errorType,
-      errorData: data
+      error: data.error,
+      errorType: data.errorType,
+      data: data.data
     };
     console.log(res);
   } else {
     res = {
-      error: error,
-      data: data
+      error: data.error,
+      data: data.data
     };
   }
 

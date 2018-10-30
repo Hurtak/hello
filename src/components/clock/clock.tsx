@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import * as s from "../../shared/styles.js";
+import * as s from "../../shared/styles";
 import * as types from "../../shared/types";
-import { addLeadingZero } from "../../shared/time.js";
+import { addLeadingZero } from "../../shared/time";
 
 interface IClock {
   time: types.Time;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import * as s from "../../shared/styles.js";
+import * as s from "../../shared/styles";
 import * as types from "../../shared/types";
 
 interface IYearProgress {

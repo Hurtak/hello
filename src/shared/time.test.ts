@@ -1,11 +1,9 @@
-import { addLeadingZero, timestampToDateInputValue } from "./time.js";
-const { it, expect } = global;
+import { addLeadingZero, timestampToDateInputValue } from "./time";
 
 it("addLeadingZero", () => {
-  expect(addLeadingZero("")).toBe("00");
-  expect(addLeadingZero("1")).toBe("01");
-  expect(addLeadingZero("11")).toBe("11");
-  expect(addLeadingZero("111")).toBe("111");
+  expect(addLeadingZero(1)).toBe("01");
+  expect(addLeadingZero(11)).toBe("11");
+  expect(addLeadingZero(111)).toBe("111");
 });
 
 it("timestampToDateInputValue", () => {

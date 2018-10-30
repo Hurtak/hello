@@ -1,15 +1,14 @@
 import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
-import { appStateProps, withAppState } from "../../state/app-state.js";
-import * as s from "../../shared/styles.js";
-import * as constants from "../../shared/constants.js";
-import { timestampToDateInputValue } from "../../shared/time.js";
+import withAppState from "../../state/with-app-state.tsx";
+import * as s from "../../shared/styles.ts";
+import { timestampToDateInputValue } from "../../shared/time.ts";
 import iconCog from "../../icons/cog.svg";
 
 class Menu extends React.Component {
   static propTypes = {
-    app: appStateProps,
+    // app: appStateProps,
     opened: propTypes.bool.isRequired,
     isDev: propTypes.bool.isRequired
   };
@@ -72,8 +71,7 @@ class Menu extends React.Component {
                     </p>
                     <p>errorType: {this.props.app.state.imageBing.errorType}</p>
                     <p>
-                      errorData:{" "}
-                      {String(this.props.app.state.imageBing.errorData)}
+                      errorData: {String(this.props.app.state.imageBing.data)}
                     </p>
                     <pre>
                       <code>
@@ -85,12 +83,9 @@ class Menu extends React.Component {
 
               <Radio
                 name="images"
-                onChange={() =>
-                  this.props.app.setImageSource(constants.imageSourceTypes.BING)
-                }
+                onChange={() => this.props.app.setImageSource("BING")}
                 checked={
-                  this.props.app.computed.imageSourceWithFallback ===
-                  constants.imageSourceTypes.BING
+                  this.props.app.computed.imageSourceWithFallback === "BING"
                 }
                 disabled={this.props.app.state.online === false}
               >
@@ -99,21 +94,15 @@ class Menu extends React.Component {
 
               <Radio
                 name="images"
-                onChange={() =>
-                  this.props.app.setImageSource(
-                    constants.imageSourceTypes.LOCAL
-                  )
-                }
+                onChange={() => this.props.app.setImageSource("LOCAL")}
                 checked={
-                  this.props.app.computed.imageSourceWithFallback ===
-                  constants.imageSourceTypes.LOCAL
+                  this.props.app.computed.imageSourceWithFallback === "LOCAL"
                 }
               >
                 Predefined
               </Radio>
 
-              {this.props.app.computed.imageSourceWithFallback ===
-                constants.imageSourceTypes.BING &&
+              {this.props.app.computed.imageSourceWithFallback === "BING" &&
                 this.props.app.state.imageBing && (
                   <section>
                     {this.props.app.state.imageBing.title && (
@@ -133,8 +122,7 @@ class Menu extends React.Component {
                   </section>
                 )}
 
-              {this.props.app.computed.imageSourceWithFallback ===
-                constants.imageSourceTypes.LOCAL && (
+              {this.props.app.computed.imageSourceWithFallback === "LOCAL" && (
                 <section>
                   <button
                     onClick={() => this.props.app.shiftImageLocalIndex(-1)}
@@ -178,44 +166,29 @@ class Menu extends React.Component {
             <MenuSection title="View type">
               <Radio
                 name="view"
-                onChange={() =>
-                  this.props.app.setViewType(constants.viewTypes.CLOCK)
-                }
-                checked={
-                  this.props.app.state.selectedView ===
-                  constants.viewTypes.CLOCK
-                }
+                onChange={() => this.props.app.setViewType("CLOCK")}
+                checked={this.props.app.state.selectedView === "CLOCK"}
               >
                 Clock
               </Radio>
 
               <Radio
                 name="view"
-                onChange={() =>
-                  this.props.app.setViewType(constants.viewTypes.AGE)
-                }
-                checked={
-                  this.props.app.state.selectedView === constants.viewTypes.AGE
-                }
+                onChange={() => this.props.app.setViewType("AGE")}
+                checked={this.props.app.state.selectedView === "AGE"}
               >
                 Age
               </Radio>
 
               <Radio
                 name="view"
-                onChange={() =>
-                  this.props.app.setViewType(constants.viewTypes.NOTHING)
-                }
-                checked={
-                  this.props.app.state.selectedView ===
-                  constants.viewTypes.NOTHING
-                }
+                onChange={() => this.props.app.setViewType("NOTHING")}
+                checked={this.props.app.state.selectedView === "NOTHING"}
               >
                 Nothing
               </Radio>
 
-              {this.props.app.state.selectedView ===
-                constants.viewTypes.CLOCK && (
+              {this.props.app.state.selectedView === "CLOCK" && (
                 <label>
                   <Text>
                     <input
@@ -228,8 +201,7 @@ class Menu extends React.Component {
                 </label>
               )}
 
-              {this.props.app.state.selectedView ===
-                constants.viewTypes.AGE && (
+              {this.props.app.state.selectedView === "AGE" && (
                 <label>
                   Your date of birth
                   <input

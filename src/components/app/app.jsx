@@ -9,15 +9,15 @@ import Clock from "../clock/clock.tsx";
 import YearProgress from "../year-progress/year-progress.tsx";
 import Age from "../age/age.tsx";
 import BackgroundImage from "../background-image/background-image.tsx";
-import { appStateProps, withAppState } from "../../state/app-state.js";
-import * as s from "../../shared/styles.js";
-import * as constants from "../../shared/constants.js";
-import * as time from "../../shared/time.js";
+import withAppState from "../../state/with-app-state.tsx";
+import * as s from "../../shared/styles.ts";
+import * as constants from "../../shared/constants.ts";
+import * as time from "../../shared/time.ts";
 
 class App extends React.Component {
-  static propTypes = {
-    app: appStateProps
-  };
+  // static propTypes = {
+  //   app: appStateProps
+  // };
 
   static config = {
     yearProgressDecimalPlaces: 8,
@@ -61,7 +61,7 @@ class App extends React.Component {
 
         {(() => {
           switch (this.props.app.state.selectedView) {
-            case constants.viewTypes.CLOCK:
+            case "CLOCK":
               return (
                 <AppContent center>
                   <ConditionalUpdater
@@ -92,7 +92,7 @@ class App extends React.Component {
             //     </AppContent>
             //   );
 
-            case constants.viewTypes.YEAR_PROGRESS:
+            case "YEAR_PROGRESS":
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -112,7 +112,7 @@ class App extends React.Component {
                 </AppContent>
               );
 
-            case constants.viewTypes.AGE: {
+            case "AGE": {
               return (
                 <AppContent>
                   <ConditionalUpdater
@@ -130,7 +130,7 @@ class App extends React.Component {
               );
             }
 
-            case constants.viewTypes.NOTHING:
+            case "NOTHING":
               return null;
 
             default:

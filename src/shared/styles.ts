@@ -1,13 +1,15 @@
 import { createGlobalStyle } from "styled-components";
 import styledNormalize from "styled-normalize";
 
-const gridRaw = gridMultiple => gridMultiple * 8;
-export const grid = gridMultiple => `${size(gridRaw(gridMultiple))}`;
-export const gridPx = gridMultiple => `${gridRaw(gridMultiple)}px`;
+const gridRaw = (gridMultiple: number): number => gridMultiple * 8;
+export const grid = (gridMultiple: number): string =>
+  `${size(gridRaw(gridMultiple))}`;
+export const gridPx = (gridMultiple: number): string =>
+  `${gridRaw(gridMultiple)}px`;
 
-export const size = px => `${px / 16}rem`;
+export const size = (px: number): string => `${px / 16}rem`;
 
-export const breakpointPxToEm = px => `${px / 16}em`;
+export const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 
 // NOTE: Only use px we want to have fixed sizes that have the same dimensions
 // not affected by user font settings. Eg.: text in menu settings should be variable
