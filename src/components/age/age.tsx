@@ -46,8 +46,8 @@ const AgeBox = styled.div`
 `;
 
 const AgeText = styled.div`
-  ${s.text.text}
-  ${s.text.familyMonospace}
+  ${s.text.text};
+  ${s.text.familyMonospace};
 
   color: ${s.colors.white};
   opacity: ${s.opacity.default};

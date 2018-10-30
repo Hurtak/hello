@@ -5,7 +5,7 @@ import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once wide
 import "wicg-inert"; // TODO: remove once widely supported
 import Menu from "../menu/menu.jsx";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
-import Clock from "../clock/clock.jsx";
+import Clock from "../clock/clock.tsx";
 import YearProgress from "../year-progress/year-progress.jsx";
 import Age from "../age/age.tsx";
 import BackgroundImage from "../background-image/background-image.jsx";
