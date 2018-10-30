@@ -2,16 +2,22 @@
   "name": "hello",
   "version": "0.1.0",
   "dependencies": {
+    "@types/jest": "23.3.8",
+    "@types/lodash": "^4.14.117",
+    "@types/node": "10.12.1",
+    "@types/react": "16.4.18",
+    "@types/react-dom": "16.0.9",
     "jest-styled-components": "6.2.2",
     "lodash": "4.17.11",
     "prop-types": "15.6.2",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-scripts": "2.0.5",
-    "react-test-renderer": "^16.6.0",
+    "react": "16.6.0",
+    "react-dom": "16.6.0",
+    "react-scripts": "2.1.0",
+    "react-test-renderer": "16.6.0",
     "resize-observer-polyfill": "1.5.0",
     "styled-components": "4.0.2",
-    "styled-normalize": "^8.0.3",
+    "styled-normalize": "8.0.3",
+    "typescript": "3.1.4",
     "unstated": "2.1.1",
     "why-did-you-update": "0.1.1",
     "wicg-inert": "2.0.0"
@@ -20,7 +26,11 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "types": "tsc --pretty --noEmit",
     "zip": "cd build && zip -r -X \"../build.zip\" *"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": [
     "last 4 chrome versions",

@@ -1,7 +1,7 @@
 import get from "lodash/get";
 import { corsProxyTypes, fetchErrorTypes } from "./constants.js";
 
-export function getCorsProxyUrl(corsProxyType, proxedUrl) {
+export function getCorsProxyUrl(corsProxyType, proxedUrl: string): string {
   switch (corsProxyType) {
     case corsProxyTypes.CODETABS:
       return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(
@@ -14,14 +14,14 @@ export function getCorsProxyUrl(corsProxyType, proxedUrl) {
   }
 }
 
-export const bingImageUrl = (() => {
+export const bingImageUrl: string = (() => {
   // Some related docs: https://github.com/timothymctim/Bing-wallpapers
   // Locale (the "mkt" parameter) is determined automatically based on the IP address.
 
   const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
   bingImage.searchParams.set("format", "js"); // get JSON as response-type
   bingImage.searchParams.set("idx", "0"); // TODO: what is this?
-  bingImage.searchParams.set("n", 1); // number of images
+  bingImage.searchParams.set("n", "1"); // number of images
 
   return bingImage.toString();
 })();

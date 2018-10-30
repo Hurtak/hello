@@ -4,7 +4,14 @@ import image03 from "./images/03.jpg";
 import image04 from "./images/04.jpg";
 import image05 from "./images/05.jpg";
 
-export default [
+interface IImage {
+  url: string;
+  name: string | null;
+  location: string | null;
+  source: string;
+}
+
+const images: IImage[] = [
   {
     url: image01,
     name: "Glacier National Park",
@@ -36,3 +43,5 @@ export default [
     source: "https://unsplash.com/photos/RbbdzZBKRDY"
   }
 ];
+
+export default images;

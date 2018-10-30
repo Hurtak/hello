@@ -1,5 +1,4 @@
-import images from "./images.js";
-const { it, expect } = global;
+import images from "./images";
 
 it("all image objects have image", () => {
   for (let image of images) {
@@ -18,7 +17,6 @@ it("all image urls are unique", () => {
 });
 
 it("image urls have certain structure", () => {
-  const seenUrls = new Set();
   for (let image of images) {
     // url is already checked in different test
     expect("name" in image).toBeTruthy();

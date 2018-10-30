@@ -1,8 +1,8 @@
 import { Container } from "unstated";
-import { getBingImageOfTheDay } from "../shared/api.js";
+import { getBingImageOfTheDay } from "../shared/api.ts";
 import * as constants from "../shared/constants.js";
 import * as time from "../shared/time.js";
-import images from "../images/images.js";
+import images from "../images/images.ts";
 
 const savedState = [
   "selectedView",
