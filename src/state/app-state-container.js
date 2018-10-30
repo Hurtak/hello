@@ -1,5 +1,5 @@
 import { Container } from "unstated";
-import { getBingImageOfTheDay } from "../shared/api.ts";
+import { getBingImageOfTheDay } from "../shared/api.js";
 import * as constants from "../shared/constants.js";
 import * as time from "../shared/time.js";
 import images from "../images/images.ts";

@@ -7,7 +7,7 @@ import Menu from "../menu/menu.jsx";
 import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
 import Clock from "../clock/clock.jsx";
 import YearProgress from "../year-progress/year-progress.jsx";
-import Age from "../age/age.jsx";
+import Age from "../age/age.tsx";
 import BackgroundImage from "../background-image/background-image.jsx";
 import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";

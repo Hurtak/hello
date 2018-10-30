@@ -12,6 +12,7 @@
     - cache/predownload image
 - renema to hello
 - Text component?
+  - https://www.styled-components.com/docs/basics#extending-styles ??
 - add more images!
 - go through manifest.json
   - unnecessary permissins?
