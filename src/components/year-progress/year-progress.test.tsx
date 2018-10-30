@@ -1,10 +1,10 @@
-import * as YearProgressFuntions from "./year-progress.jsx";
-
-const { it, expect } = global;
+import * as YearProgressFuntions from "./year-progress";
 
 it("shouldBeUpdated", () => {
   expect(
-    YearProgressFuntions.getYearProgress(new Date(2015, 0, 1, 0, 0, 0, 0))
+    YearProgressFuntions.getYearProgress(
+      new Date(2015, 0, 1, 0, 0, 0, 0).getTime()
+    )
   ).toBe(0);
 
   const yearLength = 365 * 24 * 60 * 60 * 1000;
@@ -22,7 +22,7 @@ it("shouldBeUpdated", () => {
   expect(
     Math.floor(
       YearProgressFuntions.getYearProgress(
-        new Date(2015, 11, 30, 23, 59, 59, 999)
+        new Date(2015, 11, 30, 23, 59, 59, 999).getTime()
       ) * 100
     )
   ).toBe(99);
