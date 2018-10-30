@@ -8,7 +8,7 @@ import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
 import Clock from "../clock/clock.tsx";
 import YearProgress from "../year-progress/year-progress.tsx";
 import Age from "../age/age.tsx";
-import BackgroundImage from "../background-image/background-image.jsx";
+import BackgroundImage from "../background-image/background-image.tsx";
 import { appStateProps, withAppState } from "../../state/app-state.js";
 import * as s from "../../shared/styles.js";
 import * as constants from "../../shared/constants.js";
