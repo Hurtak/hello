@@ -1,9 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Calendar, * as CalendarFunctions from "./calendar.jsx";
+import Calendar, * as CalendarFunctions from "./calendar";
 import "jest-styled-components";
-
-const { it, expect } = global;
 
 it("getDaysInMonth", () => {
   expect(CalendarFunctions.getDaysInMonth(2017, 1)).toBe(31);

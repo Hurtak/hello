@@ -3,6 +3,9 @@ import { HttpData } from "../shared/api";
 
 export default interface IAppStateProps {
   state: {
+    // Browser state
+    online: boolean;
+
     // Menu states
     menuOpened: boolean;
 
@@ -19,12 +22,9 @@ export default interface IAppStateProps {
     // App settings
     selectedView: types.View;
     imageSource: types.ImageSource;
-
     clockShowSeconds: boolean;
-
     ageDateOfBirthTimestamp: number;
     ageDateOfBirthValue: string;
-
     settingsHidden: boolean;
   };
 }

@@ -1,6 +1,4 @@
-import * as ConditionalUpdaterFn from "./conditional-updater.jsx";
-
-const { it, expect } = global;
+import * as ConditionalUpdaterFn from "./conditional-updater";
 
 it("getNextTick", () => {
   expect(

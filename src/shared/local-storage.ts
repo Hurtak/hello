@@ -1,11 +1,11 @@
 // TODO: revisit API?
 const localStorageKeyPrefix = "STORAGE-";
 
-function getPrefixedKey(key, componentId) {
+function getPrefixedKey(key: string, componentId: string) {
   return localStorageKeyPrefix + (componentId ? componentId + "-" : "") + key;
 }
 
-export function initLocalStorage(keysToSave, componentId, state) {
+export function initLocalStorage(keysToSave, componentId: string, state) {
   const newState = { ...state };
 
   for (const [key, value] of Object.entries(newState)) {
@@ -24,7 +24,11 @@ export function initLocalStorage(keysToSave, componentId, state) {
   return newState;
 }
 
-export function saveToLocalStorage(keysToSave, componentId, state) {
+export function saveToLocalStorage(
+  keysToSave: string[],
+  componentId: string,
+  state
+) {
   for (const [key, value] of Object.entries(state)) {
     if (!keysToSave.includes(key)) continue;
 

@@ -1,18 +1,19 @@
 import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
-import withAppState from "../../state/with-app-state.tsx";
-import * as s from "../../shared/styles.ts";
-import { timestampToDateInputValue } from "../../shared/time.ts";
+import withAppState from "../../state/with-app-state";
+import * as s from "../../shared/styles";
+import IAppStateProps from "../../state/app-state-type";
+import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
 
-class Menu extends React.Component {
-  static propTypes = {
-    // app: appStateProps,
-    opened: propTypes.bool.isRequired,
-    isDev: propTypes.bool.isRequired
-  };
+interface IMenuProps {
+  app: IAppStateProps;
+  opened: boolean;
+  isDev: boolean;
+}
 
+class Menu extends React.Component<IMenuProps, {}> {
   ageDateOfBirthChange = e => {
     const valueRaw = e.target.value;
     const valueValid = valueRaw.length > 0;
@@ -282,23 +283,23 @@ MenuWrapper.propTypes = {
   settingsHidden: propTypes.bool
 };
 
-const ToggleButton = styled.button({
-  boxSizing: "border-box",
-  position: "absolute",
-  userSelect: "none",
-  top: s.dimensions.menuButtonSpacing,
-  right: s.dimensions.menuButtonSpacing,
-  border: 0,
-  background: "transparent",
-  padding: s.dimensions.menuButtonPadding,
-  cursor: "pointer"
-});
+const ToggleButton = styled.button`
+  box-sizing: border-box;
+  position: absolute;
+  user-select: none;
+  top: ${s.dimensions.menuButtonSpacing};
+  right: ${s.dimensions.menuButtonSpacing};
+  border: 0;
+  background: transparent;
+  padding: ${s.dimensions.menuButtonPadding};
+  cursor: pointer;
+`;
 
-const ToggleButtonSpacer = styled.div({
-  float: "right",
-  width: s.grid(8),
-  height: s.grid(8)
-});
+const ToggleButtonSpacer = styled.div`
+  float: right;
+  width: ${s.grid(8)};
+  height: ${s.grid(8)};
+`;
 
 const ToggleButtonIcon = styled.img(
   {
@@ -321,70 +322,69 @@ ToggleButtonIcon.propTypes = {
   rotated: propTypes.bool
 };
 
-const Heading = styled.h1({
-  ...s.text.text,
-  ...s.text.size18,
-  paddingBottom: "0.25em"
-});
+const Heading = styled.h1`
+  ${s.text.text};
+  ${s.text.size18};
 
-const HeadingSmall = styled.h2({
-  ...s.text.text,
-  ...s.text.size16,
-  paddingBottom: "0.25em"
-});
+  padding-bottom: 0.25em;
+`;
 
-const Text = styled.p({
-  ...s.text.text
-});
+const HeadingSmall = styled.h2`
+  ${s.text.text};
+  ${s.text.size16};
 
-const MenuSectionsWrapper = styled.div({
-  marginTop: s.grid(3)
-});
+  padding-bottom: 0.25em;
+`;
 
-const MenuSectionStyled = styled.section({
-  marginTop: s.grid(2),
-  ":first-child": {
-    marginTop: 0
+const Text = styled.p`
+  ${s.text.text};
+`;
+
+const MenuSectionsWrapper = styled.div`
+  margin-top: ${s.grid(3)};
+`;
+
+const MenuSectionStyled = styled.section`
+  margin-top: ${s.grid(2)};
+
+  &:first-child {
+    margin-top: 0;
   }
-});
+`;
 
-const MenuSection = props => (
+const MenuSection = (props: { title: string; children: JSX.Element }) => (
   <MenuSectionStyled>
     <HeadingSmall>{props.title}</HeadingSmall>
     {props.children}
   </MenuSectionStyled>
 );
-MenuSection.propTypes = {
-  title: propTypes.string.isRequired,
-  children: propTypes.node.isRequired
-};
 
-const Radio = props => (
+const Radio = (props: {
+  name: string;
+  checked: boolean;
+  disabled?: boolean;
+  onChange: () => {}; // TODO: proper type?
+  children: string;
+}) => (
   <RadioLabel>
     <input
-      onChange={props.onChange}
       type="radio"
       name={props.name}
       checked={props.checked}
       disabled={props.disabled}
+      onChange={props.onChange}
     />
     <RadioText>{props.children}</RadioText>
   </RadioLabel>
 );
-Radio.propTypes = {
-  name: propTypes.string.isRequired,
-  checked: propTypes.bool.isRequired,
-  disabled: propTypes.bool,
-  onChange: propTypes.func.isRequired,
-  children: propTypes.string.isRequired
-};
 
-const RadioLabel = styled.label({
-  display: "block"
-});
+const RadioLabel = styled.label`
+  display: block;
+`;
 
-const RadioText = styled.span({
-  ...s.text.text,
-  color: s.colors.white,
-  marginLeft: s.grid(1)
-});
+const RadioText = styled.span`
+  ${s.text.text};
+
+  color: ${s.colors.white};
+  margin-left: ${s.grid(1)};
+`;

@@ -3,16 +3,16 @@ import propTypes from "prop-types";
 import styled from "styled-components";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
-import Menu from "../menu/menu.jsx";
-import ConditionalUpdater from "../conditional-updater/conditional-updater.jsx";
-import Clock from "../clock/clock.tsx";
-import YearProgress from "../year-progress/year-progress.tsx";
-import Age from "../age/age.tsx";
-import BackgroundImage from "../background-image/background-image.tsx";
-import withAppState from "../../state/with-app-state.tsx";
-import * as s from "../../shared/styles.ts";
-import * as constants from "../../shared/constants.ts";
-import * as time from "../../shared/time.ts";
+import Menu from "../menu/menu";
+import ConditionalUpdater from "../conditional-updater/conditional-updater";
+import Clock from "../clock/clock";
+import YearProgress from "../year-progress/year-progress";
+import Age from "../age/age";
+import BackgroundImage from "../background-image/background-image";
+import withAppState from "../../state/with-app-state";
+import * as s from "../../shared/styles";
+import * as constants from "../../shared/constants";
+import * as time from "../../shared/time";
 
 class App extends React.Component {
   // static propTypes = {
