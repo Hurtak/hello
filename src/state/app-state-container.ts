@@ -1,7 +1,8 @@
 import { Container } from "unstated";
-import { getBingImageOfTheDay } from "../shared/api.ts";
-import * as time from "../shared/time.ts";
-import images from "../images/images.ts";
+import { getBingImageOfTheDay } from "../shared/api";
+import * as time from "../shared/time";
+import * as types from "../shared/types";
+import images from "../images/images";
 
 const savedState = [
   "selectedView",
@@ -12,7 +13,7 @@ const savedState = [
   "settingsHidden"
 ];
 
-export default class AppStateContainer extends Container {
+export default class AppStateContainer extends Container<any> {
   state = initLocalStorage({
     // Browser state
     online: navigator.onLine,
@@ -42,7 +43,7 @@ export default class AppStateContainer extends Container {
       get imageLocal() {
         return images[app.state.imageLocalIndex || 0];
       },
-      get imageSourceWithFallback() {
+      get imageSourceWithFallback(): types.ImageSource | null {
         switch (app.state.imageSource) {
           case "LOCAL":
             return "LOCAL";
@@ -111,7 +112,7 @@ export default class AppStateContainer extends Container {
 
   // Image - Local
 
-  shiftImageLocalIndex = async change => {
+  shiftImageLocalIndex = async (change: number) => {
     await this._setImageLocalIndex(state => {
       let newIndex = state.imageLocalIndex + change;
       if (newIndex > this.computed.imagesLocal.length - 1) {
@@ -255,12 +256,12 @@ function clearLocalStorage() {
   }
 }
 
-function getPrefixedStorageKey(key) {
+function getPrefixedStorageKey(key: string): string {
   return localStorageKeyPrefix + key;
 }
 
 // Misc functions
 
-function getRandomInt(min, max) {
+function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
