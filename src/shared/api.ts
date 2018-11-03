@@ -1,8 +1,8 @@
 import get from "lodash/get";
-import * as types from "./types";
+import { CorsProxyType, HttpData } from "./types";
 
 export function getCorsProxyUrl(
-  corsProxyType: types.CorsProxyType,
+  corsProxyType: CorsProxyType,
   proxedUrl: string
 ): string {
   switch (corsProxyType) {
@@ -38,8 +38,8 @@ export async function getBingImageOfTheDay() {
       headers: { Accept: "application/json" }
     });
   } catch (error) {
-    return httpData({
-      error: true,
+    return httpDataWithLog({
+      type: "ERROR",
       errorType: "FETCH_ERROR",
       data: error
     });
@@ -51,15 +51,15 @@ export async function getBingImageOfTheDay() {
     try {
       text = await request.text();
     } catch (error) {
-      return httpData({
-        error: true,
+      return httpDataWithLog({
+        type: "ERROR",
         errorType: "STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE",
         data: error
       });
     }
 
-    return httpData({
-      error: true,
+    return httpDataWithLog({
+      type: "ERROR",
       errorType: "STATUS_NOT_200",
       data: {
         status: request.status,
@@ -72,8 +72,8 @@ export async function getBingImageOfTheDay() {
   try {
     response = await request.json();
   } catch (error) {
-    return httpData({
-      error: true,
+    return httpDataWithLog({
+      type: "ERROR",
       errorType: "ERROR_PARSING_JSON",
       data: error
     });
@@ -85,15 +85,15 @@ export async function getBingImageOfTheDay() {
     return typeof url === "string" && url.length > 0;
   })();
   if (!dataValid) {
-    return httpData({
-      error: true,
+    return httpDataWithLog({
+      type: "ERROR",
       errorType: "MISSING_DATA_IN_RESPONSE",
       data: response
     });
   }
 
-  return httpData({
-    error: false,
+  return httpDataWithLog({
+    type: "DONE",
     data: {
       url: "https://www.bing.com" + imageData.url,
 
@@ -116,33 +116,11 @@ export async function getBingImageOfTheDay() {
   });
 }
 
-export type HttpData<Resp> =
-  | {
-      error: true;
-      errorType: types.FetchErrorType;
-      data: any; // TODO
-    }
-  | {
-      error: false;
-      data: Resp; // TODO
-    };
-
 // TODO: no any?
-function httpData(data: HttpData<any>): HttpData<any> {
-  let res;
-  if (data.error) {
-    res = {
-      error: data.error,
-      errorType: data.errorType,
-      data: data.data
-    };
-    console.log(res);
-  } else {
-    res = {
-      error: data.error,
-      data: data.data
-    };
+function httpDataWithLog(data: HttpData<any>): HttpData<any> {
+  if (data.type === "ERROR") {
+    console.log(data);
   }
 
-  return res;
+  return data;
 }

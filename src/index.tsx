@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
-import { Provider } from "unstated";
+import { StoreProvider } from "easy-peasy";
+import { store } from "./state/app-state";
 
 if (process.env.NODE_ENV !== "production") {
   const { whyDidYouUpdate } = require("why-did-you-update");
@@ -11,8 +12,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 ReactDOM.render(
-  <Provider>
+  <StoreProvider store={store}>
     <App />
-  </Provider>,
+  </StoreProvider>,
   document.getElementById("root")
 );

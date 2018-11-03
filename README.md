@@ -6,7 +6,6 @@
   - menu texts
   - menu structure
   - menu styles
-  - cleanup menu with unstated?
   - show offline indicator?
   - bing images
     - cache/predownload image

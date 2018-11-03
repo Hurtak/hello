@@ -17,3 +17,20 @@ export type FetchErrorType =
   | "STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE"
   | "ERROR_PARSING_JSON"
   | "MISSING_DATA_IN_RESPONSE";
+
+export type HttpData<Resp> =
+  | {
+      type: "INITIAL";
+    }
+  | {
+      type: "FETCHING";
+    }
+  | {
+      type: "DONE";
+      data: Resp; // TODO
+    }
+  | {
+      type: "ERROR";
+      errorType: FetchErrorType;
+      data: any; // TODO
+    };

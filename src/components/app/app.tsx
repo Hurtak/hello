@@ -1,171 +1,151 @@
-import React from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useStore, useAction } from "easy-peasy";
 import styled, { css } from "styled-components";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
-import Menu from "../menu/menu";
+// import Menu from "../menu/menu";
 import ConditionalUpdater from "../conditional-updater/conditional-updater";
 import Clock from "../clock/clock";
-import YearProgress from "../year-progress/year-progress";
 import Age from "../age/age";
 import BackgroundImage from "../background-image/background-image";
-import withAppState from "../../state/with-app-state";
-import IAppStateProps from "../../state/app-state-type";
+import { IGlobalAppState } from "../../state/app-state";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
 import * as types from "../../shared/types";
 
 interface IAppProps {
-  app: IAppStateProps;
+  app: IGlobalAppState;
 }
 
 interface IAppState {
   menuHeight: number | null;
 }
 
-class App extends React.Component<IAppProps, IAppState> {
-  static config = {
-    yearProgressDecimalPlaces: 8,
-    ageDecimalPlaces: 3
-  };
+// TODO: move to global state???
+const AppConfig = {
+  yearProgressDecimalPlaces: 8,
+  ageDecimalPlaces: 3
+};
 
-  elAppMenu: any;
+const App = () => {
+  const menuEl = useRef(null);
+  const [menuHeight, setMenuHeight] = useState(null);
 
-  constructor(props: IAppProps) {
-    super(props);
+  const imageUrl = useStore((store: any) => store.app.imageUrl);
+  const selectedView = useStore((store: any) => store.app.selectedView);
+  const clockShowSeconds = useStore((store: any) => store.app.clockShowSeconds);
+  const ageDateOfBirthTimestamp = useStore(
+    (store: any) => store.app.ageDateOfBirthTimestamp
+  );
+  const menuOpened = useStore((store: any) => store.app.menuOpened);
 
-    this.elAppMenu = null;
+  const appInit = useAction((actions: any) => actions.app.appInit);
+  useEffect(() => {
+    appInit();
+  }, []);
 
-    this.state = {
-      // Menu states
-      menuHeight: null
-    };
-  }
+  useEffect(() => {
+    if (!menuEl.current) return;
 
-  listenOnMenuResize() {
-    // TODO: remove the listeners on componentWillUnmount?
     const observer = new ResizeObserver(entries => {
-      this.setState({
-        menuHeight: entries[0].contentRect.height
-      });
+      setMenuHeight(entries[0].contentRect.height);
     });
-    observer.observe(this.elAppMenu);
-  }
+    observer.observe(menuEl.current);
 
-  async componentDidMount() {
-    this.listenOnMenuResize();
-    await this.props.app.initImage();
-  }
+    return () => observer.disconnect();
+  });
 
-  render() {
-    return (
-      <AppWrapper>
-        <s.GlobalStyles />
+  return (
+    <AppWrapper>
+      <s.GlobalStyles />
 
-        <BackgroundWrapper>
-          <BackgroundImage url={this.props.app.computed.imageUrl} />
-        </BackgroundWrapper>
+      <BackgroundWrapper>
+        <BackgroundImage url={imageUrl} />
+      </BackgroundWrapper>
 
-        {(() => {
-          switch (this.props.app.state.selectedView) {
-            case "CLOCK":
-              return (
-                <AppContent center>
-                  <ConditionalUpdater
-                    updateEveryN={
-                      this.props.app.state.clockShowSeconds
-                        ? time.second
-                        : time.minute
-                    }
-                    component={time => (
-                      <Clock
-                        time={time}
-                        showSeconds={this.props.app.state.clockShowSeconds}
-                      />
-                    )}
-                    key={this.props.app.state.selectedView}
-                  />
-                </AppContent>
-              );
+      {(() => {
+        switch (selectedView) {
+          case "CLOCK":
+            return (
+              <AppContent center>
+                <ConditionalUpdater
+                  updateEveryN={clockShowSeconds ? time.second : time.minute}
+                  component={time => (
+                    <Clock time={time} showSeconds={clockShowSeconds} />
+                  )}
+                  key={selectedView}
+                />
+              </AppContent>
+            );
 
-            // case types.views.CALENDAR:
-            //   return (
-            //     <AppContent center maxWidth>
-            //       <ConditionalUpdater
-            //         updateEveryN={time.day}
-            //         component={time => <Calendar time={time} />}
-            //         key={this.props.app.state.selectedView}
-            //       />
-            //     </AppContent>
-            //   );
+          // case types.views.CALENDAR:
+          //   return (
+          //     <AppContent center maxWidth>
+          //       <ConditionalUpdater
+          //         updateEveryN={time.day}
+          //         component={time => <Calendar time={time} />}
+          //         key={selectedView}
+          //       />
+          //     </AppContent>
+          //   );
 
-            // case "YEAR_PROGRESS":
-            //   return (
-            //     <AppContent>
-            //       <ConditionalUpdater
-            //         updateEveryN={
-            //           time.year /
-            //           100 /
-            //           10 ** App.config.yearProgressDecimalPlaces
-            //         }
-            //         component={time => (
-            //           <YearProgress
-            //             time={time}
-            //             decimalPlaces={App.config.yearProgressDecimalPlaces}
-            //           />
-            //         )}
-            //         key={this.props.app.state.selectedView}
-            //       />
-            //     </AppContent>
-            //   );
+          // case "YEAR_PROGRESS":
+          //   return (
+          //     <AppContent>
+          //       <ConditionalUpdater
+          //         updateEveryN={
+          //           time.year / 100 / 10 ** AppConfig.yearProgressDecimalPlaces
+          //         }
+          //         component={time => (
+          //           <YearProgress
+          //             time={time}
+          //             decimalPlaces={AppConfig.yearProgressDecimalPlaces}
+          //           />
+          //         )}
+          //         key={selectedView}
+          //       />
+          //     </AppContent>
+          //   );
 
-            case "AGE": {
-              return (
-                <AppContent>
-                  <ConditionalUpdater
-                    updateEveryN={time.year / 10 ** App.config.ageDecimalPlaces}
-                    component={time => (
-                      <Age
-                        time={time}
-                        birthDate={this.props.app.state.ageDateOfBirthTimestamp}
-                        decimalPlaces={App.config.ageDecimalPlaces}
-                      />
-                    )}
-                    key={this.props.app.state.selectedView}
-                  />
-                </AppContent>
-              );
-            }
-
-            case "NOTHING":
-              return null;
-
-            default:
-              throw new Error("Unknown view");
+          case "AGE": {
+            return (
+              <AppContent>
+                <ConditionalUpdater
+                  updateEveryN={time.year / 10 ** AppConfig.ageDecimalPlaces}
+                  component={time => (
+                    <Age
+                      time={time}
+                      birthDate={ageDateOfBirthTimestamp}
+                      decimalPlaces={AppConfig.ageDecimalPlaces}
+                    />
+                  )}
+                  key={selectedView}
+                />
+              </AppContent>
+            );
           }
-        })()}
 
-        <AppMenuWrapper
-          opened={this.props.app.state.menuOpened}
-          menuHeight={this.state.menuHeight}
-        >
-          {/* TODO: new ref api? */}
-          <AppMenu
-            ref={(el: any) => {
-              this.elAppMenu = el;
-            }}
-          >
-            <Menu
-              opened={this.props.app.state.menuOpened}
-              isDev={constants.isDev}
-            />
-          </AppMenu>
-        </AppMenuWrapper>
-      </AppWrapper>
-    );
-  }
-}
-export default withAppState(App);
+          case "NOTHING":
+            return null;
+
+          default:
+            return null;
+        }
+      })()}
+
+      <AppMenuWrapper opened={menuOpened} menuHeight={menuHeight}>
+        <AppMenu ref={menuEl}>
+          {/* <Menu
+            opened={this.props.app.state.menuOpened}
+            isDev={constants.isDev}
+          /> */}
+        </AppMenu>
+      </AppMenuWrapper>
+    </AppWrapper>
+  );
+};
+export default App;
 
 const AppWrapper = styled.div`
   box-sizing: border-box;
