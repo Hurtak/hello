@@ -1,5 +1,4 @@
 import React from "react";
-import propTypes from "prop-types";
 import styled, { css } from "styled-components";
 import withAppState from "../../state/with-app-state";
 import * as s from "../../shared/styles";
