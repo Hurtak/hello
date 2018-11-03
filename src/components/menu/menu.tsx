@@ -1,11 +1,18 @@
 import React from "react";
 import propTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import withAppState from "../../state/with-app-state";
 import * as s from "../../shared/styles";
 import IAppStateProps from "../../state/app-state-type";
 import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
+
+// TODO: better place to put it?
+declare module "react" {
+  interface HTMLAttributes<T> {
+    inert?: "true" | null;
+  }
+}
 
 interface IMenuProps {
   app: IAppStateProps;
@@ -14,7 +21,7 @@ interface IMenuProps {
 }
 
 class Menu extends React.Component<IMenuProps, {}> {
-  ageDateOfBirthChange = e => {
+  ageDateOfBirthChange = (e: any) => {
     const valueRaw = e.target.value;
     const valueValid = valueRaw.length > 0;
 
@@ -104,20 +111,25 @@ class Menu extends React.Component<IMenuProps, {}> {
               </Radio>
 
               {this.props.app.computed.imageSourceWithFallback === "BING" &&
-                this.props.app.state.imageBing && (
+                this.props.app.state.imageBing &&
+                this.props.app.state.imageBing.error === false && (
                   <section>
-                    {this.props.app.state.imageBing.title && (
-                      <Text>title: {this.props.app.state.imageBing.title}</Text>
-                    )}
-                    {this.props.app.state.imageBing.description && (
+                    {this.props.app.state.imageBing.data.title && (
                       <Text>
-                        description:{" "}
-                        {this.props.app.state.imageBing.description}
+                        title: {this.props.app.state.imageBing.data.title}
                       </Text>
                     )}
-                    {this.props.app.state.imageBing.link && (
+                    {this.props.app.state.imageBing.data.description && (
                       <Text>
-                        <a href={this.props.app.state.imageBing.link}>link</a>
+                        description:{" "}
+                        {this.props.app.state.imageBing.data.description}
+                      </Text>
+                    )}
+                    {this.props.app.state.imageBing.data.link && (
+                      <Text>
+                        <a href={this.props.app.state.imageBing.data.link}>
+                          link
+                        </a>
                       </Text>
                     )}
                   </section>
@@ -259,29 +271,26 @@ class Menu extends React.Component<IMenuProps, {}> {
 }
 export default withAppState(Menu);
 
-const MenuWrapper = styled.section(
-  {
-    boxSizing: "border-box",
-    position: "relative",
-    padding: s.grid(2),
-    overflow: "hidden",
-    backgroundColor: s.colors.whiteTransparentDefault
-  },
-  props => {
-    if (props.settingsHidden) {
-      return {
-        opacity: 0,
-        transition: s.animations.default,
-        ":hover": {
-          opacity: 1
-        }
-      };
-    }
-  }
-);
-MenuWrapper.propTypes = {
-  settingsHidden: propTypes.bool
-};
+interface IMenuWrapperProps {
+  settingsHidden?: boolean;
+}
+const MenuWrapper = styled.section`
+  box-sizing: "border-box";
+  position: "relative";
+  padding: ${s.grid(2)};
+  overflow: "hidden";
+  background-color: ${s.colors.whiteTransparentDefault};
+
+  ${(props: IMenuWrapperProps) =>
+    props.settingsHidden &&
+    css`
+      opacity: 0;
+      transition: ${s.animations.default};
+      &:hover {
+        opacity: 1;
+      }
+    `};
+`;
 
 const ToggleButton = styled.button`
   box-sizing: border-box;
@@ -301,26 +310,24 @@ const ToggleButtonSpacer = styled.div`
   height: ${s.grid(8)};
 `;
 
-const ToggleButtonIcon = styled.img(
-  {
-    display: "block",
-    width: s.dimensions.menuButtonSize,
-    height: s.dimensions.menuButtonSize,
-    objectFit: "contain",
-    transition: s.animations.default,
-    opacity: s.opacity.default
-  },
-  props => {
-    if (props.rotated) {
-      return {
-        transform: "rotate(-360deg)"
-      };
-    }
-  }
-);
-ToggleButtonIcon.propTypes = {
-  rotated: propTypes.bool
-};
+interface IToggleButtonIconProps {
+  rotated?: boolean;
+}
+
+const ToggleButtonIcon = styled.img`
+  display: block;
+  width: ${s.dimensions.menuButtonSize};
+  height: ${s.dimensions.menuButtonSize};
+  object-fit: contain;
+  transition: ${s.animations.default};
+  opacity: ${s.opacity.default};
+
+  ${(props: IToggleButtonIconProps) =>
+    props.rotated &&
+    css`
+      transform: rotate(-360deg);
+    `};
+`;
 
 const Heading = styled.h1`
   ${s.text.text};
@@ -352,7 +359,10 @@ const MenuSectionStyled = styled.section`
   }
 `;
 
-const MenuSection = (props: { title: string; children: JSX.Element }) => (
+const MenuSection = (props: {
+  title: string;
+  children: (false | JSX.Element)[]; // TODO: why false?
+}) => (
   <MenuSectionStyled>
     <HeadingSmall>{props.title}</HeadingSmall>
     {props.children}

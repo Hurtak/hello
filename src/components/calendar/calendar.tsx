@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import * as s from "../../shared/styles";
 import * as types from "../../shared/types";
 
@@ -38,7 +38,7 @@ export default class Calendar extends React.Component<
       <MonthsWrapper>
         {months.map(monthNumber => {
           return (
-            <Month selected={monthNumber === currentMonth} key={monthNumber}>
+            <Month key={monthNumber}>
               <MonthName>
                 {monthNumber}. {Calendar.monthNames[monthNumber - 1]}
               </MonthName>
@@ -104,89 +104,86 @@ export default class Calendar extends React.Component<
   }
 }
 
-const MonthsWrapper = styled.ul({
-  display: "grid",
-  gridTemplateColumns: "repeat(4, auto)",
-  gridGap: s.grid(1),
-  listStyleType: "none",
-  margin: 0,
-  padding: 0
-});
+const MonthsWrapper = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: ${s.grid(1)};
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
 
-const Month = styled.li({
-  display: "block",
-  padding: s.grid(2),
-  backgroundColor: s.colors.whiteTransparentDefault
-});
+const Month = styled.li`
+  display: block;
+  padding: ${s.grid(2)};
+  background-color: ${s.colors.whiteTransparentDefault};
+`;
 
-const MonthName = styled.h2({
-  ...s.text.text,
-  display: "block",
-  margin: 0,
-  textAlign: "center"
-});
+const MonthName = styled.h2`
+  ${s.text.text};
+  display: block;
+  margin: 0;
+  text-align: center;
+`;
 
-const DaysWrapper = styled.div({
-  display: "grid",
-  gridTemplateColumns: "repeat(7, auto)",
-  gridGap: `${s.grid(1)} 0`,
-  justifyContent: "space-between",
-  padding: 0,
-  marginTop: s.grid(2),
-  listStyleType: "none"
-});
+const DaysWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-gap: ${s.grid(1)} 0;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: ${s.grid(2)};
+  list-style-type: none;
+`;
 
-const Day = styled.div(
-  {
-    ...s.text.text
-  },
-  props => {
-    let css = {};
-    if (props.heading) {
-      css = {
-        ...css,
-        fontWeight: "bold"
-      };
-    }
-    if (props.currentDay) {
-      css = {
-        ...css,
-        fontWeight: "bold"
-      };
-    }
-    if (props.selected) {
-      css = {
-        ...css,
-        position: "relative",
-        zIndex: 0,
-        "::after": {
-          content: '""',
-          display: "block",
-          position: "absolute",
-          left: "-2px",
-          top: "-4px",
-          width: "22px",
-          height: "22px",
-          backgroundColor: "orange",
-          zIndex: -1
-        }
-      };
-    }
+interface IDayProps {
+  heading?: boolean;
+  currentDay?: boolean;
+  selected?: boolean;
+}
 
-    return css;
-  }
-);
-Day.propTypes = {
-  heading: propTypes.bool,
-  currentDay: propTypes.bool,
-  selected: propTypes.bool
-};
+const Day = styled.div`
+  ${s.text.text};
 
-export function getDaysInMonth(year, month) {
+  ${(props: IDayProps) =>
+    props.heading &&
+    css`
+      font-weight: bold;
+    `}
+
+
+  ${(props: IDayProps) =>
+    props.currentDay &&
+    css`
+      font-weight: bold;
+    `}
+
+  ${(props: IDayProps) =>
+    props.currentDay &&
+    css`
+      position: relative;
+      z-index: 0;
+
+      &::after: {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -2px;
+        top: -4px;
+        width: 22px;
+        height: 22px;
+        background-color: orange;
+        z-index: -1;
+      }
+    `}
+
+`;
+
+export function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month, 0).getDate();
 }
 
-export function range(start, end) {
+export function range(start: number, end: number): number[] {
   const items = [];
   for (let i = start; i <= end; i++) {
     items.push(i);

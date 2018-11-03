@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
 import Menu from "../menu/menu";
@@ -10,21 +10,29 @@ import YearProgress from "../year-progress/year-progress";
 import Age from "../age/age";
 import BackgroundImage from "../background-image/background-image";
 import withAppState from "../../state/with-app-state";
+import IAppStateProps from "../../state/app-state-type";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
+import * as types from "../../shared/types";
 
-class App extends React.Component {
-  // static propTypes = {
-  //   app: appStateProps
-  // };
+interface IAppProps {
+  app: IAppStateProps;
+}
 
+interface IAppState {
+  menuHeight: number | null;
+}
+
+class App extends React.Component<IAppProps, IAppState> {
   static config = {
     yearProgressDecimalPlaces: 8,
     ageDecimalPlaces: 3
   };
 
-  constructor(props) {
+  elAppMenu: any;
+
+  constructor(props: IAppProps) {
     super(props);
 
     this.elAppMenu = null;
@@ -92,25 +100,25 @@ class App extends React.Component {
             //     </AppContent>
             //   );
 
-            case "YEAR_PROGRESS":
-              return (
-                <AppContent>
-                  <ConditionalUpdater
-                    updateEveryN={
-                      time.year /
-                      100 /
-                      10 ** App.config.yearProgressDecimalPlaces
-                    }
-                    component={time => (
-                      <YearProgress
-                        time={time}
-                        decimalPlaces={App.config.yearProgressDecimalPlaces}
-                      />
-                    )}
-                    key={this.props.app.state.selectedView}
-                  />
-                </AppContent>
-              );
+            // case "YEAR_PROGRESS":
+            //   return (
+            //     <AppContent>
+            //       <ConditionalUpdater
+            //         updateEveryN={
+            //           time.year /
+            //           100 /
+            //           10 ** App.config.yearProgressDecimalPlaces
+            //         }
+            //         component={time => (
+            //           <YearProgress
+            //             time={time}
+            //             decimalPlaces={App.config.yearProgressDecimalPlaces}
+            //           />
+            //         )}
+            //         key={this.props.app.state.selectedView}
+            //       />
+            //     </AppContent>
+            //   );
 
             case "AGE": {
               return (
@@ -144,7 +152,7 @@ class App extends React.Component {
         >
           {/* TODO: new ref api? */}
           <AppMenu
-            ref={el => {
+            ref={(el: any) => {
               this.elAppMenu = el;
             }}
           >
@@ -160,76 +168,69 @@ class App extends React.Component {
 }
 export default withAppState(App);
 
-const AppWrapper = styled.div({
-  boxSizing: "border-box",
-  position: "relative",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-  padding: s.grid(1)
-});
+const AppWrapper = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: ${s.grid(1)};
+`;
 
-const AppContent = styled.main(
-  {
-    display: "flex",
-    flex: "1 0 0",
-    flexDirection: "column",
-    width: "100%",
-    zIndex: s.zIndex.content
-  },
-  props => {
-    let styles = [];
+interface AppContentProps {
+  maxWith?: boolean;
+  center?: boolean;
+}
 
-    if (props.maxWidth) {
-      styles.push({
-        maxWidth: s.size(1200)
-      });
-    }
+const AppContent = styled.main`
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  width: 100%;
+  z-index: ${s.zIndex.content};
+  ${(props: AppContentProps) =>
+    props.maxWith &&
+    css`
+      max-width: ${s.size(1200)};
+    `};
+  ${(props: AppContentProps) =>
+    props.center &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `};
+`;
 
-    if (props.center) {
-      styles.push({
-        justifyContent: "center",
-        alignItems: "center"
-      });
-    }
+const BackgroundWrapper = styled.div`
+  z-index: ${s.zIndex.background};
+`;
 
-    return styles;
-  }
-);
+interface AppMenuWrapperProps {
+  opened: boolean;
+  menuHeight: IAppState["menuHeight"];
+}
 
-const BackgroundWrapper = styled.div({
-  zIndex: s.zIndex.background
-});
+const AppMenuWrapper = styled.aside`
+  position: absolute;
+  direction: rtl; /* To make the overflow cropping from the right side */
+  top: ${s.grid(1)};
+  right: ${s.grid(1)};
+  width: ${s.dimensions.menuButtonSizeAndSpacing};
+  height: ${s.dimensions.menuButtonSizeAndSpacing};
+  transition: 0.5s all ease;
+  overflow: hidden;
+  z-index: ${s.zIndex.menu}
+    ${(props: AppMenuWrapperProps) =>
+      props.opened &&
+      css`
+        width: ${s.dimensions.menuWidth};
+        height: ${props.menuHeight ? s.size(props.menuHeight) : "auto"};
+      `};
+`;
 
-const AppMenuWrapper = styled.aside(
-  {
-    position: "absolute",
-    direction: "rtl", // To make the overflow cropping from the right side
-    top: s.grid(1),
-    right: s.grid(1),
-    width: s.dimensions.menuButtonSizeAndSpacing,
-    height: s.dimensions.menuButtonSizeAndSpacing,
-    transition: "0.5s all ease",
-    overflow: "hidden",
-    zIndex: s.zIndex.menu
-  },
-  props => {
-    if (props.opened) {
-      return {
-        width: s.dimensions.menuWidth,
-        height: props.menuHeight ? s.size(props.menuHeight) : "auto"
-      };
-    }
-  }
-);
-AppMenuWrapper.propTypes = {
-  opened: propTypes.bool,
-  menuHeight: propTypes.number
-};
-
-const AppMenu = styled.div({
-  width: s.dimensions.menuWidth,
-  direction: "ltr" // Reset direction set in AppMenuWrapper
-});
+const AppMenu = styled.div`
+  width: ${s.dimensions.menuWidth};
+  direction: ltr; /* Reset direction set in AppMenuWrapper */
+`;

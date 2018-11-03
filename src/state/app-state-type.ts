@@ -27,4 +27,16 @@ export default interface IAppStateProps {
     ageDateOfBirthValue: string;
     settingsHidden: boolean;
   };
+
+  computed: any;
+  initImage: any;
+  setAgeDateOfBirth: any;
+  setViewType: any;
+  setImageSource: any;
+  shiftImageLocalIndex: any;
+  setImageLocalRandom: any;
+  toggleMenu: any;
+  toggleSettingsHidden: any;
+  resetAppState: any;
+  toggleClockShowSeconds: any;
 }

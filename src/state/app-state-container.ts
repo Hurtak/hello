@@ -113,7 +113,7 @@ export default class AppStateContainer extends Container<any> {
   // Image - Local
 
   shiftImageLocalIndex = async (change: number) => {
-    await this._setImageLocalIndex(state => {
+    await this._setImageLocalIndex((state: any) => {
       let newIndex = state.imageLocalIndex + change;
       if (newIndex > this.computed.imagesLocal.length - 1) {
         newIndex = 0;
@@ -126,7 +126,7 @@ export default class AppStateContainer extends Container<any> {
   };
 
   setImageLocalRandom = () => {
-    this._setImageLocalIndex(state => {
+    this._setImageLocalIndex((state: any) => {
       const numberOfImages = this.computed.imagesLocal.length;
 
       const index = (() => {
@@ -148,8 +148,8 @@ export default class AppStateContainer extends Container<any> {
     });
   };
 
-  _setImageLocalIndex = async cb => {
-    await this._setState(state => {
+  _setImageLocalIndex = async (cb: any) => {
+    await this._setState((state: any) => {
       const newIndex = cb(state);
 
       return {
@@ -163,27 +163,27 @@ export default class AppStateContainer extends Container<any> {
   //
 
   toggleMenu = async () => {
-    await this._setState(state => ({
+    await this._setState((state: any) => ({
       menuOpened: !state.menuOpened
     }));
   };
 
-  setViewType = async selectedView => {
+  setViewType = async (selectedView: any) => {
     await this._setState({ selectedView });
   };
 
-  setImageSource = async imageSource => {
+  setImageSource = async (imageSource: any) => {
     this._setState({ imageSource });
   };
 
   toggleClockShowSeconds = async () => {
-    await this._setState(state => ({
+    await this._setState((state: any) => ({
       clockShowSeconds: !state.clockShowSeconds
     }));
   };
 
-  setAgeDateOfBirth = async ({ inputValue, parsedTimestamp }) => {
-    await this._setState(state => ({
+  setAgeDateOfBirth = async ({ inputValue, parsedTimestamp }: any) => {
+    await this._setState((state: any) => ({
       ageDateOfBirthValue: inputValue,
       ageDateOfBirthTimestamp: parsedTimestamp
         ? parsedTimestamp
@@ -192,7 +192,9 @@ export default class AppStateContainer extends Container<any> {
   };
 
   toggleSettingsHidden = async () => {
-    await this._setState(state => ({ settingsHidden: !state.settingsHidden }));
+    await this._setState((state: any) => ({
+      settingsHidden: !state.settingsHidden
+    }));
   };
 
   //
@@ -208,8 +210,8 @@ export default class AppStateContainer extends Container<any> {
   // Local helper functions
   //
 
-  _setState = async (...args) => {
-    await this.setState(...args);
+  _setState = async (arg1: any, arg2?: any) => {
+    await this.setState(arg1, arg2);
     saveToLocalStorage(this.state);
   };
 }
@@ -218,7 +220,7 @@ export default class AppStateContainer extends Container<any> {
 
 const localStorageKeyPrefix = "STORAGE-";
 
-function initLocalStorage(state) {
+function initLocalStorage(state: any) {
   const newState = { ...state };
 
   for (const [key, value] of Object.entries(newState)) {
@@ -237,7 +239,7 @@ function initLocalStorage(state) {
   return newState;
 }
 
-function saveToLocalStorage(state) {
+function saveToLocalStorage(state: any) {
   for (const [key, value] of Object.entries(state)) {
     if (!savedState.includes(key)) continue;
 
