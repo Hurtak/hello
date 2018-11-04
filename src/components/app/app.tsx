@@ -33,14 +33,19 @@ const App = () => {
   const menuEl = useRef(null);
   const [menuHeight, setMenuHeight] = useState(null);
 
-  // TODO: remove anys
-  const imageUrl = useStore((store: any) => store.app.imageUrl);
-  const selectedView = useStore((store: any) => store.app.selectedView);
-  const clockShowSeconds = useStore((store: any) => store.app.clockShowSeconds);
-  const ageDateOfBirthTimestamp = useStore(
-    (store: any) => store.app.ageDateOfBirthTimestamp
-  );
-  const menuOpened = useStore((store: any) => store.app.menuOpened);
+  const {
+    imageUrl,
+    selectedView,
+    clockShowSeconds,
+    ageDateOfBirthTimestamp,
+    menuOpened
+  } = useStore((store: any) => ({
+    imageUrl: store.app.imageUrl,
+    selectedView: store.app.selectedView,
+    clockShowSeconds: store.app.clockShowSeconds,
+    ageDateOfBirthTimestamp: store.app.ageDateOfBirthTimestamp,
+    menuOpened: store.app.menuOpened
+  }));
 
   const appInit = useAction((actions: any) => actions.app.appInit);
   useEffect(() => {
@@ -138,7 +143,7 @@ const App = () => {
 
       <AppMenuWrapper opened={menuOpened} menuHeight={menuHeight}>
         <AppMenu ref={menuEl}>
-          <Menu opened={menuOpened} isDev={constants.isDev} />
+          <Menu isDev={constants.isDev} />
         </AppMenu>
       </AppMenuWrapper>
     </AppWrapper>

@@ -6,11 +6,12 @@ import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
 
 interface IMenuProps {
-  opened: boolean;
   isDev: boolean;
 }
 
-const Menu = (props: IMenuProps) => {
+// React.memo used to prevent rerendering of whole menu when menuOpened state
+// changes in parent component
+const MenuContent = React.memo((props: IMenuProps) => {
   const {
     online,
     imageBing,
@@ -36,7 +37,6 @@ const Menu = (props: IMenuProps) => {
   }));
 
   const {
-    toggleMenu,
     setViewType,
     setImageSource,
     shiftImageLocalIndex,
@@ -46,7 +46,6 @@ const Menu = (props: IMenuProps) => {
     toggleSettingsHidden,
     resetAppState
   } = useAction((store: any) => ({
-    toggleMenu: store.app.toggleMenu,
     setViewType: store.app.setViewType,
     setImageSource: store.app.setImageSource,
     shiftImageLocalIndex: store.app.shiftImageLocalIndex,
@@ -58,189 +57,204 @@ const Menu = (props: IMenuProps) => {
   }));
 
   return (
-    <MenuWrapper settingsHidden={settingsHidden && !props.opened}>
+    <>
+      <Heading>Hello Friend &ndash; New Tab Page</Heading>
+      <Text>
+        This is your new cool new tab page. Enjoy a nice background from Bing
+        every day or have a look at some nice background that I preselected.
+        There is also a bunch of useful that you can display in front of the
+        background, like clock and stuff!
+      </Text>
+
+      <MenuSectionsWrapper>
+        <MenuSection title="Background image">
+          {!online && (
+            <div>You are currently offline, falling back to local images</div>
+          )}
+          {imageBing.type === "ERROR" && (
+            <>
+              {/* TODO: proper error matching */}
+              <p>Error</p>
+              <p>errorType: {imageBing.errorType}</p>
+              <p>errorData: {String(imageBing.data)}</p>
+              <pre>
+                <code>{JSON.stringify(imageBing)}</code>
+              </pre>
+            </>
+          )}
+
+          <Radio
+            name="images"
+            onChange={() => setImageSource("BING")}
+            checked={imageSourceWithFallback === "BING"}
+            disabled={online === false}
+          >
+            Bing image of the day
+          </Radio>
+
+          <Radio
+            name="images"
+            onChange={() => setImageSource("LOCAL")}
+            checked={imageSourceWithFallback === "LOCAL"}
+          >
+            Predefined
+          </Radio>
+
+          {imageSourceWithFallback === "BING" &&
+            imageBing.type === "DONE" && (
+              <section>
+                {imageBing.data.title && (
+                  <Text>title: {imageBing.data.title}</Text>
+                )}
+                {imageBing.data.description && (
+                  <Text>description: {imageBing.data.description}</Text>
+                )}
+                {imageBing.data.link && (
+                  <Text>
+                    <a href={imageBing.data.link}>link</a>
+                  </Text>
+                )}
+              </section>
+            )}
+
+          {imageSourceWithFallback === "LOCAL" && (
+            <section>
+              <button onClick={() => shiftImageLocalIndex(-1)}>Prev</button>
+              <button onClick={setImageLocalRandom}>Random image</button>
+              <button onClick={() => shiftImageLocalIndex(1)}>Next</button>
+
+              {(() => {
+                const image = imageLocal;
+
+                return (
+                  <>
+                    <Text>
+                      image: {imageLocalIndex + 1}/{imagesLocal.length}
+                    </Text>
+                    {image.name && <Text>name: {image.name}</Text>}
+                    {image.location && <Text>location: {image.location}</Text>}
+                    {image.source && (
+                      <Text>
+                        <a href={image.source}>source</a>
+                      </Text>
+                    )}
+                  </>
+                );
+              })()}
+            </section>
+          )}
+        </MenuSection>
+
+        <MenuSection title="View type">
+          <Radio
+            name="view"
+            onChange={() => setViewType("CLOCK")}
+            checked={selectedView === "CLOCK"}
+          >
+            Clock
+          </Radio>
+
+          <Radio
+            name="view"
+            onChange={() => setViewType("AGE")}
+            checked={selectedView === "AGE"}
+          >
+            Age
+          </Radio>
+
+          <Radio
+            name="view"
+            onChange={() => setViewType("NOTHING")}
+            checked={selectedView === "NOTHING"}
+          >
+            Nothing
+          </Radio>
+
+          {selectedView === "CLOCK" && (
+            <label>
+              <Text>
+                <input
+                  type="checkbox"
+                  checked={clockShowSeconds}
+                  onChange={toggleClockShowSeconds}
+                />
+                Show seconds
+              </Text>
+            </label>
+          )}
+
+          {selectedView === "AGE" && (
+            <label>
+              Your date of birth
+              <input
+                type="date"
+                min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+                max={timestampToDateInputValue(Date.now())}
+                value={ageDateOfBirthValue}
+                onChange={e => setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
+              />
+            </label>
+          )}
+        </MenuSection>
+
+        <MenuSection title="Minimalistic version">
+          <Text>
+            Settings button will be hidden unless you hover the mouse over the
+            area where the button is. Also bunch of useless text (like this
+            paragraph) will be hidden.
+          </Text>
+          <label>
+            <input
+              type="checkbox"
+              checked={settingsHidden}
+              onChange={toggleSettingsHidden}
+            />
+            Hide stuff
+          </label>
+        </MenuSection>
+
+        <MenuSection title="Contact">
+          <Text>
+            If you find any bugs or if you would like to tell me how much you
+            like this swell plugin you can do so on following channels. Also
+            this plugin is open source, so you contribute on GitHub!
+          </Text>
+          <a href="https://github.com/hurtak/hello-friend">Github</a>
+          <a href="https://twitter.com/PetrHurtak">Twitter</a>
+          <a href="mailto:petr.hurtak@gmail.com">Mail</a>
+        </MenuSection>
+
+        {props.isDev && (
+          <MenuSection title="Dev menu">
+            <Text>This menu is only visible in development mode</Text>
+            <button onClick={resetAppState}>Reset app state</button>
+          </MenuSection>
+        )}
+      </MenuSectionsWrapper>
+    </>
+  );
+});
+
+const Menu = (props: IMenuProps) => {
+  const { menuOpened, settingsHidden } = useStore((store: any) => ({
+    menuOpened: store.app.menuOpened,
+    settingsHidden: store.app.settingsHidden
+  }));
+
+  const { toggleMenu } = useAction((store: any) => ({
+    toggleMenu: store.app.toggleMenu
+  }));
+
+  return (
+    <MenuWrapper settingsHidden={settingsHidden && !menuOpened}>
       <ToggleButton onClick={toggleMenu}>
-        <ToggleButtonIcon src={iconCog} rotated={props.opened} />
+        <ToggleButtonIcon src={iconCog} rotated={menuOpened} />
       </ToggleButton>
 
       <ToggleButtonSpacer />
 
-      <div inert={props.opened === false ? "true" : null}>
-        <Heading>Hello Friend &ndash; New Tab Page</Heading>
-        <Text>
-          This is your new cool new tab page. Enjoy a nice background from Bing
-          every day or have a look at some nice background that I preselected.
-          There is also a bunch of useful that you can display in front of the
-          background, like clock and stuff!
-        </Text>
-
-        <MenuSectionsWrapper>
-          <MenuSection title="Background image">
-            {!online && (
-              <div>You are currently offline, falling back to local images</div>
-            )}
-            {imageBing.type === "ERROR" && (
-              <>
-                {/* TODO: proper error matching */}
-                <p>Error</p>
-                <p>errorType: {imageBing.errorType}</p>
-                <p>errorData: {String(imageBing.data)}</p>
-                <pre>
-                  <code>{JSON.stringify(imageBing)}</code>
-                </pre>
-              </>
-            )}
-
-            <Radio
-              name="images"
-              onChange={() => setImageSource("BING")}
-              checked={imageSourceWithFallback === "BING"}
-              disabled={online === false}
-            >
-              Bing image of the day
-            </Radio>
-
-            <Radio
-              name="images"
-              onChange={() => setImageSource("LOCAL")}
-              checked={imageSourceWithFallback === "LOCAL"}
-            >
-              Predefined
-            </Radio>
-
-            {imageSourceWithFallback === "BING" &&
-              imageBing.type === "DONE" && (
-                <section>
-                  {imageBing.data.title && (
-                    <Text>title: {imageBing.data.title}</Text>
-                  )}
-                  {imageBing.data.description && (
-                    <Text>description: {imageBing.data.description}</Text>
-                  )}
-                  {imageBing.data.link && (
-                    <Text>
-                      <a href={imageBing.data.link}>link</a>
-                    </Text>
-                  )}
-                </section>
-              )}
-
-            {imageSourceWithFallback === "LOCAL" && (
-              <section>
-                <button onClick={() => shiftImageLocalIndex(-1)}>Prev</button>
-                <button onClick={setImageLocalRandom}>Random image</button>
-                <button onClick={() => shiftImageLocalIndex(1)}>Next</button>
-
-                {(() => {
-                  const image = imageLocal;
-
-                  return (
-                    <>
-                      <Text>
-                        image: {imageLocalIndex + 1}/{imagesLocal.length}
-                      </Text>
-                      {image.name && <Text>name: {image.name}</Text>}
-                      {image.location && (
-                        <Text>location: {image.location}</Text>
-                      )}
-                      {image.source && (
-                        <Text>
-                          <a href={image.source}>source</a>
-                        </Text>
-                      )}
-                    </>
-                  );
-                })()}
-              </section>
-            )}
-          </MenuSection>
-
-          <MenuSection title="View type">
-            <Radio
-              name="view"
-              onChange={() => setViewType("CLOCK")}
-              checked={selectedView === "CLOCK"}
-            >
-              Clock
-            </Radio>
-
-            <Radio
-              name="view"
-              onChange={() => setViewType("AGE")}
-              checked={selectedView === "AGE"}
-            >
-              Age
-            </Radio>
-
-            <Radio
-              name="view"
-              onChange={() => setViewType("NOTHING")}
-              checked={selectedView === "NOTHING"}
-            >
-              Nothing
-            </Radio>
-
-            {selectedView === "CLOCK" && (
-              <label>
-                <Text>
-                  <input
-                    type="checkbox"
-                    checked={clockShowSeconds}
-                    onChange={toggleClockShowSeconds}
-                  />
-                  Show seconds
-                </Text>
-              </label>
-            )}
-
-            {selectedView === "AGE" && (
-              <label>
-                Your date of birth
-                <input
-                  type="date"
-                  min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
-                  max={timestampToDateInputValue(Date.now())}
-                  value={ageDateOfBirthValue}
-                  onChange={e => setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
-                />
-              </label>
-            )}
-          </MenuSection>
-
-          <MenuSection title="Minimalistic version">
-            <Text>
-              Settings button will be hidden unless you hover the mouse over the
-              area where the button is. Also bunch of useless text (like this
-              paragraph) will be hidden.
-            </Text>
-            <label>
-              <input
-                type="checkbox"
-                checked={settingsHidden}
-                onChange={toggleSettingsHidden}
-              />
-              Hide stuff
-            </label>
-          </MenuSection>
-
-          <MenuSection title="Contact">
-            <Text>
-              If you find any bugs or if you would like to tell me how much you
-              like this swell plugin you can do so on following channels. Also
-              this plugin is open source, so you contribute on GitHub!
-            </Text>
-            <a href="https://github.com/hurtak/hello-friend">Github</a>
-            <a href="https://twitter.com/PetrHurtak">Twitter</a>
-            <a href="mailto:petr.hurtak@gmail.com">Mail</a>
-          </MenuSection>
-
-          {props.isDev && (
-            <MenuSection title="Dev menu">
-              <Text>This menu is only visible in development mode</Text>
-              <button onClick={resetAppState}>Reset app state</button>
-            </MenuSection>
-          )}
-        </MenuSectionsWrapper>
+      <div inert={menuOpened === false ? "true" : null}>
+        <MenuContent isDev={props.isDev} />
       </div>
     </MenuWrapper>
   );

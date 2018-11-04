@@ -1,9 +1,23 @@
 import { createStore, effect, select } from "easy-peasy";
+import {
+  middlewareLocalStorage,
+  loadState,
+  clearStorage
+} from "./middleware-local-storage";
 import { getBingImageOfTheDay } from "../shared/api";
 import * as time from "../shared/time";
 import * as types from "../shared/types";
 import { getRandomInt } from "../shared/random";
 import images from "../images/images";
+
+const savedState: (keyof IState)[] = [
+  "selectedView",
+  "imageSource",
+  "clockShowSeconds",
+  "ageDateOfBirthTimestamp",
+  "ageDateOfBirthValue",
+  "settingsHidden"
+];
 
 export interface IState {
   // Browser state
@@ -55,12 +69,12 @@ const getInitialState = () => {
   return initialState;
 };
 
-export const store = createStore({
+const model = {
   app: {
     //
     // State
     //
-    ...getInitialState(),
+    ...loadState(getInitialState()),
 
     //
     // Computed
@@ -207,14 +221,17 @@ export const store = createStore({
     },
 
     resetAppState: (app: any) => {
-      // clearLocalStorage();
-
       const initialState = getInitialState();
       for (const [key, value] of Object.entries(initialState)) {
         app[key] = value;
       }
 
-      // window.location.reload();
+      clearStorage();
+      window.location.reload();
     }
   }
+};
+
+export const store = createStore(model, {
+  middleware: [middlewareLocalStorage(savedState)]
 });

@@ -5,10 +5,10 @@ import { StoreProvider } from "easy-peasy";
 import { store } from "./state/app-state";
 
 if (process.env.NODE_ENV !== "production") {
-  const { whyDidYouUpdate } = require("why-did-you-update");
-  whyDidYouUpdate(React, {
-    // exclude: /Consumer|Subscribe|StyledComponent|GlobalStyleComponent/
-  });
+  // const { whyDidYouUpdate } = require("why-did-you-update");
+  // whyDidYouUpdate(React, {
+  //   // exclude: /Consumer|Subscribe|StyledComponent|GlobalStyleComponent/
+  // });
 }
 
 ReactDOM.render(

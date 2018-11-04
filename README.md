@@ -2,7 +2,8 @@
 
 ## TODO
 
-- fix perf problems with menu - when we open/close there is lots of unnecessary rerenders
+- finish classes -> hooks conversion
+- fix remaining conversion bugs
 - finish ts conversion
 - menu design
   - menu texts
