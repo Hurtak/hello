@@ -145,9 +145,9 @@ const model = {
     }),
 
     fetchImageBing: effect(async (actions: any) => {
-      actions.imageBindFetch();
+      actions.app.imageBindFetch();
       const imageData = await getBingImageOfTheDay();
-      actions.imageBindFetched(imageData);
+      actions.app.imageBindFetched(imageData);
     }),
     //
     // Actions
