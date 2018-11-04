@@ -1,401 +1,395 @@
-// import React from "react";
-// import styled, { css } from "styled-components";
-// import { useStore, useAction } from "easy-peasy";
-// import withAppState from "../../state/with-app-state";
-// import * as s from "../../shared/styles";
-// import IAppStateProps from "../../state/app-state-type";
-// import { timestampToDateInputValue } from "../../shared/time";
-// import iconCog from "../../icons/cog.svg";
+import React from "react";
+import { useStore, useAction } from "easy-peasy";
+import styled, { css } from "styled-components";
+import * as s from "../../shared/styles";
+import { timestampToDateInputValue } from "../../shared/time";
+import iconCog from "../../icons/cog.svg";
 
-// // TODO: better place to put it?
-// // TODO: put in typings!!
-// declare module "react" {
-//   interface HTMLAttributes<T> {
-//     inert?: "true" | null;
-//   }
-// }
+interface IMenuProps {
+  opened: boolean;
+  isDev: boolean;
+}
 
-// interface IMenuProps {
-//   app: IAppStateProps;
-//   opened: boolean;
-//   isDev: boolean;
-// }
+const Menu = (props: IMenuProps) => {
+  const {
+    online,
+    imageBing,
+    imageLocal,
+    imageLocalIndex,
+    imagesLocal,
+    imageSourceWithFallback,
+    selectedView,
+    clockShowSeconds,
+    ageDateOfBirthValue,
+    settingsHidden
+  } = useStore((store: any) => ({
+    online: store.app.online,
+    imageBing: store.app.imageBing,
+    imageLocal: store.app.imageLocal,
+    imageLocalIndex: store.app.imageLocalIndex,
+    imagesLocal: store.app.imagesLocal,
+    imageSourceWithFallback: store.app.imageSourceWithFallback,
+    selectedView: store.app.selectedView,
+    clockShowSeconds: store.app.clockShowSeconds,
+    ageDateOfBirthValue: store.app.ageDateOfBirthValue,
+    settingsHidden: store.app.settingsHidden
+  }));
 
-// class Menu extends React.Component<IMenuProps, {}> {
-//   ageDateOfBirthChange = (e: any) => {
-//     const valueRaw = e.target.value;
-//     const valueValid = valueRaw.length > 0;
+  const {
+    toggleMenu,
+    setViewType,
+    setImageSource,
+    shiftImageLocalIndex,
+    setImageLocalRandom,
+    setAgeDateOfBirth,
+    toggleClockShowSeconds,
+    toggleSettingsHidden,
+    resetAppState
+  } = useAction((store: any) => ({
+    toggleMenu: store.app.toggleMenu,
+    setViewType: store.app.setViewType,
+    setImageSource: store.app.setImageSource,
+    shiftImageLocalIndex: store.app.shiftImageLocalIndex,
+    setImageLocalRandom: store.app.setImageLocalRandom,
+    setAgeDateOfBirth: store.app.setAgeDateOfBirth,
+    toggleClockShowSeconds: store.app.toggleClockShowSeconds,
+    toggleSettingsHidden: store.app.toggleSettingsHidden,
+    resetAppState: store.app.resetAppState
+  }));
 
-//     const timestamp = (() => {
-//       if (!valueValid) return null;
+  return (
+    <MenuWrapper settingsHidden={settingsHidden && !props.opened}>
+      <ToggleButton onClick={toggleMenu}>
+        <ToggleButtonIcon src={iconCog} rotated={props.opened} />
+      </ToggleButton>
 
-//       const [year, month, day] = valueRaw.split("-").map(Number);
-//       const timestamp = Date.UTC(year, month - 1, day);
-//       return timestamp;
-//     })();
+      <ToggleButtonSpacer />
 
-//     this.props.app.setAgeDateOfBirth({
-//       inputValue: valueRaw,
-//       parsedTimestamp: timestamp
-//     });
-//   };
+      <div inert={props.opened === false ? "true" : null}>
+        <Heading>Hello Friend &ndash; New Tab Page</Heading>
+        <Text>
+          This is your new cool new tab page. Enjoy a nice background from Bing
+          every day or have a look at some nice background that I preselected.
+          There is also a bunch of useful that you can display in front of the
+          background, like clock and stuff!
+        </Text>
 
-//   render() {
-//     return (
-//       <MenuWrapper
-//         settingsHidden={
-//           this.props.app.state.settingsHidden && !this.props.opened
-//         }
-//       >
-//         <ToggleButton onClick={this.props.app.toggleMenu}>
-//           <ToggleButtonIcon src={iconCog} rotated={this.props.opened} />
-//         </ToggleButton>
+        <MenuSectionsWrapper>
+          <MenuSection title="Background image">
+            {!online && (
+              <div>You are currently offline, falling back to local images</div>
+            )}
+            {imageBing.type === "ERROR" && (
+              <>
+                {/* TODO: proper error matching */}
+                <p>Error</p>
+                <p>errorType: {imageBing.errorType}</p>
+                <p>errorData: {String(imageBing.data)}</p>
+                <pre>
+                  <code>{JSON.stringify(imageBing)}</code>
+                </pre>
+              </>
+            )}
 
-//         <ToggleButtonSpacer />
+            <Radio
+              name="images"
+              onChange={() => setImageSource("BING")}
+              checked={imageSourceWithFallback === "BING"}
+              disabled={online === false}
+            >
+              Bing image of the day
+            </Radio>
 
-//         <div inert={this.props.opened === false ? "true" : null}>
-//           <Heading>Hello Friend &ndash; New Tab Page</Heading>
-//           <Text>
-//             This is your new cool new tab page. Enjoy a nice background from
-//             Bing every day or have a look at some nice background that I
-//             preselected. There is also a bunch of useful that you can display in
-//             front of the background, like clock and stuff!
-//           </Text>
+            <Radio
+              name="images"
+              onChange={() => setImageSource("LOCAL")}
+              checked={imageSourceWithFallback === "LOCAL"}
+            >
+              Predefined
+            </Radio>
 
-//           <MenuSectionsWrapper>
-//             <MenuSection title="Background image">
-//               {!this.props.app.state.online && (
-//                 <div>
-//                   You are currently offline, falling back to local images
-//                 </div>
-//               )}
-//               {this.props.app.state.imageBing &&
-//                 this.props.app.state.imageBing.error && (
-//                   <div>
-//                     {/* TODO: proper error matching */}
-//                     <p>Error</p>
-//                     <p>
-//                       error:{" "}
-//                       {JSON.stringify(this.props.app.state.imageBing.error)}
-//                     </p>
-//                     <p>errorType: {this.props.app.state.imageBing.errorType}</p>
-//                     <p>
-//                       errorData: {String(this.props.app.state.imageBing.data)}
-//                     </p>
-//                     <pre>
-//                       <code>
-//                         {JSON.stringify(this.props.app.state.imageBing)}
-//                       </code>
-//                     </pre>
-//                   </div>
-//                 )}
+            {imageSourceWithFallback === "BING" &&
+              imageBing.type === "DONE" && (
+                <section>
+                  {imageBing.data.title && (
+                    <Text>title: {imageBing.data.title}</Text>
+                  )}
+                  {imageBing.data.description && (
+                    <Text>description: {imageBing.data.description}</Text>
+                  )}
+                  {imageBing.data.link && (
+                    <Text>
+                      <a href={imageBing.data.link}>link</a>
+                    </Text>
+                  )}
+                </section>
+              )}
 
-//               <Radio
-//                 name="images"
-//                 onChange={() => this.props.app.setImageSource("BING")}
-//                 checked={
-//                   this.props.app.computed.imageSourceWithFallback === "BING"
-//                 }
-//                 disabled={this.props.app.state.online === false}
-//               >
-//                 Bing image of the day
-//               </Radio>
+            {imageSourceWithFallback === "LOCAL" && (
+              <section>
+                <button onClick={() => shiftImageLocalIndex(-1)}>Prev</button>
+                <button onClick={setImageLocalRandom}>Random image</button>
+                <button onClick={() => shiftImageLocalIndex(1)}>Next</button>
 
-//               <Radio
-//                 name="images"
-//                 onChange={() => this.props.app.setImageSource("LOCAL")}
-//                 checked={
-//                   this.props.app.computed.imageSourceWithFallback === "LOCAL"
-//                 }
-//               >
-//                 Predefined
-//               </Radio>
+                {(() => {
+                  const image = imageLocal;
 
-//               {this.props.app.computed.imageSourceWithFallback === "BING" &&
-//                 this.props.app.state.imageBing &&
-//                 this.props.app.state.imageBing.error === false && (
-//                   <section>
-//                     {this.props.app.state.imageBing.data.title && (
-//                       <Text>
-//                         title: {this.props.app.state.imageBing.data.title}
-//                       </Text>
-//                     )}
-//                     {this.props.app.state.imageBing.data.description && (
-//                       <Text>
-//                         description:{" "}
-//                         {this.props.app.state.imageBing.data.description}
-//                       </Text>
-//                     )}
-//                     {this.props.app.state.imageBing.data.link && (
-//                       <Text>
-//                         <a href={this.props.app.state.imageBing.data.link}>
-//                           link
-//                         </a>
-//                       </Text>
-//                     )}
-//                   </section>
-//                 )}
+                  return (
+                    <>
+                      <Text>
+                        image: {imageLocalIndex + 1}/{imagesLocal.length}
+                      </Text>
+                      {image.name && <Text>name: {image.name}</Text>}
+                      {image.location && (
+                        <Text>location: {image.location}</Text>
+                      )}
+                      {image.source && (
+                        <Text>
+                          <a href={image.source}>source</a>
+                        </Text>
+                      )}
+                    </>
+                  );
+                })()}
+              </section>
+            )}
+          </MenuSection>
 
-//               {this.props.app.computed.imageSourceWithFallback === "LOCAL" && (
-//                 <section>
-//                   <button
-//                     onClick={() => this.props.app.shiftImageLocalIndex(-1)}
-//                   >
-//                     Prev
-//                   </button>
-//                   <button onClick={this.props.app.setImageLocalRandom}>
-//                     Random image
-//                   </button>
-//                   <button
-//                     onClick={() => this.props.app.shiftImageLocalIndex(1)}
-//                   >
-//                     Next
-//                   </button>
+          <MenuSection title="View type">
+            <Radio
+              name="view"
+              onChange={() => setViewType("CLOCK")}
+              checked={selectedView === "CLOCK"}
+            >
+              Clock
+            </Radio>
 
-//                   {(() => {
-//                     const image = this.props.app.computed.imageLocal;
+            <Radio
+              name="view"
+              onChange={() => setViewType("AGE")}
+              checked={selectedView === "AGE"}
+            >
+              Age
+            </Radio>
 
-//                     return (
-//                       <>
-//                         <Text>
-//                           image: {this.props.app.state.imageLocalIndex + 1}/
-//                           {this.props.app.computed.imagesLocal.length}
-//                         </Text>
-//                         {image.name && <Text>name: {image.name}</Text>}
-//                         {image.location && (
-//                           <Text>location: {image.location}</Text>
-//                         )}
-//                         {image.source && (
-//                           <Text>
-//                             <a href={image.source}>source</a>
-//                           </Text>
-//                         )}
-//                       </>
-//                     );
-//                   })()}
-//                 </section>
-//               )}
-//             </MenuSection>
+            <Radio
+              name="view"
+              onChange={() => setViewType("NOTHING")}
+              checked={selectedView === "NOTHING"}
+            >
+              Nothing
+            </Radio>
 
-//             <MenuSection title="View type">
-//               <Radio
-//                 name="view"
-//                 onChange={() => this.props.app.setViewType("CLOCK")}
-//                 checked={this.props.app.state.selectedView === "CLOCK"}
-//               >
-//                 Clock
-//               </Radio>
+            {selectedView === "CLOCK" && (
+              <label>
+                <Text>
+                  <input
+                    type="checkbox"
+                    checked={clockShowSeconds}
+                    onChange={toggleClockShowSeconds}
+                  />
+                  Show seconds
+                </Text>
+              </label>
+            )}
 
-//               <Radio
-//                 name="view"
-//                 onChange={() => this.props.app.setViewType("AGE")}
-//                 checked={this.props.app.state.selectedView === "AGE"}
-//               >
-//                 Age
-//               </Radio>
+            {selectedView === "AGE" && (
+              <label>
+                Your date of birth
+                <input
+                  type="date"
+                  min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+                  max={timestampToDateInputValue(Date.now())}
+                  value={ageDateOfBirthValue}
+                  onChange={e => setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
+                />
+              </label>
+            )}
+          </MenuSection>
 
-//               <Radio
-//                 name="view"
-//                 onChange={() => this.props.app.setViewType("NOTHING")}
-//                 checked={this.props.app.state.selectedView === "NOTHING"}
-//               >
-//                 Nothing
-//               </Radio>
+          <MenuSection title="Minimalistic version">
+            <Text>
+              Settings button will be hidden unless you hover the mouse over the
+              area where the button is. Also bunch of useless text (like this
+              paragraph) will be hidden.
+            </Text>
+            <label>
+              <input
+                type="checkbox"
+                checked={settingsHidden}
+                onChange={toggleSettingsHidden}
+              />
+              Hide stuff
+            </label>
+          </MenuSection>
 
-//               {this.props.app.state.selectedView === "CLOCK" && (
-//                 <label>
-//                   <Text>
-//                     <input
-//                       type="checkbox"
-//                       checked={this.props.app.state.clockShowSeconds}
-//                       onChange={this.props.app.toggleClockShowSeconds}
-//                     />
-//                     Show seconds
-//                   </Text>
-//                 </label>
-//               )}
+          <MenuSection title="Contact">
+            <Text>
+              If you find any bugs or if you would like to tell me how much you
+              like this swell plugin you can do so on following channels. Also
+              this plugin is open source, so you contribute on GitHub!
+            </Text>
+            <a href="https://github.com/hurtak/hello-friend">Github</a>
+            <a href="https://twitter.com/PetrHurtak">Twitter</a>
+            <a href="mailto:petr.hurtak@gmail.com">Mail</a>
+          </MenuSection>
 
-//               {this.props.app.state.selectedView === "AGE" && (
-//                 <label>
-//                   Your date of birth
-//                   <input
-//                     type="date"
-//                     min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
-//                     max={timestampToDateInputValue(Date.now())}
-//                     value={this.props.app.state.ageDateOfBirthValue}
-//                     onChange={e => this.ageDateOfBirthChange(e)}
-//                   />
-//                 </label>
-//               )}
-//             </MenuSection>
+          {props.isDev && (
+            <MenuSection title="Dev menu">
+              <Text>This menu is only visible in development mode</Text>
+              <button onClick={resetAppState}>Reset app state</button>
+            </MenuSection>
+          )}
+        </MenuSectionsWrapper>
+      </div>
+    </MenuWrapper>
+  );
+};
 
-//             <MenuSection title="Minimalistic version">
-//               <Text>
-//                 Settings button will be hidden unless you hover the mouse over
-//                 the area where the button is. Also bunch of useless text (like
-//                 this paragraph) will be hidden.
-//               </Text>
-//               <label>
-//                 <input
-//                   type="checkbox"
-//                   checked={this.props.app.state.settingsHidden}
-//                   onChange={this.props.app.toggleSettingsHidden}
-//                 />
-//                 Hide stuff
-//               </label>
-//             </MenuSection>
+export default Menu;
 
-//             <MenuSection title="Contact">
-//               <Text>
-//                 If you find any bugs or if you would like to tell me how much
-//                 you like this swell plugin you can do so on following channels.
-//                 Also this plugin is open source, so you contribute on GitHub!
-//               </Text>
-//               <a href="https://github.com/hurtak/hello-friend">Github</a>
-//               <a href="https://twitter.com/PetrHurtak">Twitter</a>
-//               <a href="mailto:petr.hurtak@gmail.com">Mail</a>
-//             </MenuSection>
+function eventToAgeOfBirthValues(e: any) {
+  const valueRaw = e.target.value;
+  const valueValid = valueRaw.length > 0;
 
-//             {this.props.isDev && (
-//               <MenuSection title="Dev menu">
-//                 <Text>This menu is only visible in development mode</Text>
-//                 <button onClick={this.props.app.resetAppState}>
-//                   Reset app state
-//                 </button>
-//               </MenuSection>
-//             )}
-//           </MenuSectionsWrapper>
-//         </div>
-//       </MenuWrapper>
-//     );
-//   }
-// }
-// export default withAppState(Menu);
+  const timestamp = (() => {
+    if (!valueValid) return null;
 
-// interface IMenuWrapperProps {
-//   settingsHidden?: boolean;
-// }
-// const MenuWrapper = styled.section`
-//   box-sizing: "border-box";
-//   position: "relative";
-//   padding: ${s.grid(2)};
-//   overflow: "hidden";
-//   background-color: ${s.colors.whiteTransparentDefault};
+    const [year, month, day] = valueRaw.split("-").map(Number);
+    const timestamp = Date.UTC(year, month - 1, day);
+    return timestamp;
+  })();
 
-//   ${(props: IMenuWrapperProps) =>
-//     props.settingsHidden &&
-//     css`
-//       opacity: 0;
-//       transition: ${s.animations.default};
-//       &:hover {
-//         opacity: 1;
-//       }
-//     `};
-// `;
+  return {
+    inputValue: valueRaw,
+    parsedTimestamp: timestamp
+  };
+}
 
-// const ToggleButton = styled.button`
-//   box-sizing: border-box;
-//   position: absolute;
-//   user-select: none;
-//   top: ${s.dimensions.menuButtonSpacing};
-//   right: ${s.dimensions.menuButtonSpacing};
-//   border: 0;
-//   background: transparent;
-//   padding: ${s.dimensions.menuButtonPadding};
-//   cursor: pointer;
-// `;
+interface IMenuWrapperProps {
+  settingsHidden?: boolean;
+}
+const MenuWrapper = styled.section`
+  box-sizing: border-box;
+  position: relative;
+  padding: ${s.grid(2)};
+  overflow: hidden;
+  background-color: ${s.colors.whiteTransparentDefault};
 
-// const ToggleButtonSpacer = styled.div`
-//   float: right;
-//   width: ${s.grid(8)};
-//   height: ${s.grid(8)};
-// `;
+  ${(props: IMenuWrapperProps) =>
+    props.settingsHidden &&
+    css`
+      opacity: 0;
+      transition: ${s.animations.default};
+      &:hover {
+        opacity: 1;
+      }
+    `};
+`;
 
-// interface IToggleButtonIconProps {
-//   rotated?: boolean;
-// }
+const ToggleButton = styled.button`
+  box-sizing: border-box;
+  position: absolute;
+  user-select: none;
+  top: ${s.dimensions.menuButtonSpacing};
+  right: ${s.dimensions.menuButtonSpacing};
+  border: 0;
+  background: transparent;
+  padding: ${s.dimensions.menuButtonPadding};
+  cursor: pointer;
+`;
 
-// const ToggleButtonIcon = styled.img`
-//   display: block;
-//   width: ${s.dimensions.menuButtonSize};
-//   height: ${s.dimensions.menuButtonSize};
-//   object-fit: contain;
-//   transition: ${s.animations.default};
-//   opacity: ${s.opacity.default};
+const ToggleButtonSpacer = styled.div`
+  float: right;
+  width: ${s.grid(8)};
+  height: ${s.grid(8)};
+`;
 
-//   ${(props: IToggleButtonIconProps) =>
-//     props.rotated &&
-//     css`
-//       transform: rotate(-360deg);
-//     `};
-// `;
+interface IToggleButtonIconProps {
+  rotated?: boolean;
+}
 
-// const Heading = styled.h1`
-//   ${s.text.text};
-//   ${s.text.size18};
+const ToggleButtonIcon = styled.img`
+  display: block;
+  width: ${s.dimensions.menuButtonSize};
+  height: ${s.dimensions.menuButtonSize};
+  object-fit: contain;
+  transition: ${s.animations.default};
+  opacity: ${s.opacity.default};
 
-//   padding-bottom: 0.25em;
-// `;
+  ${(props: IToggleButtonIconProps) =>
+    props.rotated &&
+    css`
+      transform: rotate(-360deg);
+    `};
+`;
 
-// const HeadingSmall = styled.h2`
-//   ${s.text.text};
-//   ${s.text.size16};
+const Heading = styled.h1`
+  ${s.text.text};
+  ${s.text.size18};
 
-//   padding-bottom: 0.25em;
-// `;
+  padding-bottom: 0.25em;
+`;
 
-// const Text = styled.p`
-//   ${s.text.text};
-// `;
+const HeadingSmall = styled.h2`
+  ${s.text.text};
+  ${s.text.size16};
 
-// const MenuSectionsWrapper = styled.div`
-//   margin-top: ${s.grid(3)};
-// `;
+  padding-bottom: 0.25em;
+`;
 
-// const MenuSectionStyled = styled.section`
-//   margin-top: ${s.grid(2)};
+const Text = styled.p`
+  ${s.text.text};
+`;
 
-//   &:first-child {
-//     margin-top: 0;
-//   }
-// `;
+const MenuSectionsWrapper = styled.div`
+  margin-top: ${s.grid(3)};
+`;
 
-// const MenuSection = (props: {
-//   title: string;
-//   children: (false | JSX.Element)[]; // TODO: why false?
-// }) => (
-//   <MenuSectionStyled>
-//     <HeadingSmall>{props.title}</HeadingSmall>
-//     {props.children}
-//   </MenuSectionStyled>
-// );
+const MenuSectionStyled = styled.section`
+  margin-top: ${s.grid(2)};
 
-// const Radio = (props: {
-//   name: string;
-//   checked: boolean;
-//   disabled?: boolean;
-//   onChange: () => {}; // TODO: proper type?
-//   children: string;
-// }) => (
-//   <RadioLabel>
-//     <input
-//       type="radio"
-//       name={props.name}
-//       checked={props.checked}
-//       disabled={props.disabled}
-//       onChange={props.onChange}
-//     />
-//     <RadioText>{props.children}</RadioText>
-//   </RadioLabel>
-// );
+  &:first-child {
+    margin-top: 0;
+  }
+`;
 
-// const RadioLabel = styled.label`
-//   display: block;
-// `;
+const MenuSection = (props: {
+  title: string;
+  children: (false | JSX.Element)[]; // TODO: why false?
+}) => (
+  <MenuSectionStyled>
+    <HeadingSmall>{props.title}</HeadingSmall>
+    {props.children}
+  </MenuSectionStyled>
+);
 
-// const RadioText = styled.span`
-//   ${s.text.text};
+const Radio = (props: {
+  name: string;
+  checked: boolean;
+  disabled?: boolean;
+  onChange: () => {}; // TODO: proper type?
+  children: string;
+}) => (
+  <RadioLabel>
+    <input
+      type="radio"
+      name={props.name}
+      checked={props.checked}
+      disabled={props.disabled}
+      onChange={props.onChange}
+    />
+    <RadioText>{props.children}</RadioText>
+  </RadioLabel>
+);
 
-//   color: ${s.colors.white};
-//   margin-left: ${s.grid(1)};
-// `;
+const RadioLabel = styled.label`
+  display: block;
+`;
+
+const RadioText = styled.span`
+  ${s.text.text};
+
+  color: ${s.colors.white};
+  margin-left: ${s.grid(1)};
+`;

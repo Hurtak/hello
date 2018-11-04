@@ -5,4 +5,8 @@ declare module "react" {
   export function useEffect(any, x?: any): any;
   export function useLayoutEffect(any): any;
   export function useRef(any): any;
+
+  interface HTMLAttributes<T> {
+    inert?: "true" | null;
+  }
 }

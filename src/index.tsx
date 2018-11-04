@@ -7,7 +7,7 @@ import { store } from "./state/app-state";
 if (process.env.NODE_ENV !== "production") {
   const { whyDidYouUpdate } = require("why-did-you-update");
   whyDidYouUpdate(React, {
-    exclude: /Consumer|Subscribe|StyledComponent|GlobalStyleComponent/
+    // exclude: /Consumer|Subscribe|StyledComponent|GlobalStyleComponent/
   });
 }
 

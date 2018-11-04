@@ -5,7 +5,7 @@ import * as types from "../shared/types";
 import { getRandomInt } from "../shared/random";
 import images from "../images/images";
 
-export interface IGlobalAppState {
+export interface IState {
   // Browser state
   online: boolean;
 
@@ -31,7 +31,7 @@ export interface IGlobalAppState {
 }
 
 const getInitialState = () => {
-  const initialState: IGlobalAppState = {
+  const initialState: IState = {
     // Browser state
     online: navigator.onLine,
 

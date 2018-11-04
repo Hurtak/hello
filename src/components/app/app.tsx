@@ -1,23 +1,24 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useStore, useAction } from "easy-peasy";
 import styled, { css } from "styled-components";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
-// import Menu from "../menu/menu";
+import Menu from "../menu/menu";
 import ConditionalUpdater from "../conditional-updater/conditional-updater";
 import Clock from "../clock/clock";
 import Age from "../age/age";
 import BackgroundImage from "../background-image/background-image";
-import { IGlobalAppState } from "../../state/app-state";
+import { IState } from "../../state/app-state";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
-import * as types from "../../shared/types";
 
+// TODO: unused
 interface IAppProps {
-  app: IGlobalAppState;
+  app: IState;
 }
 
+// TODO: unused
 interface IAppState {
   menuHeight: number | null;
 }
@@ -32,6 +33,7 @@ const App = () => {
   const menuEl = useRef(null);
   const [menuHeight, setMenuHeight] = useState(null);
 
+  // TODO: remove anys
   const imageUrl = useStore((store: any) => store.app.imageUrl);
   const selectedView = useStore((store: any) => store.app.selectedView);
   const clockShowSeconds = useStore((store: any) => store.app.clockShowSeconds);
@@ -54,7 +56,7 @@ const App = () => {
     observer.observe(menuEl.current);
 
     return () => observer.disconnect();
-  });
+  }, []);
 
   return (
     <AppWrapper>
@@ -136,10 +138,7 @@ const App = () => {
 
       <AppMenuWrapper opened={menuOpened} menuHeight={menuHeight}>
         <AppMenu ref={menuEl}>
-          {/* <Menu
-            opened={this.props.app.state.menuOpened}
-            isDev={constants.isDev}
-          /> */}
+          <Menu opened={menuOpened} isDev={constants.isDev} />
         </AppMenu>
       </AppMenuWrapper>
     </AppWrapper>
