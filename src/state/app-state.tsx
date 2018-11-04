@@ -50,8 +50,7 @@ const getInitialState = () => {
     online: navigator.onLine,
 
     // Menu states
-    // menuOpened: false,
-    menuOpened: true,
+    menuOpened: false,
 
     // Background image
     imageLocalIndex: 0,
