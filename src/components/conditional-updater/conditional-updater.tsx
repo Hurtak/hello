@@ -1,74 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as time from "../../shared/time";
 
 interface IConditionalUpdatedProps {
   updateEveryN: number;
-  component: (time: number) => JSX.Element; // TODO: proper types
+  component: (time: number) => React.ReactNode;
 }
 
-interface IConditionalUpdatedState {
-  time: number;
-}
+const config = {
+  // TODO: detect browser refresh rate?
+  //       https://stackoverflow.com/questions/6131051
+  maximumRefreshRate: time.second / 30 // 30 fps
+};
 
-export default class ConditionalUpdater extends React.Component<
-  IConditionalUpdatedProps,
-  IConditionalUpdatedState
-> {
-  static config = {
-    // TODO: detect browser refresh rate?
-    //       https://stackoverflow.com/questions/6131051
-    maximumRefreshRate: time.second / 30 // 30 fps
-  };
+const ConditionalUpdater = (props: IConditionalUpdatedProps) => {
+  // TODO: refactor effect?
+  // ????????????????????
+  // ????????????????????
+  // ????????????????????
+  // TODO: can I use setSomething hook in effect????
+  // ????????????????????
+  // ????????????????????
+  // ????????????????????
 
-  timer: NodeJS.Timeout;
+  const now = Date.now();
 
-  constructor(props: IConditionalUpdatedProps) {
-    super(props);
+  const [time, setTime] = useState(now);
 
-    const now = Date.now();
-    const timer = setTimeout(() => {
-      this.updateTimeAndStartTimeout();
-    }, getNextTick(now, this.props.updateEveryN, ConditionalUpdater.config.maximumRefreshRate));
+  useEffect(
+    () => {
+      let timer: number | undefined = undefined;
 
-    this.timer = timer;
-    this.state = {
-      time: now
-    };
-  }
+      function updateTimeAndStartTimeout() {
+        const now = Date.now();
 
-  updateTimeAndStartTimeout = () => {
-    const now = Date.now();
+        const timer = window.setTimeout(
+          updateTimeAndStartTimeout,
+          getNextTick(now, props.updateEveryN, config.maximumRefreshRate)
+        );
 
-    const timer = setTimeout(
-      this.updateTimeAndStartTimeout,
-      getNextTick(
-        now,
-        this.props.updateEveryN,
-        ConditionalUpdater.config.maximumRefreshRate
-      )
-    );
+        setTime(now);
 
-    this.timer = timer;
-    this.setState({
-      time: now
-    });
-  };
+        return timer;
+      }
 
-  componentWillReceiveProps(nextProps: IConditionalUpdatedProps) {
-    if (this.props === nextProps) return;
+      updateTimeAndStartTimeout();
 
-    clearTimeout(this.timer);
-    this.updateTimeAndStartTimeout();
-  }
+      return () => {
+        window.clearTimeout(timer);
+      };
+    },
+    [props.updateEveryN]
+  );
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  render() {
-    return this.props.component(this.state.time);
-  }
-}
+  return <>{props.component(time)}</>;
+};
+export default ConditionalUpdater;
 
 export function getNextTick(
   now: number,

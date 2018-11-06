@@ -1,83 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 interface IBackgroundImageProps {
   url: string;
 }
 
-interface IBackgroundImageState {
-  imageLoaded: boolean;
-  previousUrl: string | null;
-}
+const BackgroundImage = (props: IBackgroundImageProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [previousUrl, setPreviousUrl] = useState(props.url || null);
 
-export default class BackgroundImage extends React.Component<
-  IBackgroundImageProps,
-  IBackgroundImageState
-> {
-  constructor(props: IBackgroundImageProps) {
-    super(props);
+  useEffect(
+    () => {
+      // TODO raceconiditons right?
+      // TODO completly all bad
+      setImageLoaded(false);
+      setPreviousUrl(previousUrl);
+      if (!props.url) return;
 
-    this.state = {
-      imageLoaded: false,
-      previousUrl: props.url || null
-    };
-  }
+      const image = document.createElement("img");
+      image.src = props.url;
 
-  handleImageLoading(url: string, urlPrevious: string | null) {
-    this.setState(
-      {
-        imageLoaded: false,
-        previousUrl: urlPrevious
-      },
-      () => {
-        if (!url) return;
-
-        const image = document.createElement("img");
-        image.src = url;
-
-        if (image.complete) {
-          // browser finished downloading the image
-          this.setState({ imageLoaded: true });
-        } else {
-          // image is not loaded yet
-          image.onload = () => {
-            // TODO: race condition when switching fast between images?
-            this.setState({ imageLoaded: true });
-          };
-        }
+      if (image.complete) {
+        // browser finished downloading the image
+        setImageLoaded(true);
+      } else {
+        // image is not loaded yet
+        image.onload = () => {
+          // TODO: race condition when switching fast between images?
+          setImageLoaded(true);
+        };
       }
-    );
-  }
+    },
+    [props.url]
+  );
 
-  componentDidUpdate(prevProps: IBackgroundImageProps) {
-    if (prevProps.url !== this.props.url) {
-      this.handleImageLoading(this.props.url, prevProps.url);
-    }
-  }
-
-  componentDidMount() {
-    this.handleImageLoading(this.props.url, null);
-  }
-
-  render() {
-    return (
-      <>
-        <Image
-          topImage
-          backgroundImage={(() => {
-            if (!this.state.imageLoaded) return null;
-            if (!this.props.url) return null;
-            return this.props.url;
-          })()}
-          imageLoaded={this.state.imageLoaded}
-        />
-        {this.state.previousUrl && (
-          <Image backgroundImage={this.state.previousUrl} imageLoaded />
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Image
+        topImage
+        backgroundImage={(() => {
+          if (!imageLoaded) return null;
+          if (!props.url) return null;
+          return props.url;
+        })()}
+        imageLoaded={imageLoaded}
+      />
+      {previousUrl && <Image backgroundImage={previousUrl} imageLoaded />}
+    </>
+  );
+};
+export default BackgroundImage;
 
 interface IImageProps {
   topImage?: boolean;

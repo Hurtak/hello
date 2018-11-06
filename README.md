@@ -2,7 +2,6 @@
 
 ## TODO
 
-- finish classes -> hooks conversion
 - fix remaining conversion bugs
 - finish ts conversion
 - menu design
