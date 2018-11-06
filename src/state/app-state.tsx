@@ -123,8 +123,8 @@ const model = {
     //   // 👇 Now we dispatch an action to add the saved item to our state
     //   actions.todos.todoSaved(saved);
     // }),
-    appInit: effect(async (actions: any, payload: any, additional: any) => {
-      const state = store.getState();
+    appInit: effect(async (actions: any, payload: any, getState: any) => {
+      const state = getState();
 
       // TODO: we should not acces state directly but in setState callback?
       // TODO: possible race condition if we switch settings multiple times?
