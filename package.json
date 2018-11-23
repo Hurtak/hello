@@ -1,6 +1,7 @@
 {
   "name": "hello",
   "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@types/jest": "23.3.9",
     "@types/lodash": "4.14.118",
