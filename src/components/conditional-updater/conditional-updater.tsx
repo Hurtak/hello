@@ -7,9 +7,7 @@ interface IConditionalUpdatedProps {
 }
 
 const config = {
-  // TODO: detect browser refresh rate?
-  //       https://stackoverflow.com/questions/6131051
-  maximumRefreshRate: time.second / 30 // 30 fps
+  maximumRefreshRate: time.second / 60 // 30 fps
 };
 
 const ConditionalUpdater = (props: IConditionalUpdatedProps) => {
