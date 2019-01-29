@@ -8,15 +8,9 @@ import ConditionalUpdater from "../conditional-updater/conditional-updater";
 import Clock from "../clock/clock";
 import Age from "../age/age";
 import BackgroundImage from "../background-image/background-image";
-import { IState } from "../../state/app-state";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
-
-// TODO: unused
-interface IAppProps {
-  app: IState;
-}
 
 // TODO: unused
 interface IAppState {
@@ -40,14 +34,14 @@ const App = () => {
     ageDateOfBirthTimestamp,
     menuOpened
   } = useStore((store: any) => ({
-    imageUrl: store.app.imageUrl,
-    selectedView: store.app.selectedView,
-    clockShowSeconds: store.app.clockShowSeconds,
-    ageDateOfBirthTimestamp: store.app.ageDateOfBirthTimestamp,
-    menuOpened: store.app.menuOpened
+    imageUrl: store.imageUrl,
+    selectedView: store.selectedView,
+    clockShowSeconds: store.clockShowSeconds,
+    ageDateOfBirthTimestamp: store.ageDateOfBirthTimestamp,
+    menuOpened: store.menuOpened
   }));
 
-  const appInit = useAction((actions: any) => actions.app.appInit);
+  const appInit = useAction((actions: any) => actions.appInit);
   useEffect(() => {
     appInit();
   }, []);
@@ -55,10 +49,10 @@ const App = () => {
   useEffect(() => {
     if (!menuEl.current) return;
 
-    const observer = new ResizeObserver(entries => {
+    const observer = new ResizeObserver((entries: any) => {
       setMenuHeight(entries[0].contentRect.height);
     });
-    observer.observe(menuEl.current);
+    observer.observe(menuEl.current as any);
 
     return () => observer.disconnect();
   }, []);
@@ -204,13 +198,13 @@ const AppMenuWrapper = styled.aside`
   height: ${s.dimensions.menuButtonSizeAndSpacing};
   transition: 0.5s all ease;
   overflow: hidden;
-  z-index: ${s.zIndex.menu}
-    ${(props: AppMenuWrapperProps) =>
-      props.opened &&
-      css`
-        width: ${s.dimensions.menuWidth};
-        height: ${props.menuHeight ? s.size(props.menuHeight) : "auto"};
-      `};
+  z-index: ${s.zIndex.menu};
+  ${(props: AppMenuWrapperProps) =>
+    props.opened &&
+    css`
+      width: ${s.dimensions.menuWidth};
+      height: ${props.menuHeight ? s.size(props.menuHeight) : "auto"};
+    `};
 `;
 
 const AppMenu = styled.div`

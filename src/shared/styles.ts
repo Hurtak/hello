@@ -90,7 +90,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     background-color: ${colors.grayChrome};
     /* https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll */
-    position: "relative";
+    position: relative;
   }
 
   /* latin-ext */

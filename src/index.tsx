@@ -4,17 +4,11 @@ import App from "./components/app/app";
 import { StoreProvider } from "easy-peasy";
 import { store } from "./state/app-state";
 
-if (process.env.NODE_ENV !== "production") {
-  // TODO: broken with React hooks
-  // const { whyDidYouUpdate } = require("why-did-you-update");
-  // whyDidYouUpdate(React, {
-  //   // exclude: /Consumer|Subscribe|StyledComponent|GlobalStyleComponent/
-  // });
-}
+const StoreProviderAny = StoreProvider as any;
 
 ReactDOM.render(
-  <StoreProvider store={store}>
+  <StoreProviderAny store={store}>
     <App />
-  </StoreProvider>,
+  </StoreProviderAny>,
   document.getElementById("root")
 );

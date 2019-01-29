@@ -24,16 +24,16 @@ const MenuContent = React.memo((props: IMenuProps) => {
     ageDateOfBirthValue,
     settingsHidden
   } = useStore((store: any) => ({
-    online: store.app.online,
-    imageBing: store.app.imageBing,
-    imageLocal: store.app.imageLocal,
-    imageLocalIndex: store.app.imageLocalIndex,
-    imagesLocal: store.app.imagesLocal,
-    imageSourceWithFallback: store.app.imageSourceWithFallback,
-    selectedView: store.app.selectedView,
-    clockShowSeconds: store.app.clockShowSeconds,
-    ageDateOfBirthValue: store.app.ageDateOfBirthValue,
-    settingsHidden: store.app.settingsHidden
+    online: store.online,
+    imageBing: store.imageBing,
+    imageLocal: store.imageLocal,
+    imageLocalIndex: store.imageLocalIndex,
+    imagesLocal: store.imagesLocal,
+    imageSourceWithFallback: store.imageSourceWithFallback,
+    selectedView: store.selectedView,
+    clockShowSeconds: store.clockShowSeconds,
+    ageDateOfBirthValue: store.ageDateOfBirthValue,
+    settingsHidden: store.settingsHidden
   }));
 
   const {
@@ -46,14 +46,14 @@ const MenuContent = React.memo((props: IMenuProps) => {
     toggleSettingsHidden,
     resetAppState
   } = useAction((store: any) => ({
-    setViewType: store.app.setViewType,
-    setImageSource: store.app.setImageSource,
-    shiftImageLocalIndex: store.app.shiftImageLocalIndex,
-    setImageLocalRandom: store.app.setImageLocalRandom,
-    setAgeDateOfBirth: store.app.setAgeDateOfBirth,
-    toggleClockShowSeconds: store.app.toggleClockShowSeconds,
-    toggleSettingsHidden: store.app.toggleSettingsHidden,
-    resetAppState: store.app.resetAppState
+    setViewType: store.setViewType,
+    setImageSource: store.setImageSource,
+    shiftImageLocalIndex: store.shiftImageLocalIndex,
+    setImageLocalRandom: store.setImageLocalRandom,
+    setAgeDateOfBirth: store.setAgeDateOfBirth,
+    toggleClockShowSeconds: store.toggleClockShowSeconds,
+    toggleSettingsHidden: store.toggleSettingsHidden,
+    resetAppState: store.resetAppState
   }));
 
   return (
@@ -100,22 +100,21 @@ const MenuContent = React.memo((props: IMenuProps) => {
             Predefined
           </Radio>
 
-          {imageSourceWithFallback === "BING" &&
-            imageBing.type === "DONE" && (
-              <section>
-                {imageBing.data.title && (
-                  <Text>title: {imageBing.data.title}</Text>
-                )}
-                {imageBing.data.description && (
-                  <Text>description: {imageBing.data.description}</Text>
-                )}
-                {imageBing.data.link && (
-                  <Text>
-                    <a href={imageBing.data.link}>link</a>
-                  </Text>
-                )}
-              </section>
-            )}
+          {imageSourceWithFallback === "BING" && imageBing.type === "DONE" && (
+            <section>
+              {imageBing.data.title && (
+                <Text>title: {imageBing.data.title}</Text>
+              )}
+              {imageBing.data.description && (
+                <Text>description: {imageBing.data.description}</Text>
+              )}
+              {imageBing.data.link && (
+                <Text>
+                  <a href={imageBing.data.link}>link</a>
+                </Text>
+              )}
+            </section>
+          )}
 
           {imageSourceWithFallback === "LOCAL" && (
             <section>
@@ -237,12 +236,12 @@ const MenuContent = React.memo((props: IMenuProps) => {
 
 const Menu = (props: IMenuProps) => {
   const { menuOpened, settingsHidden } = useStore((store: any) => ({
-    menuOpened: store.app.menuOpened,
-    settingsHidden: store.app.settingsHidden
+    menuOpened: store.menuOpened,
+    settingsHidden: store.settingsHidden
   }));
 
   const { toggleMenu } = useAction((store: any) => ({
-    toggleMenu: store.app.toggleMenu
+    toggleMenu: store.toggleMenu
   }));
 
   return (
