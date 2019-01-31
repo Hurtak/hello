@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore, useAction } from "easy-peasy";
-import styled, { css } from "styled-components";
+import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
@@ -282,90 +282,84 @@ function eventToAgeOfBirthValues(e: any) {
 interface IMenuWrapperProps {
   settingsHidden?: boolean;
 }
-const MenuWrapper = styled.section`
-  box-sizing: border-box;
-  position: relative;
-  padding: ${s.grid(2)};
-  overflow: hidden;
-  background-color: ${s.colors.whiteTransparentDefault};
+const MenuWrapper = styled.section((props: IMenuWrapperProps) => ({
+  boxSizing: "border-box",
+  position: "relative",
+  padding: s.grid(2),
+  overflow: "hidden",
+  backgroundColor: s.colors.whiteTransparentDefault,
+  ...(props.settingsHidden && {
+    opacity: 0,
+    transition: s.animations.default,
+    "&:hover": {
+      opacity: 1
+    }
+  })
+}));
 
-  ${(props: IMenuWrapperProps) =>
-    props.settingsHidden &&
-    css`
-      opacity: 0;
-      transition: ${s.animations.default};
-      &:hover {
-        opacity: 1;
-      }
-    `};
-`;
+const ToggleButton = styled.button({
+  boxSizing: "border-box",
+  position: "absolute",
+  userSelect: "none",
+  top: s.dimensions.menuButtonSpacing,
+  right: s.dimensions.menuButtonSpacing,
+  border: 0,
+  background: "transparent",
+  padding: s.dimensions.menuButtonPadding,
+  cursor: "pointer"
+});
 
-const ToggleButton = styled.button`
-  box-sizing: border-box;
-  position: absolute;
-  user-select: none;
-  top: ${s.dimensions.menuButtonSpacing};
-  right: ${s.dimensions.menuButtonSpacing};
-  border: 0;
-  background: transparent;
-  padding: ${s.dimensions.menuButtonPadding};
-  cursor: pointer;
-`;
-
-const ToggleButtonSpacer = styled.div`
-  float: right;
-  width: ${s.grid(8)};
-  height: ${s.grid(8)};
-`;
+const ToggleButtonSpacer = styled.div({
+  float: "right",
+  width: s.grid(8),
+  height: s.grid(8)
+});
 
 interface IToggleButtonIconProps {
   rotated?: boolean;
 }
 
-const ToggleButtonIcon = styled.img`
-  display: block;
-  width: ${s.dimensions.menuButtonSize};
-  height: ${s.dimensions.menuButtonSize};
-  object-fit: contain;
-  transition: ${s.animations.default};
-  opacity: ${s.opacity.default};
+const ToggleButtonIcon = styled.img((props: IToggleButtonIconProps) => ({
+  display: "block",
+  width: s.dimensions.menuButtonSize,
+  height: s.dimensions.menuButtonSize,
+  objectFit: "contain",
+  transition: s.animations.default,
+  opacity: s.opacity.default,
+  ...(props.rotated && {
+    transform: "rotate(-360deg)"
+  })
+}));
 
-  ${(props: IToggleButtonIconProps) =>
-    props.rotated &&
-    css`
-      transform: rotate(-360deg);
-    `};
-`;
+const Heading = styled.h1({
+  ...s.text.text,
+  ...s.text.size18,
 
-const Heading = styled.h1`
-  ${s.text.text};
-  ${s.text.size18};
+  paddingBottom: "0.25em"
+});
 
-  padding-bottom: 0.25em;
-`;
+const HeadingSmall = styled.h2({
+  ...s.text.text,
+  ...s.text.size16,
 
-const HeadingSmall = styled.h2`
-  ${s.text.text};
-  ${s.text.size16};
+  paddingBottom: "0.25em"
+});
 
-  padding-bottom: 0.25em;
-`;
+const Text = styled.p({
+  ...s.text.text
+});
 
-const Text = styled.p`
-  ${s.text.text};
-`;
+const MenuSectionsWrapper = styled.div({
+  marginTop: s.grid(3)
+});
 
-const MenuSectionsWrapper = styled.div`
-  margin-top: ${s.grid(3)};
-`;
+const MenuSectionStyled = styled.section({
+  marginTop: s.grid(2),
 
-const MenuSectionStyled = styled.section`
-  margin-top: ${s.grid(2)};
-
-  &:first-child {
-    margin-top: 0;
+  "&:first-child": {
+    marginTop: 0
   }
-`;
+});
 
 const MenuSection = (props: {
   title: string;
@@ -396,13 +390,13 @@ const Radio = (props: {
   </RadioLabel>
 );
 
-const RadioLabel = styled.label`
-  display: block;
-`;
+const RadioLabel = styled.label({
+  display: "block"
+});
 
-const RadioText = styled.span`
-  ${s.text.text};
+const RadioText = styled.span({
+  ...s.text.text,
 
-  color: ${s.colors.white};
-  margin-left: ${s.grid(1)};
-`;
+  color: s.colors.white,
+  marginLeft: s.grid(1)
+});

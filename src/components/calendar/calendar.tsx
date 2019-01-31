@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as types from "../../shared/types";
 
@@ -100,37 +100,38 @@ const Calendar = (props: { time: types.Time }) => {
 
 export default Calendar;
 
-const MonthsWrapper = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: ${s.grid(1)};
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-`;
+const MonthsWrapper = styled.ul({
+  display: "grid",
+  gridTemplateColumns: "repeat(4, auto)",
+  gridGap: s.grid(1),
+  listStyleType: "none",
+  margin: 0,
+  padding: 0
+});
 
-const Month = styled.li`
-  display: block;
-  padding: ${s.grid(2)};
-  background-color: ${s.colors.whiteTransparentDefault};
-`;
+const Month = styled.li({
+  display: "block",
+  padding: s.grid(2),
+  backgroundColor: s.colors.whiteTransparentDefault
+});
 
-const MonthName = styled.h2`
-  ${s.text.text};
-  display: block;
-  margin: 0;
-  text-align: center;
-`;
+const MonthName = styled.h2({
+  ...s.text.text,
 
-const DaysWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, auto);
-  grid-gap: ${s.grid(1)} 0;
-  justify-content: space-between;
-  padding: 0;
-  margin-top: ${s.grid(2)};
-  list-style-type: none;
-`;
+  display: "block",
+  margin: 0,
+  textAlign: "center"
+});
+
+const DaysWrapper = styled.div({
+  display: "grid",
+  gridTemplateColumns: "repeat(7, auto)",
+  gridGap: "${s.grid(1)} 0",
+  justifyContent: "space-between",
+  padding: 0,
+  marginTop: s.grid(2),
+  listStyleType: "none"
+});
 
 interface IDayProps {
   heading?: boolean;
@@ -138,42 +139,39 @@ interface IDayProps {
   selected?: boolean;
 }
 
-const Day = styled.div`
-  ${s.text.text};
+const Day = styled.div((props: IDayProps) => ({
+  ...s.text.text,
 
-  ${(props: IDayProps) =>
-    props.heading &&
-    css`
-      font-weight: bold;
-    `}
+  ...(props.heading && {
+    fontWeight: "bold"
+  }),
+  ...(props.currentDay && {
+    fontWeight: "bold"
+  }),
+  ...(props.currentDay && {
+    position: "relative",
+    zIndex: 0,
+    "&::after": {
+      content: `""`,
+      display: "block",
+      position: "absolute",
+      left: "-2px",
+      top: "-4px",
+      width: "22px",
+      height: "22px",
+      backgroundColor: "orange",
+      zIndex: -1
+    }
+  })
+}));
 
+//   $ =>
 
-  ${(props: IDayProps) =>
-    props.currentDay &&
-    css`
-      font-weight: bold;
-    `}
+//   ${(props: IDayProps) =>
 
-  ${(props: IDayProps) =>
-    props.currentDay &&
-    css`
-      position: relative;
-      z-index: 0;
+//     `}
 
-      &::after: {
-        content: "";
-        display: block;
-        position: absolute;
-        left: -2px;
-        top: -4px;
-        width: 22px;
-        height: 22px;
-        background-color: orange;
-        z-index: -1;
-      }
-    `}
-
-`;
+// `;
 
 export function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month, 0).getDate();

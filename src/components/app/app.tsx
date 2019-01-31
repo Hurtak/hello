@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useStore, useAction } from "easy-peasy";
-import styled, { css } from "styled-components";
+import { Normalize } from "styled-normalize";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
 import Menu from "../menu/menu";
@@ -8,6 +8,7 @@ import ConditionalUpdater from "../conditional-updater/conditional-updater";
 import Clock from "../clock/clock";
 import Age from "../age/age";
 import BackgroundImage from "../background-image/background-image";
+import { styled, createGlobalStyle } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
@@ -59,7 +60,8 @@ const App = () => {
 
   return (
     <AppWrapper>
-      <s.GlobalStyles />
+      <Normalize />
+      <GlobalStyles />
 
       <BackgroundWrapper>
         <BackgroundImage url={imageUrl} />
@@ -145,69 +147,91 @@ const App = () => {
 };
 export default App;
 
-const AppWrapper = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: ${s.grid(1)};
+// TODO: object syntax
+const GlobalStyles = createGlobalStyle`
+  body {
+    margin: 0;
+    background-color: ${s.colors.grayChrome};
+    position: relative;
+    /* https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll */
+  }
+
+  /* latin-ext */
+  @font-face {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url(/fonts/lato-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  /* latin */
+  @font-face {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url(/fonts/lato-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 `;
 
+const AppWrapper = styled.div({
+  boxSizing: "border-box",
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100vh",
+  padding: s.grid(1)
+});
+
 interface AppContentProps {
-  maxWith?: boolean;
+  maxWidth?: boolean;
   center?: boolean;
 }
 
-const AppContent = styled.main`
-  display: flex;
-  flex: 1 0 0;
-  flex-direction: column;
-  width: 100%;
-  z-index: ${s.zIndex.content};
-  ${(props: AppContentProps) =>
-    props.maxWith &&
-    css`
-      max-width: ${s.size(1200)};
-    `};
-  ${(props: AppContentProps) =>
-    props.center &&
-    css`
-      justify-content: center;
-      align-items: center;
-    `};
-`;
+const AppContent = styled.main((props: AppContentProps) => ({
+  display: "flex",
+  flex: "1 0 0",
+  flexDirection: "column",
+  width: "100%",
+  zIndex: s.zIndex.content,
+  ...(props.center && {
+    justifyContent: "center",
+    alignItems: "center"
+  }),
+  ...(props.maxWidth && {
+    maxWidth: s.size(1200)
+  })
+}));
 
-const BackgroundWrapper = styled.div`
-  z-index: ${s.zIndex.background};
-`;
+const BackgroundWrapper = styled.div({
+  zIndex: s.zIndex.background
+});
 
 interface AppMenuWrapperProps {
   opened: boolean;
   menuHeight: IAppState["menuHeight"];
 }
 
-const AppMenuWrapper = styled.aside`
-  position: absolute;
-  direction: rtl; /* To make the overflow cropping from the right side */
-  top: ${s.grid(1)};
-  right: ${s.grid(1)};
-  width: ${s.dimensions.menuButtonSizeAndSpacing};
-  height: ${s.dimensions.menuButtonSizeAndSpacing};
-  transition: 0.5s all ease;
-  overflow: hidden;
-  z-index: ${s.zIndex.menu};
-  ${(props: AppMenuWrapperProps) =>
-    props.opened &&
-    css`
-      width: ${s.dimensions.menuWidth};
-      height: ${props.menuHeight ? s.size(props.menuHeight) : "auto"};
-    `};
-`;
+const AppMenuWrapper = styled.aside((props: AppMenuWrapperProps) => ({
+  position: "absolute",
+  direction: "rtl", // To make the overflow cropping from the right side
+  top: s.grid(1),
+  right: s.grid(1),
+  width: s.dimensions.menuButtonSizeAndSpacing,
+  height: s.dimensions.menuButtonSizeAndSpacing,
+  transition: "0.5s all ease",
+  overflow: "hidden",
+  zIndex: s.zIndex.menu,
+  ...(props.opened && {
+    width: s.dimensions.menuWidth,
+    height: props.menuHeight ? s.size(props.menuHeight) : "auto"
+  })
+}));
 
-const AppMenu = styled.div`
-  width: ${s.dimensions.menuWidth};
-  direction: ltr; /* Reset direction set in AppMenuWrapper */
-`;
+const AppMenu = styled.div({
+  width: s.dimensions.menuWidth,
+  direction: "ltr" // Reset direction set in AppMenuWrapper
+});

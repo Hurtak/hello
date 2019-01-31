@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { styled } from "../../shared/css";
 
 interface IBackgroundImageProps {
   url: string;
@@ -56,18 +56,19 @@ interface IImageProps {
   imageLoaded: boolean;
   backgroundImage: string | null;
 }
-const Image = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: ${(props: IImageProps) =>
-    props.backgroundImage ? `url("${props.backgroundImage}")` : "none"};
-  background-position: center;
-  transition: opacity 0.3s ease;
-  z-index: ${(props: IImageProps) => (props.topImage ? 2 : 1)};
-  opacity: ${(props: IImageProps) => (props.imageLoaded ? 1 : 0)};
-`;
+const Image = styled.div((props: IImageProps) => ({
+  position: "absolute",
+  left: 0,
+  top: 0,
+  width: "100%",
+  height: "100%",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  backgroundImage: props.backgroundImage
+    ? `url("${props.backgroundImage}")`
+    : "none",
+  transition: "opacity 0.3s ease",
+  zIndex: props.topImage ? 2 : 1,
+  opacity: props.imageLoaded ? 1 : 0
+}));

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as time from "../../shared/time";
 import * as types from "../../shared/types";
@@ -25,35 +25,35 @@ const Age = (props: IAge) => {
 };
 export default Age;
 
-const Wrapper = styled.div`
-  position: relative;
-  flex-grow: 1;
-  user-select: none;
-`;
+const Wrapper = styled.div({
+  position: "relative",
+  flexGrow: 1,
+  userSelect: "none"
+});
 
-const AgePosition = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  bottom: 15%;
-  width: 100%;
-`;
+const AgePosition = styled.div({
+  position: "absolute",
+  display: "flex",
+  justifyContent: "center",
+  bottom: "15%",
+  width: "100%"
+});
 
-const AgeBox = styled.div`
-  padding: ${s.grid(2)} ${s.grid(2.5)};
-  background-color: ${s.colors.whiteTransparentDefault};
-  overflow: hidden;
-`;
+const AgeBox = styled.div({
+  padding: `${s.grid(2)} ${s.grid(2.5)}`,
+  backgroundColor: s.colors.whiteTransparentDefault,
+  overflow: "hidden"
+});
 
-const AgeText = styled.div`
-  ${s.text.text};
-  ${s.text.familyMonospace};
+const AgeText = styled.div({
+  ...s.text.text,
+  ...s.text.familyMonospace,
 
-  color: ${s.colors.white};
-  opacity: ${s.opacity.default};
-  font-size: ${s.size(24)};
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
+  color: s.colors.white,
+  opacity: s.opacity.default,
+  fontSize: s.size(24),
+  textAlign: "center",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis"
+});
