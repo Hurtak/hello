@@ -1,5 +1,6 @@
 import React from "react";
-import { useStore, useAction } from "easy-peasy";
+import { view } from "react-easy-state";
+import { state } from "../../state/state";
 import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import { timestampToDateInputValue } from "../../shared/time";
@@ -11,51 +12,8 @@ interface IMenuProps {
 
 // React.memo used to prevent rerendering of whole menu when menuOpened state
 // changes in parent component
-const MenuContent = React.memo((props: IMenuProps) => {
-  const {
-    online,
-    imageBing,
-    imageLocal,
-    imageLocalIndex,
-    imagesLocal,
-    imageSourceWithFallback,
-    selectedView,
-    clockShowSeconds,
-    ageDateOfBirthValue,
-    settingsHidden
-  } = useStore((store: any) => ({
-    online: store.online,
-    imageBing: store.imageBing,
-    imageLocal: store.imageLocal,
-    imageLocalIndex: store.imageLocalIndex,
-    imagesLocal: store.imagesLocal,
-    imageSourceWithFallback: store.imageSourceWithFallback,
-    selectedView: store.selectedView,
-    clockShowSeconds: store.clockShowSeconds,
-    ageDateOfBirthValue: store.ageDateOfBirthValue,
-    settingsHidden: store.settingsHidden
-  }));
-
-  const {
-    setViewType,
-    setImageSource,
-    shiftImageLocalIndex,
-    setImageLocalRandom,
-    setAgeDateOfBirth,
-    toggleClockShowSeconds,
-    toggleSettingsHidden,
-    resetAppState
-  } = useAction((store: any) => ({
-    setViewType: store.setViewType,
-    setImageSource: store.setImageSource,
-    shiftImageLocalIndex: store.shiftImageLocalIndex,
-    setImageLocalRandom: store.setImageLocalRandom,
-    setAgeDateOfBirth: store.setAgeDateOfBirth,
-    toggleClockShowSeconds: store.toggleClockShowSeconds,
-    toggleSettingsHidden: store.toggleSettingsHidden,
-    resetAppState: store.resetAppState
-  }));
-
+// TODO: might not be needed after we chagned state library?
+const MenuContent = view((props: IMenuProps) => {
   return (
     <>
       <Heading>Hello Friend &ndash; New Tab Page</Heading>
@@ -68,67 +26,73 @@ const MenuContent = React.memo((props: IMenuProps) => {
 
       <MenuSectionsWrapper>
         <MenuSection title="Background image">
-          {!online && (
+          {!state.online && (
             <div>You are currently offline, falling back to local images</div>
           )}
-          {imageBing.type === "ERROR" && (
+          {state.imageBing.type === "ERROR" && (
             <>
               {/* TODO: proper error matching */}
               <p>Error</p>
-              <p>errorType: {imageBing.errorType}</p>
-              <p>errorData: {String(imageBing.data)}</p>
+              <p>errorType: {state.imageBing.errorType}</p>
+              <p>errorData: {String(state.imageBing.data)}</p>
               <pre>
-                <code>{JSON.stringify(imageBing)}</code>
+                <code>{JSON.stringify(state.imageBing)}</code>
               </pre>
             </>
           )}
 
           <Radio
             name="images"
-            onChange={() => setImageSource("BING")}
-            checked={imageSourceWithFallback === "BING"}
-            disabled={online === false}
+            onChange={() => state.setImageSource("BING")}
+            checked={state.imageSourceWithFallback === "BING"}
+            disabled={state.online === false}
           >
             Bing image of the day
           </Radio>
 
           <Radio
             name="images"
-            onChange={() => setImageSource("LOCAL")}
-            checked={imageSourceWithFallback === "LOCAL"}
+            onChange={() => state.setImageSource("LOCAL")}
+            checked={state.imageSourceWithFallback === "LOCAL"}
           >
             Predefined
           </Radio>
 
-          {imageSourceWithFallback === "BING" && imageBing.type === "DONE" && (
-            <section>
-              {imageBing.data.title && (
-                <Text>title: {imageBing.data.title}</Text>
-              )}
-              {imageBing.data.description && (
-                <Text>description: {imageBing.data.description}</Text>
-              )}
-              {imageBing.data.link && (
-                <Text>
-                  <a href={imageBing.data.link}>link</a>
-                </Text>
-              )}
-            </section>
-          )}
+          {state.imageSourceWithFallback === "BING" &&
+            state.imageBing.type === "DONE" && (
+              <section>
+                {state.imageBing.data.title && (
+                  <Text>title: {state.imageBing.data.title}</Text>
+                )}
+                {state.imageBing.data.description && (
+                  <Text>description: {state.imageBing.data.description}</Text>
+                )}
+                {state.imageBing.data.link && (
+                  <Text>
+                    <a href={state.imageBing.data.link}>link</a>
+                  </Text>
+                )}
+              </section>
+            )}
 
-          {imageSourceWithFallback === "LOCAL" && (
+          {state.imageSourceWithFallback === "LOCAL" && (
             <section>
-              <button onClick={() => shiftImageLocalIndex(-1)}>Prev</button>
-              <button onClick={setImageLocalRandom}>Random image</button>
-              <button onClick={() => shiftImageLocalIndex(1)}>Next</button>
+              <button onClick={() => state.shiftImageLocalIndex(-1)}>
+                Prev
+              </button>
+              <button onClick={state.setImageLocalRandom}>Random image</button>
+              <button onClick={() => state.shiftImageLocalIndex(1)}>
+                Next
+              </button>
 
               {(() => {
-                const image = imageLocal;
+                const image = state.imageLocal;
 
                 return (
                   <>
                     <Text>
-                      image: {imageLocalIndex + 1}/{imagesLocal.length}
+                      image: {state.imageLocalIndex + 1}/
+                      {state.imagesLocal.length}
                     </Text>
                     {image.name && <Text>name: {image.name}</Text>}
                     {image.location && <Text>location: {image.location}</Text>}
@@ -147,50 +111,52 @@ const MenuContent = React.memo((props: IMenuProps) => {
         <MenuSection title="View type">
           <Radio
             name="view"
-            onChange={() => setViewType("CLOCK")}
-            checked={selectedView === "CLOCK"}
+            onChange={() => state.setSelectedView("CLOCK")}
+            checked={state.selectedView === "CLOCK"}
           >
             Clock
           </Radio>
 
           <Radio
             name="view"
-            onChange={() => setViewType("AGE")}
-            checked={selectedView === "AGE"}
+            onChange={() => state.setSelectedView("AGE")}
+            checked={state.selectedView === "AGE"}
           >
             Age
           </Radio>
 
           <Radio
             name="view"
-            onChange={() => setViewType("NOTHING")}
-            checked={selectedView === "NOTHING"}
+            onChange={() => state.setSelectedView("NOTHING")}
+            checked={state.selectedView === "NOTHING"}
           >
             Nothing
           </Radio>
 
-          {selectedView === "CLOCK" && (
+          {state.selectedView === "CLOCK" && (
             <label>
               <Text>
                 <input
                   type="checkbox"
-                  checked={clockShowSeconds}
-                  onChange={toggleClockShowSeconds}
+                  checked={state.clockShowSeconds}
+                  onChange={state.toggleClockShowSeconds}
                 />
                 Show seconds
               </Text>
             </label>
           )}
 
-          {selectedView === "AGE" && (
+          {state.selectedView === "AGE" && (
             <label>
               Your date of birth
               <input
                 type="date"
                 min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
                 max={timestampToDateInputValue(Date.now())}
-                value={ageDateOfBirthValue}
-                onChange={e => setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
+                value={state.ageDateOfBirthValue}
+                onChange={e =>
+                  state.setAgeDateOfBirth(eventToAgeOfBirthValues(e))
+                }
               />
             </label>
           )}
@@ -205,8 +171,8 @@ const MenuContent = React.memo((props: IMenuProps) => {
           <label>
             <input
               type="checkbox"
-              checked={settingsHidden}
-              onChange={toggleSettingsHidden}
+              checked={state.settingsHidden}
+              onChange={state.toggleSettingsHidden}
             />
             Hide stuff
           </label>
@@ -226,7 +192,7 @@ const MenuContent = React.memo((props: IMenuProps) => {
         {props.isDev && (
           <MenuSection title="Dev menu">
             <Text>This menu is only visible in development mode</Text>
-            <button onClick={resetAppState}>Reset app state</button>
+            <button onClick={state.resetAppState}>Reset app state</button>
           </MenuSection>
         )}
       </MenuSectionsWrapper>
@@ -235,24 +201,15 @@ const MenuContent = React.memo((props: IMenuProps) => {
 });
 
 const Menu = (props: IMenuProps) => {
-  const { menuOpened, settingsHidden } = useStore((store: any) => ({
-    menuOpened: store.menuOpened,
-    settingsHidden: store.settingsHidden
-  }));
-
-  const { toggleMenu } = useAction((store: any) => ({
-    toggleMenu: store.toggleMenu
-  }));
-
   return (
-    <MenuWrapper settingsHidden={settingsHidden && !menuOpened}>
-      <ToggleButton onClick={toggleMenu}>
-        <ToggleButtonIcon src={iconCog} rotated={menuOpened} />
+    <MenuWrapper settingsHidden={state.settingsHidden && !state.menuOpened}>
+      <ToggleButton onClick={state.toggleMenu}>
+        <ToggleButtonIcon src={iconCog} rotated={state.menuOpened} />
       </ToggleButton>
 
       <ToggleButtonSpacer />
 
-      <div inert={menuOpened === false ? "true" : null}>
+      <div inert={state.menuOpened === false ? "true" : null}>
         <MenuContent isDev={props.isDev} />
       </div>
     </MenuWrapper>
@@ -375,7 +332,7 @@ const Radio = (props: {
   name: string;
   checked: boolean;
   disabled?: boolean;
-  onChange: () => {}; // TODO: proper type?
+  onChange: () => void;
   children: string;
 }) => (
   <RadioLabel>

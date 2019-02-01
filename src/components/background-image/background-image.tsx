@@ -2,37 +2,34 @@ import React, { useState, useEffect } from "react";
 import { styled } from "../../shared/css";
 
 interface IBackgroundImageProps {
-  url: string;
+  url: string | null;
 }
 
 const BackgroundImage = (props: IBackgroundImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [previousUrl, setPreviousUrl] = useState(props.url || null);
+  const [previousUrl, setPreviousUrl] = useState(props.url);
 
-  useEffect(
-    () => {
-      // TODO raceconiditons right?
-      // TODO completly all bad
-      setImageLoaded(false);
-      setPreviousUrl(previousUrl);
-      if (!props.url) return;
+  useEffect(() => {
+    // TODO raceconiditons right?
+    // TODO completly all bad
+    setImageLoaded(false);
+    setPreviousUrl(previousUrl);
+    if (!props.url) return;
 
-      const image = document.createElement("img");
-      image.src = props.url;
+    const image = document.createElement("img");
+    image.src = props.url;
 
-      if (image.complete) {
-        // browser finished downloading the image
+    if (image.complete) {
+      // browser finished downloading the image
+      setImageLoaded(true);
+    } else {
+      // image is not loaded yet
+      image.onload = () => {
+        // TODO: race condition when switching fast between images?
         setImageLoaded(true);
-      } else {
-        // image is not loaded yet
-        image.onload = () => {
-          // TODO: race condition when switching fast between images?
-          setImageLoaded(true);
-        };
-      }
-    },
-    [props.url]
-  );
+      };
+    }
+  }, [props.url]);
 
   return (
     <>

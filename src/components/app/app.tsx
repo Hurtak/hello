@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useStore, useAction } from "easy-peasy";
 import { Normalize } from "styled-normalize";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
@@ -8,10 +7,12 @@ import ConditionalUpdater from "../conditional-updater/conditional-updater";
 import Clock from "../clock/clock";
 import Age from "../age/age";
 import BackgroundImage from "../background-image/background-image";
+import { state } from "../../state/state";
 import { styled, createGlobalStyle } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
+import { view } from "react-easy-state";
 
 // TODO: unused
 interface IAppState {
@@ -24,27 +25,12 @@ const AppConfig = {
   ageDecimalPlaces: 3
 };
 
-const App = () => {
+const App = view(() => {
   const menuEl = useRef(null);
   const [menuHeight, setMenuHeight] = useState(null);
 
-  const {
-    imageUrl,
-    selectedView,
-    clockShowSeconds,
-    ageDateOfBirthTimestamp,
-    menuOpened
-  } = useStore((store: any) => ({
-    imageUrl: store.imageUrl,
-    selectedView: store.selectedView,
-    clockShowSeconds: store.clockShowSeconds,
-    ageDateOfBirthTimestamp: store.ageDateOfBirthTimestamp,
-    menuOpened: store.menuOpened
-  }));
-
-  const appInit = useAction((actions: any) => actions.appInit);
   useEffect(() => {
-    appInit();
+    // state.appInit();
   }, []);
 
   useEffect(() => {
@@ -64,20 +50,22 @@ const App = () => {
       <GlobalStyles />
 
       <BackgroundWrapper>
-        <BackgroundImage url={imageUrl} />
+        <BackgroundImage url={state.imageUrl} />
       </BackgroundWrapper>
 
       {(() => {
-        switch (selectedView) {
+        switch (state.selectedView) {
           case "CLOCK":
             return (
               <AppContent center>
                 <ConditionalUpdater
-                  updateEveryN={clockShowSeconds ? time.second : time.minute}
+                  updateEveryN={
+                    state.clockShowSeconds ? time.second : time.minute
+                  }
                   component={time => (
-                    <Clock time={time} showSeconds={clockShowSeconds} />
+                    <Clock time={time} showSeconds={state.clockShowSeconds} />
                   )}
-                  key={selectedView}
+                  key={state.selectedView}
                 />
               </AppContent>
             );
@@ -88,7 +76,7 @@ const App = () => {
           //       <ConditionalUpdater
           //         updateEveryN={time.day}
           //         component={time => <Calendar time={time} />}
-          //         key={selectedView}
+          //         key={state.selectedView}
           //       />
           //     </AppContent>
           //   );
@@ -106,7 +94,7 @@ const App = () => {
           //             decimalPlaces={AppConfig.yearProgressDecimalPlaces}
           //           />
           //         )}
-          //         key={selectedView}
+          //         key={state.selectedView}
           //       />
           //     </AppContent>
           //   );
@@ -119,11 +107,11 @@ const App = () => {
                   component={time => (
                     <Age
                       time={time}
-                      birthDate={ageDateOfBirthTimestamp}
+                      birthDate={state.ageDateOfBirthTimestamp}
                       decimalPlaces={AppConfig.ageDecimalPlaces}
                     />
                   )}
-                  key={selectedView}
+                  key={state.selectedView}
                 />
               </AppContent>
             );
@@ -137,14 +125,14 @@ const App = () => {
         }
       })()}
 
-      <AppMenuWrapper opened={menuOpened} menuHeight={menuHeight}>
+      <AppMenuWrapper opened={state.menuOpened} menuHeight={menuHeight}>
         <AppMenu ref={menuEl}>
           <Menu isDev={constants.isDev} />
         </AppMenu>
       </AppMenuWrapper>
     </AppWrapper>
   );
-};
+});
 export default App;
 
 // TODO: object syntax
