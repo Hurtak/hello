@@ -1,11 +1,11 @@
 import React from "react";
+import { Timestamp } from "../timer-updater/timer-updater";
 import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as time from "../../shared/time";
-import * as types from "../../shared/types";
 
 type AgeProps = {
-  time: types.Time;
+  time: Timestamp;
   birthDate: number;
   decimalPlaces: number;
 };

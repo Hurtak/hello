@@ -4,7 +4,7 @@ import { Normalize } from "styled-normalize";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
 import { Menu } from "../menu/menu";
-import { ConditionalUpdater } from "../conditional-updater/conditional-updater";
+import { TimerUpdater } from "../timer-updater/timer-updater";
 import { Clock } from "../clock/clock";
 import { Age } from "../age/age";
 import { BackgroundImage } from "../background-image/background-image";
@@ -38,16 +38,16 @@ export const App = view(() => {
 type MenuHeight = number | null;
 
 const AppInner = view(() => {
-  const menuEl = useRef(null);
+  const menuEl = useRef<HTMLDivElement>(null);
   const [menuHeight, setMenuHeight] = useState<MenuHeight>(null);
 
   useEffect(() => {
     if (!menuEl.current) return;
 
-    const observer = new ResizeObserver((entries: any) => {
+    const observer = new ResizeObserver(entries => {
       setMenuHeight(entries[0].contentRect.height);
     });
-    observer.observe(menuEl.current as any);
+    observer.observe(menuEl.current);
 
     return () => observer.disconnect();
   }, []);
@@ -63,7 +63,7 @@ const AppInner = view(() => {
           case "CLOCK":
             return (
               <AppContent center>
-                <ConditionalUpdater
+                <TimerUpdater
                   updateEveryN={
                     state.settings.clockShowSeconds ? time.second : time.minute
                   }
@@ -110,7 +110,7 @@ const AppInner = view(() => {
           case "AGE": {
             return (
               <AppContent>
-                <ConditionalUpdater
+                <TimerUpdater
                   updateEveryN={time.year / 10 ** AppConfig.ageDecimalPlaces}
                   component={time => (
                     <Age

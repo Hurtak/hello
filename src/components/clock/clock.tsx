@@ -1,23 +1,23 @@
 import React from "react";
+import { Timestamp } from "../timer-updater/timer-updater";
 import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
-import * as types from "../../shared/types";
 import { addLeadingZero } from "../../shared/time";
 
 type ClockProps = {
-  time: types.Time;
+  time: Timestamp;
   showSeconds: boolean;
 };
 
 export const Clock = (props: ClockProps) => (
   <ClockBox>
     <ClockText>
-      <Time time={props.time} showSeconds={props.showSeconds} />
+      <TimeC time={props.time} showSeconds={props.showSeconds} />
     </ClockText>
   </ClockBox>
 );
 
-const Time = (props: ClockProps) => {
+const TimeC = (props: ClockProps) => {
   const date = new Date(props.time);
 
   const hours = addLeadingZero(date.getHours());

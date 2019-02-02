@@ -1,5 +1,28 @@
 import get from "lodash/get";
-import { CorsProxyType, HttpData } from "./types";
+
+export type BingResponse = {
+  url: string;
+  title?: string;
+  link?: string;
+  description: string;
+};
+
+export type HttpData<Response> =
+  | { type: "INITIAL" }
+  | { type: "FETCHING" }
+  | { type: "DONE"; data: Response }
+  | {
+      type: "ERROR";
+      errorType:
+        | "FETCH_ERROR"
+        | "STATUS_NOT_200"
+        | "STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE"
+        | "ERROR_PARSING_JSON"
+        | "MISSING_DATA_IN_RESPONSE";
+      data: any;
+    };
+
+type CorsProxyType = "CORS_ANYWHERE" | "CODETABS";
 
 export function getCorsProxyUrl(
   corsProxyType: CorsProxyType,
@@ -12,8 +35,6 @@ export function getCorsProxyUrl(
       )}`;
     case "CORS_ANYWHERE":
       return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
-    default:
-      throw new Error(`Unknown corsProxyType: ${corsProxyType}`);
   }
 }
 
@@ -29,7 +50,7 @@ export const bingImageUrl = (() => {
   return bingImage.toString();
 })();
 
-export async function getBingImageOfTheDay() {
+export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
   let request = null;
 
   const url = getCorsProxyUrl("CODETABS", bingImageUrl);
@@ -116,8 +137,7 @@ export async function getBingImageOfTheDay() {
   });
 }
 
-// TODO: no any?
-function httpDataWithLog(data: HttpData<any>): HttpData<any> {
+function httpDataWithLog(data: HttpData<BingResponse>): HttpData<BingResponse> {
   if (data.type === "ERROR") {
     console.warn("Error fetching data", data);
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
-import * as types from "../../shared/types";
+import { Timestamp } from "../timer-updater/timer-updater";
 
 const monthNames = [
   "January",
@@ -20,7 +20,7 @@ const monthNames = [
 
 const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-export const Calendar = (props: { time: types.Time }) => {
+export const Calendar = (props: { time: Timestamp }) => {
   const now = new Date(props.time);
 
   const currentMonth = now.getMonth() + 1;

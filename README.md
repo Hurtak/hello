@@ -2,11 +2,8 @@
 
 ## TODO
 
-- styled-components debug class names? should work if we use macros but it does not?
-- revisit tsconfig
-
----
-
+- fix bing!!
+- introduce config and get rid of constants
 - fix remaining conversion bugs
 - finish ts conversion
 - menu design
@@ -29,6 +26,7 @@
 
 ## Later TODOS
 
+- revisit tsconfig
 - docs
 - images
   - bing image of the day

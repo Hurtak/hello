@@ -1,36 +1,27 @@
 import React, { useState, useEffect } from "react";
 import * as time from "../../shared/time";
 
-type ConditionalUpdatedProps = {
+export type Timestamp = number;
+
+type TimerUpdatedProps = {
   updateEveryN: number;
-  component: (time: number) => React.ReactNode;
+  component: (time: Timestamp) => React.ReactNode;
 };
 
 const config = {
   maximumRefreshRate: time.second / 60 // 30 fps
 };
 
-export const ConditionalUpdater = (props: ConditionalUpdatedProps) => {
-  // TODO: refactor effect?
-  // ????????????????????
-  // ????????????????????
-  // ????????????????????
-  // TODO: can I use setSomething hook in effect????
-  // ????????????????????
-  // ????????????????????
-  // ????????????????????
-
-  const now = Date.now();
-
-  const [time, setTime] = useState(now);
+export const TimerUpdater = (props: TimerUpdatedProps) => {
+  const [time, setTime] = useState(Date.now());
 
   useEffect(() => {
-    let timer: number | undefined = undefined;
+    let timer: number | undefined;
 
     function updateTimeAndStartTimeout() {
       const now = Date.now();
 
-      const timer = window.setTimeout(
+      timer = window.setTimeout(
         updateTimeAndStartTimeout,
         getNextTick(now, props.updateEveryN, config.maximumRefreshRate)
       );

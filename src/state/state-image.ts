@@ -1,19 +1,15 @@
 import { state } from "./state";
 import { images, Image } from "../images/images";
 import { getRandomInt } from "../shared/random";
-import { getBingImageOfTheDay } from "../shared/api";
-import { HttpData, ImageSource } from "../shared/types";
+import { getBingImageOfTheDay, HttpData, BingResponse } from "../shared/api";
+
+type ImageSource = "LOCAL" | "BING";
 
 export const stateImage = {
   imageSource: "LOCAL",
 
   imageLocalIndex: 0,
-  imageBing: { type: "INITIAL" } as HttpData<{
-    url: string;
-    title?: string;
-    link?: string;
-    description: string;
-  }>,
+  imageBing: { type: "INITIAL" } as HttpData<BingResponse>,
 
   get imagesLocal(): Image[] {
     return images;

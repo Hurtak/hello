@@ -1,6 +1,12 @@
 import { state } from "./state";
-import { View } from "../shared/types";
 import { timestampToDateInputValue } from "../shared/time";
+
+type View =
+  | "CLOCK"
+  // | "CALENDAR"
+  // | "YEAR_PROGRESS"
+  | "AGE"
+  | "NOTHING";
 
 const initialDateOfBirth = Date.UTC(1990, 0, 1);
 

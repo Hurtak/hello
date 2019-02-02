@@ -1,10 +1,10 @@
 import React from "react";
+import { Timestamp } from "../timer-updater/timer-updater";
 import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
-import * as types from "../../shared/types";
 
 type YearProgressProps = {
-  time: types.Time;
+  time: Timestamp;
   decimalPlaces: number;
 };
 

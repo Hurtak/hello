@@ -1,4 +1,4 @@
-import * as ConditionalUpdaterFn from "./conditional-updater";
+import * as ConditionalUpdaterFn from "./timer-updater";
 
 it("getNextTick", () => {
   expect(
