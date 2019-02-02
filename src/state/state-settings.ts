@@ -11,6 +11,7 @@ export const stateSettings = {
   ageDateOfBirthTimestamp: initialDateOfBirth,
   ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
   settingsHidden: false,
+  scheduledAppReset: false,
 
   toggleMenu(): void {
     state.settings.menuOpened = !state.settings.menuOpened;
@@ -42,10 +43,8 @@ export const stateSettings = {
   },
 
   resetAppState(): void {
-    // TODO
-    // const initialState = getInitialState();
-
-    // clearStorage();
+    state.settings.scheduledAppReset = true;
+    state.localStorage.clear();
     window.location.reload();
   }
 };

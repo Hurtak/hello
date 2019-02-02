@@ -1,6 +1,7 @@
 import { state } from "./state";
 import { images, IImage } from "../images/images";
 import { getRandomInt } from "../shared/random";
+import { getBingImageOfTheDay } from "../shared/api";
 import * as types from "../shared/types";
 
 export const stateImage = {
@@ -53,6 +54,12 @@ export const stateImage = {
       default:
         return null;
     }
+  },
+
+  async fetchBingImage(): Promise<void> {
+    state.image.imageBing = { type: "FETCHING" };
+    const imageData = await getBingImageOfTheDay();
+    state.image.imageBing = imageData;
   },
 
   setImageSource(imageSource: types.ImageSource): void {

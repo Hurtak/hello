@@ -2,16 +2,9 @@
 
 ## TODO
 
-- state stuff
-  - refactor view wrappers into state components and pure components?
-  - infer state variable, now we have duplicate type declarations
-  - resolve todos in state folder
-  - make localStorage middleware work again
-  - group related stuff into files?
-- styled-components debug class names? should work if we use macros but it does not?
 - get rid of interface
 - get rid of default exports
-- convert to react easy state
+- styled-components debug class names? should work if we use macros but it does not?
 - revisit tsconfig
 
 ---

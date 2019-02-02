@@ -1,40 +1,23 @@
 import { store } from "react-easy-state";
-// import { clearStorage } from "../state/middleware-local-storage"; // TODO
+
+import { stateApp } from "./state-app";
 import { stateBrowser } from "./state-browser";
 import { stateImage } from "./state-image";
 import { stateSettings } from "./state-settings";
-import { getBingImageOfTheDay } from "../shared/api";
+import { stateLocalStorage } from "./state-local-storage";
 
-type Store = {
+export type State = {
+  app: typeof stateApp;
   browser: typeof stateBrowser;
   settings: typeof stateSettings;
   image: typeof stateImage;
-
-  appInit: () => void;
+  localStorage: typeof stateLocalStorage;
 };
 
-export const state: Store = store<Store>({
+export const state: State = store<State>({
+  app: stateApp,
   browser: stateBrowser,
   image: stateImage,
   settings: stateSettings,
-
-  async appInit() {
-    // TODO: we should not acces state directly but in setState callback?
-    // TODO: possible race condition if we switch settings multiple times?
-    switch (state.image.imageSourceWithFallback) {
-      case "LOCAL": {
-        state.image.setImageLocalRandom();
-        break;
-      }
-
-      case "BING": {
-        state.image.imageBing = { type: "FETCHING" };
-        const imageData = await getBingImageOfTheDay();
-        state.image.imageBing = imageData;
-        break;
-      }
-
-      default:
-    }
-  }
+  localStorage: stateLocalStorage
 });

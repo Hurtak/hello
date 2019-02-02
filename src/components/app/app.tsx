@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { view } from "react-easy-state";
 import { Normalize } from "styled-normalize";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
@@ -12,7 +13,6 @@ import { styled, createGlobalStyle } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
-import { view } from "react-easy-state";
 
 // TODO: unused
 interface IAppState {
@@ -26,12 +26,24 @@ const AppConfig = {
 };
 
 const App = view(() => {
+  useEffect(() => {
+    state.app.init();
+  }, []);
+
+  return (
+    <AppWrapper>
+      <Normalize />
+      <GlobalStyles />
+
+      {state.app.initialized && <AppInner />}
+    </AppWrapper>
+  );
+});
+export default App;
+
+const AppInner = view(() => {
   const menuEl = useRef(null);
   const [menuHeight, setMenuHeight] = useState(null);
-
-  useEffect(() => {
-    // state.appInit();
-  }, []);
 
   useEffect(() => {
     if (!menuEl.current) return;
@@ -45,10 +57,7 @@ const App = view(() => {
   }, []);
 
   return (
-    <AppWrapper>
-      <Normalize />
-      <GlobalStyles />
-
+    <>
       <BackgroundWrapper>
         <BackgroundImage url={state.image.imageUrl} />
       </BackgroundWrapper>
@@ -136,10 +145,9 @@ const App = view(() => {
           <Menu isDev={constants.isDev} />
         </AppMenu>
       </AppMenuWrapper>
-    </AppWrapper>
+    </>
   );
 });
-export default App;
 
 // TODO: object syntax
 const GlobalStyles = createGlobalStyle`

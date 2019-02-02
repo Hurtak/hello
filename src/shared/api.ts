@@ -119,7 +119,7 @@ export async function getBingImageOfTheDay() {
 // TODO: no any?
 function httpDataWithLog(data: HttpData<any>): HttpData<any> {
   if (data.type === "ERROR") {
-    console.log(data);
+    console.warn("Error fetching data", data);
   }
 
   return data;
