@@ -10,6 +10,26 @@ type MenuProps = {
   isDev: boolean;
 };
 
+export const Menu = view((props: MenuProps) => {
+  return (
+    <MenuWrapper
+      settingsHidden={
+        state.settings.settingsHidden && !state.settings.menuOpened
+      }
+    >
+      <ToggleButton onClick={state.settings.toggleMenu}>
+        <ToggleButtonIcon src={iconCog} rotated={state.settings.menuOpened} />
+      </ToggleButton>
+
+      <ToggleButtonSpacer />
+
+      <div inert={state.settings.menuOpened === false ? "true" : null}>
+        <MenuContent isDev={props.isDev} />
+      </div>
+    </MenuWrapper>
+  );
+});
+
 // React.memo used to prevent rerendering of whole menu when menuOpened state
 // changes in parent component
 // TODO: might not be needed after we chagned state library?
@@ -206,28 +226,6 @@ const MenuContent = view((props: MenuProps) => {
   );
 });
 
-const Menu = view((props: MenuProps) => {
-  return (
-    <MenuWrapper
-      settingsHidden={
-        state.settings.settingsHidden && !state.settings.menuOpened
-      }
-    >
-      <ToggleButton onClick={state.settings.toggleMenu}>
-        <ToggleButtonIcon src={iconCog} rotated={state.settings.menuOpened} />
-      </ToggleButton>
-
-      <ToggleButtonSpacer />
-
-      <div inert={state.settings.menuOpened === false ? "true" : null}>
-        <MenuContent isDev={props.isDev} />
-      </div>
-    </MenuWrapper>
-  );
-});
-
-export default Menu;
-
 function eventToAgeOfBirthValues(e: React.ChangeEvent<HTMLInputElement>) {
   const valueRaw = e.target.value;
   const valueValid = valueRaw.length > 0;
@@ -287,7 +285,7 @@ type ToggleButtonIconProps = {
   rotated?: boolean;
 };
 
-const ToggleButtonIcon = styled.img((props: IToggleButtonIconProps) => ({
+const ToggleButtonIcon = styled.img((props: ToggleButtonIconProps) => ({
   display: "block",
   width: s.dimensions.menuButtonSize,
   height: s.dimensions.menuButtonSize,

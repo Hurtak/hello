@@ -5,7 +5,7 @@ type BackgroundImageProps = {
   url: string | null;
 };
 
-const BackgroundImage = (props: BackgroundImageProps) => {
+export const BackgroundImage = (props: BackgroundImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [previousUrl, setPreviousUrl] = useState(props.url);
 
@@ -46,7 +46,6 @@ const BackgroundImage = (props: BackgroundImageProps) => {
     </>
   );
 };
-export default BackgroundImage;
 
 type ImageProps = {
   topImage?: boolean;

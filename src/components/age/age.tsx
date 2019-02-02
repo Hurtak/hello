@@ -10,7 +10,7 @@ type AgeProps = {
   decimalPlaces: number;
 };
 
-const Age = (props: AgeProps) => {
+export const Age = (props: AgeProps) => {
   const years = (props.time - props.birthDate) / time.year;
 
   return (
@@ -23,7 +23,6 @@ const Age = (props: AgeProps) => {
     </Wrapper>
   );
 };
-export default Age;
 
 const Wrapper = styled.div({
   position: "relative",

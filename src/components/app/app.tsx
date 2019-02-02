@@ -3,11 +3,11 @@ import { view } from "react-easy-state";
 import { Normalize } from "styled-normalize";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
-import Menu from "../menu/menu";
-import ConditionalUpdater from "../conditional-updater/conditional-updater";
-import Clock from "../clock/clock";
-import Age from "../age/age";
-import BackgroundImage from "../background-image/background-image";
+import { Menu } from "../menu/menu";
+import { ConditionalUpdater } from "../conditional-updater/conditional-updater";
+import { Clock } from "../clock/clock";
+import { Age } from "../age/age";
+import { BackgroundImage } from "../background-image/background-image";
 import { state } from "../../state/state";
 import { styled, createGlobalStyle } from "../../shared/css";
 import * as s from "../../shared/styles";
@@ -20,7 +20,7 @@ const AppConfig = {
   ageDecimalPlaces: 3
 };
 
-const App = view(() => {
+export const App = view(() => {
   useEffect(() => {
     state.app.init();
   }, []);
@@ -34,7 +34,6 @@ const App = view(() => {
     </AppWrapper>
   );
 });
-export default App;
 
 type MenuHeight = number | null;
 

@@ -2,7 +2,6 @@
 
 ## TODO
 
-- get rid of default exports
 - styled-components debug class names? should work if we use macros but it does not?
 - revisit tsconfig
 

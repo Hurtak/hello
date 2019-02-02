@@ -20,7 +20,7 @@ const monthNames = [
 
 const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-const Calendar = (props: { time: types.Time }) => {
+export const Calendar = (props: { time: types.Time }) => {
   const now = new Date(props.time);
 
   const currentMonth = now.getMonth() + 1;
@@ -97,8 +97,6 @@ const Calendar = (props: { time: types.Time }) => {
     </MonthsWrapper>
   );
 };
-
-export default Calendar;
 
 const MonthsWrapper = styled.ul({
   display: "grid",

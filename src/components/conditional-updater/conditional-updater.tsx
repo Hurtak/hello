@@ -10,7 +10,7 @@ const config = {
   maximumRefreshRate: time.second / 60 // 30 fps
 };
 
-const ConditionalUpdater = (props: ConditionalUpdatedProps) => {
+export const ConditionalUpdater = (props: ConditionalUpdatedProps) => {
   // TODO: refactor effect?
   // ????????????????????
   // ????????????????????
@@ -49,7 +49,6 @@ const ConditionalUpdater = (props: ConditionalUpdatedProps) => {
 
   return <>{props.component(time)}</>;
 };
-export default ConditionalUpdater;
 
 export function getNextTick(
   now: number,

@@ -9,15 +9,13 @@ type ClockProps = {
   showSeconds: boolean;
 };
 
-const Clock = (props: ClockProps) => (
+export const Clock = (props: ClockProps) => (
   <ClockBox>
     <ClockText>
       <Time time={props.time} showSeconds={props.showSeconds} />
     </ClockText>
   </ClockBox>
 );
-
-export default Clock;
 
 const Time = (props: ClockProps) => {
   const date = new Date(props.time);

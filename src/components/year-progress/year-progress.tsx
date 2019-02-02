@@ -8,7 +8,7 @@ type YearProgressProps = {
   decimalPlaces: number;
 };
 
-const YearProgress = (props: YearProgressProps) => {
+export const YearProgress = (props: YearProgressProps) => {
   const progress = getYearProgress(props.time);
 
   return (
@@ -20,8 +20,6 @@ const YearProgress = (props: YearProgressProps) => {
     </YearProgressWrapper>
   );
 };
-
-export default YearProgress;
 
 const YearProgressWrapper = styled.div({
   position: "relative",
