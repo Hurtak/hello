@@ -26,73 +26,77 @@ const MenuContent = view((props: IMenuProps) => {
 
       <MenuSectionsWrapper>
         <MenuSection title="Background image">
-          {!state.online && (
+          {!state.browser.online && (
             <div>You are currently offline, falling back to local images</div>
           )}
-          {state.imageBing.type === "ERROR" && (
+          {state.image.imageBing.type === "ERROR" && (
             <>
               {/* TODO: proper error matching */}
               <p>Error</p>
-              <p>errorType: {state.imageBing.errorType}</p>
-              <p>errorData: {String(state.imageBing.data)}</p>
+              <p>errorType: {state.image.imageBing.errorType}</p>
+              <p>errorData: {String(state.image.imageBing.data)}</p>
               <pre>
-                <code>{JSON.stringify(state.imageBing)}</code>
+                <code>{JSON.stringify(state.image.imageBing)}</code>
               </pre>
             </>
           )}
 
           <Radio
             name="images"
-            onChange={() => state.setImageSource("BING")}
-            checked={state.imageSourceWithFallback === "BING"}
-            disabled={state.online === false}
+            onChange={() => state.image.setImageSource("BING")}
+            checked={state.image.imageSourceWithFallback === "BING"}
+            disabled={state.browser.online === false}
           >
             Bing image of the day
           </Radio>
 
           <Radio
             name="images"
-            onChange={() => state.setImageSource("LOCAL")}
-            checked={state.imageSourceWithFallback === "LOCAL"}
+            onChange={() => state.image.setImageSource("LOCAL")}
+            checked={state.image.imageSourceWithFallback === "LOCAL"}
           >
             Predefined
           </Radio>
 
-          {state.imageSourceWithFallback === "BING" &&
-            state.imageBing.type === "DONE" && (
+          {state.image.imageSourceWithFallback === "BING" &&
+            state.image.imageBing.type === "DONE" && (
               <section>
-                {state.imageBing.data.title && (
-                  <Text>title: {state.imageBing.data.title}</Text>
+                {state.image.imageBing.data.title && (
+                  <Text>title: {state.image.imageBing.data.title}</Text>
                 )}
-                {state.imageBing.data.description && (
-                  <Text>description: {state.imageBing.data.description}</Text>
-                )}
-                {state.imageBing.data.link && (
+                {state.image.imageBing.data.description && (
                   <Text>
-                    <a href={state.imageBing.data.link}>link</a>
+                    description: {state.image.imageBing.data.description}
+                  </Text>
+                )}
+                {state.image.imageBing.data.link && (
+                  <Text>
+                    <a href={state.image.imageBing.data.link}>link</a>
                   </Text>
                 )}
               </section>
             )}
 
-          {state.imageSourceWithFallback === "LOCAL" && (
+          {state.image.imageSourceWithFallback === "LOCAL" && (
             <section>
-              <button onClick={() => state.shiftImageLocalIndex(-1)}>
+              <button onClick={() => state.image.shiftImageLocalIndex(-1)}>
                 Prev
               </button>
-              <button onClick={state.setImageLocalRandom}>Random image</button>
-              <button onClick={() => state.shiftImageLocalIndex(1)}>
+              <button onClick={state.image.setImageLocalRandom}>
+                Random image
+              </button>
+              <button onClick={() => state.image.shiftImageLocalIndex(1)}>
                 Next
               </button>
 
               {(() => {
-                const image = state.imageLocal;
+                const image = state.image.imageLocal;
 
                 return (
                   <>
                     <Text>
-                      image: {state.imageLocalIndex + 1}/
-                      {state.imagesLocal.length}
+                      image: {state.image.imageLocalIndex + 1}/
+                      {state.image.imagesLocal.length}
                     </Text>
                     {image.name && <Text>name: {image.name}</Text>}
                     {image.location && <Text>location: {image.location}</Text>}
@@ -111,51 +115,51 @@ const MenuContent = view((props: IMenuProps) => {
         <MenuSection title="View type">
           <Radio
             name="view"
-            onChange={() => state.setSelectedView("CLOCK")}
-            checked={state.selectedView === "CLOCK"}
+            onChange={() => state.settings.setSelectedView("CLOCK")}
+            checked={state.settings.selectedView === "CLOCK"}
           >
             Clock
           </Radio>
 
           <Radio
             name="view"
-            onChange={() => state.setSelectedView("AGE")}
-            checked={state.selectedView === "AGE"}
+            onChange={() => state.settings.setSelectedView("AGE")}
+            checked={state.settings.selectedView === "AGE"}
           >
             Age
           </Radio>
 
           <Radio
             name="view"
-            onChange={() => state.setSelectedView("NOTHING")}
-            checked={state.selectedView === "NOTHING"}
+            onChange={() => state.settings.setSelectedView("NOTHING")}
+            checked={state.settings.selectedView === "NOTHING"}
           >
             Nothing
           </Radio>
 
-          {state.selectedView === "CLOCK" && (
+          {state.settings.selectedView === "CLOCK" && (
             <label>
               <Text>
                 <input
                   type="checkbox"
-                  checked={state.clockShowSeconds}
-                  onChange={state.toggleClockShowSeconds}
+                  checked={state.settings.clockShowSeconds}
+                  onChange={state.settings.toggleClockShowSeconds}
                 />
                 Show seconds
               </Text>
             </label>
           )}
 
-          {state.selectedView === "AGE" && (
+          {state.settings.selectedView === "AGE" && (
             <label>
               Your date of birth
               <input
                 type="date"
                 min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
                 max={timestampToDateInputValue(Date.now())}
-                value={state.ageDateOfBirthValue}
+                value={state.settings.ageDateOfBirthInputValue}
                 onChange={e =>
-                  state.setAgeDateOfBirth(eventToAgeOfBirthValues(e))
+                  state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e))
                 }
               />
             </label>
@@ -171,8 +175,8 @@ const MenuContent = view((props: IMenuProps) => {
           <label>
             <input
               type="checkbox"
-              checked={state.settingsHidden}
-              onChange={state.toggleSettingsHidden}
+              checked={state.settings.settingsHidden}
+              onChange={state.settings.toggleSettingsHidden}
             />
             Hide stuff
           </label>
@@ -192,7 +196,9 @@ const MenuContent = view((props: IMenuProps) => {
         {props.isDev && (
           <MenuSection title="Dev menu">
             <Text>This menu is only visible in development mode</Text>
-            <button onClick={state.resetAppState}>Reset app state</button>
+            <button onClick={state.settings.resetAppState}>
+              Reset app state
+            </button>
           </MenuSection>
         )}
       </MenuSectionsWrapper>
@@ -200,25 +206,29 @@ const MenuContent = view((props: IMenuProps) => {
   );
 });
 
-const Menu = (props: IMenuProps) => {
+const Menu = view((props: IMenuProps) => {
   return (
-    <MenuWrapper settingsHidden={state.settingsHidden && !state.menuOpened}>
-      <ToggleButton onClick={state.toggleMenu}>
-        <ToggleButtonIcon src={iconCog} rotated={state.menuOpened} />
+    <MenuWrapper
+      settingsHidden={
+        state.settings.settingsHidden && !state.settings.menuOpened
+      }
+    >
+      <ToggleButton onClick={state.settings.toggleMenu}>
+        <ToggleButtonIcon src={iconCog} rotated={state.settings.menuOpened} />
       </ToggleButton>
 
       <ToggleButtonSpacer />
 
-      <div inert={state.menuOpened === false ? "true" : null}>
+      <div inert={state.settings.menuOpened === false ? "true" : null}>
         <MenuContent isDev={props.isDev} />
       </div>
     </MenuWrapper>
   );
-};
+});
 
 export default Menu;
 
-function eventToAgeOfBirthValues(e: any) {
+function eventToAgeOfBirthValues(e: React.ChangeEvent<HTMLInputElement>) {
   const valueRaw = e.target.value;
   const valueValid = valueRaw.length > 0;
 
@@ -231,8 +241,8 @@ function eventToAgeOfBirthValues(e: any) {
   })();
 
   return {
-    inputValue: valueRaw,
-    parsedTimestamp: timestamp
+    ageDateOfBirthTimestamp: timestamp,
+    ageDateOfBirthInputValue: valueRaw
   };
 }
 

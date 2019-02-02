@@ -3,8 +3,6 @@
 ## TODO
 
 - state stuff
-  - make app work again
-  - add view wrapper around components that use the state
   - refactor view wrappers into state components and pure components?
   - infer state variable, now we have duplicate type declarations
   - resolve todos in state folder

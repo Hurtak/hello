@@ -50,22 +50,25 @@ const App = view(() => {
       <GlobalStyles />
 
       <BackgroundWrapper>
-        <BackgroundImage url={state.imageUrl} />
+        <BackgroundImage url={state.image.imageUrl} />
       </BackgroundWrapper>
 
       {(() => {
-        switch (state.selectedView) {
+        switch (state.settings.selectedView) {
           case "CLOCK":
             return (
               <AppContent center>
                 <ConditionalUpdater
                   updateEveryN={
-                    state.clockShowSeconds ? time.second : time.minute
+                    state.settings.clockShowSeconds ? time.second : time.minute
                   }
                   component={time => (
-                    <Clock time={time} showSeconds={state.clockShowSeconds} />
+                    <Clock
+                      time={time}
+                      showSeconds={state.settings.clockShowSeconds}
+                    />
                   )}
-                  key={state.selectedView}
+                  key={state.settings.selectedView}
                 />
               </AppContent>
             );
@@ -107,11 +110,11 @@ const App = view(() => {
                   component={time => (
                     <Age
                       time={time}
-                      birthDate={state.ageDateOfBirthTimestamp}
+                      birthDate={state.settings.ageDateOfBirthTimestamp}
                       decimalPlaces={AppConfig.ageDecimalPlaces}
                     />
                   )}
-                  key={state.selectedView}
+                  key={state.settings.selectedView}
                 />
               </AppContent>
             );
@@ -125,7 +128,10 @@ const App = view(() => {
         }
       })()}
 
-      <AppMenuWrapper opened={state.menuOpened} menuHeight={menuHeight}>
+      <AppMenuWrapper
+        opened={state.settings.menuOpened}
+        menuHeight={menuHeight}
+      >
         <AppMenu ref={menuEl}>
           <Menu isDev={constants.isDev} />
         </AppMenu>
