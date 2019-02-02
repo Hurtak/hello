@@ -22,19 +22,29 @@ export type HttpData<Response> =
       data: any;
     };
 
-type CorsProxyType = "CORS_ANYWHERE" | "CODETABS";
+type CorsProxyType =
+  | "CORS_ANYWHERE"
+  | "ALLORIGINS"
+  | "CROSSORIGIN_ME"
+  | "CODETABS";
 
 export function getCorsProxyUrl(
   corsProxyType: CorsProxyType,
   proxedUrl: string
 ): string {
   switch (corsProxyType) {
+    case "CORS_ANYWHERE":
+      return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
+    case "ALLORIGINS":
+      return `https://api.allorigins.ml/get?method=raw&url=${encodeURIComponent(
+        proxedUrl
+      )}`;
+    case "CROSSORIGIN_ME":
+      return `https://crossorigin.me/${proxedUrl}`;
     case "CODETABS":
       return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(
         proxedUrl
       )}`;
-    case "CORS_ANYWHERE":
-      return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
   }
 }
 
@@ -53,9 +63,9 @@ export const bingImageUrl = (() => {
 export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
   let request = null;
 
-  const url = getCorsProxyUrl("CODETABS", bingImageUrl);
+  const bingImageUrlProxied = getCorsProxyUrl("ALLORIGINS", bingImageUrl);
   try {
-    request = await fetch(url, {
+    request = await fetch(bingImageUrlProxied, {
       headers: { Accept: "application/json" }
     });
   } catch (error) {
@@ -92,6 +102,8 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
   let response = null;
   try {
     response = await request.json();
+    // TODO: temporary hack for ALLORIGINS proxy. Make proper fix
+    response = JSON.parse(response.contents);
   } catch (error) {
     return httpDataWithLog({
       type: "ERROR",
