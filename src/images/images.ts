@@ -4,14 +4,14 @@ import image03 from "./images/03.jpg";
 import image04 from "./images/04.jpg";
 import image05 from "./images/05.jpg";
 
-export interface IImage {
+export type Image = {
   url: string;
   name: string | null;
   location: string | null;
   source: string;
-}
+};
 
-export const images: IImage[] = [
+export const images: Image[] = [
   {
     url: image01,
     name: "Glacier National Park",

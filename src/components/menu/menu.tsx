@@ -6,14 +6,14 @@ import * as s from "../../shared/styles";
 import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
 
-interface IMenuProps {
+type MenuProps = {
   isDev: boolean;
-}
+};
 
 // React.memo used to prevent rerendering of whole menu when menuOpened state
 // changes in parent component
 // TODO: might not be needed after we chagned state library?
-const MenuContent = view((props: IMenuProps) => {
+const MenuContent = view((props: MenuProps) => {
   return (
     <>
       <Heading>Hello Friend &ndash; New Tab Page</Heading>
@@ -206,7 +206,7 @@ const MenuContent = view((props: IMenuProps) => {
   );
 });
 
-const Menu = view((props: IMenuProps) => {
+const Menu = view((props: MenuProps) => {
   return (
     <MenuWrapper
       settingsHidden={
@@ -246,10 +246,11 @@ function eventToAgeOfBirthValues(e: React.ChangeEvent<HTMLInputElement>) {
   };
 }
 
-interface IMenuWrapperProps {
+type MenuWrapperProps = {
   settingsHidden?: boolean;
-}
-const MenuWrapper = styled.section((props: IMenuWrapperProps) => ({
+};
+
+const MenuWrapper = styled.section((props: MenuWrapperProps) => ({
   boxSizing: "border-box",
   position: "relative",
   padding: s.grid(2),
@@ -282,9 +283,9 @@ const ToggleButtonSpacer = styled.div({
   height: s.grid(8)
 });
 
-interface IToggleButtonIconProps {
+type ToggleButtonIconProps = {
   rotated?: boolean;
-}
+};
 
 const ToggleButtonIcon = styled.img((props: IToggleButtonIconProps) => ({
   display: "block",

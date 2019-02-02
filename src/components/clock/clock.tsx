@@ -4,12 +4,12 @@ import * as s from "../../shared/styles";
 import * as types from "../../shared/types";
 import { addLeadingZero } from "../../shared/time";
 
-interface IClock {
+type ClockProps = {
   time: types.Time;
   showSeconds: boolean;
-}
+};
 
-const Clock = (props: IClock) => (
+const Clock = (props: ClockProps) => (
   <ClockBox>
     <ClockText>
       <Time time={props.time} showSeconds={props.showSeconds} />
@@ -19,7 +19,7 @@ const Clock = (props: IClock) => (
 
 export default Clock;
 
-const Time = (props: IClock) => {
+const Time = (props: ClockProps) => {
   const date = new Date(props.time);
 
   const hours = addLeadingZero(date.getHours());

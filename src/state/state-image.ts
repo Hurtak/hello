@@ -1,29 +1,29 @@
 import { state } from "./state";
-import { images, IImage } from "../images/images";
+import { images, Image } from "../images/images";
 import { getRandomInt } from "../shared/random";
 import { getBingImageOfTheDay } from "../shared/api";
-import * as types from "../shared/types";
+import { HttpData, ImageSource } from "../shared/types";
 
 export const stateImage = {
   imageSource: "LOCAL",
 
   imageLocalIndex: 0,
-  imageBing: { type: "INITIAL" } as types.HttpData<{
+  imageBing: { type: "INITIAL" } as HttpData<{
     url: string;
     title?: string;
     link?: string;
     description: string;
   }>,
 
-  get imagesLocal(): IImage[] {
+  get imagesLocal(): Image[] {
     return images;
   },
 
-  get imageLocal(): IImage {
+  get imageLocal(): Image {
     return state.image.imagesLocal[state.image.imageLocalIndex];
   },
 
-  get imageSourceWithFallback(): types.ImageSource | null {
+  get imageSourceWithFallback(): ImageSource | null {
     switch (state.image.imageSource) {
       case "LOCAL":
         return "LOCAL";
@@ -62,7 +62,7 @@ export const stateImage = {
     state.image.imageBing = imageData;
   },
 
-  setImageSource(imageSource: types.ImageSource): void {
+  setImageSource(imageSource: ImageSource): void {
     state.image.imageSource = imageSource;
   },
 

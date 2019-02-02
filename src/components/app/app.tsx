@@ -14,11 +14,6 @@ import * as s from "../../shared/styles";
 import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
 
-// TODO: unused
-interface IAppState {
-  menuHeight: number | null;
-}
-
 // TODO: move to global state???
 const AppConfig = {
   yearProgressDecimalPlaces: 8,
@@ -41,9 +36,11 @@ const App = view(() => {
 });
 export default App;
 
+type MenuHeight = number | null;
+
 const AppInner = view(() => {
   const menuEl = useRef(null);
-  const [menuHeight, setMenuHeight] = useState(null);
+  const [menuHeight, setMenuHeight] = useState<MenuHeight>(null);
 
   useEffect(() => {
     if (!menuEl.current) return;
@@ -188,10 +185,10 @@ const AppWrapper = styled.div({
   padding: s.grid(1)
 });
 
-interface AppContentProps {
+type AppContentProps = {
   maxWidth?: boolean;
   center?: boolean;
-}
+};
 
 const AppContent = styled.main((props: AppContentProps) => ({
   display: "flex",
@@ -212,11 +209,10 @@ const BackgroundWrapper = styled.div({
   zIndex: s.zIndex.background
 });
 
-interface AppMenuWrapperProps {
+type AppMenuWrapperProps = {
   opened: boolean;
-  menuHeight: IAppState["menuHeight"];
-}
-
+  menuHeight: MenuHeight;
+};
 const AppMenuWrapper = styled.aside((props: AppMenuWrapperProps) => ({
   position: "absolute",
   direction: "rtl", // To make the overflow cropping from the right side

@@ -133,13 +133,13 @@ const DaysWrapper = styled.div({
   listStyleType: "none"
 });
 
-interface IDayProps {
+type DayProps = {
   heading?: boolean;
   currentDay?: boolean;
   selected?: boolean;
-}
+};
 
-const Day = styled.div((props: IDayProps) => ({
+const Day = styled.div((props: DayProps) => ({
   ...s.text.text,
 
   ...(props.heading && {

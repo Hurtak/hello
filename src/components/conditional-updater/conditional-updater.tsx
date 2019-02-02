@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import * as time from "../../shared/time";
 
-interface IConditionalUpdatedProps {
+type ConditionalUpdatedProps = {
   updateEveryN: number;
   component: (time: number) => React.ReactNode;
-}
+};
 
 const config = {
   maximumRefreshRate: time.second / 60 // 30 fps
 };
 
-const ConditionalUpdater = (props: IConditionalUpdatedProps) => {
+const ConditionalUpdater = (props: ConditionalUpdatedProps) => {
   // TODO: refactor effect?
   // ????????????????????
   // ????????????????????
@@ -24,31 +24,28 @@ const ConditionalUpdater = (props: IConditionalUpdatedProps) => {
 
   const [time, setTime] = useState(now);
 
-  useEffect(
-    () => {
-      let timer: number | undefined = undefined;
+  useEffect(() => {
+    let timer: number | undefined = undefined;
 
-      function updateTimeAndStartTimeout() {
-        const now = Date.now();
+    function updateTimeAndStartTimeout() {
+      const now = Date.now();
 
-        const timer = window.setTimeout(
-          updateTimeAndStartTimeout,
-          getNextTick(now, props.updateEveryN, config.maximumRefreshRate)
-        );
+      const timer = window.setTimeout(
+        updateTimeAndStartTimeout,
+        getNextTick(now, props.updateEveryN, config.maximumRefreshRate)
+      );
 
-        setTime(now);
+      setTime(now);
 
-        return timer;
-      }
+      return timer;
+    }
 
-      updateTimeAndStartTimeout();
+    updateTimeAndStartTimeout();
 
-      return () => {
-        window.clearTimeout(timer);
-      };
-    },
-    [props.updateEveryN]
-  );
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [props.updateEveryN]);
 
   return <>{props.component(time)}</>;
 };

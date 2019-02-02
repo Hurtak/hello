@@ -4,13 +4,13 @@ import * as s from "../../shared/styles";
 import * as time from "../../shared/time";
 import * as types from "../../shared/types";
 
-interface IAge {
+type AgeProps = {
   time: types.Time;
   birthDate: number;
   decimalPlaces: number;
-}
+};
 
-const Age = (props: IAge) => {
+const Age = (props: AgeProps) => {
   const years = (props.time - props.birthDate) / time.year;
 
   return (

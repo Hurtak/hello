@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "../../shared/css";
 
-interface IBackgroundImageProps {
+type BackgroundImageProps = {
   url: string | null;
-}
+};
 
-const BackgroundImage = (props: IBackgroundImageProps) => {
+const BackgroundImage = (props: BackgroundImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [previousUrl, setPreviousUrl] = useState(props.url);
 
@@ -48,12 +48,13 @@ const BackgroundImage = (props: IBackgroundImageProps) => {
 };
 export default BackgroundImage;
 
-interface IImageProps {
+type ImageProps = {
   topImage?: boolean;
   imageLoaded: boolean;
   backgroundImage: string | null;
-}
-const Image = styled.div((props: IImageProps) => ({
+};
+
+const Image = styled.div((props: ImageProps) => ({
   position: "absolute",
   left: 0,
   top: 0,

@@ -3,12 +3,12 @@ import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as types from "../../shared/types";
 
-interface IYearProgress {
+type YearProgressProps = {
   time: types.Time;
   decimalPlaces: number;
-}
+};
 
-const YearProgress = (props: IYearProgress) => {
+const YearProgress = (props: YearProgressProps) => {
   const progress = getYearProgress(props.time);
 
   return (
