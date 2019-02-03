@@ -2,13 +2,13 @@
 
 ## TODO
 
+- bing images
+  - cache/predownload image
 - menu design
   - menu texts
   - menu structure
   - menu styles
   - show offline indicator?
-  - bing images
-    - cache/predownload image
 - renema to hello
 - Text component?
   - https://www.styled-components.com/docs/basics#extending-styles ??
@@ -17,11 +17,11 @@
   - unnecessary permissins?
   - missing fields?
   - update existing fields
-- check STRV checklist
 - release
 
 ## Later TODOS
 
+- check STRV checklist
 - revisit tsconfig
 - docs
 - images
