@@ -3,8 +3,6 @@
 ## TODO
 
 - introduce config and get rid of constants
-- fix remaining conversion bugs
-- finish ts conversion
 - menu design
   - menu texts
   - menu structure
