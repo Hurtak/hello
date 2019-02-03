@@ -1,6 +1,6 @@
 import React from "react";
+import styled from "styled-components/macro";
 import { Timestamp } from "../timer-updater/timer-updater";
-import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as time from "../../shared/time";
 

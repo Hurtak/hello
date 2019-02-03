@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { styled } from "../../shared/css";
+import styled from "styled-components/macro";
 
 type BackgroundImageProps = {
   url: string | null;
@@ -8,27 +8,21 @@ type BackgroundImageProps = {
 export const BackgroundImage = (props: BackgroundImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [previousUrl, setPreviousUrl] = useState(props.url);
+  const [imageRenderNr, setImageRenderNr] = useState(1);
 
   useEffect(() => {
-    // TODO raceconiditons right?
-    // TODO completly all bad
+    const currentImageRenderNr = imageRenderNr;
+
     setImageLoaded(false);
     setPreviousUrl(previousUrl);
     if (!props.url) return;
 
-    const image = document.createElement("img");
-    image.src = props.url;
+    loadImage(props.url).then(() => {
+      if (imageRenderNr !== currentImageRenderNr) return;
 
-    if (image.complete) {
-      // browser finished downloading the image
       setImageLoaded(true);
-    } else {
-      // image is not loaded yet
-      image.onload = () => {
-        // TODO: race condition when switching fast between images?
-        setImageLoaded(true);
-      };
-    }
+      setImageRenderNr(currentImageRenderNr + 1);
+    });
   }, [props.url]);
 
   return (
@@ -46,6 +40,26 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     </>
   );
 };
+
+function loadImage(url: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const image = document.createElement("img");
+    image.src = url;
+
+    if (image.complete) {
+      // image is already loaded in cache
+      return resolve();
+    } else {
+      // image is not loaded yet
+      image.onload = () => {
+        resolve();
+      };
+      image.onerror = e => {
+        reject(e);
+      };
+    }
+  });
+}
 
 type ImageProps = {
   topImage?: boolean;

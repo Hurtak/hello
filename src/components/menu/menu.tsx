@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components/macro";
 import { view } from "react-easy-state";
 import { state } from "../../state/state";
-import { styled } from "../../shared/css";
 import * as s from "../../shared/styles";
 import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";

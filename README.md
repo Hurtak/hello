@@ -4,14 +4,15 @@
 
 - bing images
   - cache/predownload image
+- background image switching broken
 - menu design
   - menu texts
+    - menu text component?
+      - https://www.styled-components.com/docs/basics#extending-styles ??
   - menu structure
   - menu styles
   - show offline indicator?
 - renema to hello
-- Text component?
-  - https://www.styled-components.com/docs/basics#extending-styles ??
 - add more images!
 - go through manifest.json
   - unnecessary permissins?

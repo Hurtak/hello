@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { view } from "react-easy-state";
+import styled, { createGlobalStyle } from "styled-components/macro";
 import { Normalize } from "styled-normalize";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
 import "wicg-inert"; // TODO: remove once widely supported
@@ -9,7 +10,6 @@ import { Clock } from "../clock/clock";
 import { Age } from "../age/age";
 import { BackgroundImage } from "../background-image/background-image";
 import { state } from "../../state/state";
-import { styled, createGlobalStyle } from "../../shared/css";
 import * as s from "../../shared/styles";
 import * as time from "../../shared/time";
 import { config } from "../../config";
