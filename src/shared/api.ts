@@ -1,10 +1,17 @@
-import get from "lodash/get";
+type BingResponse = {
+  images?: {
+    url?: string;
+    title?: string;
+    copyright?: string;
+    copyrightLink?: string;
+  }[];
+};
 
-export type BingResponse = {
+export type BingData = {
   url: string;
-  title?: string;
-  link?: string;
-  description: string;
+  title: string | null;
+  link: string | null;
+  description: string | null;
 };
 
 export type HttpData<Response> =
@@ -60,7 +67,7 @@ export const bingImageUrl = (() => {
   return bingImage.toString();
 })();
 
-export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
+export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
   let request = null;
 
   const bingImageUrlProxied = getCorsProxyUrl("ALLORIGINS", bingImageUrl);
@@ -99,11 +106,11 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
     });
   }
 
-  let response = null;
+  let responseRaw = null;
   try {
-    response = await request.json();
+    responseRaw = await request.json();
     // TODO: temporary hack for ALLORIGINS proxy. Make proper fix
-    response = JSON.parse(response.contents);
+    responseRaw = JSON.parse(responseRaw.contents);
   } catch (error) {
     return httpDataWithLog({
       type: "ERROR",
@@ -112,12 +119,18 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
     });
   }
 
-  const imageData = get(response, "images[0]");
-  const dataValid = (() => {
-    const url = get(imageData, "url");
-    return typeof url === "string" && url.length > 0;
-  })();
-  if (!dataValid) {
+  const response: BingResponse = responseRaw;
+
+  const imageData =
+    response && Array.isArray(response.images) && response.images[0]
+      ? response.images[0]
+      : null;
+
+  const dataValid = Boolean(
+    imageData && typeof imageData.url === "string" && imageData.url.length > 0
+  );
+
+  if (!imageData || !dataValid) {
     return httpDataWithLog({
       type: "ERROR",
       errorType: "MISSING_DATA_IN_RESPONSE",
@@ -125,31 +138,35 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingResponse>> {
     });
   }
 
+  imageData;
   return httpDataWithLog({
     type: "DONE",
     data: {
       url: "https://www.bing.com" + imageData.url,
 
-      title: imageData.title || null,
+      title: imageData.title ? imageData.title : null,
+
       description: (() => {
         const description = imageData.copyright;
         if (!description) return null;
+
         // "Image description (© copyright)" => "Image description"
         return description.replace(/ \(©.+?\)/, "");
       })(),
       link: (() => {
-        const link = imageData.copyrightlink;
+        const link = imageData.copyrightLink;
         if (!link) return null;
 
         // eslint-disable-next-line no-script-url
         if (link === "javascript:void(0)") return null;
+
         return link;
       })()
     }
   });
 }
 
-function httpDataWithLog(data: HttpData<BingResponse>): HttpData<BingResponse> {
+function httpDataWithLog(data: HttpData<BingData>): HttpData<BingData> {
   if (data.type === "ERROR") {
     console.warn("Error fetching data", data);
   }

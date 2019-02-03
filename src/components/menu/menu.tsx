@@ -23,7 +23,7 @@ export const Menu = view((props: MenuProps) => {
 
       <ToggleButtonSpacer />
 
-      <div inert={state.settings.menuOpened === false ? "true" : null}>
+      <div inert={state.settings.menuOpened === false ? "inert" : null}>
         <MenuContent isDev={props.isDev} />
       </div>
     </MenuWrapper>

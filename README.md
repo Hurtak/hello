@@ -2,7 +2,6 @@
 
 ## TODO
 
-- introduce config and get rid of constants
 - menu design
   - menu texts
   - menu structure
@@ -79,5 +78,5 @@
 ## Future improvements
 
 - once `ResizeObserver` has good browser support, remove polyfill
-- once `inert` has good browser support, remove polyfill
+- once `inert` has good browser support, remove polyfill and typings
 - once backdrop-filter is supported, start using it instead of transparent background color

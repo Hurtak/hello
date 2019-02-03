@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import * as time from "../../shared/time";
+import { config } from "../../config";
 
 export type Timestamp = number;
 
 type TimerUpdatedProps = {
   updateEveryN: number;
   component: (time: Timestamp) => React.ReactNode;
-};
-
-const config = {
-  maximumRefreshRate: time.second / 60 // 30 fps
 };
 
 export const TimerUpdater = (props: TimerUpdatedProps) => {

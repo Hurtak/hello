@@ -11,14 +11,8 @@ import { BackgroundImage } from "../background-image/background-image";
 import { state } from "../../state/state";
 import { styled, createGlobalStyle } from "../../shared/css";
 import * as s from "../../shared/styles";
-import * as constants from "../../shared/constants";
 import * as time from "../../shared/time";
-
-// TODO: move to global state???
-const AppConfig = {
-  yearProgressDecimalPlaces: 8,
-  ageDecimalPlaces: 3
-};
+import { config } from "../../config";
 
 export const App = view(() => {
   useEffect(() => {
@@ -94,12 +88,12 @@ const AppInner = view(() => {
           //     <AppContent>
           //       <ConditionalUpdater
           //         updateEveryN={
-          //           time.year / 100 / 10 ** AppConfig.yearProgressDecimalPlaces
+          //           time.year / 100 / 10 ** config.yearProgressDecimalPlaces
           //         }
           //         component={time => (
           //           <YearProgress
           //             time={time}
-          //             decimalPlaces={AppConfig.yearProgressDecimalPlaces}
+          //             decimalPlaces={config.yearProgressDecimalPlaces}
           //           />
           //         )}
           //         key={state.selectedView}
@@ -111,12 +105,12 @@ const AppInner = view(() => {
             return (
               <AppContent>
                 <TimerUpdater
-                  updateEveryN={time.year / 10 ** AppConfig.ageDecimalPlaces}
+                  updateEveryN={time.year / 10 ** config.ageDecimalPlaces}
                   component={time => (
                     <Age
                       time={time}
                       birthDate={state.settings.ageDateOfBirthTimestamp}
-                      decimalPlaces={AppConfig.ageDecimalPlaces}
+                      decimalPlaces={config.ageDecimalPlaces}
                     />
                   )}
                   key={state.settings.selectedView}
@@ -138,7 +132,7 @@ const AppInner = view(() => {
         menuHeight={menuHeight}
       >
         <AppMenu ref={menuEl}>
-          <Menu isDev={constants.isDev} />
+          <Menu isDev={config.isDev} />
         </AppMenu>
       </AppMenuWrapper>
     </>
@@ -212,6 +206,7 @@ type AppMenuWrapperProps = {
   opened: boolean;
   menuHeight: MenuHeight;
 };
+
 const AppMenuWrapper = styled.aside((props: AppMenuWrapperProps) => ({
   position: "absolute",
   direction: "rtl", // To make the overflow cropping from the right side
