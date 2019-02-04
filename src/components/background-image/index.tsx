@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "./styled";
 
+type Background = string | null;
+
 type BackgroundImageProps = {
-  url: string | null;
+  url: Background;
 };
 
 export const BackgroundImage = (props: BackgroundImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [previousUrl, setPreviousUrl] = useState(props.url);
+  const [previousUrl, setPreviousUrl] = useState<Background>(null);
   const [imageRenderNr, setImageRenderNr] = useState(1);
 
   useEffect(() => {
     const currentImageRenderNr = imageRenderNr;
-
     setImageLoaded(false);
-    setPreviousUrl(previousUrl);
+
     if (!props.url) return;
 
     loadImage(props.url).then(() => {
       if (imageRenderNr !== currentImageRenderNr) return;
 
       setImageLoaded(true);
+      setPreviousUrl(props.url);
       setImageRenderNr(currentImageRenderNr + 1);
     });
   }, [props.url]);
@@ -44,19 +46,17 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
 function loadImage(url: string): Promise<void> {
   return new Promise((resolve, reject) => {
     const image = document.createElement("img");
-    image.src = url;
+    image.onload = () => {
+      resolve();
+    };
+    image.onerror = e => {
+      reject(e);
+    };
 
+    image.src = url;
     if (image.complete) {
       // image is already loaded in cache
       return resolve();
-    } else {
-      // image is not loaded yet
-      image.onload = () => {
-        resolve();
-      };
-      image.onerror = e => {
-        reject(e);
-      };
     }
   });
 }

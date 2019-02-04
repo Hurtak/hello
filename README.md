@@ -2,7 +2,7 @@
 
 ## TODO
 
-- background image switching broken
+- add animation to background switching
 - bing images
   - cache/predownload image
 - menu design
