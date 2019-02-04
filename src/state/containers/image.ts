@@ -10,10 +10,11 @@ export const image = {
   // State
   //
 
-  imageSource: "LOCAL",
+  imageSource: "BING",
 
   imageLocalIndex: 0,
   imageBing: { type: "INITIAL" } as HttpData<BingData>,
+  imageBingCached: null as BingData | null,
 
   //
   // Computed
@@ -49,6 +50,9 @@ export const image = {
       case "LOCAL":
         return urlLocal;
       case "BING":
+        if (state.image.imageBingCached) {
+          return state.image.imageBingCached.url;
+        }
         switch (state.image.imageBing.type) {
           case "DONE":
             return state.image.imageBing.data.url;
@@ -68,10 +72,22 @@ export const image = {
     state.image.imageBing = { type: "FETCHING" };
     const imageData = await getBingImageOfTheDay();
     state.image.imageBing = imageData;
+
+    if (state.image.imageBing.type === "DONE") {
+      state.image.imageBingCached = state.image.imageBing.data;
+    }
   },
 
   setImageSource(imageSource: ImageSource): void {
     state.image.imageSource = imageSource;
+    if (imageSource === "BING") {
+      if (
+        state.image.imageBing.type === "INITIAL" ||
+        state.image.imageBing.type === "ERROR"
+      ) {
+        state.image.fetchBingImage();
+      }
+    }
   },
 
   setImageLocalRandom() {

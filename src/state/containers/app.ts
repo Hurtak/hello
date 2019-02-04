@@ -8,24 +8,6 @@ export const app = {
   initialized: false,
 
   //
-  // Actions
-  //
-
-  async loadImage() {
-    switch (state.image.imageSourceWithFallback) {
-      case "LOCAL": {
-        state.image.setImageLocalRandom();
-        break;
-      }
-
-      case "BING": {
-        state.image.fetchBingImage();
-        break;
-      }
-    }
-  },
-
-  //
   // Init/Destroy
   //
 
@@ -33,7 +15,8 @@ export const app = {
     state.browser.initialize();
     state.storage.initialize();
     state.storage.retrieveAndUpdateState();
-    await state.app.loadImage();
+    state.image.setImageLocalRandom();
+    state.image.fetchBingImage();
     state.app.initialized = true;
   },
 

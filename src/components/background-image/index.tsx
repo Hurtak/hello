@@ -13,50 +13,68 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
   const [imageRenderNr, setImageRenderNr] = useState(1);
 
   useEffect(() => {
-    const currentImageRenderNr = imageRenderNr;
-    setImageLoaded(false);
-
     if (!props.url) return;
 
-    loadImage(props.url).then(() => {
+    const currentImageRenderNr = imageRenderNr;
+    setImageLoaded(false);
+    if (props.url !== previousUrl) {
+      setPreviousUrl(props.url);
+    }
+
+    return loadImage(props.url, sucess => {
+      if (!sucess) return;
       if (imageRenderNr !== currentImageRenderNr) return;
 
       setImageLoaded(true);
-      setPreviousUrl(props.url);
+
       setImageRenderNr(currentImageRenderNr + 1);
     });
   }, [props.url]);
 
   return (
     <>
-      <Image
-        topImage
-        backgroundImage={(() => {
-          if (!imageLoaded) return null;
-          if (!props.url) return null;
-          return props.url;
-        })()}
-        imageLoaded={imageLoaded}
-      />
-      {previousUrl && <Image backgroundImage={previousUrl} imageLoaded />}
+      {props.url && (
+        <Image topImage backgroundImage={props.url} imageLoaded={imageLoaded} />
+      )}
+      {previousUrl && props.url !== previousUrl && (
+        <Image backgroundImage={previousUrl} imageLoaded />
+      )}
     </>
   );
 };
 
-function loadImage(url: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const image = document.createElement("img");
-    image.onload = () => {
-      resolve();
-    };
-    image.onerror = e => {
-      reject(e);
-    };
+function loadImage(url: string, cb: (sucess: boolean) => void): () => void {
+  let imageLoaded = false;
+  let imageCanceled = false;
 
-    image.src = url;
-    if (image.complete) {
-      // image is already loaded in cache
-      return resolve();
-    }
-  });
+  const image = document.createElement("img");
+  image.onload = () => {
+    if (imageLoaded) return;
+    imageLoaded = true;
+    cb(true);
+  };
+  image.onerror = e => {
+    // Image load cancelling throws error event
+    if (imageCanceled) return;
+
+    console.warn("Could not load image", url, e);
+    if (imageLoaded) return;
+    imageLoaded = true;
+    cb(false);
+  };
+  image.src = url;
+
+  if (image.complete) {
+    // image is already loaded in cache
+    imageLoaded = true;
+    cb(true);
+  }
+
+  return () => {
+    if (imageLoaded) return;
+    imageCanceled = true;
+
+    // https://stackoverflow.com/questions/5278304/how-to-cancel-an-image-from-loading
+    image.src = "";
+  };
 }

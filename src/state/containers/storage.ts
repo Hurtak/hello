@@ -4,6 +4,8 @@ const localStorageKey = "__helloAppState";
 
 type SavedState = {
   imageSource: State["image"]["imageSource"];
+  imageBingCached: State["image"]["imageBingCached"];
+
   selectedView: State["settings"]["selectedView"];
   clockShowSeconds: State["settings"]["clockShowSeconds"];
   ageDateOfBirthTimestamp: State["settings"]["ageDateOfBirthTimestamp"];
@@ -19,6 +21,8 @@ export const storage = {
   save(): void {
     const savedState: SavedState = {
       imageSource: state.image.imageSource,
+      imageBingCached: state.image.imageBingCached,
+
       selectedView: state.settings.selectedView,
       clockShowSeconds: state.settings.clockShowSeconds,
       ageDateOfBirthTimestamp: state.settings.ageDateOfBirthTimestamp,
@@ -53,6 +57,7 @@ export const storage = {
 
     const stateValid = [
       savedState.imageSource,
+      savedState.imageBingCached,
       savedState.selectedView,
       savedState.clockShowSeconds,
       savedState.ageDateOfBirthTimestamp,
@@ -67,6 +72,7 @@ export const storage = {
     }
 
     state.image.imageSource = savedState.imageSource;
+    state.image.imageBingCached = savedState.imageBingCached;
     state.settings.selectedView = savedState.selectedView;
     state.settings.clockShowSeconds = savedState.clockShowSeconds;
     state.settings.ageDateOfBirthTimestamp = savedState.ageDateOfBirthTimestamp;

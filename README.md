@@ -2,9 +2,9 @@
 
 ## TODO
 
-- add animation to background switching
-- bing images
-  - cache/predownload image
+- background
+  - abort previous image request
+  - add animation to background switching
 - menu design
   - menu texts
     - menu text component?
