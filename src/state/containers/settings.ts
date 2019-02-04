@@ -1,5 +1,5 @@
-import { state } from "./state";
-import { timestampToDateInputValue } from "../shared/time";
+import { state } from "../state";
+import { timestampToDateInputValue } from "../../shared/time";
 
 type View =
   | "CLOCK"
@@ -10,7 +10,11 @@ type View =
 
 const initialDateOfBirth = Date.UTC(1990, 0, 1);
 
-export const stateSettings = {
+export const settings = {
+  //
+  // State
+  //
+
   menuOpened: false,
   selectedView: "CLOCK",
   clockShowSeconds: false,
@@ -18,6 +22,10 @@ export const stateSettings = {
   ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
   settingsHidden: false,
   scheduledAppReset: false,
+
+  //
+  // Actions
+  //
 
   toggleMenu(): void {
     state.settings.menuOpened = !state.settings.menuOpened;
@@ -50,7 +58,7 @@ export const stateSettings = {
 
   resetAppState(): void {
     state.settings.scheduledAppReset = true;
-    state.localStorage.clear();
+    state.storage.clear();
     window.location.reload();
   }
 };

@@ -23,7 +23,8 @@ import { config } from "../../config";
 
 export const App = view(() => {
   useEffect(() => {
-    state.app.init();
+    state.app.initialize();
+    return () => state.app.destroy();
   }, []);
 
   return (

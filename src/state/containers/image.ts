@@ -1,15 +1,23 @@
-import { state } from "./state";
-import { images, Image } from "../images/images";
-import { getRandomInt } from "../shared/random";
-import { getBingImageOfTheDay, HttpData, BingData } from "../shared/api";
+import { state } from "../state";
+import { images, Image } from "../../images/images";
+import { getRandomInt } from "../../shared/random";
+import { getBingImageOfTheDay, HttpData, BingData } from "../../shared/api";
 
 type ImageSource = "LOCAL" | "BING";
 
-export const stateImage = {
+export const image = {
+  //
+  // State
+  //
+
   imageSource: "LOCAL",
 
   imageLocalIndex: 0,
   imageBing: { type: "INITIAL" } as HttpData<BingData>,
+
+  //
+  // Computed
+  //
 
   get imagesLocal(): Image[] {
     return images;
@@ -51,6 +59,10 @@ export const stateImage = {
         return null;
     }
   },
+
+  //
+  // Actions
+  //
 
   async fetchBingImage(): Promise<void> {
     state.image.imageBing = { type: "FETCHING" };

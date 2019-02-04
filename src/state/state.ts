@@ -1,23 +1,23 @@
 import { store } from "react-easy-state";
 
-import { stateApp } from "./state-app";
-import { stateBrowser } from "./state-browser";
-import { stateImage } from "./state-image";
-import { stateSettings } from "./state-settings";
-import { stateLocalStorage } from "./state-local-storage";
+import { app } from "./containers/app";
+import { browser } from "./containers/browser";
+import { image } from "./containers/image";
+import { settings } from "./containers/settings";
+import { storage } from "./containers/storage";
 
 export type State = {
-  app: typeof stateApp;
-  browser: typeof stateBrowser;
-  settings: typeof stateSettings;
-  image: typeof stateImage;
-  localStorage: typeof stateLocalStorage;
+  app: typeof app;
+  browser: typeof browser;
+  settings: typeof settings;
+  image: typeof image;
+  storage: typeof storage;
 };
 
 export const state: State = store<State>({
-  app: stateApp,
-  browser: stateBrowser,
-  image: stateImage,
-  settings: stateSettings,
-  localStorage: stateLocalStorage
+  app,
+  browser,
+  image,
+  settings,
+  storage
 });

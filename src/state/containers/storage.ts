@@ -1,4 +1,4 @@
-import { state, State } from "./state";
+import { state, State } from "../state";
 
 const localStorageKey = "__helloAppState";
 
@@ -11,7 +11,11 @@ type SavedState = {
   settingsHidden: State["settings"]["settingsHidden"];
 };
 
-export const stateLocalStorage = {
+export const storage = {
+  //
+  // Actions
+  //
+
   save(): void {
     const savedState: SavedState = {
       imageSource: state.image.imageSource,
@@ -24,16 +28,16 @@ export const stateLocalStorage = {
 
     try {
       const serializedState = JSON.stringify(savedState);
-      localStorage.setItem(localStorageKey, serializedState);
+      window.localStorage.setItem(localStorageKey, serializedState);
     } catch (err) {
       console.warn("Error saving app state to local storage", err);
     }
   },
 
-  retrieve(): void {
+  retrieveAndUpdateState(): void {
     const savedState: SavedState = (() => {
       try {
-        const serializedState = localStorage.getItem(localStorageKey);
+        const serializedState = window.localStorage.getItem(localStorageKey);
         if (!serializedState) return null;
         return JSON.parse(serializedState);
       } catch (err) {
@@ -58,7 +62,7 @@ export const stateLocalStorage = {
 
     if (!stateValid) {
       console.warn("Error validating state retrieved from local storage");
-      state.localStorage.clear();
+      state.storage.clear();
       return;
     }
 
@@ -73,16 +77,28 @@ export const stateLocalStorage = {
 
   clear(): void {
     try {
-      localStorage.removeItem(localStorageKey);
+      window.localStorage.removeItem(localStorageKey);
     } catch (err) {
       console.warn("Error clearing app state from local storage", err);
     }
+  },
+
+  //
+  // Init/Destroy
+  //
+
+  initialize() {
+    window.addEventListener("beforeunload", beforeUnload);
+  },
+
+  destroy() {
+    window.removeEventListener("beforeunload", beforeUnload);
   }
 };
 
-window.addEventListener("beforeunload", () => {
+function beforeUnload() {
   if (!state.settings.scheduledAppReset) {
-    state.localStorage.save();
+    state.storage.save();
   }
   state.settings.scheduledAppReset = false;
-});
+}

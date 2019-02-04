@@ -2,7 +2,6 @@
 
 ## TODO
 
-- state - rename files
 - bing images
   - cache/predownload image
 - background image switching broken
