@@ -1,45 +1,7 @@
-import React from "react";
 import styled from "styled-components/macro";
-import { Timestamp } from "../timer-updater/timer-updater";
-import * as s from "../../shared/styles";
-import { addLeadingZero } from "../../shared/time";
+import * as s from "../../styles/styles";
 
-type ClockProps = {
-  time: Timestamp;
-  showSeconds: boolean;
-};
-
-export const Clock = (props: ClockProps) => (
-  <ClockBox>
-    <ClockText>
-      <TimeC time={props.time} showSeconds={props.showSeconds} />
-    </ClockText>
-  </ClockBox>
-);
-
-const TimeC = (props: ClockProps) => {
-  const date = new Date(props.time);
-
-  const hours = addLeadingZero(date.getHours());
-  const minutes = addLeadingZero(date.getMinutes());
-  const seconds = addLeadingZero(date.getSeconds());
-
-  return (
-    <>
-      {hours}
-      <Colon>:</Colon>
-      {minutes}
-      {props.showSeconds && (
-        <>
-          <Colon>:</Colon>
-          {seconds}
-        </>
-      )}
-    </>
-  );
-};
-
-const ClockBox = styled.div({
+export const ClockBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
   userSelect: "none",
@@ -56,7 +18,7 @@ const breakpoints = {
   180: `@media (max-width: ${s.breakpointPxToEm(180)})`
 };
 
-const ClockText = styled.div({
+export const ClockText = styled.div({
   ...s.text.text,
   ...s.text.familyMonospace,
 
@@ -78,7 +40,7 @@ const ClockText = styled.div({
   }
 });
 
-const Colon = styled.span({
+export const Colon = styled.span({
   position: "relative",
   top: "-9px",
   margin: "0 -6px",

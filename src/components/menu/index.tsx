@@ -1,8 +1,20 @@
 import React from "react";
-import styled from "styled-components/macro";
 import { view } from "react-easy-state";
+import {
+  MenuWrapper,
+  ToggleButton,
+  ToggleButtonIcon,
+  ToggleButtonSpacer,
+  Heading,
+  Text,
+  MenuSectionsWrapper,
+  MenuSectionStyled,
+  HeadingSmall,
+  RadioLabel,
+  RadioText
+} from "./styled";
+import { eventToAgeOfBirthValues } from "./utils";
 import { state } from "../../state/state";
-import * as s from "../../shared/styles";
 import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
 
@@ -226,107 +238,6 @@ const MenuContent = view((props: MenuProps) => {
   );
 });
 
-function eventToAgeOfBirthValues(e: React.ChangeEvent<HTMLInputElement>) {
-  const valueRaw = e.target.value;
-  const valueValid = valueRaw.length > 0;
-
-  const timestamp = (() => {
-    if (!valueValid) return null;
-
-    const [year, month, day] = valueRaw.split("-").map(Number);
-    const timestamp = Date.UTC(year, month - 1, day);
-    return timestamp;
-  })();
-
-  return {
-    ageDateOfBirthTimestamp: timestamp,
-    ageDateOfBirthInputValue: valueRaw
-  };
-}
-
-type MenuWrapperProps = {
-  settingsHidden?: boolean;
-};
-
-const MenuWrapper = styled.section((props: MenuWrapperProps) => ({
-  boxSizing: "border-box",
-  position: "relative",
-  padding: s.grid(2),
-  overflow: "hidden",
-  backgroundColor: s.colors.whiteTransparentDefault,
-  ...(props.settingsHidden && {
-    opacity: 0,
-    transition: s.animations.default,
-    "&:hover": {
-      opacity: 1
-    }
-  })
-}));
-
-const ToggleButton = styled.button({
-  boxSizing: "border-box",
-  position: "absolute",
-  userSelect: "none",
-  top: s.dimensions.menuButtonSpacing,
-  right: s.dimensions.menuButtonSpacing,
-  border: 0,
-  background: "transparent",
-  padding: s.dimensions.menuButtonPadding,
-  cursor: "pointer"
-});
-
-const ToggleButtonSpacer = styled.div({
-  float: "right",
-  width: s.grid(8),
-  height: s.grid(8)
-});
-
-type ToggleButtonIconProps = {
-  rotated?: boolean;
-};
-
-const ToggleButtonIcon = styled.img((props: ToggleButtonIconProps) => ({
-  display: "block",
-  width: s.dimensions.menuButtonSize,
-  height: s.dimensions.menuButtonSize,
-  objectFit: "contain",
-  transition: s.animations.default,
-  opacity: s.opacity.default,
-  ...(props.rotated && {
-    transform: "rotate(-360deg)"
-  })
-}));
-
-const Heading = styled.h1({
-  ...s.text.text,
-  ...s.text.size18,
-
-  paddingBottom: "0.25em"
-});
-
-const HeadingSmall = styled.h2({
-  ...s.text.text,
-  ...s.text.size16,
-
-  paddingBottom: "0.25em"
-});
-
-const Text = styled.p({
-  ...s.text.text
-});
-
-const MenuSectionsWrapper = styled.div({
-  marginTop: s.grid(3)
-});
-
-const MenuSectionStyled = styled.section({
-  marginTop: s.grid(2),
-
-  "&:first-child": {
-    marginTop: 0
-  }
-});
-
 const MenuSection = (props: {
   title: string;
   children: (false | JSX.Element)[]; // TODO: why false?
@@ -355,14 +266,3 @@ const Radio = (props: {
     <RadioText>{props.children}</RadioText>
   </RadioLabel>
 );
-
-const RadioLabel = styled.label({
-  display: "block"
-});
-
-const RadioText = styled.span({
-  ...s.text.text,
-
-  color: s.colors.white,
-  marginLeft: s.grid(1)
-});

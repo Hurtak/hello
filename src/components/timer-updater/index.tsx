@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getNextTick } from "./utils";
 import { config } from "../../config";
 
 export type Timestamp = number;
@@ -36,12 +37,3 @@ export const TimerUpdater = (props: TimerUpdatedProps) => {
 
   return <>{props.component(time)}</>;
 };
-
-export function getNextTick(
-  now: number,
-  updateEveryN: number,
-  minTickDelay = 0
-): number {
-  const nextTick = updateEveryN - (now % updateEveryN);
-  return Math.max(nextTick, minTickDelay);
-}
