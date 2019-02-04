@@ -2,9 +2,9 @@
 
 ## TODO
 
+- background image switching broken
 - bing images
   - cache/predownload image
-- background image switching broken
 - menu design
   - menu texts
     - menu text component?
@@ -66,7 +66,6 @@
     - hover styles
     - focus styles
 - fix tests
-- remove Lato font if it is not used anywhere
 - resolve all todos in code
 - when menu is closed, disable all form field, or do not render the html
 - conditional updated is broken when we change clocks showSeconds prop, overall behavior seems strange investigate!
