@@ -16,7 +16,7 @@
     "wicg-inert": "2.0.0"
   },
   "devDependencies": {
-    "@types/jest": "23.3.13",
+    "@types/jest": "24.0.0",
     "@types/lodash": "4.14.120",
     "@types/react": "16.8.1",
     "@types/react-dom": "16.0.11",

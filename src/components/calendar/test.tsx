@@ -28,24 +28,24 @@ it("range", () => {
   expect(range(-1, 1)).toEqual([-1, 0, 1]);
 });
 
-it("Snapshot start of the year", () => {
+it.skip("Snapshot start of the year", () => {
   const element = <Calendar time={new Date(2017, 0, 1).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
-it("Snapshot end of the year", () => {
+it.skip("Snapshot end of the year", () => {
   const element = (
     <Calendar time={new Date(2017, 11, 31, 23, 59, 59, 999).getTime()} />
   );
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
-it("Snapshot leap year start", () => {
+it.skip("Snapshot leap year start", () => {
   const element = <Calendar time={new Date(2012, 0, 1).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
-it("Snapshot leap year end", () => {
+it.skip("Snapshot leap year end", () => {
   const element = (
     <Calendar time={new Date(2012, 11, 31, 23, 59, 59, 999).getTime()} />
   );

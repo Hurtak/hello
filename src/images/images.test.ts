@@ -1,4 +1,4 @@
-import images from "./images";
+import { images } from "./images";
 
 it("all image objects have image", () => {
   for (let image of images) {
