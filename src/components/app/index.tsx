@@ -77,13 +77,13 @@ const AppInner = view(() => {
               </AppContent>
             );
 
-          // case types.views.CALENDAR:
+          // case "CALENDAR":
           //   return (
           //     <AppContent center maxWidth>
-          //       <ConditionalUpdater
+          //       <TimerUpdater
           //         updateEveryN={time.day}
           //         component={time => <Calendar time={time} />}
-          //         key={state.selectedView}
+          //         key={state.settings.selectedView}
           //       />
           //     </AppContent>
           //   );

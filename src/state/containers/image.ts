@@ -10,7 +10,7 @@ export const image = {
   // State
   //
 
-  imageSource: "BING",
+  imageSource: "BING" as ImageSource,
 
   imageLocalIndex: 0,
   imageBing: { type: "INITIAL" } as HttpData<BingData>,

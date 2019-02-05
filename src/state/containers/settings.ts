@@ -16,7 +16,7 @@ export const settings = {
   //
 
   menuOpened: false,
-  selectedView: "CLOCK",
+  selectedView: "CLOCK" as View,
   clockShowSeconds: false,
   ageDateOfBirthTimestamp: initialDateOfBirth,
   ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
