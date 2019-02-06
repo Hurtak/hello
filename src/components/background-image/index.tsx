@@ -1,47 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Image } from "./styled";
 
-type Background = string | null;
+type BackgroundUrl = string | null;
+
+type Backgrounds = {
+  current: BackgroundUrl;
+  previous: BackgroundUrl;
+};
 
 type BackgroundImageProps = {
-  url: Background;
+  url: BackgroundUrl;
 };
 
 export const BackgroundImage = (props: BackgroundImageProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [previousUrl, setPreviousUrl] = useState<Background>(null);
-  const [imageRenderNr, setImageRenderNr] = useState(1);
+  const backgrounds = usePreviousBackground(props.url);
+  const imageLoaded = useImageLoaded(backgrounds);
 
-  useEffect(() => {
-    if (!props.url) return;
-
-    const currentImageRenderNr = imageRenderNr;
-    setImageLoaded(false);
-    if (props.url !== previousUrl) {
-      setPreviousUrl(props.url);
-    }
-
-    return loadImage(props.url, sucess => {
-      if (!sucess) return;
-      if (imageRenderNr !== currentImageRenderNr) return;
-
-      setImageLoaded(true);
-
-      setImageRenderNr(currentImageRenderNr + 1);
-    });
-  }, [props.url]);
+  if (!backgrounds.current) return null;
 
   return (
     <>
-      {props.url && (
-        <Image topImage backgroundImage={props.url} imageLoaded={imageLoaded} />
-      )}
-      {previousUrl && props.url !== previousUrl && (
-        <Image backgroundImage={previousUrl} imageLoaded />
+      <Image
+        topImage
+        backgroundImage={backgrounds.current}
+        imageLoaded={imageLoaded}
+      />
+      {backgrounds.previous && backgrounds.current !== backgrounds.previous && (
+        <Image backgroundImage={backgrounds.previous} imageLoaded />
       )}
     </>
   );
 };
+
+function usePreviousBackground(newUrl: BackgroundUrl): Backgrounds {
+  const [backgrounds, setBackgrounds] = useState<Backgrounds>({
+    current: newUrl,
+    previous: null
+  });
+
+  useEffect(() => {
+    if (backgrounds.current === newUrl) return;
+    setBackgrounds(previousBackgrounds => ({
+      current: newUrl,
+      previous: previousBackgrounds.current
+    }));
+  }, [newUrl]);
+
+  return backgrounds;
+}
+
+function useImageLoaded(backgrounds: Backgrounds): boolean {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageRenderNr, setImageRenderNr] = useState(1);
+
+  useEffect(() => {
+    const currentImageRenderNr = imageRenderNr;
+    setImageLoaded(false);
+
+    if (!backgrounds.current) return;
+
+    return loadImage(backgrounds.current, sucess => {
+      if (!sucess) return;
+      if (imageRenderNr !== currentImageRenderNr) return;
+      setImageLoaded(true);
+      setImageRenderNr(currentImageRenderNr + 1);
+    });
+  }, [backgrounds.current]);
+
+  return imageLoaded;
+}
 
 function loadImage(url: string, cb: (sucess: boolean) => void): () => void {
   let imageLoaded = false;

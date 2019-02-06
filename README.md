@@ -2,9 +2,6 @@
 
 ## TODO
 
-- background
-  - abort previous image request
-  - add animation to background switching
 - menu design
   - menu texts
     - menu text component?
@@ -22,6 +19,7 @@
 
 ## Later TODOS
 
+- background image switching animation
 - check STRV checklist
 - revisit tsconfig
 - docs
