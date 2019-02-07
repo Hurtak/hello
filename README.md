@@ -2,6 +2,7 @@
 
 ## TODO
 
+- add more images!
 - menu design
   - menu texts
     - menu text component?
@@ -10,7 +11,6 @@
   - menu styles
   - show offline indicator?
 - renema to hello
-- add more images!
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
@@ -52,10 +52,6 @@
   - chrome plugin
   - firefox plugin
   - web app - github pages hosted
-- bing images - select country
-  - https://bingwallpaper.com/
-  - what are allowed countries?
-  - maybe deted default one automatically?
 - when loading new image, add blur our, blur in efect
 - settings
   - bouncy transitions on settings box and cog
