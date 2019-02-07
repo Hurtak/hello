@@ -1,34 +1,36 @@
 import styled from "styled-components/macro";
 import * as s from "../../styles/styles";
 
-type MenuWrapperProps = {
+type SettingsWrapperProps = {
   settingsHidden?: boolean;
 };
 
-export const MenuWrapper = styled.section((props: MenuWrapperProps) => ({
-  boxSizing: "border-box",
-  position: "relative",
-  padding: s.grid(2),
-  overflow: "hidden",
-  backgroundColor: s.colors.whiteTransparentDefault,
-  ...(props.settingsHidden && {
-    opacity: 0,
-    transition: s.animations.default,
-    "&:hover": {
-      opacity: 1
-    }
+export const SettingsWrapper = styled.section(
+  (props: SettingsWrapperProps) => ({
+    boxSizing: "border-box",
+    position: "relative",
+    padding: s.grid(2),
+    overflow: "hidden",
+    backgroundColor: s.colors.whiteTransparentDefault,
+    ...(props.settingsHidden && {
+      opacity: 0,
+      transition: s.animations.default,
+      "&:hover": {
+        opacity: 1
+      }
+    })
   })
-}));
+);
 
 export const ToggleButton = styled.button({
   boxSizing: "border-box",
   position: "absolute",
   userSelect: "none",
-  top: s.dimensions.menuButtonSpacing,
-  right: s.dimensions.menuButtonSpacing,
+  top: s.dimensions.settingsButtonSpacing,
+  right: s.dimensions.settingsButtonSpacing,
   border: 0,
   background: "transparent",
-  padding: s.dimensions.menuButtonPadding,
+  padding: s.dimensions.settingsButtonPadding,
   cursor: "pointer"
 });
 
@@ -44,8 +46,8 @@ type ToggleButtonIconProps = {
 
 export const ToggleButtonIcon = styled.img((props: ToggleButtonIconProps) => ({
   display: "block",
-  width: s.dimensions.menuButtonSize,
-  height: s.dimensions.menuButtonSize,
+  width: s.dimensions.settingsButtonSize,
+  height: s.dimensions.settingsButtonSize,
   objectFit: "contain",
   transition: s.animations.default,
   opacity: s.opacity.default,
@@ -72,11 +74,11 @@ export const Text = styled.p({
   ...s.text.text
 });
 
-export const MenuSectionsWrapper = styled.div({
+export const SettingsSectionsWrapper = styled.div({
   marginTop: s.grid(3)
 });
 
-export const MenuSectionStyled = styled.section({
+export const SettingsSectionStyled = styled.section({
   marginTop: s.grid(2),
 
   "&:first-child": {

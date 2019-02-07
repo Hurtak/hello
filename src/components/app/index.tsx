@@ -8,10 +8,10 @@ import {
   AppWrapper,
   BackgroundWrapper,
   AppContent,
-  AppMenuWrapper,
-  AppMenu
+  AppSettingsWrapper,
+  AppSettings
 } from "./styled";
-import { Menu } from "../menu";
+import { Settings } from "../settings";
 import { TimerUpdater } from "../timer-updater";
 import { Clock } from "../clock";
 import { Age } from "../age";
@@ -37,16 +37,16 @@ export const App = view(() => {
 });
 
 const AppInner = view(() => {
-  const menuEl = useRef<HTMLDivElement>(null);
-  const [menuHeight, setMenuHeight] = useState<number | null>(null);
+  const settingsEl = useRef<HTMLDivElement>(null);
+  const [settingsHeight, setSettingsHeight] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!menuEl.current) return;
+    if (!settingsEl.current) return;
 
     const observer = new ResizeObserver(entries => {
-      setMenuHeight(entries[0].contentRect.height);
+      setSettingsHeight(entries[0].contentRect.height);
     });
-    observer.observe(menuEl.current);
+    observer.observe(settingsEl.current);
 
     return () => observer.disconnect();
   }, []);
@@ -132,14 +132,14 @@ const AppInner = view(() => {
         }
       })()}
 
-      <AppMenuWrapper
-        opened={state.settings.menuOpened}
-        menuHeight={menuHeight}
+      <AppSettingsWrapper
+        opened={state.settings.opened}
+        height={settingsHeight}
       >
-        <AppMenu ref={menuEl}>
-          <Menu isDev={config.isDev} />
-        </AppMenu>
-      </AppMenuWrapper>
+        <AppSettings ref={settingsEl}>
+          <Settings isDev={config.isDev} />
+        </AppSettings>
+      </AppSettingsWrapper>
     </>
   );
 });

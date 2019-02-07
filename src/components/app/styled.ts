@@ -36,28 +36,30 @@ export const BackgroundWrapper = styled.div({
   zIndex: s.zIndex.background
 });
 
-type AppMenuWrapperProps = {
+type AppSettingsWrapperProps = {
   opened: boolean;
-  menuHeight: number | null;
+  height: number | null;
 };
 
-export const AppMenuWrapper = styled.aside((props: AppMenuWrapperProps) => ({
-  position: "absolute",
-  direction: "rtl", // To make the overflow cropping from the right side
-  top: s.grid(1),
-  right: s.grid(1),
-  width: s.dimensions.menuButtonSizeAndSpacing,
-  height: s.dimensions.menuButtonSizeAndSpacing,
-  transition: "0.5s all ease",
-  overflow: "hidden",
-  zIndex: s.zIndex.menu,
-  ...(props.opened && {
-    width: s.dimensions.menuWidth,
-    height: props.menuHeight ? s.size(props.menuHeight) : "auto"
+export const AppSettingsWrapper = styled.aside(
+  (props: AppSettingsWrapperProps) => ({
+    position: "absolute",
+    direction: "rtl", // To make the overflow cropping from the right side
+    top: s.grid(1),
+    right: s.grid(1),
+    width: s.dimensions.settingsButtonSizeAndSpacing,
+    height: s.dimensions.settingsButtonSizeAndSpacing,
+    transition: "0.5s all ease",
+    overflow: "hidden",
+    zIndex: s.zIndex.settings,
+    ...(props.opened && {
+      width: s.dimensions.settingsWidth,
+      height: props.height ? s.size(props.height) : "auto"
+    })
   })
-}));
+);
 
-export const AppMenu = styled.div({
-  width: s.dimensions.menuWidth,
-  direction: "ltr" // Reset direction set in AppMenuWrapper
+export const AppSettings = styled.div({
+  width: s.dimensions.settingsWidth,
+  direction: "ltr" // Reset direction set in AppSettingsWrapper
 });

@@ -9,7 +9,7 @@ export const size = (px: number): string => `${px / 16}rem`;
 export const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 
 // NOTE: Only use px we want to have fixed sizes that have the same dimensions
-// not affected by user font settings. Eg.: text in menu settings should be variable
+// not affected by user font settings. Eg.: text in settings should be variable
 // but lets say clock size should the the same unrelated to user font size settings.
 
 // TODO: Delete unused variables.
@@ -56,22 +56,22 @@ export const opacity = {
 };
 
 export const zIndex = {
-  menu: 10,
+  settings: 10,
   content: 9,
   background: 8
 };
 
-const menuButtonSize = gridRaw(5);
-const menuButtonPadding = gridRaw(1);
-const menuButtonSpacing = gridRaw(1);
+const settingsButtonSize = gridRaw(5);
+const settingsButtonPadding = gridRaw(1);
+const settingsButtonSpacing = gridRaw(1);
 
-const menuButtonSizeAndSpacing =
-  menuButtonSize + 2 * menuButtonPadding + 2 * menuButtonSpacing;
+const settingsButtonSizeAndSpacing =
+  settingsButtonSize + 2 * settingsButtonPadding + 2 * settingsButtonSpacing;
 
 export const dimensions = {
-  menuWidth: size(400),
-  menuButtonSize: size(menuButtonSize),
-  menuButtonPadding: size(menuButtonPadding),
-  menuButtonSpacing: size(menuButtonSpacing),
-  menuButtonSizeAndSpacing: size(menuButtonSizeAndSpacing)
+  settingsWidth: size(400),
+  settingsButtonSize: size(settingsButtonSize),
+  settingsButtonPadding: size(settingsButtonPadding),
+  settingsButtonSpacing: size(settingsButtonSpacing),
+  settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing)
 };

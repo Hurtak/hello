@@ -1,14 +1,14 @@
 import React from "react";
 import { view } from "react-easy-state";
 import {
-  MenuWrapper,
+  SettingsWrapper,
   ToggleButton,
   ToggleButtonIcon,
   ToggleButtonSpacer,
   Heading,
   Text,
-  MenuSectionsWrapper,
-  MenuSectionStyled,
+  SettingsSectionsWrapper,
+  SettingsSectionStyled,
   HeadingSmall,
   RadioLabel,
   RadioText
@@ -18,34 +18,32 @@ import { state } from "../../state/state";
 import { timestampToDateInputValue } from "../../shared/time";
 import iconCog from "../../icons/cog.svg";
 
-type MenuProps = {
+type SettingsProps = {
   isDev: boolean;
 };
 
-export const Menu = view((props: MenuProps) => {
+export const Settings = view((props: SettingsProps) => {
   return (
-    <MenuWrapper
-      settingsHidden={
-        state.settings.settingsHidden && !state.settings.menuOpened
-      }
+    <SettingsWrapper
+      settingsHidden={state.settings.settingsHidden && !state.settings.opened}
     >
-      <ToggleButton onClick={state.settings.toggleMenu}>
-        <ToggleButtonIcon src={iconCog} rotated={state.settings.menuOpened} />
+      <ToggleButton onClick={state.settings.toggleOpenedState}>
+        <ToggleButtonIcon src={iconCog} rotated={state.settings.opened} />
       </ToggleButton>
 
       <ToggleButtonSpacer />
 
-      <div inert={state.settings.menuOpened === false ? "inert" : null}>
-        <MenuContent isDev={props.isDev} />
+      <div inert={state.settings.opened === false ? "inert" : null}>
+        <SettingsContent isDev={props.isDev} />
       </div>
-    </MenuWrapper>
+    </SettingsWrapper>
   );
 });
 
 // React.memo used to prevent rerendering of whole menu when menuOpened state
 // changes in parent component
 // TODO: might not be needed after we chagned state library?
-const MenuContent = view((props: MenuProps) => {
+const SettingsContent = view((props: SettingsProps) => {
   return (
     <>
       <Heading>Hello Friend &ndash; New Tab Page</Heading>
@@ -56,8 +54,8 @@ const MenuContent = view((props: MenuProps) => {
         background, like clock and stuff!
       </Text>
 
-      <MenuSectionsWrapper>
-        <MenuSection title="Background image">
+      <SettingsSectionsWrapper>
+        <SettingsSection title="Background image">
           {!state.browser.online && (
             <div>You are currently offline, falling back to local images</div>
           )}
@@ -142,9 +140,9 @@ const MenuContent = view((props: MenuProps) => {
               })()}
             </section>
           )}
-        </MenuSection>
+        </SettingsSection>
 
-        <MenuSection title="View type">
+        <SettingsSection title="View type">
           <Radio
             name="view"
             onChange={() => state.settings.setSelectedView("CLOCK")}
@@ -196,9 +194,9 @@ const MenuContent = view((props: MenuProps) => {
               />
             </label>
           )}
-        </MenuSection>
+        </SettingsSection>
 
-        <MenuSection title="Minimalistic version">
+        <SettingsSection title="Minimalistic version">
           <Text>
             Settings button will be hidden unless you hover the mouse over the
             area where the button is. Also bunch of useless text (like this
@@ -212,9 +210,9 @@ const MenuContent = view((props: MenuProps) => {
             />
             Hide stuff
           </label>
-        </MenuSection>
+        </SettingsSection>
 
-        <MenuSection title="Contact">
+        <SettingsSection title="Contact">
           <Text>
             If you find any bugs or if you would like to tell me how much you
             like this swell plugin you can do so on following channels. Also
@@ -223,29 +221,29 @@ const MenuContent = view((props: MenuProps) => {
           <a href="https://github.com/hurtak/hello-friend">Github</a>
           <a href="https://twitter.com/PetrHurtak">Twitter</a>
           <a href="mailto:petr.hurtak@gmail.com">Mail</a>
-        </MenuSection>
+        </SettingsSection>
 
         {props.isDev && (
-          <MenuSection title="Dev menu">
+          <SettingsSection title="Dev menu">
             <Text>This menu is only visible in development mode</Text>
             <button onClick={state.settings.resetAppState}>
               Reset app state
             </button>
-          </MenuSection>
+          </SettingsSection>
         )}
-      </MenuSectionsWrapper>
+      </SettingsSectionsWrapper>
     </>
   );
 });
 
-const MenuSection = (props: {
+const SettingsSection = (props: {
   title: string;
   children: (false | JSX.Element)[]; // TODO: why false?
 }) => (
-  <MenuSectionStyled>
+  <SettingsSectionStyled>
     <HeadingSmall>{props.title}</HeadingSmall>
     {props.children}
-  </MenuSectionStyled>
+  </SettingsSectionStyled>
 );
 
 const Radio = (props: {

@@ -15,7 +15,7 @@ export const settings = {
   // State
   //
 
-  menuOpened: false,
+  opened: false,
   selectedView: "CLOCK" as View,
   clockShowSeconds: false,
   ageDateOfBirthTimestamp: initialDateOfBirth,
@@ -27,8 +27,8 @@ export const settings = {
   // Actions
   //
 
-  toggleMenu(): void {
-    state.settings.menuOpened = !state.settings.menuOpened;
+  toggleOpenedState(): void {
+    state.settings.opened = !state.settings.opened;
   },
 
   setSelectedView(selectedView: View): void {

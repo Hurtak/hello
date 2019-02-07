@@ -2,7 +2,6 @@
 
 ## TODO
 
-- add more images!
 - menu design
   - menu texts
     - menu text component?
@@ -10,6 +9,7 @@
   - menu structure
   - menu styles
   - show offline indicator?
+- add more images!
 - renema to hello
 - go through manifest.json
   - unnecessary permissins?
