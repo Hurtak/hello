@@ -9,6 +9,8 @@
   - menu structure
   - menu styles
   - show offline indicator?
+  - disable bing when offline
+  - show proper error messages when bing image / proxy error
 - add more images!
 - renema to hello
 - go through manifest.json
