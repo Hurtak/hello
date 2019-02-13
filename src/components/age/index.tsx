@@ -3,13 +3,11 @@ import { Timestamp } from "../timer-updater";
 import * as time from "../../shared/time";
 import { Wrapper, AgePosition, AgeBox, AgeText } from "./styled";
 
-type AgeProps = {
+export const Age: React.FC<{
   time: Timestamp;
   birthDate: number;
   decimalPlaces: number;
-};
-
-export const Age = (props: AgeProps) => {
+}> = props => {
   const years = (props.time - props.birthDate) / time.year;
 
   return (

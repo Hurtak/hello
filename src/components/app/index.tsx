@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { view } from "react-easy-state";
-
-import ResizeObserver from "resize-observer-polyfill"; // TODO: remove once widely supported
-import "wicg-inert"; // TODO: remove once widely supported
+import ResizeObserver from "resize-observer-polyfill"; // TODO: Remove once supported in Chrome & FF
+import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 
 import {
   AppWrapper,

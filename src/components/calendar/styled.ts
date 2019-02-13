@@ -34,34 +34,30 @@ export const DaysWrapper = styled.div({
   listStyleType: "none"
 });
 
-type DayProps = {
-  heading?: boolean;
-  currentDay?: boolean;
-  selected?: boolean;
-};
+export const Day = styled.div(
+  (props: { heading?: boolean; currentDay?: boolean; selected?: boolean }) => ({
+    ...s.text.text,
 
-export const Day = styled.div((props: DayProps) => ({
-  ...s.text.text,
-
-  ...(props.heading && {
-    fontWeight: "bold"
-  }),
-  ...(props.currentDay && {
-    fontWeight: "bold"
-  }),
-  ...(props.currentDay && {
-    position: "relative",
-    zIndex: 0,
-    "&::after": {
-      content: `""`,
-      display: "block",
-      position: "absolute",
-      left: "-2px",
-      top: "-4px",
-      width: "22px",
-      height: "22px",
-      backgroundColor: "orange",
-      zIndex: -1
-    }
+    ...(props.heading && {
+      fontWeight: "bold"
+    }),
+    ...(props.currentDay && {
+      fontWeight: "bold"
+    }),
+    ...(props.currentDay && {
+      position: "relative",
+      zIndex: 0,
+      "&::after": {
+        content: `""`,
+        display: "block",
+        position: "absolute",
+        left: "-2px",
+        top: "-4px",
+        width: "22px",
+        height: "22px",
+        backgroundColor: "orange",
+        zIndex: -1
+      }
+    })
   })
-}));
+);

@@ -8,11 +8,9 @@ type Backgrounds = {
   previous: BackgroundUrl;
 };
 
-type BackgroundImageProps = {
+export const BackgroundImage: React.FC<{
   url: BackgroundUrl;
-};
-
-export const BackgroundImage = (props: BackgroundImageProps) => {
+}> = props => {
   const backgrounds = usePreviousBackground(props.url);
   const imageLoaded = useImageLoaded(backgrounds);
 

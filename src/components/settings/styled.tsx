@@ -40,11 +40,7 @@ export const ToggleButtonSpacer = styled.div({
   height: s.grid(8)
 });
 
-type ToggleButtonIconProps = {
-  rotated?: boolean;
-};
-
-export const ToggleButtonIcon = styled.img((props: ToggleButtonIconProps) => ({
+export const ToggleButtonIcon = styled.img((props: { rotated?: boolean }) => ({
   display: "block",
   width: s.dimensions.settingsButtonSize,
   height: s.dimensions.settingsButtonSize,

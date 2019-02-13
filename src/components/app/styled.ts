@@ -12,37 +12,29 @@ export const AppWrapper = styled.div({
   padding: s.grid(1)
 });
 
-type AppContentProps = {
-  maxWidth?: boolean;
-  center?: boolean;
-};
-
-export const AppContent = styled.main((props: AppContentProps) => ({
-  display: "flex",
-  flex: "1 0 0",
-  flexDirection: "column",
-  width: "100%",
-  zIndex: s.zIndex.content,
-  ...(props.center && {
-    justifyContent: "center",
-    alignItems: "center"
-  }),
-  ...(props.maxWidth && {
-    maxWidth: s.size(1200)
+export const AppContent = styled.main(
+  (props: { maxWidth?: boolean; center?: boolean }) => ({
+    display: "flex",
+    flex: "1 0 0",
+    flexDirection: "column",
+    width: "100%",
+    zIndex: s.zIndex.content,
+    ...(props.center && {
+      justifyContent: "center",
+      alignItems: "center"
+    }),
+    ...(props.maxWidth && {
+      maxWidth: s.size(1200)
+    })
   })
-}));
+);
 
 export const BackgroundWrapper = styled.div({
   zIndex: s.zIndex.background
 });
 
-type AppSettingsWrapperProps = {
-  opened: boolean;
-  height: number | null;
-};
-
 export const AppSettingsWrapper = styled.aside(
-  (props: AppSettingsWrapperProps) => ({
+  (props: { opened: boolean; height: number | null }) => ({
     position: "absolute",
     direction: "rtl", // To make the overflow cropping from the right side
     top: s.grid(1),

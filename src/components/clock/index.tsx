@@ -8,7 +8,7 @@ type ClockProps = {
   showSeconds: boolean;
 };
 
-export const Clock = (props: ClockProps) => (
+export const Clock: React.FC<ClockProps> = props => (
   <ClockBox>
     <ClockText>
       <Time time={props.time} showSeconds={props.showSeconds} />
@@ -16,7 +16,7 @@ export const Clock = (props: ClockProps) => (
   </ClockBox>
 );
 
-const Time = (props: ClockProps) => {
+const Time: React.FC<ClockProps> = props => {
   const date = new Date(props.time);
 
   const hours = addLeadingZero(date.getHours());

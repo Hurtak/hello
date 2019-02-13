@@ -7,12 +7,10 @@ import {
 import { getYearProgress } from "./utils";
 import { Timestamp } from "../timer-updater";
 
-type YearProgressProps = {
+export const YearProgress: React.FC<{
   time: Timestamp;
   decimalPlaces: number;
-};
-
-export const YearProgress = (props: YearProgressProps) => {
+}> = props => {
   const progress = getYearProgress(props.time);
 
   return (

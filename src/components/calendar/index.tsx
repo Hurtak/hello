@@ -1,4 +1,5 @@
 import React from "react";
+import { range, getDaysInMonth } from "./utils";
 import { MonthsWrapper, Month, MonthName, DaysWrapper, Day } from "./styled";
 import { Timestamp } from "../timer-updater";
 
@@ -19,7 +20,7 @@ const monthNames = [
 
 const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-export const Calendar = (props: { time: Timestamp }) => {
+export const Calendar: React.FC<{ time: Timestamp }> = props => {
   const now = new Date(props.time);
 
   const currentMonth = now.getMonth() + 1;
@@ -96,15 +97,3 @@ export const Calendar = (props: { time: Timestamp }) => {
     </MonthsWrapper>
   );
 };
-
-export function getDaysInMonth(year: number, month: number): number {
-  return new Date(year, month, 0).getDate();
-}
-
-export function range(start: number, end: number): number[] {
-  const items = [];
-  for (let i = start; i <= end; i++) {
-    items.push(i);
-  }
-  return items;
-}

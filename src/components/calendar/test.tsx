@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { Calendar, getDaysInMonth, range } from ".";
+import { Calendar } from ".";
+import { getDaysInMonth, range } from "./utils";
 import "jest-styled-components";
 
 it("getDaysInMonth", () => {

@@ -22,7 +22,7 @@ type SettingsProps = {
   isDev: boolean;
 };
 
-export const Settings = view((props: SettingsProps) => {
+export const Settings: React.FC<SettingsProps> = view(props => {
   return (
     <SettingsWrapper
       settingsHidden={state.settings.settingsHidden && !state.settings.opened}
@@ -43,7 +43,7 @@ export const Settings = view((props: SettingsProps) => {
 // React.memo used to prevent rerendering of whole menu when menuOpened state
 // changes in parent component
 // TODO: might not be needed after we chagned state library?
-const SettingsContent = view((props: SettingsProps) => {
+const SettingsContent: React.FC<SettingsProps> = view(props => {
   return (
     <>
       <Heading>Hello Friend &ndash; New Tab Page</Heading>
@@ -236,23 +236,22 @@ const SettingsContent = view((props: SettingsProps) => {
   );
 });
 
-const SettingsSection = (props: {
+const SettingsSection: React.FC<{
   title: string;
-  children: (false | JSX.Element)[]; // TODO: why false?
-}) => (
+}> = props => (
   <SettingsSectionStyled>
     <HeadingSmall>{props.title}</HeadingSmall>
     {props.children}
   </SettingsSectionStyled>
 );
 
-const Radio = (props: {
+const Radio: React.FC<{
   name: string;
   checked: boolean;
   disabled?: boolean;
   onChange: () => void;
   children: string;
-}) => (
+}> = props => (
   <RadioLabel>
     <input
       type="radio"
