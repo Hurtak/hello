@@ -13,6 +13,7 @@ export const image = {
   imageSource: "BING" as ImageSource,
 
   imageLocalIndex: 0,
+
   imageBing: { type: "INITIAL" } as HttpData<BingData>,
   imageBingCached: null as BingData | null,
 
@@ -33,10 +34,19 @@ export const image = {
       case "LOCAL":
         return "LOCAL";
       case "BING":
-        if (!state.browser.online) return "LOCAL";
-        if (state.image.imageBing && state.image.imageBing.type === "ERROR")
+        if (!state.browser.online) {
           return "LOCAL";
-        return "BING";
+        } else if (state.image.imageBingCached) {
+          return "BING";
+        } else if (
+          state.image.imageBing &&
+          state.image.imageBing.type === "ERROR"
+        ) {
+          return "LOCAL";
+        } else {
+          return "BING";
+        }
+
       default:
         return null;
     }
@@ -71,10 +81,12 @@ export const image = {
   async fetchBingImage(): Promise<void> {
     state.image.imageBing = { type: "FETCHING" };
     const imageData = await getBingImageOfTheDay();
-    state.image.imageBing = imageData;
 
-    if (state.image.imageBing.type === "DONE") {
-      state.image.imageBingCached = state.image.imageBing.data;
+    state.image.imageBing = imageData;
+    switch (state.image.imageBing.type) {
+      case "DONE":
+        state.image.imageBingCached = state.image.imageBing.data;
+        break;
     }
   },
 

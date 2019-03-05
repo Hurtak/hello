@@ -132,7 +132,6 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
     });
   }
 
-  imageData;
   return httpDataWithLog({
     type: "DONE",
     data: {

@@ -2,8 +2,6 @@
 
 ## TODO
 
-- blik when bing image is fetched wrong?
-  - delete previous image
 - close menu when we click outside of it
 - menu design
   - menu texts
