@@ -1,12 +1,10 @@
+import React from "react";
 import styled from "styled-components/macro";
+import { IconWarning } from "../icon";
 import * as s from "../../styles/styles";
 
-type SettingsWrapperProps = {
-  settingsHidden?: boolean;
-};
-
 export const SettingsWrapper = styled.section(
-  (props: SettingsWrapperProps) => ({
+  (props: { settingsHidden?: boolean }) => ({
     boxSizing: "border-box",
     position: "relative",
     padding: s.grid(2),
@@ -25,6 +23,7 @@ export const SettingsWrapper = styled.section(
 export const ToggleButton = styled.button({
   boxSizing: "border-box",
   position: "absolute",
+  overflow: "hidden", // When icon was rotating, it increased the outline size.
   userSelect: "none",
   top: s.dimensions.settingsButtonSpacing,
   right: s.dimensions.settingsButtonSpacing,
@@ -40,17 +39,16 @@ export const ToggleButtonSpacer = styled.div({
   height: s.grid(8)
 });
 
-export const ToggleButtonIcon = styled.img((props: { rotated?: boolean }) => ({
-  display: "block",
-  width: s.dimensions.settingsButtonSize,
-  height: s.dimensions.settingsButtonSize,
-  objectFit: "contain",
-  transition: s.animations.default,
-  opacity: s.opacity.default,
-  ...(props.rotated && {
-    transform: "rotate(-360deg)"
+export const ToggleButtonIconWrapper = styled.div(
+  (props: { rotated?: boolean }) => ({
+    display: "flex",
+    transition: s.animations.default,
+    opacity: s.opacity.default,
+    ...(props.rotated && {
+      transform: "rotate(-360deg)"
+    })
   })
-}));
+);
 
 export const Heading = styled.h1({
   ...s.text.text,
@@ -70,8 +68,32 @@ export const Text = styled.p({
   ...s.text.text
 });
 
+export const Warning: React.FC = ({ children }) => (
+  <WarningTextWrapper>
+    <WarningTextIcon>
+      <IconWarning color={s.colors.orange} width={16} height={16} />
+    </WarningTextIcon>
+    <WarningText>{children}</WarningText>
+  </WarningTextWrapper>
+);
+
+const WarningTextWrapper = styled.div({
+  display: "flex",
+  alignItems: "center"
+});
+
+const WarningTextIcon = styled.div({
+  marginRight: s.grid(1)
+});
+
+const WarningText = styled.p({
+  ...s.text.text,
+  display: "inline-block",
+  color: s.colors.orange
+});
+
 export const SettingsSectionsWrapper = styled.div({
-  marginTop: s.grid(3)
+  marginTop: s.gridRaw(3)
 });
 
 export const SettingsSectionStyled = styled.section({
@@ -89,6 +111,5 @@ export const RadioLabel = styled.label({
 export const RadioText = styled.span({
   ...s.text.text,
 
-  color: s.colors.white,
   marginLeft: s.grid(1)
 });

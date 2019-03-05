@@ -1,4 +1,5 @@
-const gridRaw = (gridMultiple: number): number => gridMultiple * 8;
+export const gridRaw = (gridMultiple: number): number => gridMultiple * 8;
+
 export const grid = (gridMultiple: number): string =>
   `${size(gridRaw(gridMultiple))}`;
 export const gridPx = (gridMultiple: number): string =>
@@ -15,8 +16,13 @@ export const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 // TODO: Delete unused variables.
 export const colors = {
   white: "white",
+  black: "black",
+
   grayMain: "gray",
   grayChrome: "#f2f1f0",
+
+  orange: "orange", // TODO: hex
+
   whiteTransparentALot: "rgba(0, 0, 0, 0.1)", // TODO: rename
   whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)", // TODO: rename
   whiteTransparentDefault: "rgba(0, 0, 0, 0.4)", // TODO: rename
@@ -70,7 +76,7 @@ const settingsButtonSizeAndSpacing =
 
 export const dimensions = {
   settingsWidth: size(400),
-  settingsButtonSize: size(settingsButtonSize),
+  settingsButtonSize: settingsButtonSize,
   settingsButtonPadding: size(settingsButtonPadding),
   settingsButtonSpacing: size(settingsButtonSpacing),
   settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing)

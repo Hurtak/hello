@@ -29,11 +29,7 @@ export type HttpData<Response> =
       data: any;
     };
 
-type CorsProxyType =
-  | "CORS_ANYWHERE"
-  | "ALLORIGINS"
-  | "CROSSORIGIN_ME"
-  | "CODETABS";
+type CorsProxyType = "CORS_ANYWHERE" | "CROSSORIGIN_ME" | "CODETABS";
 
 export function getCorsProxyUrl(
   corsProxyType: CorsProxyType,
@@ -42,10 +38,6 @@ export function getCorsProxyUrl(
   switch (corsProxyType) {
     case "CORS_ANYWHERE":
       return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
-    case "ALLORIGINS":
-      return `https://api.allorigins.ml/get?method=raw&url=${encodeURIComponent(
-        proxedUrl
-      )}`;
     case "CROSSORIGIN_ME":
       return `https://crossorigin.me/${proxedUrl}`;
     case "CODETABS":
@@ -70,7 +62,7 @@ export const bingImageUrl = (() => {
 export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
   let request = null;
 
-  const bingImageUrlProxied = getCorsProxyUrl("ALLORIGINS", bingImageUrl);
+  const bingImageUrlProxied = getCorsProxyUrl("CORS_ANYWHERE", bingImageUrl);
   try {
     request = await fetch(bingImageUrlProxied, {
       headers: { Accept: "application/json" }
@@ -108,14 +100,16 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
 
   let responseRaw = null;
   try {
-    responseRaw = await request.json();
-    // TODO: temporary hack for ALLORIGINS proxy. Make proper fix
-    responseRaw = JSON.parse(responseRaw.contents);
+    responseRaw = await request.text();
+    responseRaw = JSON.parse(responseRaw);
   } catch (error) {
     return httpDataWithLog({
       type: "ERROR",
       errorType: "ERROR_PARSING_JSON",
-      data: error
+      data: {
+        error,
+        response: responseRaw
+      }
     });
   }
 

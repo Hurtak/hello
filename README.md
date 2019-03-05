@@ -2,17 +2,23 @@
 
 ## TODO
 
+- blik when bing image is fetched wrong?
+  - delete previous image
 - menu design
   - menu texts
     - menu text component?
-      - https://www.styled-components.com/docs/basics#extending-styles ??
   - menu structure
   - menu styles
   - show offline indicator?
   - disable bing when offline
   - show proper error messages when bing image / proxy error
+  - close menu on outside click
+  - when menu button has focus, remove 100% opacity
+  - menu responsive
+- hotkeys to toggle calendar/time
+- make age bigger?
 - add more images!
-- renema to hello
+- reneme to hello
 - go through manifest.json
   - unnecessary permissins?
   - missing fields?
