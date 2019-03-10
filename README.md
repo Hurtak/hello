@@ -2,18 +2,16 @@
 
 ## TODO
 
-- close menu when we click outside of it
-- menu design
-  - menu texts
-    - menu text component?
-  - menu structure
-  - menu styles
+- settings design
+  - settings texts
+    - settings text component?
+  - settings structure
+  - settings styles
   - show offline indicator?
   - disable bing when offline
   - show proper error messages when bing image / proxy error
-  - close menu on outside click
-  - when menu button has focus, remove 100% opacity
-  - menu responsive
+  - when settings button has focus, remove 100% opacity
+  - settings responsive
 - hotkeys to toggle calendar/time
 - make age bigger?
 - add more images!

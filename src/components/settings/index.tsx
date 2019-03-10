@@ -1,5 +1,6 @@
 import React from "react";
 import { view } from "react-easy-state";
+import OutsideClickHandler from 'react-outside-click-handler';
 import {
   SettingsWrapper,
   ToggleButton,
@@ -25,24 +26,26 @@ type SettingsProps = {
 };
 
 export const Settings = view((props: SettingsProps) => (
-  <SettingsWrapper
-    settingsHidden={state.settings.settingsHidden && !state.settings.opened}
-  >
-    <ToggleButton onClick={state.settings.toggleOpenedState}>
-      <ToggleButtonIconWrapper rotated={state.settings.opened}>
-        <IconCog
-          width={s.dimensions.settingsButtonSize}
-          height={s.dimensions.settingsButtonSize}
-        />
-      </ToggleButtonIconWrapper>
-    </ToggleButton>
+  <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
+    <SettingsWrapper
+      settingsHidden={state.settings.settingsHidden && !state.settings.opened}
+    >
+      <ToggleButton onClick={state.settings.toggleSettingsOpened}>
+        <ToggleButtonIconWrapper rotated={state.settings.opened}>
+          <IconCog
+            width={s.dimensions.settingsButtonSize}
+            height={s.dimensions.settingsButtonSize}
+          />
+        </ToggleButtonIconWrapper>
+      </ToggleButton>
 
-    <ToggleButtonSpacer />
+      <ToggleButtonSpacer />
 
-    <div inert={state.settings.opened === false ? "inert" : null}>
-      <SettingsContent isDev={props.isDev} />
-    </div>
-  </SettingsWrapper>
+      <div inert={state.settings.opened === false ? "inert" : null}>
+        <SettingsContent isDev={props.isDev} />
+      </div>
+    </SettingsWrapper>
+  </OutsideClickHandler>
 ));
 
 // React.memo used to prevent rerendering of whole menu when menuOpened state

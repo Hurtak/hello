@@ -27,8 +27,12 @@ export const settings = {
   // Actions
   //
 
-  toggleOpenedState(): void {
+  toggleSettingsOpened(): void {
     state.settings.opened = !state.settings.opened;
+  },
+
+  closeSettings(): void {
+    state.settings.opened = false;
   },
 
   setSelectedView(selectedView: View): void {
