@@ -1,7 +1,7 @@
 import React from "react";
-import { Timestamp } from "../timer-updater";
-import * as time from "../../shared/time";
 import { Wrapper, AgePosition, AgeBox, AgeText } from "./styled";
+import { Timestamp } from "../../timer-updater";
+import * as time from "../../../utils/time";
 
 export const Age: React.FC<{
   time: Timestamp;

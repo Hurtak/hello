@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import * as s from "../../styles/styles";
+import * as s from "../../../styles/styles";
 
 export const ClockBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,

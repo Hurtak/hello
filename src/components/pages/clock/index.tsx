@@ -1,7 +1,7 @@
 import React from "react";
 import { ClockBox, ClockText, Colon } from "./styled";
-import { Timestamp } from "../timer-updater";
-import { addLeadingZero } from "../../shared/time";
+import { Timestamp } from "../../timer-updater";
+import { addLeadingZero } from "../../../utils/time";
 
 type ClockProps = {
   time: Timestamp;

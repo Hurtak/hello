@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { IconWarning } from "../icon";
 import * as s from "../../styles/styles";
+import { IconWarning } from "../../icons";
 
 export const SettingsWrapper = styled.section(
   (props: { settingsHidden?: boolean }) => ({

@@ -5,7 +5,7 @@ import {
   YearProgressText
 } from "./styled";
 import { getYearProgress } from "./utils";
-import { Timestamp } from "../timer-updater";
+import { Timestamp } from "../../timer-updater";
 
 export const YearProgress: React.FC<{
   time: Timestamp;

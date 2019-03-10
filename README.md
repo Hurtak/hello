@@ -12,7 +12,6 @@
   - show proper error messages when bing image / proxy error
   - when settings button has focus, remove 100% opacity
   - settings responsive
-- hotkeys to toggle calendar/time
 - make age bigger?
 - add more images!
 - reneme to hello
@@ -24,6 +23,7 @@
 
 ## Later TODOS
 
+- hotkeys to toggle calendar/time
 - background image switching animation
 - check STRV checklist
 - revisit tsconfig

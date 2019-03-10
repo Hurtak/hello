@@ -1,4 +1,4 @@
-import * as time from "./shared/time";
+import * as time from "./utils/time";
 
 export const config = {
   isDev: process.env.NODE_ENV !== "production",

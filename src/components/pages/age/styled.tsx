@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import * as s from "../../styles/styles";
+import * as s from "../../../styles/styles";
 
 export const Wrapper = styled.div({
   position: "relative",

@@ -16,10 +16,10 @@ import {
   Warning
 } from "./styled";
 import { eventToAgeOfBirthValues } from "./utils";
-import { IconCog } from "../icon";
 import * as s from "../../styles/styles";
 import { state } from "../../state/state";
-import { timestampToDateInputValue } from "../../shared/time";
+import { timestampToDateInputValue } from "../../utils/time";
+import { IconCog } from "../../icons";
 
 type SettingsProps = {
   isDev: boolean;

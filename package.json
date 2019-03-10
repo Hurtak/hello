@@ -8,6 +8,7 @@
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "react-easy-state": "6.1.1",
+    "react-hotkeys": "^1.1.4",
     "react-onclickoutside": "^6.8.0",
     "react-outside-click-handler": "^1.2.2",
     "react-scripts": "2.1.8",

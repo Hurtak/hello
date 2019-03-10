@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, IconProps } from "./icon";
+import { Icon, IconProps } from "../icon";
 
 export const IconWarning: React.FC<IconProps> = props => (
   <Icon {...props}>

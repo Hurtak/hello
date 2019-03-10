@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { view } from "react-easy-state";
+import { HotKeys } from "react-hotkeys";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: Remove once supported in Chrome & FF
 import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 
@@ -11,12 +12,12 @@ import {
   AppSettings
 } from "./styled";
 import { Settings } from "../settings";
-import { TimerUpdater } from "../timer-updater";
-import { Clock } from "../clock";
-import { Age } from "../age";
 import { BackgroundImage } from "../background-image";
+import { TimerUpdater } from "../timer-updater";
+import { Clock } from "../pages/clock";
+import { Age } from "../pages/age";
 import { state } from "../../state/state";
-import * as time from "../../shared/time";
+import * as time from "../../utils/time";
 import { GlobalStyles } from "../../styles/global-styles";
 import { config } from "../../config";
 
@@ -27,11 +28,21 @@ export const App = view(() => {
   }, []);
 
   return (
-    <AppWrapper>
-      <GlobalStyles />
+    <HotKeys
+      keyMap={{
+        CLOSE_SETTINGS: "esc"
+      }}
+      handlers={{
+        CLOSE_SETTINGS: state.settings.closeSettings
+      }}
+    >
+      <AppWrapper>
 
-      {state.app.initialized && <AppInner />}
-    </AppWrapper>
+        <GlobalStyles />
+
+        {state.app.initialized && <AppInner />}
+      </AppWrapper>
+    </HotKeys >
   );
 });
 

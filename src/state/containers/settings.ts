@@ -1,5 +1,5 @@
 import { state } from "../state";
-import { timestampToDateInputValue } from "../../shared/time";
+import { timestampToDateInputValue } from "../../utils/time";
 
 type View =
   | "CLOCK"
