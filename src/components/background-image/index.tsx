@@ -42,7 +42,7 @@ function usePreviousBackground(newUrl: BackgroundUrl): Backgrounds {
       current: newUrl,
       previous: previousBackgrounds.current
     }));
-  }, [newUrl]);
+  }, [newUrl, backgrounds]);
 
   return backgrounds;
 }
@@ -57,18 +57,18 @@ function useImageLoaded(backgrounds: Backgrounds): boolean {
 
     if (!backgrounds.current) return;
 
-    return loadImage(backgrounds.current, sucess => {
-      if (!sucess) return;
+    return loadImage(backgrounds.current, success => {
+      if (!success) return;
       if (imageRenderNr !== currentImageRenderNr) return;
       setImageLoaded(true);
       setImageRenderNr(currentImageRenderNr + 1);
     });
-  }, [backgrounds.current]);
+  }, [backgrounds, imageRenderNr]);
 
   return imageLoaded;
 }
 
-function loadImage(url: string, cb: (sucess: boolean) => void): () => void {
+function loadImage(url: string, cb: (success: boolean) => void): () => void {
   let imageLoaded = false;
   let imageCanceled = false;
 
