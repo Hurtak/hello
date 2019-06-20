@@ -11,5 +11,5 @@ export const config = {
   maximumRefreshRate: time.second / 60,
 
   yearProgressDecimalPlaces: 8,
-  ageDecimalPlaces: 3
+  ageDecimalPlaces: 8
 };

@@ -27,7 +27,7 @@ export const AgeText = styled.div({
 
   color: s.colors.white,
   opacity: s.opacity.default,
-  fontSize: s.size(24),
+  fontSize: s.gridPx(4),
   textAlign: "center",
   whiteSpace: "nowrap",
   overflow: "hidden",
