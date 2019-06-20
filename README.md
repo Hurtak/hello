@@ -2,6 +2,12 @@
 
 ## TODO
 
+- BROKEN deps
+  - @types/styled-components 4.1.8 ❯ 4.1.16
+    - typings completely broken
+  - typescript 3.4.5 ❯ 3.5.2
+    - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
+    - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
 - settings design
   - settings texts
     - settings text component?
