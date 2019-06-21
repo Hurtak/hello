@@ -3,24 +3,18 @@ import * as s from "../../../styles/styles";
 
 export const ClockBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
-  backgroundColor: s.colors.whiteTransparentDefault,
-  userSelect: "none",
-  textAlign: "center",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis"
+  backgroundColor: s.colors.whiteTransparentDefault
 });
 
 const breakpoints = {
-  500: `@media (max-width: ${s.breakpointPxToEm(500)})`,
-  380: `@media (max-width: ${s.breakpointPxToEm(380)})`,
-  280: `@media (max-width: ${s.breakpointPxToEm(280)})`,
-  180: `@media (max-width: ${s.breakpointPxToEm(180)})`
+  500: s.maxWidthBreakpoint(500),
+  380: s.maxWidthBreakpoint(380),
+  280: s.maxWidthBreakpoint(280),
+  180: s.maxWidthBreakpoint(180)
 };
 
 export const ClockText = styled.div({
-  ...s.text.text,
-  ...s.text.familyMonospace,
+  ...s.text({ family: "MONO_SPACE", selectable: false }),
 
   fontSize: s.gridPx(10),
   color: s.colors.white,
@@ -44,6 +38,9 @@ export const Colon = styled.span({
   position: "relative",
   top: "-9px",
   margin: "0 -6px",
+
+  // em specifically used to make colon smaller relative to the parent component
+  // that contain the numbers and has set font-size
   fontSize: "0.8em",
 
   [breakpoints[500]]: {

@@ -9,6 +9,9 @@ export const size = (px: number): string => `${px / 16}rem`;
 
 export const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 
+export const maxWidthBreakpoint = (px: number): string =>
+  `@media (max-width: ${breakpointPxToEm(px)})`;
+
 // NOTE: Only use px we want to have fixed sizes that have the same dimensions
 // not affected by user font settings. Eg.: text in settings should be variable
 // but lets say clock size should the the same unrelated to user font size settings.
@@ -21,7 +24,7 @@ export const colors = {
   grayMain: "gray",
   grayChrome: "#f2f1f0",
 
-  orange: "orange", // TODO: hex
+  orange: "orange",
 
   whiteTransparentALot: "rgba(0, 0, 0, 0.1)", // TODO: rename
   whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)", // TODO: rename
@@ -29,29 +32,59 @@ export const colors = {
   whiteTransparentBright: "rgba(255, 255, 255, 0.7)"
 };
 
-export const text = {
-  text: {
-    margin: 0,
-    padding: 0,
-    fontSize: size(14),
-    lineHeight: 1,
-    color: colors.white,
-    fontFamily: "Arial"
-  },
+export const text = ({
+  size: fontSize = "DEFAULT",
+  weight = "DEFAULT",
+  family = "DEFAULT",
+  selectable = true
+}: {
+  size?: "DEFAULT" | "16" | "18";
+  weight?: "DEFAULT" | "BOLD";
+  family?: "DEFAULT" | "MONO_SPACE";
+  selectable?: boolean;
+} = {}) => ({
+  margin: 0,
+  padding: 0,
 
-  // Size modifiers
-  size16: {
-    fontSize: size(16)
-  },
-  size18: {
-    fontSize: size(18)
-  },
+  fontSize: (() => {
+    switch (fontSize) {
+      case "DEFAULT":
+        return size(14);
+      case "16":
+        return size(16);
+      case "18":
+        return size(18);
+    }
+  })(),
+  fontFamily: (() => {
+    switch (family) {
+      case "DEFAULT":
+        return "Arial";
+      case "MONO_SPACE":
+        return "Monospace";
+    }
+  })(),
+  fontWeight: (() => {
+    switch (weight) {
+      case "DEFAULT":
+        return 400;
+      case "BOLD":
+        return 700;
+    }
+  })(),
+  userSelect: ((): React.CSSProperties["userSelect"] => {
+    switch (selectable) {
+      case true:
+        return "auto";
+      case false:
+        return "none";
+    }
+  })(),
 
-  // Appearence modifiers
-  familyMonospace: {
-    fontFamily: "Monospace"
-  }
-};
+  lineHeight: 1,
+
+  color: colors.white
+});
 
 export const animations = {
   default: "0.5s all ease"

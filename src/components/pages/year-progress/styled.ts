@@ -17,7 +17,7 @@ export const YearProgressBar = styled.div({
 });
 
 export const YearProgressText = styled.div({
-  ...s.text.text,
+  ...s.text(),
 
   position: "absolute",
   left: 0,

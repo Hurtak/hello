@@ -3,8 +3,7 @@ import * as s from "../../../styles/styles";
 
 export const Wrapper = styled.div({
   position: "relative",
-  flexGrow: 1,
-  userSelect: "none"
+  flexGrow: 1
 });
 
 export const AgePosition = styled.div({
@@ -22,14 +21,8 @@ export const AgeBox = styled.div({
 });
 
 export const AgeText = styled.div({
-  ...s.text.text,
-  ...s.text.familyMonospace,
+  ...s.text({ family: "MONO_SPACE", selectable: false }),
 
-  color: s.colors.white,
   opacity: s.opacity.default,
-  fontSize: s.gridPx(4),
-  textAlign: "center",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis"
+  fontSize: s.gridPx(4)
 });

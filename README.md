@@ -2,15 +2,9 @@
 
 ## TODO
 
-- BROKEN deps
-  - @types/styled-components 4.1.8 ❯ 4.1.16
-    - typings completely broken
-  - typescript 3.4.5 ❯ 3.5.2
-    - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
-    - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
+- image is constantly rerendering
 - settings design
   - settings texts
-    - settings text component?
   - settings structure
   - settings styles
   - show offline indicator?
@@ -18,7 +12,6 @@
   - show proper error messages when bing image / proxy error
   - when settings button has focus, remove 100% opacity
   - settings responsive
-- make age bigger?
 - add more images!
 - reneme to hello
 - go through manifest.json
@@ -29,6 +22,12 @@
 
 ## Later TODOS
 
+- BROKEN deps
+  - @types/styled-components 4.1.8 ❯ 4.1.16
+    - typings completely broken
+  - typescript 3.4.5 ❯ 3.5.2
+    - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
+    - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
 - hotkeys to toggle calendar/time
 - background image switching animation
 - check STRV checklist

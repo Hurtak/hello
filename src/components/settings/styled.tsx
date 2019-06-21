@@ -24,7 +24,6 @@ export const ToggleButton = styled.button({
   boxSizing: "border-box",
   position: "absolute",
   overflow: "hidden", // When icon was rotating, it increased the outline size.
-  userSelect: "none",
   top: s.dimensions.settingsButtonSpacing,
   right: s.dimensions.settingsButtonSpacing,
   border: 0,
@@ -51,21 +50,19 @@ export const ToggleButtonIconWrapper = styled.div(
 );
 
 export const Heading = styled.h1({
-  ...s.text.text,
-  ...s.text.size18,
+  ...s.text({ size: "18" }),
 
   paddingBottom: "0.25em"
 });
 
 export const HeadingSmall = styled.h2({
-  ...s.text.text,
-  ...s.text.size16,
+  ...s.text({ size: "16" }),
 
   paddingBottom: "0.25em"
 });
 
 export const Text = styled.p({
-  ...s.text.text
+  ...s.text()
 });
 
 export const Warning: React.FC = ({ children }) => (
@@ -87,7 +84,8 @@ const WarningTextIcon = styled.div({
 });
 
 const WarningText = styled.p({
-  ...s.text.text,
+  ...s.text(),
+
   display: "inline-block",
   color: s.colors.orange
 });
@@ -109,7 +107,7 @@ export const RadioLabel = styled.label({
 });
 
 export const RadioText = styled.span({
-  ...s.text.text,
+  ...s.text(),
 
   marginLeft: s.grid(1)
 });

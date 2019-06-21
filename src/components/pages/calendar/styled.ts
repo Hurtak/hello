@@ -17,7 +17,7 @@ export const Month = styled.li({
 });
 
 export const MonthName = styled.h2({
-  ...s.text.text,
+  ...s.text(),
 
   display: "block",
   margin: 0,
@@ -36,14 +36,10 @@ export const DaysWrapper = styled.div({
 
 export const Day = styled.div(
   (props: { heading?: boolean; currentDay?: boolean; selected?: boolean }) => ({
-    ...s.text.text,
+    ...s.text({
+      weight: props.heading || props.currentDay ? "BOLD" : "DEFAULT"
+    }),
 
-    ...(props.heading && {
-      fontWeight: "bold"
-    }),
-    ...(props.currentDay && {
-      fontWeight: "bold"
-    }),
     ...(props.currentDay && {
       position: "relative",
       zIndex: 0,
