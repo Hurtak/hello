@@ -86,6 +86,7 @@ export const text = ({
 
 export const animations = {
   default: "0.5s all ease",
+  backgroundImage: "opacity 0.3s ease",
 };
 
 export const opacity = {

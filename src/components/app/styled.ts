@@ -39,7 +39,7 @@ export const AppSettingsWrapper = styled.aside(
     right: s.grid(1),
     width: s.dimensions.settingsButtonSizeAndSpacing,
     height: s.dimensions.settingsButtonSizeAndSpacing,
-    transition: "0.5s all ease",
+    transition: s.animations.default,
     overflow: "hidden",
     zIndex: s.zIndex.settings,
     ...(props.opened && {
