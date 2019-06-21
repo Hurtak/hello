@@ -1,6 +1,6 @@
 import React from "react";
 import { view } from "react-easy-state";
-import OutsideClickHandler from 'react-outside-click-handler';
+import OutsideClickHandler from "react-outside-click-handler";
 import {
   SettingsWrapper,
   ToggleButton,
@@ -13,7 +13,7 @@ import {
   HeadingSmall,
   RadioLabel,
   RadioText,
-  Warning
+  Warning,
 } from "./styled";
 import { eventToAgeOfBirthValues } from "./utils";
 import * as s from "../../styles/styles";
@@ -27,9 +27,7 @@ type SettingsProps = {
 
 export const Settings = view((props: SettingsProps) => (
   <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
-    <SettingsWrapper
-      settingsHidden={state.settings.settingsHidden && !state.settings.opened}
-    >
+    <SettingsWrapper settingsHidden={state.settings.settingsHidden && !state.settings.opened}>
       <ToggleButton onClick={state.settings.toggleSettingsOpened}>
         <ToggleButtonIconWrapper rotated={state.settings.opened}>
           <IconCog
@@ -55,18 +53,15 @@ const SettingsContent = view((props: SettingsProps) => (
   <>
     <Heading>Hello Friend &ndash; New Tab Page</Heading>
     <Text>
-      This is your new cool new tab page. Enjoy a nice background from Bing
-      every day or have a look at some nice background that I preselected. There
-      is also a bunch of useful that you can display in front of the background,
-      like clock and stuff!
+      This is your new cool new tab page. Enjoy a nice background from Bing every day or have a look
+      at some nice background that I preselected. There is also a bunch of useful that you can
+      display in front of the background, like clock and stuff!
     </Text>
 
     <SettingsSectionsWrapper>
       <SettingsSection title="Background image">
         {!state.browser.online && (
-          <Warning>
-            You are currently offline, falling back to local images
-          </Warning>
+          <Warning>You are currently offline, falling back to local images</Warning>
         )}
         {state.image.imageBing.type === "ERROR" && (
           <>
@@ -97,36 +92,27 @@ const SettingsContent = view((props: SettingsProps) => (
           Predefined
         </Radio>
 
-        {state.image.imageSourceWithFallback === "BING" &&
-          state.image.imageBing.type === "DONE" && (
-            <section>
-              {state.image.imageBing.data.title && (
-                <Text>title: {state.image.imageBing.data.title}</Text>
-              )}
-              {state.image.imageBing.data.description && (
-                <Text>
-                  description: {state.image.imageBing.data.description}
-                </Text>
-              )}
-              {state.image.imageBing.data.link && (
-                <Text>
-                  <a href={state.image.imageBing.data.link}>link</a>
-                </Text>
-              )}
-            </section>
-          )}
+        {state.image.imageSourceWithFallback === "BING" && state.image.imageBing.type === "DONE" && (
+          <section>
+            {state.image.imageBing.data.title && (
+              <Text>title: {state.image.imageBing.data.title}</Text>
+            )}
+            {state.image.imageBing.data.description && (
+              <Text>description: {state.image.imageBing.data.description}</Text>
+            )}
+            {state.image.imageBing.data.link && (
+              <Text>
+                <a href={state.image.imageBing.data.link}>link</a>
+              </Text>
+            )}
+          </section>
+        )}
 
         {state.image.imageSourceWithFallback === "LOCAL" && (
           <section>
-            <button onClick={() => state.image.shiftImageLocalIndex(-1)}>
-              Prev
-            </button>
-            <button onClick={state.image.setImageLocalRandom}>
-              Random image
-            </button>
-            <button onClick={() => state.image.shiftImageLocalIndex(1)}>
-              Next
-            </button>
+            <button onClick={() => state.image.shiftImageLocalIndex(-1)}>Prev</button>
+            <button onClick={state.image.setImageLocalRandom}>Random image</button>
+            <button onClick={() => state.image.shiftImageLocalIndex(1)}>Next</button>
 
             {(() => {
               const image = state.image.imageLocal;
@@ -134,8 +120,7 @@ const SettingsContent = view((props: SettingsProps) => (
               return (
                 <>
                   <Text>
-                    image: {state.image.imageLocalIndex + 1}/
-                    {state.image.imagesLocal.length}
+                    image: {state.image.imageLocalIndex + 1}/{state.image.imagesLocal.length}
                   </Text>
                   {image.name && <Text>name: {image.name}</Text>}
                   {image.location && <Text>location: {image.location}</Text>}
@@ -197,9 +182,7 @@ const SettingsContent = view((props: SettingsProps) => (
               min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
               max={timestampToDateInputValue(Date.now())}
               value={state.settings.ageDateOfBirthInputValue}
-              onChange={e =>
-                state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e))
-              }
+              onChange={e => state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
             />
           </label>
         )}
@@ -207,9 +190,8 @@ const SettingsContent = view((props: SettingsProps) => (
 
       <SettingsSection title="Minimalistic version">
         <Text>
-          Settings button will be hidden unless you hover the mouse over the
-          area where the button is. Also bunch of useless text (like this
-          paragraph) will be hidden.
+          Settings button will be hidden unless you hover the mouse over the area where the button
+          is. Also bunch of useless text (like this paragraph) will be hidden.
         </Text>
         <label>
           <input
@@ -223,9 +205,9 @@ const SettingsContent = view((props: SettingsProps) => (
 
       <SettingsSection title="Contact">
         <Text>
-          If you find any bugs or if you would like to tell me how much you like
-          this swell plugin you can do so on following channels. Also this
-          plugin is open source, so you contribute on GitHub!
+          If you find any bugs or if you would like to tell me how much you like this swell plugin
+          you can do so on following channels. Also this plugin is open source, so you contribute on
+          GitHub!
         </Text>
         <a href="https://github.com/hurtak/hello-friend">Github</a>
         <a href="https://twitter.com/PetrHurtak">Twitter</a>
@@ -235,9 +217,7 @@ const SettingsContent = view((props: SettingsProps) => (
       {props.isDev && (
         <SettingsSection title="Dev menu">
           <Text>This menu is only visible in development mode</Text>
-          <button onClick={state.settings.resetAppState}>
-            Reset app state
-          </button>
+          <button onClick={state.settings.resetAppState}>Reset app state</button>
         </SettingsSection>
       )}
     </SettingsSectionsWrapper>

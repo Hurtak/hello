@@ -6,13 +6,13 @@ export const HotKeys: React.FC<{}> = ({ children }) => {
   return (
     <ReactHotKeys
       keyMap={{
-        closeSettings: "esc"
+        closeSettings: "esc",
       }}
       handlers={{
-        closeSettings: state.settings.closeSettings
+        closeSettings: state.settings.closeSettings,
       }}
     >
       {children}
-    </ReactHotKeys >
+    </ReactHotKeys>
   );
 };

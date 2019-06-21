@@ -20,7 +20,7 @@ export const TimerUpdater = (props: TimerUpdatedProps) => {
 
       timer = window.setTimeout(
         updateTimeAndStartTimeout,
-        getNextTick(now, props.updateEveryN, config.maximumRefreshRate)
+        getNextTick(now, props.updateEveryN, config.maximumRefreshRate),
       );
 
       setTime(now);

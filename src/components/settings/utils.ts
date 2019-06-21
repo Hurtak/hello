@@ -1,6 +1,4 @@
-export function eventToAgeOfBirthValues(
-  e: React.ChangeEvent<HTMLInputElement>
-) {
+export function eventToAgeOfBirthValues(e: React.ChangeEvent<HTMLInputElement>) {
   const valueRaw = e.target.value;
   const valueValid = valueRaw.length > 0;
 
@@ -14,6 +12,6 @@ export function eventToAgeOfBirthValues(
 
   return {
     ageDateOfBirthTimestamp: timestamp,
-    ageDateOfBirthInputValue: valueRaw
+    ageDateOfBirthInputValue: valueRaw,
   };
 }

@@ -18,11 +18,7 @@ export const BackgroundImage: React.FC<{
 
   return (
     <>
-      <Image
-        topImage
-        backgroundImage={backgrounds.current}
-        imageLoaded={imageLoaded}
-      />
+      <Image topImage backgroundImage={backgrounds.current} imageLoaded={imageLoaded} />
       {backgrounds.previous && backgrounds.current !== backgrounds.previous && (
         <Image backgroundImage={backgrounds.previous} imageLoaded />
       )}
@@ -33,14 +29,14 @@ export const BackgroundImage: React.FC<{
 function usePreviousBackground(newUrl: BackgroundUrl): Backgrounds {
   const [backgrounds, setBackgrounds] = useState<Backgrounds>({
     current: newUrl,
-    previous: null
+    previous: null,
   });
 
   useEffect(() => {
     if (backgrounds.current === newUrl) return;
     setBackgrounds(previousBackgrounds => ({
       current: newUrl,
-      previous: previousBackgrounds.current
+      previous: previousBackgrounds.current,
     }));
   }, [newUrl, backgrounds]);
 

@@ -9,28 +9,26 @@ export const AppWrapper = styled.div({
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
-  padding: s.grid(1)
+  padding: s.grid(1),
 });
 
-export const AppContent = styled.main(
-  (props: { maxWidth?: boolean; center?: boolean }) => ({
-    display: "flex",
-    flex: "1 0 0",
-    flexDirection: "column",
-    width: "100%",
-    zIndex: s.zIndex.content,
-    ...(props.center && {
-      justifyContent: "center",
-      alignItems: "center"
-    }),
-    ...(props.maxWidth && {
-      maxWidth: s.size(1200)
-    })
-  })
-);
+export const AppContent = styled.main((props: { maxWidth?: boolean; center?: boolean }) => ({
+  display: "flex",
+  flex: "1 0 0",
+  flexDirection: "column",
+  width: "100%",
+  zIndex: s.zIndex.content,
+  ...(props.center && {
+    justifyContent: "center",
+    alignItems: "center",
+  }),
+  ...(props.maxWidth && {
+    maxWidth: s.size(1200),
+  }),
+}));
 
 export const BackgroundWrapper = styled.div({
-  zIndex: s.zIndex.background
+  zIndex: s.zIndex.background,
 });
 
 export const AppSettingsWrapper = styled.aside(
@@ -46,12 +44,12 @@ export const AppSettingsWrapper = styled.aside(
     zIndex: s.zIndex.settings,
     ...(props.opened && {
       width: s.dimensions.settingsWidth,
-      height: props.height ? s.size(props.height) : "auto"
-    })
-  })
+      height: props.height ? s.size(props.height) : "auto",
+    }),
+  }),
 );
 
 export const AppSettings = styled.div({
   width: s.dimensions.settingsWidth,
-  direction: "ltr" // Reset direction set in AppSettingsWrapper
+  direction: "ltr", // Reset direction set in AppSettingsWrapper
 });

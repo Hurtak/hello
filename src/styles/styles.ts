@@ -1,9 +1,7 @@
 export const gridRaw = (gridMultiple: number): number => gridMultiple * 8;
 
-export const grid = (gridMultiple: number): string =>
-  `${size(gridRaw(gridMultiple))}`;
-export const gridPx = (gridMultiple: number): string =>
-  `${gridRaw(gridMultiple)}px`;
+export const grid = (gridMultiple: number): string => `${size(gridRaw(gridMultiple))}`;
+export const gridPx = (gridMultiple: number): string => `${gridRaw(gridMultiple)}px`;
 
 export const size = (px: number): string => `${px / 16}rem`;
 
@@ -29,14 +27,14 @@ export const colors = {
   whiteTransparentALot: "rgba(0, 0, 0, 0.1)", // TODO: rename
   whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)", // TODO: rename
   whiteTransparentDefault: "rgba(0, 0, 0, 0.4)", // TODO: rename
-  whiteTransparentBright: "rgba(255, 255, 255, 0.7)"
+  whiteTransparentBright: "rgba(255, 255, 255, 0.7)",
 };
 
 export const text = ({
   size: fontSize = "DEFAULT",
   weight = "DEFAULT",
   family = "DEFAULT",
-  selectable = true
+  selectable = true,
 }: {
   size?: "DEFAULT" | "16" | "18";
   weight?: "DEFAULT" | "BOLD";
@@ -83,21 +81,21 @@ export const text = ({
 
   lineHeight: 1,
 
-  color: colors.white
+  color: colors.white,
 });
 
 export const animations = {
-  default: "0.5s all ease"
+  default: "0.5s all ease",
 };
 
 export const opacity = {
-  default: 0.8
+  default: 0.8,
 };
 
 export const zIndex = {
   settings: 10,
   content: 9,
-  background: 8
+  background: 8,
 };
 
 const settingsButtonSize = gridRaw(5);
@@ -112,5 +110,5 @@ export const dimensions = {
   settingsButtonSize: settingsButtonSize,
   settingsButtonPadding: size(settingsButtonPadding),
   settingsButtonSpacing: size(settingsButtonSpacing),
-  settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing)
+  settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing),
 };

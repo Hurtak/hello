@@ -16,30 +16,30 @@ export const images: Image[] = [
     url: image01,
     name: "Glacier National Park",
     location: "Going-to-the-Sun Road, West Glacier, United States",
-    source: "https://unsplash.com/photos/uWvl0xuVScI"
+    source: "https://unsplash.com/photos/uWvl0xuVScI",
   },
   {
     url: image02,
     name: null,
     location: "Monte Grappa, Italy",
-    source: "https://unsplash.com/photos/kRnkqSKZODQ"
+    source: "https://unsplash.com/photos/kRnkqSKZODQ",
   },
   {
     url: image03,
     name: null,
     location: "Mount Hood National Forest, United States",
-    source: "https://unsplash.com/photos/FlwhX4vtzt0"
+    source: "https://unsplash.com/photos/FlwhX4vtzt0",
   },
   {
     url: image04,
     name: null,
     location: null,
-    source: "https://unsplash.com/photos/qKFxQ3X-YbI"
+    source: "https://unsplash.com/photos/qKFxQ3X-YbI",
   },
   {
     url: image05,
     name: null,
     location: "Hidden Lake Lookout trailhead, United States",
-    source: "https://unsplash.com/photos/RbbdzZBKRDY"
-  }
+    source: "https://unsplash.com/photos/RbbdzZBKRDY",
+  },
 ];

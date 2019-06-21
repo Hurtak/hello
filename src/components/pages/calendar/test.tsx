@@ -35,9 +35,7 @@ it.skip("Snapshot start of the year", () => {
 });
 
 it.skip("Snapshot end of the year", () => {
-  const element = (
-    <Calendar time={new Date(2017, 11, 31, 23, 59, 59, 999).getTime()} />
-  );
+  const element = <Calendar time={new Date(2017, 11, 31, 23, 59, 59, 999).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
@@ -47,8 +45,6 @@ it.skip("Snapshot leap year start", () => {
 });
 
 it.skip("Snapshot leap year end", () => {
-  const element = (
-    <Calendar time={new Date(2012, 11, 31, 23, 59, 59, 999).getTime()} />
-  );
+  const element = <Calendar time={new Date(2012, 11, 31, 23, 59, 59, 999).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });

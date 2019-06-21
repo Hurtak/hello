@@ -3,22 +3,20 @@ import styled from "styled-components/macro";
 import * as s from "../../styles/styles";
 import { IconWarning } from "../../icons";
 
-export const SettingsWrapper = styled.section(
-  (props: { settingsHidden?: boolean }) => ({
-    boxSizing: "border-box",
-    position: "relative",
-    padding: s.grid(2),
-    overflow: "hidden",
-    backgroundColor: s.colors.whiteTransparentDefault,
-    ...(props.settingsHidden && {
-      opacity: 0,
-      transition: s.animations.default,
-      "&:hover": {
-        opacity: 1
-      }
-    })
-  })
-);
+export const SettingsWrapper = styled.section((props: { settingsHidden?: boolean }) => ({
+  boxSizing: "border-box",
+  position: "relative",
+  padding: s.grid(2),
+  overflow: "hidden",
+  backgroundColor: s.colors.whiteTransparentDefault,
+  ...(props.settingsHidden && {
+    opacity: 0,
+    transition: s.animations.default,
+    "&:hover": {
+      opacity: 1,
+    },
+  }),
+}));
 
 export const ToggleButton = styled.button({
   boxSizing: "border-box",
@@ -29,40 +27,38 @@ export const ToggleButton = styled.button({
   border: 0,
   background: "transparent",
   padding: s.dimensions.settingsButtonPadding,
-  cursor: "pointer"
+  cursor: "pointer",
 });
 
 export const ToggleButtonSpacer = styled.div({
   float: "right",
   width: s.grid(8),
-  height: s.grid(8)
+  height: s.grid(8),
 });
 
-export const ToggleButtonIconWrapper = styled.div(
-  (props: { rotated?: boolean }) => ({
-    display: "flex",
-    transition: s.animations.default,
-    opacity: s.opacity.default,
-    ...(props.rotated && {
-      transform: "rotate(-360deg)"
-    })
-  })
-);
+export const ToggleButtonIconWrapper = styled.div((props: { rotated?: boolean }) => ({
+  display: "flex",
+  transition: s.animations.default,
+  opacity: s.opacity.default,
+  ...(props.rotated && {
+    transform: "rotate(-360deg)",
+  }),
+}));
 
 export const Heading = styled.h1({
   ...s.text({ size: "18" }),
 
-  paddingBottom: "0.25em"
+  paddingBottom: "0.25em",
 });
 
 export const HeadingSmall = styled.h2({
   ...s.text({ size: "16" }),
 
-  paddingBottom: "0.25em"
+  paddingBottom: "0.25em",
 });
 
 export const Text = styled.p({
-  ...s.text()
+  ...s.text(),
 });
 
 export const Warning: React.FC = ({ children }) => (
@@ -76,38 +72,38 @@ export const Warning: React.FC = ({ children }) => (
 
 const WarningTextWrapper = styled.div({
   display: "flex",
-  alignItems: "center"
+  alignItems: "center",
 });
 
 const WarningTextIcon = styled.div({
-  marginRight: s.grid(1)
+  marginRight: s.grid(1),
 });
 
 const WarningText = styled.p({
   ...s.text(),
 
   display: "inline-block",
-  color: s.colors.orange
+  color: s.colors.orange,
 });
 
 export const SettingsSectionsWrapper = styled.div({
-  marginTop: s.gridRaw(3)
+  marginTop: s.gridRaw(3),
 });
 
 export const SettingsSectionStyled = styled.section({
   marginTop: s.grid(2),
 
   "&:first-child": {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 });
 
 export const RadioLabel = styled.label({
-  display: "block"
+  display: "block",
 });
 
 export const RadioText = styled.span({
   ...s.text(),
 
-  marginLeft: s.grid(1)
+  marginLeft: s.grid(1),
 });

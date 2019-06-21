@@ -19,7 +19,7 @@ export const browser = {
   destroy() {
     window.addEventListener("online", online);
     window.addEventListener("offline", offline);
-  }
+  },
 };
 
 function online() {

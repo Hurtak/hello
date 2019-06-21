@@ -38,10 +38,7 @@ export const image = {
           return "LOCAL";
         } else if (state.image.imageBingCached) {
           return "BING";
-        } else if (
-          state.image.imageBing &&
-          state.image.imageBing.type === "ERROR"
-        ) {
+        } else if (state.image.imageBing && state.image.imageBing.type === "ERROR") {
           return "LOCAL";
         } else {
           return "BING";
@@ -93,10 +90,7 @@ export const image = {
   setImageSource(imageSource: ImageSource): void {
     state.image.imageSource = imageSource;
     if (imageSource === "BING") {
-      if (
-        state.image.imageBing.type === "INITIAL" ||
-        state.image.imageBing.type === "ERROR"
-      ) {
+      if (state.image.imageBing.type === "INITIAL" || state.image.imageBing.type === "ERROR") {
         state.image.fetchBingImage();
       }
     }
@@ -132,5 +126,5 @@ export const image = {
     }
 
     state.image.imageLocalIndex = index;
-  }
+  },
 };

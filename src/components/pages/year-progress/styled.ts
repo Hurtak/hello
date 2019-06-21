@@ -8,12 +8,12 @@ export const YearProgressWrapper = styled.div({
   height: s.grid(8),
   padding: s.grid(0.25),
   marginTop: s.grid(1),
-  border: `${s.grid(0.25)} solid ${s.colors.whiteTransparentDefault}`
+  border: `${s.grid(0.25)} solid ${s.colors.whiteTransparentDefault}`,
 });
 
 export const YearProgressBar = styled.div({
   height: "100%",
-  backgroundColor: s.colors.whiteTransparentDefault
+  backgroundColor: s.colors.whiteTransparentDefault,
 });
 
 export const YearProgressText = styled.div({
@@ -27,5 +27,5 @@ export const YearProgressText = styled.div({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: 0
+  margin: 0,
 });

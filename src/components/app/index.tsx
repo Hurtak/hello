@@ -9,7 +9,7 @@ import {
   BackgroundWrapper,
   AppContent,
   AppSettingsWrapper,
-  AppSettings
+  AppSettings,
 } from "./styled";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
@@ -30,19 +30,18 @@ export const App = view(() => {
   return (
     <HotKeys
       keyMap={{
-        CLOSE_SETTINGS: "esc"
+        CLOSE_SETTINGS: "esc",
       }}
       handlers={{
-        CLOSE_SETTINGS: state.settings.closeSettings
+        CLOSE_SETTINGS: state.settings.closeSettings,
       }}
     >
       <AppWrapper>
-
         <GlobalStyles />
 
         {state.app.initialized && <AppInner />}
       </AppWrapper>
-    </HotKeys >
+    </HotKeys>
   );
 });
 
@@ -73,14 +72,9 @@ const AppInner = view(() => {
             return (
               <AppContent center>
                 <TimerUpdater
-                  updateEveryN={
-                    state.settings.clockShowSeconds ? time.second : time.minute
-                  }
+                  updateEveryN={state.settings.clockShowSeconds ? time.second : time.minute}
                   component={time => (
-                    <Clock
-                      time={time}
-                      showSeconds={state.settings.clockShowSeconds}
-                    />
+                    <Clock time={time} showSeconds={state.settings.clockShowSeconds} />
                   )}
                   key={state.settings.selectedView}
                 />
@@ -142,10 +136,7 @@ const AppInner = view(() => {
         }
       })()}
 
-      <AppSettingsWrapper
-        opened={state.settings.opened}
-        height={settingsHeight}
-      >
+      <AppSettingsWrapper opened={state.settings.opened} height={settingsHeight}>
         <AppSettings ref={settingsEl}>
           <Settings isDev={config.isDev} />
         </AppSettings>

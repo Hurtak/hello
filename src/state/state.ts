@@ -19,5 +19,5 @@ export const state: State = store<State>({
   browser,
   image,
   settings,
-  storage
+  storage,
 });

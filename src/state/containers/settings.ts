@@ -45,7 +45,7 @@ export const settings = {
 
   setAgeDateOfBirth({
     ageDateOfBirthTimestamp,
-    ageDateOfBirthInputValue
+    ageDateOfBirthInputValue,
   }: {
     ageDateOfBirthTimestamp: number | null;
     ageDateOfBirthInputValue: string;
@@ -64,5 +64,5 @@ export const settings = {
     state.settings.scheduledAppReset = true;
     state.storage.clear();
     window.location.reload();
-  }
+  },
 };

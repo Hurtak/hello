@@ -1,6 +1,5 @@
 import { state, State } from "../state";
-
-const localStorageKey = "__helloAppState";
+import { config } from "../../config";
 
 type SavedState = {
   imageSource: State["image"]["imageSource"];
@@ -27,12 +26,12 @@ export const storage = {
       clockShowSeconds: state.settings.clockShowSeconds,
       ageDateOfBirthTimestamp: state.settings.ageDateOfBirthTimestamp,
       ageDateOfBirthInputValue: state.settings.ageDateOfBirthInputValue,
-      settingsHidden: state.settings.settingsHidden
+      settingsHidden: state.settings.settingsHidden,
     };
 
     try {
       const serializedState = JSON.stringify(savedState);
-      window.localStorage.setItem(localStorageKey, serializedState);
+      window.localStorage.setItem(config.localStorageKey, serializedState);
     } catch (err) {
       console.warn("Error saving app state to local storage", err);
     }
@@ -41,14 +40,11 @@ export const storage = {
   retrieveAndUpdateState(): void {
     const savedState: SavedState = (() => {
       try {
-        const serializedState = window.localStorage.getItem(localStorageKey);
+        const serializedState = window.localStorage.getItem(config.localStorageKey);
         if (!serializedState) return null;
         return JSON.parse(serializedState);
       } catch (err) {
-        console.warn(
-          "Error retrieving saved app state from local storage",
-          err
-        );
+        console.warn("Error retrieving saved app state from local storage", err);
         return null;
       }
     })();
@@ -62,7 +58,7 @@ export const storage = {
       savedState.clockShowSeconds,
       savedState.ageDateOfBirthTimestamp,
       savedState.ageDateOfBirthInputValue,
-      savedState.settingsHidden
+      savedState.settingsHidden,
     ].every(state => state !== undefined);
 
     if (!stateValid) {
@@ -73,17 +69,17 @@ export const storage = {
 
     state.image.imageSource = savedState.imageSource;
     state.image.imageBingCached = savedState.imageBingCached;
+
     state.settings.selectedView = savedState.selectedView;
     state.settings.clockShowSeconds = savedState.clockShowSeconds;
     state.settings.ageDateOfBirthTimestamp = savedState.ageDateOfBirthTimestamp;
-    state.settings.ageDateOfBirthInputValue =
-      savedState.ageDateOfBirthInputValue;
+    state.settings.ageDateOfBirthInputValue = savedState.ageDateOfBirthInputValue;
     state.settings.settingsHidden = savedState.settingsHidden;
   },
 
   clear(): void {
     try {
-      window.localStorage.removeItem(localStorageKey);
+      window.localStorage.removeItem(config.localStorageKey);
     } catch (err) {
       console.warn("Error clearing app state from local storage", err);
     }
@@ -99,7 +95,7 @@ export const storage = {
 
   destroy() {
     window.removeEventListener("beforeunload", beforeUnload);
-  }
+  },
 };
 
 function beforeUnload() {

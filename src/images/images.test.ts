@@ -23,13 +23,9 @@ it("image urls have certain structure", () => {
     expect(typeof image.name === "string" || image.name === null).toBeTruthy();
 
     expect("location" in image).toBeTruthy();
-    expect(
-      typeof image.location === "string" || image.location === null
-    ).toBeTruthy();
+    expect(typeof image.location === "string" || image.location === null).toBeTruthy();
 
     expect("source" in image).toBeTruthy();
-    expect(
-      typeof image.source === "string" || image.source === null
-    ).toBeTruthy();
+    expect(typeof image.source === "string" || image.source === null).toBeTruthy();
   }
 });

@@ -31,19 +31,14 @@ export type HttpData<Response> =
 
 type CorsProxyType = "CORS_ANYWHERE" | "CROSSORIGIN_ME" | "CODETABS";
 
-export function getCorsProxyUrl(
-  corsProxyType: CorsProxyType,
-  proxedUrl: string
-): string {
+export function getCorsProxyUrl(corsProxyType: CorsProxyType, proxedUrl: string): string {
   switch (corsProxyType) {
     case "CORS_ANYWHERE":
       return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
     case "CROSSORIGIN_ME":
       return `https://crossorigin.me/${proxedUrl}`;
     case "CODETABS":
-      return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(
-        proxedUrl
-      )}`;
+      return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(proxedUrl)}`;
   }
 }
 
@@ -65,13 +60,13 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
   const bingImageUrlProxied = getCorsProxyUrl("CORS_ANYWHERE", bingImageUrl);
   try {
     request = await fetch(bingImageUrlProxied, {
-      headers: { Accept: "application/json" }
+      headers: { Accept: "application/json" },
     });
   } catch (error) {
     return httpDataWithLog({
       type: "ERROR",
       errorType: "FETCH_ERROR",
-      data: error
+      data: error,
     });
   }
 
@@ -84,7 +79,7 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
       return httpDataWithLog({
         type: "ERROR",
         errorType: "STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE",
-        data: error
+        data: error,
       });
     }
 
@@ -93,8 +88,8 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
       errorType: "STATUS_NOT_200",
       data: {
         status: request.status,
-        body: text
-      }
+        body: text,
+      },
     });
   }
 
@@ -108,27 +103,25 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
       errorType: "ERROR_PARSING_JSON",
       data: {
         error,
-        response: responseRaw
-      }
+        response: responseRaw,
+      },
     });
   }
 
   const response: BingResponse = responseRaw;
 
   const imageData =
-    response && Array.isArray(response.images) && response.images[0]
-      ? response.images[0]
-      : null;
+    response && Array.isArray(response.images) && response.images[0] ? response.images[0] : null;
 
   const dataValid = Boolean(
-    imageData && typeof imageData.url === "string" && imageData.url.length > 0
+    imageData && typeof imageData.url === "string" && imageData.url.length > 0,
   );
 
   if (!imageData || !dataValid) {
     return httpDataWithLog({
       type: "ERROR",
       errorType: "MISSING_DATA_IN_RESPONSE",
-      data: response
+      data: response,
     });
   }
 
@@ -154,8 +147,8 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
         if (link === "javascript:void(0)") return null;
 
         return link;
-      })()
-    }
+      })(),
+    },
   });
 }
 

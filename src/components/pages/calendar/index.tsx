@@ -15,7 +15,7 @@ const monthNames = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ];
 
 const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
@@ -75,15 +75,11 @@ export const Calendar: React.FC<{ time: Timestamp }> = props => {
 
                   {days.map(dayNumber => {
                     const isCurrentDay = Boolean(
-                      monthNumber === currentMonth && dayNumber === currentDay
+                      monthNumber === currentMonth && dayNumber === currentDay,
                     );
 
                     return (
-                      <Day
-                        selected={isCurrentDay}
-                        currentDay={isCurrentDay}
-                        key={dayNumber}
-                      >
+                      <Day selected={isCurrentDay} currentDay={isCurrentDay} key={dayNumber}>
                         {dayNumber}
                       </Day>
                     );

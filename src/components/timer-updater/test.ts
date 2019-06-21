@@ -10,9 +10,7 @@ it("getNextTick", () => {
   const day = 24 * 60 * 60 * 1000;
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0), day)).toBe(day);
 
-  expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0) + day / 2, day)).toBe(
-    day / 2
-  );
+  expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0) + day / 2, day)).toBe(day / 2);
 
   expect(getNextTick(Date.UTC(2015, 0, 1, 23, 59, 59, 999), day)).toBe(1);
 

@@ -7,13 +7,13 @@ export const MonthsWrapper = styled.ul({
   gridGap: s.grid(1),
   listStyleType: "none",
   margin: 0,
-  padding: 0
+  padding: 0,
 });
 
 export const Month = styled.li({
   display: "block",
   padding: s.grid(2),
-  backgroundColor: s.colors.whiteTransparentDefault
+  backgroundColor: s.colors.whiteTransparentDefault,
 });
 
 export const MonthName = styled.h2({
@@ -21,7 +21,7 @@ export const MonthName = styled.h2({
 
   display: "block",
   margin: 0,
-  textAlign: "center"
+  textAlign: "center",
 });
 
 export const DaysWrapper = styled.div({
@@ -31,13 +31,13 @@ export const DaysWrapper = styled.div({
   justifyContent: "space-between",
   padding: 0,
   marginTop: s.grid(2),
-  listStyleType: "none"
+  listStyleType: "none",
 });
 
 export const Day = styled.div(
   (props: { heading?: boolean; currentDay?: boolean; selected?: boolean }) => ({
     ...s.text({
-      weight: props.heading || props.currentDay ? "BOLD" : "DEFAULT"
+      weight: props.heading || props.currentDay ? "BOLD" : "DEFAULT",
     }),
 
     ...(props.currentDay && {
@@ -52,8 +52,8 @@ export const Day = styled.div(
         width: "22px",
         height: "22px",
         backgroundColor: "orange",
-        zIndex: -1
-      }
-    })
-  })
+        zIndex: -1,
+      },
+    }),
+  }),
 );

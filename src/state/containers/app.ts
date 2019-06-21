@@ -23,5 +23,5 @@ export const app = {
   destroy() {
     state.browser.destroy();
     state.storage.initialize();
-  }
+  },
 };
