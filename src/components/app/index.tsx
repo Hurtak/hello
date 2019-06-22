@@ -18,6 +18,7 @@ import { Clock } from "../pages/clock";
 import { Age } from "../pages/age";
 import { state } from "../../state/state";
 import * as time from "../../utils/time";
+import { logCurrentTime } from "../../utils/perf-log";
 import { GlobalStyles } from "../../styles/global-styles";
 import { config } from "../../config";
 
@@ -26,6 +27,12 @@ export const App = view(() => {
     state.app.initialize();
     return () => state.app.destroy();
   }, []);
+
+  useEffect(() => {
+    if (state.app.initialized) {
+      logCurrentTime("Full render");
+    }
+  });
 
   return (
     <HotKeys

@@ -2,6 +2,7 @@
 
 ## TODO
 
+- age poladit
 - menu overflowing -> add scroll
 - remove unused fonts
 - image is constantly rerendering

@@ -5,11 +5,7 @@ export const day = 24 * hour;
 export const year = 365 * day;
 
 export function addLeadingZero(input: number) {
-  let res = String(input);
-  while (res.length < 2) {
-    res = "0" + res;
-  }
-  return res;
+  return String(input).padStart(2, "0");
 }
 
 export function timestampToDateInputValue(timestamp: number): string {

@@ -18,6 +18,7 @@
     "wicg-inert": "2.1.1"
   },
   "devDependencies": {
+    "@types/css-font-loading-module": "0.0.2",
     "@types/jest": "24.0.15",
     "@types/lodash": "4.14.134",
     "@types/react": "16.8.22",
@@ -30,7 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run verify && INLINE_RUNTIME_CHUNK=false react-scripts build",
+    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
     "types": "tsc --pretty --noEmit",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
