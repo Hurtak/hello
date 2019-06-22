@@ -21,7 +21,7 @@ export const AgeBox = styled.div({
 });
 
 export const AgeText = styled.div({
-  ...s.text({ family: "MONO_SPACE", selectable: false }),
+  ...s.text({ family: "NUMBERS", selectable: false }),
 
   opacity: s.opacity.default,
   fontSize: s.gridPx(4),

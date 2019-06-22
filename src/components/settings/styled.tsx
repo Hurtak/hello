@@ -87,7 +87,7 @@ const WarningText = styled.p({
 });
 
 export const SettingsSectionsWrapper = styled.div({
-  marginTop: s.gridRaw(3),
+  marginTop: s.grid(3),
 });
 
 export const SettingsSectionStyled = styled.section({

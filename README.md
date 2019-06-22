@@ -2,6 +2,8 @@
 
 ## TODO
 
+- menu overflowing -> add scroll
+- remove unused fonts
 - image is constantly rerendering
 - settings design
   - settings texts
@@ -22,6 +24,7 @@
 
 ## Later TODOS
 
+- when we cross viewport min width there is vertical scrollbar??
 - BROKEN deps
   - @types/styled-components 4.1.8 ❯ 4.1.16
     - typings completely broken

@@ -3,7 +3,7 @@ import * as time from "./utils/time";
 export const config = {
   isDev: process.env.NODE_ENV !== "production",
 
-  // Maximum number of rerenders per second in TimerUpdater component.
+  // Maximum number of re-renders per second in TimerUpdater component.
   // Eg.: if we have 60fps maximumRefreshRate, clock with seconds updates once a
   // second so it will not be affected. On the other hand if we had setting
   // of TimerUpdater that would update state 100 times a second (like age with

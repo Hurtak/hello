@@ -1,5 +1,5 @@
 import React from "react";
-import { ClockBox, ClockText, Colon } from "./styled";
+import { Wrapper, TextWrapper, Text, ColonWrapper, ColonCircle } from "./styled";
 import { Timestamp } from "../../timer-updater";
 import { addLeadingZero } from "../../../utils/time";
 
@@ -8,15 +8,7 @@ type ClockProps = {
   showSeconds: boolean;
 };
 
-export const Clock: React.FC<ClockProps> = props => (
-  <ClockBox>
-    <ClockText>
-      <Time time={props.time} showSeconds={props.showSeconds} />
-    </ClockText>
-  </ClockBox>
-);
-
-const Time: React.FC<ClockProps> = props => {
+export const Clock: React.FC<ClockProps> = props => {
   const date = new Date(props.time);
 
   const hours = addLeadingZero(date.getHours());
@@ -24,16 +16,27 @@ const Time: React.FC<ClockProps> = props => {
   const seconds = addLeadingZero(date.getSeconds());
 
   return (
-    <>
-      {hours}
-      <Colon>:</Colon>
-      {minutes}
-      {props.showSeconds && (
-        <>
-          <Colon>:</Colon>
-          {seconds}
-        </>
-      )}
-    </>
+    <Wrapper>
+      <TextWrapper>
+        <Text>{hours}</Text>
+        <Colon />
+        <Text>{minutes}</Text>
+        {props.showSeconds && (
+          <>
+            <Colon />
+            <Text>{seconds}</Text>
+          </>
+        )}
+      </TextWrapper>
+    </Wrapper>
+  );
+};
+
+const Colon: React.FC = () => {
+  return (
+    <ColonWrapper>
+      <ColonCircle />
+      <ColonCircle />
+    </ColonWrapper>
   );
 };

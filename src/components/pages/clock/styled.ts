@@ -1,62 +1,50 @@
 import styled from "styled-components/macro";
 import * as s from "../../../styles/styles";
 
-export const ClockBox = styled.div({
+export const Wrapper = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
+
+  [s.maxWidthBreakpoint(900)]: {
+    transform: "scale(0.9)",
+  },
+  [s.maxWidthBreakpoint(600)]: {
+    transform: "scale(0.8)",
+  },
+  [s.maxWidthBreakpoint(450)]: {
+    transform: "scale(0.6)",
+  },
 });
 
-const breakpoints = {
-  500: s.maxWidthBreakpoint(500),
-  380: s.maxWidthBreakpoint(380),
-  280: s.maxWidthBreakpoint(280),
-  180: s.maxWidthBreakpoint(180),
-};
-
-export const ClockText = styled.div({
-  ...s.text({ family: "MONO_SPACE", selectable: false }),
-
-  fontSize: s.gridPx(10),
-  color: s.colors.white,
+export const TextWrapper = styled.div({
+  display: "flex",
+  flexDirection: "row",
   opacity: s.opacity.default,
-
-  [breakpoints[500]]: {
-    fontSize: s.gridPx(8),
-  },
-  [breakpoints[380]]: {
-    fontSize: s.gridPx(6),
-  },
-  [breakpoints[280]]: {
-    fontSize: s.gridPx(4),
-  },
-  [breakpoints[180]]: {
-    fontSize: s.gridPx(3),
-  },
 });
 
-export const Colon = styled.span({
+export const Text = styled.div({
+  ...s.text({ family: "NUMBERS", selectable: false, weight: "BOLD" }),
+
+  // Precise positioning so font edges are perfectly aligned
   position: "relative",
-  top: "-9px",
-  margin: "0 -6px",
+  top: s.sizePx(-2),
 
-  // em specifically used to make colon smaller relative to the parent component
-  // that contain the numbers and has set font-size
-  fontSize: "0.8em",
+  fontSize: s.gridPx(13),
+  color: s.colors.white,
+});
 
-  [breakpoints[500]]: {
-    top: "-8px",
-    margin: "0 -5px",
-  },
-  [breakpoints[380]]: {
-    top: "-6px",
-    margin: "0 -4px",
-  },
-  [breakpoints[280]]: {
-    top: "-4px",
-    margin: "0 -3px",
-  },
-  [breakpoints[180]]: {
-    top: "-3px",
-    margin: "0 -2px",
-  },
+export const ColonWrapper = styled.div({
+  position: "relative",
+  top: s.sizePx(2),
+  display: "flex",
+  justifyContent: "space-between",
+  flexDirection: "column",
+  padding: `${s.sizePx(30)} ${s.sizePx(8)}`,
+});
+
+export const ColonCircle = styled.div({
+  borderRadius: "50%",
+  width: s.sizePx(16),
+  height: s.sizePx(16),
+  backgroundColor: s.colors.white,
 });

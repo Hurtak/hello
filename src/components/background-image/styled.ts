@@ -1,6 +1,12 @@
 import styled from "styled-components/macro";
 import * as s from "../../styles/styles";
 
+export const Wrapper = styled.div({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+});
+
 type ImageProps = {
   topImage?: boolean;
   imageLoaded: boolean;

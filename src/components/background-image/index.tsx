@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "./styled";
+import { Wrapper, Image } from "./styled";
 
 type BackgroundUrl = string | null;
 
@@ -17,12 +17,12 @@ export const BackgroundImage: React.FC<{
   if (!backgrounds.current) return null;
 
   return (
-    <>
+    <Wrapper>
       <Image topImage backgroundImage={backgrounds.current} imageLoaded={imageLoaded} />
       {backgrounds.previous && backgrounds.current !== backgrounds.previous && (
         <Image backgroundImage={backgrounds.previous} imageLoaded />
       )}
-    </>
+    </Wrapper>
   );
 };
 

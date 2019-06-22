@@ -9,14 +9,17 @@ export const AppWrapper = styled.div({
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
+  minWidth: s.size(300),
   padding: s.grid(1),
+  overflow: "auto",
 });
 
 export const AppContent = styled.main((props: { maxWidth?: boolean; center?: boolean }) => ({
   display: "flex",
   flex: "1 0 0",
-  flexDirection: "column",
+  height: "100%",
   width: "100%",
+  flexDirection: "column",
   zIndex: s.zIndex.content,
   ...(props.center && {
     justifyContent: "center",
@@ -28,6 +31,11 @@ export const AppContent = styled.main((props: { maxWidth?: boolean; center?: boo
 }));
 
 export const BackgroundWrapper = styled.div({
+  position: "absolute",
+  left: 0,
+  top: 0,
+  width: "100%",
+  height: "100%",
   zIndex: s.zIndex.background,
 });
 

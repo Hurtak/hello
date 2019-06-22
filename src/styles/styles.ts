@@ -1,18 +1,17 @@
-export const gridRaw = (gridMultiple: number): number => gridMultiple * 8;
+const pxToGrid = (gridMultiple: number): number => gridMultiple * 8;
 
-export const grid = (gridMultiple: number): string => `${size(gridRaw(gridMultiple))}`;
-export const gridPx = (gridMultiple: number): string => `${gridRaw(gridMultiple)}px`;
-
+// NOTE: Only use px we want to have fixed sizes that have the same dimensions
+// not affected by user font settings. Eg.: text in settings should be variable
+// but lets say clock size should the the same unrelated to user font size settings.
 export const size = (px: number): string => `${px / 16}rem`;
+export const sizePx = (px: number): string => `${px}px`;
+export const grid = (gridMultiple: number): string => size(pxToGrid(gridMultiple));
+export const gridPx = (gridMultiple: number): string => sizePx(pxToGrid(gridMultiple));
 
 export const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 
 export const maxWidthBreakpoint = (px: number): string =>
   `@media (max-width: ${breakpointPxToEm(px)})`;
-
-// NOTE: Only use px we want to have fixed sizes that have the same dimensions
-// not affected by user font settings. Eg.: text in settings should be variable
-// but lets say clock size should the the same unrelated to user font size settings.
 
 // TODO: Delete unused variables.
 export const colors = {
@@ -38,7 +37,7 @@ export const text = ({
 }: {
   size?: "DEFAULT" | "16" | "18";
   weight?: "DEFAULT" | "BOLD";
-  family?: "DEFAULT" | "MONO_SPACE";
+  family?: "DEFAULT" | "NUMBERS";
   selectable?: boolean;
 } = {}) => ({
   margin: 0,
@@ -57,9 +56,9 @@ export const text = ({
   fontFamily: (() => {
     switch (family) {
       case "DEFAULT":
-        return "Arial";
-      case "MONO_SPACE":
-        return "Monospace";
+        return "Roboto";
+      case "NUMBERS":
+        return "Lato";
     }
   })(),
   fontWeight: (() => {
@@ -90,7 +89,7 @@ export const animations = {
 };
 
 export const opacity = {
-  default: 0.8,
+  default: 0.7,
 };
 
 export const zIndex = {
@@ -99,9 +98,9 @@ export const zIndex = {
   background: 8,
 };
 
-const settingsButtonSize = gridRaw(5);
-const settingsButtonPadding = gridRaw(1);
-const settingsButtonSpacing = gridRaw(1);
+const settingsButtonSize = pxToGrid(5);
+const settingsButtonPadding = pxToGrid(1);
+const settingsButtonSpacing = pxToGrid(1);
 
 const settingsButtonSizeAndSpacing =
   settingsButtonSize + 2 * settingsButtonPadding + 2 * settingsButtonSpacing;
