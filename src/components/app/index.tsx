@@ -16,6 +16,7 @@ import { BackgroundImage } from "../background-image";
 import { TimerUpdater } from "../timer-updater";
 import { Clock } from "../pages/clock";
 import { Age } from "../pages/age";
+import { YearProgress } from "../pages/year-progress";
 import { state } from "../../state/state";
 import * as time from "../../utils/time";
 import { logTimeElapsedSinceStart } from "../../utils/logging";
@@ -73,53 +74,40 @@ const AppInner = view(() => {
         <BackgroundImage url={state.image.imageUrl} />
       </BackgroundWrapper>
 
-      {(() => {
-        switch (state.settings.selectedView) {
-          case "CLOCK":
-            return (
-              <AppContent center>
+      <AppContent key={state.settings.selectedView}>
+        {(() => {
+          switch (state.settings.selectedView) {
+            case "CLOCK":
+              return (
                 <TimerUpdater
                   updateEveryN={state.settings.clockShowSeconds ? time.second : time.minute}
                   component={time => (
                     <Clock time={time} showSeconds={state.settings.clockShowSeconds} />
                   )}
-                  key={state.settings.selectedView}
                 />
-              </AppContent>
-            );
+              );
 
-          // case "CALENDAR":
-          //   return (
-          //     <AppContent center maxWidth>
-          //       <TimerUpdater
-          //         updateEveryN={time.day}
-          //         component={time => <Calendar time={time} />}
-          //         key={state.settings.selectedView}
-          //       />
-          //     </AppContent>
-          //   );
+            // case "CALENDAR":
+            //   return (
+            //       <TimerUpdater
+            //         updateEveryN={time.day}
+            //         component={time => <Calendar time={time} />}
+            //         key={state.settings.selectedView}
+            //       />
+            //   );
 
-          // case "YEAR_PROGRESS":
-          //   return (
-          //     <AppContent>
-          //       <ConditionalUpdater
-          //         updateEveryN={
-          //           time.year / 100 / 10 ** config.yearProgressDecimalPlaces
-          //         }
-          //         component={time => (
-          //           <YearProgress
-          //             time={time}
-          //             decimalPlaces={config.yearProgressDecimalPlaces}
-          //           />
-          //         )}
-          //         key={state.selectedView}
-          //       />
-          //     </AppContent>
-          //   );
+            case "YEAR_PROGRESS":
+              return (
+                <TimerUpdater
+                  updateEveryN={time.year / 100 / 10 ** config.yearProgressDecimalPlaces}
+                  component={time => (
+                    <YearProgress time={time} decimalPlaces={config.yearProgressDecimalPlaces} />
+                  )}
+                />
+              );
 
-          case "AGE": {
-            return (
-              <AppContent>
+            case "AGE":
+              return (
                 <TimerUpdater
                   updateEveryN={time.year / 10 ** config.ageDecimalPlaces}
                   component={time => (
@@ -129,19 +117,17 @@ const AppInner = view(() => {
                       decimalPlaces={config.ageDecimalPlaces}
                     />
                   )}
-                  key={state.settings.selectedView}
                 />
-              </AppContent>
-            );
+              );
+
+            case "NOTHING":
+              return null;
+
+            default:
+              return null;
           }
-
-          case "NOTHING":
-            return null;
-
-          default:
-            return null;
-        }
-      })()}
+        })()}
+      </AppContent>
 
       <AppSettingsWrapper opened={state.settings.opened} height={settingsHeight}>
         <AppSettings ref={settingsEl}>

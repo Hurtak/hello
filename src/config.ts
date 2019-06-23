@@ -16,7 +16,7 @@ export const config = {
   maximumRefreshRate: time.second / 60,
 
   ageDecimalPlaces: 8,
-  yearProgressDecimalPlaces: 8,
+  yearProgressDecimalPlaces: 0,
 
   localStorageKey: "__helloAppState",
 };

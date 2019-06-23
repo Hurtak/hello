@@ -2,6 +2,14 @@ import styled from "styled-components/macro";
 import * as s from "../../../styles/styles";
 
 export const Wrapper = styled.div({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+export const ClockBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
 

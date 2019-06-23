@@ -4,11 +4,11 @@ import { timestampToDateInputValue } from "../../utils/time";
 type View =
   | "CLOCK"
   // | "CALENDAR"
-  // | "YEAR_PROGRESS"
+  | "YEAR_PROGRESS"
   | "AGE"
   | "NOTHING";
 
-const initialDateOfBirth = Date.UTC(1990, 0, 1);
+const initialDateOfBirth = new Date(1990, 0, 1).getTime();
 
 export const settings = {
   //

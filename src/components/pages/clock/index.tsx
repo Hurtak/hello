@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper, TextWrapper, Text, ColonWrapper, ColonCircle } from "./styled";
+import { Wrapper, ClockBox, TextWrapper, Text, ColonWrapper, ColonCircle } from "./styled";
 import { Timestamp } from "../../timer-updater";
 import { addLeadingZero } from "../../../utils/time";
 
@@ -17,17 +17,19 @@ export const Clock: React.FC<ClockProps> = props => {
 
   return (
     <Wrapper>
-      <TextWrapper>
-        <Text>{hours}</Text>
-        <Colon />
-        <Text>{minutes}</Text>
-        {props.showSeconds && (
-          <>
-            <Colon />
-            <Text>{seconds}</Text>
-          </>
-        )}
-      </TextWrapper>
+      <ClockBox>
+        <TextWrapper>
+          <Text>{hours}</Text>
+          <Colon />
+          <Text>{minutes}</Text>
+          {props.showSeconds && (
+            <>
+              <Colon />
+              <Text>{seconds}</Text>
+            </>
+          )}
+        </TextWrapper>
+      </ClockBox>
     </Wrapper>
   );
 };

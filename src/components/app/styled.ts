@@ -14,21 +14,14 @@ export const AppWrapper = styled.div({
   overflow: "auto",
 });
 
-export const AppContent = styled.main((props: { maxWidth?: boolean; center?: boolean }) => ({
+export const AppContent = styled.main({
   display: "flex",
   flex: "1 0 0",
   height: "100%",
   width: "100%",
   flexDirection: "column",
   zIndex: s.zIndex.content,
-  ...(props.center && {
-    justifyContent: "center",
-    alignItems: "center",
-  }),
-  ...(props.maxWidth && {
-    maxWidth: s.size(1200),
-  }),
-}));
+});
 
 export const BackgroundWrapper = styled.div({
   position: "absolute",
@@ -50,6 +43,7 @@ export const AppSettingsWrapper = styled.aside(
     transition: s.animations.default,
     overflow: "hidden",
     zIndex: s.zIndex.settings,
+
     ...(props.opened && {
       width: s.dimensions.settingsWidth,
       height: props.height ? s.size(props.height) : "auto",

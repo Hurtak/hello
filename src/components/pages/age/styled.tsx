@@ -2,8 +2,9 @@ import styled from "styled-components/macro";
 import * as s from "../../../styles/styles";
 
 export const Wrapper = styled.div({
+  width: "100%",
+  height: "100%",
   position: "relative",
-  flexGrow: 1,
 });
 
 export const AgePosition = styled.div({

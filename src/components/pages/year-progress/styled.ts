@@ -1,23 +1,37 @@
 import styled from "styled-components/macro";
 import * as s from "../../../styles/styles";
 
-export const YearProgressWrapper = styled.div({
+export const Wrapper = styled.div({
   position: "relative",
   width: "100%",
-  boxSizing: "border-box",
-  height: s.grid(8),
-  padding: s.grid(0.25),
-  marginTop: s.grid(1),
-  border: `${s.grid(0.25)} solid ${s.colors.whiteTransparentDefault}`,
+  height: "100%",
+  display: "flex",
+  justifyContent: "center",
 });
 
-export const YearProgressBar = styled.div({
+export const ProgressBar = styled.div({
+  position: "absolute",
+  top: "80%",
+  boxSizing: "border-box",
+  width: s.sizePx(400),
+  height: s.gridPx(8),
+  border: `${s.gridPx(0.5)} solid ${s.colors.whiteTransparentDefault}`,
+  borderRadius: s.sizePx(4),
+});
+
+type ProgressBarProps = { progress: number };
+
+export const ProgressBarInner = styled.div.attrs((props: ProgressBarProps) => ({
+  style: {
+    width: props.progress * 100 + "%",
+  },
+}))((_: ProgressBarProps) => ({
   height: "100%",
   backgroundColor: s.colors.whiteTransparentDefault,
-});
+}));
 
-export const YearProgressText = styled.div({
-  ...s.text(),
+export const Text = styled.div({
+  ...s.text({ family: "NUMBERS", weight: "BOLD", selectable: false }),
 
   position: "absolute",
   left: 0,
@@ -27,5 +41,6 @@ export const YearProgressText = styled.div({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: 0,
+  fontSize: s.gridPx(3),
+  opacity: s.opacity.default,
 });

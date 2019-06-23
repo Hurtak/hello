@@ -155,6 +155,14 @@ const SettingsContent = view((props: SettingsProps) => (
 
         <Radio
           name="view"
+          onChange={() => state.settings.setSelectedView("YEAR_PROGRESS")}
+          checked={state.settings.selectedView === "YEAR_PROGRESS"}
+        >
+          Year progress
+        </Radio>
+
+        <Radio
+          name="view"
           onChange={() => state.settings.setSelectedView("NOTHING")}
           checked={state.settings.selectedView === "NOTHING"}
         >
@@ -179,7 +187,7 @@ const SettingsContent = view((props: SettingsProps) => (
             Your date of birth
             <input
               type="date"
-              min={timestampToDateInputValue(Date.UTC(1900, 0, 1))}
+              min={timestampToDateInputValue(new Date(1900, 0, 1).getTime())}
               max={timestampToDateInputValue(Date.now())}
               value={state.settings.ageDateOfBirthInputValue}
               onChange={e => state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
@@ -188,7 +196,7 @@ const SettingsContent = view((props: SettingsProps) => (
         )}
       </SettingsSection>
 
-      <SettingsSection title="Minimalistic version">
+      <SettingsSection title="Minimalist version">
         <Text>
           Settings button will be hidden unless you hover the mouse over the area where the button
           is. Also bunch of useless text (like this paragraph) will be hidden.
