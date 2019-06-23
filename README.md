@@ -2,9 +2,9 @@
 
 ## TODO
 
-- age poladit
+- measure dodelat?
+  - configurable?
 - menu overflowing -> add scroll
-- remove unused fonts
 - image is constantly rerendering
 - settings design
   - settings texts
@@ -15,6 +15,7 @@
   - show proper error messages when bing image / proxy error
   - when settings button has focus, remove 100% opacity
   - settings responsive
+- remove unused fonts
 - add more images!
 - reneme to hello
 - go through manifest.json

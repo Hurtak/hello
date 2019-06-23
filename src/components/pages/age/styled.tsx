@@ -10,14 +10,18 @@ export const AgePosition = styled.div({
   position: "absolute",
   display: "flex",
   justifyContent: "center",
-  bottom: "15%",
+  left: 0,
+  top: "80%",
   width: "100%",
 });
 
 export const AgeBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
   backgroundColor: s.colors.whiteTransparentDefault,
-  overflow: "hidden",
+
+  [s.maxWidthBreakpoint(600)]: {
+    transform: "scale(0.8)",
+  },
 });
 
 export const AgeText = styled.div({
