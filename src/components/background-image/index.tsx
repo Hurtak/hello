@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Wrapper, Image } from "./styled";
+import { logWarning } from "../../utils/logging";
 
 type BackgroundUrl = string | null;
 
@@ -78,7 +79,7 @@ function loadImage(url: string, cb: (success: boolean) => void): () => void {
     // Image load cancelling throws error event
     if (imageCanceled) return;
 
-    console.warn("Could not load image", url, e);
+    logWarning("Could not load image", url, e);
     if (imageLoaded) return;
     imageLoaded = true;
     cb(false);

@@ -1,5 +1,6 @@
 import { state, State } from "../state";
 import { config } from "../../config";
+import { logWarning } from "../../utils/logging";
 
 type SavedState = {
   imageSource: State["image"]["imageSource"];
@@ -33,7 +34,7 @@ export const storage = {
       const serializedState = JSON.stringify(savedState);
       window.localStorage.setItem(config.localStorageKey, serializedState);
     } catch (err) {
-      console.warn("Error saving app state to local storage", err);
+      logWarning("Error saving app state to local storage", err);
     }
   },
 
@@ -44,7 +45,7 @@ export const storage = {
         if (!serializedState) return null;
         return JSON.parse(serializedState);
       } catch (err) {
-        console.warn("Error retrieving saved app state from local storage", err);
+        logWarning("Error retrieving saved app state from local storage", err);
         return null;
       }
     })();
@@ -62,7 +63,7 @@ export const storage = {
     ].every(state => state !== undefined);
 
     if (!stateValid) {
-      console.warn("Error validating state retrieved from local storage");
+      logWarning("Error validating state retrieved from local storage");
       state.storage.clear();
       return;
     }
@@ -81,7 +82,7 @@ export const storage = {
     try {
       window.localStorage.removeItem(config.localStorageKey);
     } catch (err) {
-      console.warn("Error clearing app state from local storage", err);
+      logWarning("Error clearing app state from local storage", err);
     }
   },
 

@@ -1,5 +1,5 @@
 import { state } from "../state";
-import { PerfTimer } from "../../utils/perf-log";
+import { LogPerformance } from "../../utils/logging";
 import { loadAndInjectFonts } from "../../styles/fonts";
 
 export const app = {
@@ -14,17 +14,17 @@ export const app = {
   //
 
   async initialize() {
-    const measureAppState = new PerfTimer("App state init");
+    const performanceAppStateInit = new LogPerformance("App state init");
     state.browser.initialize();
     state.storage.initialize();
     state.storage.retrieveAndUpdateState();
     state.image.setImageLocalRandom();
     state.image.fetchBingImage();
-    measureAppState.measure();
+    performanceAppStateInit.measure();
 
-    const measureFonts = new PerfTimer("Fonts");
+    const performanceFonts = new LogPerformance("Fonts");
     await loadAndInjectFonts();
-    measureFonts.measure();
+    performanceFonts.measure();
 
     state.app.initialized = true;
   },

@@ -1,3 +1,5 @@
+import { logWarning } from "./logging";
+
 type BingResponse = {
   images?: {
     url?: string;
@@ -154,7 +156,7 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
 
 function httpDataWithLog(data: HttpData<BingData>): HttpData<BingData> {
   if (data.type === "ERROR") {
-    console.warn("Error fetching data", data);
+    logWarning("Error fetching data", data);
   }
 
   return data;

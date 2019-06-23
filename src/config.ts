@@ -3,6 +3,11 @@ import * as time from "./utils/time";
 export const config = {
   isDev: process.env.NODE_ENV !== "production",
 
+  logging: {
+    warnings: true,
+    performance: true,
+  },
+
   // Maximum number of re-renders per second in TimerUpdater component.
   // Eg.: if we have 60fps maximumRefreshRate, clock with seconds updates once a
   // second so it will not be affected. On the other hand if we had setting
@@ -10,8 +15,8 @@ export const config = {
   // lots of decimal places), it would be capped at 60.
   maximumRefreshRate: time.second / 60,
 
-  yearProgressDecimalPlaces: 8,
   ageDecimalPlaces: 8,
+  yearProgressDecimalPlaces: 8,
 
   localStorageKey: "__helloAppState",
 };

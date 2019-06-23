@@ -2,8 +2,6 @@
 
 ## TODO
 
-- measure dodelat?
-  - configurable?
 - menu overflowing -> add scroll
 - image is constantly rerendering
 - settings design

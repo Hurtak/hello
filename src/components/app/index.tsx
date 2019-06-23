@@ -18,7 +18,7 @@ import { Clock } from "../pages/clock";
 import { Age } from "../pages/age";
 import { state } from "../../state/state";
 import * as time from "../../utils/time";
-import { logCurrentTime } from "../../utils/perf-log";
+import { logTimeElapsedSinceStart } from "../../utils/logging";
 import { GlobalStyles } from "../../styles/global-styles";
 import { config } from "../../config";
 
@@ -30,7 +30,7 @@ export const App = view(() => {
 
   useEffect(() => {
     if (state.app.initialized) {
-      logCurrentTime("Full render");
+      logTimeElapsedSinceStart("Full App Render");
     }
   });
 
