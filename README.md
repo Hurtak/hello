@@ -24,12 +24,20 @@
 ## Later TODOS
 
 - when we cross viewport min width there is vertical scrollbar??
-- BROKEN deps
-  - @types/styled-components 4.1.8 ❯ 4.1.16
-    - typings completely broken
-  - typescript 3.4.5 ❯ 3.5.2
-    - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
-    - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
+- Deps
+  - Broken
+    - @types/styled-components 4.1.8 ❯ 4.1.16
+      - typings completely broken
+  - Broken
+    - typescript 3.4.5 ❯ 3.5.2
+      - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
+      - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
+  - @types/css-font-loading-module
+    - once window.FontFace becomes standardised, remove
+  - resize-observer-polyfill
+    - remove, once supported
+  - wicg-inert
+    - remove, once supported
 - hotkeys to toggle calendar/time
 - background image switching animation
 - check STRV checklist
