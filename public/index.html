@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--
+      All inline scripts are blocked because of Chrome CSP
+      https://stackoverflow.com/questions/8502307/chrome-18-how-to-allow-inline-scripting-with-a-content-security-policy/
+      If we want to manually enable inline script its content needs to be
+      sha256 + base64 and then added into manifest.json into "content_security_policy"
+     -->
     <script>
       window.GLOBAL_PERF_TIMESTAMP = Date.now();
     </script>
