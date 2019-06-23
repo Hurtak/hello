@@ -46,21 +46,17 @@ function usePreviousBackground(newUrl: BackgroundUrl): Backgrounds {
 
 function useImageLoaded(backgrounds: Backgrounds): boolean {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageRenderNr, setImageRenderNr] = useState(1);
 
   useEffect(() => {
-    const currentImageRenderNr = imageRenderNr;
     setImageLoaded(false);
 
     if (!backgrounds.current) return;
 
     return loadImage(backgrounds.current, success => {
       if (!success) return;
-      if (imageRenderNr !== currentImageRenderNr) return;
       setImageLoaded(true);
-      setImageRenderNr(currentImageRenderNr + 1);
     });
-  }, [backgrounds, imageRenderNr]);
+  }, [backgrounds]);
 
   return imageLoaded;
 }
