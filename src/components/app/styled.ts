@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import * as s from "../../styles/styles";
 
-export const AppWrapper = styled.div({
+export const Layout = styled.div({
   boxSizing: "border-box",
   position: "relative",
   display: "flex",

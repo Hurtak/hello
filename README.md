@@ -3,7 +3,6 @@
 ## TODO
 
 - menu overflowing -> add scroll
-- image is constantly rerendering
 - settings design
   - settings texts
   - settings structure

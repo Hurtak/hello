@@ -5,7 +5,7 @@ import ResizeObserver from "resize-observer-polyfill"; // TODO: Remove once supp
 import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 
 import {
-  AppWrapper,
+  Layout,
   BackgroundWrapper,
   AppContent,
   AppSettingsWrapper,
@@ -44,11 +44,11 @@ export const App = view(() => {
         CLOSE_SETTINGS: state.settings.closeSettings,
       }}
     >
-      <AppWrapper>
+      <Layout>
         <GlobalStyles />
 
         {state.app.initialized && <AppInner />}
-      </AppWrapper>
+      </Layout>
     </HotKeys>
   );
 });
