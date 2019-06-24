@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components/macro";
 import * as s from "../../styles/styles";
-import { IconWarning } from "../../icons";
 
 export const SettingsWrapper = styled.section((props: { settingsHidden?: boolean }) => ({
   boxSizing: "border-box",
@@ -44,66 +42,3 @@ export const ToggleButtonIconWrapper = styled.div((props: { rotated?: boolean })
     transform: "rotate(-360deg)",
   }),
 }));
-
-export const Heading = styled.h1({
-  ...s.text({ size: "18" }),
-
-  paddingBottom: "0.25em",
-});
-
-export const HeadingSmall = styled.h2({
-  ...s.text({ size: "16" }),
-
-  paddingBottom: "0.25em",
-});
-
-export const Text = styled.p({
-  ...s.text(),
-});
-
-export const Warning: React.FC = ({ children }) => (
-  <WarningTextWrapper>
-    <WarningTextIcon>
-      <IconWarning color={s.colors.orange} width={16} height={16} />
-    </WarningTextIcon>
-    <WarningText>{children}</WarningText>
-  </WarningTextWrapper>
-);
-
-const WarningTextWrapper = styled.div({
-  display: "flex",
-  alignItems: "center",
-});
-
-const WarningTextIcon = styled.div({
-  marginRight: s.grid(1),
-});
-
-const WarningText = styled.p({
-  ...s.text(),
-
-  display: "inline-block",
-  color: s.colors.orange,
-});
-
-export const SettingsSectionsWrapper = styled.div({
-  marginTop: s.grid(3),
-});
-
-export const SettingsSectionStyled = styled.section({
-  marginTop: s.grid(2),
-
-  "&:first-child": {
-    marginTop: 0,
-  },
-});
-
-export const RadioLabel = styled.label({
-  display: "block",
-});
-
-export const RadioText = styled.span({
-  ...s.text(),
-
-  marginLeft: s.grid(1),
-});

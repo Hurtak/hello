@@ -23,12 +23,12 @@ export const colors = {
  */
 
 export const text = ({
-  size: fontSize = "DEFAULT",
+  size: fontSize = "TEXT",
   weight = "DEFAULT",
   family = "DEFAULT",
   selectable = true,
 }: {
-  size?: "DEFAULT" | "16" | "18";
+  size?: "TEXT" | "HEADING_SMALL" | "HEADING";
   weight?: "DEFAULT" | "BOLD";
   family?: "DEFAULT" | "NUMBERS";
   selectable?: boolean;
@@ -38,12 +38,12 @@ export const text = ({
 
   fontSize: (() => {
     switch (fontSize) {
-      case "DEFAULT":
+      case "TEXT":
         return size(14);
-      case "16":
-        return size(16);
-      case "18":
+      case "HEADING_SMALL":
         return size(18);
+      case "HEADING":
+        return size(24);
     }
   })(),
   fontFamily: (() => {
