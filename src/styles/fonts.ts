@@ -7,14 +7,10 @@ export async function loadAndInjectFonts() {
     }),
     loadFont({
       name: "Roboto",
-      src: `${process.env.PUBLIC_URL}/assets/fonts/roboto-v19-latin-500.woff2`,
-      weight: 500,
-    }),
-    loadFont({
-      name: "Roboto",
       src: `${process.env.PUBLIC_URL}/assets/fonts/roboto-v19-latin-700.woff2`,
       weight: 700,
     }),
+
     loadFont({
       name: "Lato",
       src: `${process.env.PUBLIC_URL}/assets/fonts/lato-v15-latin-regular.woff2`,

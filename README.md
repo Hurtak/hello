@@ -12,7 +12,6 @@
   - when settings button has focus, remove 100% opacity
   - settings responsive
 - menu overflowing -> add scroll
-- remove unused fonts
 - add more images!
 - reneme to hello
 - go through manifest.json
