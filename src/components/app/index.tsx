@@ -13,7 +13,7 @@ import { Age } from "../pages/age";
 import { YearProgress } from "../pages/year-progress";
 import { state } from "../../state/state";
 import * as time from "../../utils/time";
-import { logTimeElapsedSinceStart } from "../../utils/logging";
+import { logTimeElapsedSinceStart, LogPerformance } from "../../utils/logging";
 import { GlobalStyles } from "../../styles/global-styles";
 import { config } from "../../config";
 
@@ -25,7 +25,7 @@ export const App = view(() => {
 
   useEffect(() => {
     if (state.app.initialized) {
-      logTimeElapsedSinceStart("Full App Render");
+      logTimeElapsedSinceStart("Full App Render", true);
     }
   });
 

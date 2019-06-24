@@ -2,7 +2,6 @@
 
 ## TODO
 
-- menu overflowing -> add scroll
 - settings design
   - settings texts
   - settings structure
@@ -12,6 +11,7 @@
   - show proper error messages when bing image / proxy error
   - when settings button has focus, remove 100% opacity
   - settings responsive
+- menu overflowing -> add scroll
 - remove unused fonts
 - add more images!
 - reneme to hello

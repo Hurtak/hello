@@ -1,5 +1,7 @@
 import { config } from "../config";
 
+let finalMeasureMeasured = false;
+
 function formatMs(ms: number): string {
   const msFormatted = Math.trunc(ms)
     .toString()
@@ -20,12 +22,21 @@ function gerPerformanceMessage(startTimestamp: number, endTimestamp: number, mes
   return `[PERF] ${textDuration} | from ${textFrom} to ${textTo} | ${message}`;
 }
 
-export function logTimeElapsedSinceStart(message: string) {
+export function logTimeElapsedSinceStart(message: string, finalMeasure: boolean = false) {
   if (!config.logging.performance) return;
 
   const log = gerPerformanceMessage(window.GLOBAL_PERF_TIMESTAMP, Date.now(), message);
-  console.log("-".repeat(log.length));
+  if (finalMeasure) {
+    console.log("-".repeat(log.length));
+  }
   console.log(log);
+
+  if (finalMeasure) {
+    if (finalMeasureMeasured) {
+      logWarning(`logTimeElapsedSinceStart with finalMeasure=true called more than once`);
+    }
+    finalMeasureMeasured = true;
+  }
 }
 
 export function logWarning(message: string, ...rest: any) {
