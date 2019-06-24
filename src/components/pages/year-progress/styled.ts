@@ -31,7 +31,7 @@ export const ProgressBarInner = styled.div.attrs((props: ProgressBarProps) => ({
 }));
 
 export const Text = styled.div({
-  ...s.text({ family: "NUMBERS", weight: "BOLD", selectable: false }),
+  ...s.text({ family: "NUMBERS", selectable: false }),
 
   position: "absolute",
   left: 0,

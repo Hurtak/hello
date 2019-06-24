@@ -33,7 +33,7 @@ export const BackgroundWrapper = styled.div({
 });
 
 export const AppSettingsWrapper = styled.aside(
-  (props: { opened: boolean; height: number | null }) => ({
+  (props: { opened: boolean; contentHeight: number | null }) => ({
     position: "absolute",
     direction: "rtl", // To make the overflow cropping from the right side
     top: s.grid(1),
@@ -46,7 +46,7 @@ export const AppSettingsWrapper = styled.aside(
 
     ...(props.opened && {
       width: s.dimensions.settingsWidth,
-      height: props.height ? s.size(props.height) : "auto",
+      height: props.contentHeight ? s.size(props.contentHeight) : "auto",
     }),
   }),
 );

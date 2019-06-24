@@ -4,13 +4,7 @@ import { HotKeys } from "react-hotkeys";
 import ResizeObserver from "resize-observer-polyfill"; // TODO: Remove once supported in Chrome & FF
 import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 
-import {
-  Layout,
-  BackgroundWrapper,
-  AppContent,
-  AppSettingsWrapper,
-  AppSettings,
-} from "./styled";
+import { Layout, BackgroundWrapper, AppContent, AppSettingsWrapper, AppSettings } from "./styled";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
 import { TimerUpdater } from "../timer-updater";
@@ -129,7 +123,7 @@ const AppInner = view(() => {
         })()}
       </AppContent>
 
-      <AppSettingsWrapper opened={state.settings.opened} height={settingsHeight}>
+      <AppSettingsWrapper opened={state.settings.opened} contentHeight={settingsHeight}>
         <AppSettings ref={settingsEl}>
           <Settings isDev={config.isDev} />
         </AppSettings>
