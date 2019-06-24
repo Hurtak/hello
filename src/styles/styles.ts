@@ -129,9 +129,3 @@ export const animations = {
 export const opacity = {
   default: 0.7,
 };
-
-export const zIndex = {
-  settings: 10,
-  content: 9,
-  background: 8,
-};

@@ -14,22 +14,22 @@ export const Layout = styled.div({
   overflow: "auto",
 });
 
-export const AppContent = styled.main({
-  display: "flex",
-  flex: "1 0 0",
-  height: "100%",
-  width: "100%",
-  flexDirection: "column",
-  zIndex: s.zIndex.content,
-});
-
 export const BackgroundWrapper = styled.div({
   position: "absolute",
   left: 0,
   top: 0,
   width: "100%",
   height: "100%",
-  zIndex: s.zIndex.background,
+  zIndex: 1,
+});
+
+export const AppContent = styled.main({
+  display: "flex",
+  flex: "1 0 0",
+  height: "100%",
+  width: "100%",
+  flexDirection: "column",
+  zIndex: 2,
 });
 
 export const AppSettingsWrapper = styled.aside(
@@ -42,7 +42,7 @@ export const AppSettingsWrapper = styled.aside(
     height: s.dimensions.settingsButtonSizeAndSpacing,
     transition: s.animations.default,
     overflow: "hidden",
-    zIndex: s.zIndex.settings,
+    zIndex: 3,
 
     ...(props.opened && {
       width: s.dimensions.settingsWidth,
