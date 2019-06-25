@@ -12,11 +12,11 @@ export function timestampToDateInputValue(timestamp: number): string {
   const date = new Date(timestamp);
 
   const value =
-    date.getUTCFullYear() +
+    date.getFullYear() +
     "-" +
-    addLeadingZero(date.getUTCMonth() + 1) +
+    addLeadingZero(date.getMonth() + 1) +
     "-" +
-    addLeadingZero(date.getUTCDate());
+    addLeadingZero(date.getDate());
 
   return value;
 }
