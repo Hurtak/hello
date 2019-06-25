@@ -20,7 +20,7 @@ export const settings = {
   clockShowSeconds: false,
   ageDateOfBirthTimestamp: initialDateOfBirth,
   ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
-  settingsHidden: false,
+  minimalistVersion: false,
   scheduledAppReset: false,
 
   //
@@ -56,8 +56,8 @@ export const settings = {
     }
   },
 
-  toggleSettingsHidden(): void {
-    state.settings.settingsHidden = !state.settings.settingsHidden;
+  toggleMinimalistVersion(): void {
+    state.settings.minimalistVersion = !state.settings.minimalistVersion;
   },
 
   resetAppState(): void {

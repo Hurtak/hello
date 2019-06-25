@@ -3,6 +3,8 @@ import { config } from "../../config";
 import { logWarning } from "../../utils/logging";
 
 type SavedState = {
+  version: number;
+
   imageSource: State["image"]["imageSource"];
   imageBingCached: State["image"]["imageBingCached"];
 
@@ -10,7 +12,7 @@ type SavedState = {
   clockShowSeconds: State["settings"]["clockShowSeconds"];
   ageDateOfBirthTimestamp: State["settings"]["ageDateOfBirthTimestamp"];
   ageDateOfBirthInputValue: State["settings"]["ageDateOfBirthInputValue"];
-  settingsHidden: State["settings"]["settingsHidden"];
+  minimalistVersion: State["settings"]["minimalistVersion"];
 };
 
 export const storage = {
@@ -20,6 +22,10 @@ export const storage = {
 
   save(): void {
     const savedState: SavedState = {
+      // Version of local storage SavedState object, not used at the moment but might come in handy if we change
+      // the structure in the future and want to detect the version or do some migrations
+      version: 1,
+
       imageSource: state.image.imageSource,
       imageBingCached: state.image.imageBingCached,
 
@@ -27,7 +33,7 @@ export const storage = {
       clockShowSeconds: state.settings.clockShowSeconds,
       ageDateOfBirthTimestamp: state.settings.ageDateOfBirthTimestamp,
       ageDateOfBirthInputValue: state.settings.ageDateOfBirthInputValue,
-      settingsHidden: state.settings.settingsHidden,
+      minimalistVersion: state.settings.minimalistVersion,
     };
 
     try {
@@ -59,7 +65,7 @@ export const storage = {
       savedState.clockShowSeconds,
       savedState.ageDateOfBirthTimestamp,
       savedState.ageDateOfBirthInputValue,
-      savedState.settingsHidden,
+      savedState.minimalistVersion,
     ].every(state => state !== undefined);
 
     if (!stateValid) {
@@ -75,7 +81,7 @@ export const storage = {
     state.settings.clockShowSeconds = savedState.clockShowSeconds;
     state.settings.ageDateOfBirthTimestamp = savedState.ageDateOfBirthTimestamp;
     state.settings.ageDateOfBirthInputValue = savedState.ageDateOfBirthInputValue;
-    state.settings.settingsHidden = savedState.settingsHidden;
+    state.settings.minimalistVersion = savedState.minimalistVersion;
   },
 
   clear(): void {

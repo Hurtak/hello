@@ -11,6 +11,8 @@
   - show proper error messages when bing image / proxy error
   - when settings button has focus, remove 100% opacity
   - settings responsive
+- outline only for keyboard focus, not for click focus
+- hover states for buttons
 - menu overflowing -> add scroll
 - add more images!
 - reneme to hello

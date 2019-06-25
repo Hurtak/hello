@@ -20,7 +20,7 @@ type SettingsProps = {
 
 export const Settings = view((props: SettingsProps) => (
   <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
-    <SettingsWrapper settingsHidden={state.settings.settingsHidden && !state.settings.opened}>
+    <SettingsWrapper settingsHidden={state.settings.minimalistVersion && !state.settings.opened}>
       <ToggleButton onClick={state.settings.toggleSettingsOpened}>
         <ToggleButtonIconWrapper rotated={state.settings.opened}>
           <IconCog
@@ -42,11 +42,13 @@ export const Settings = view((props: SettingsProps) => (
 const SettingsContent = view((props: SettingsProps) => (
   <>
     <Heading>Hello Friend</Heading>
-    <Text>
-      This is your new cool new tab page. Enjoy a nice background from Bing every day or have a look
-      at some nice background that I preselected. There is also a bunch of useful things that you
-      can display in front of the background, like clock and stuff!
-    </Text>
+    {!state.settings.minimalistVersion && (
+      <Text>
+        This is your new cool new tab page. Enjoy a nice background from Bing every day or have a
+        look at some nice background that I preselected. There is also a bunch of useful things that
+        you can display in front of the background, like clock and stuff!
+      </Text>
+    )}
 
     <Section title="Background image">
       {!state.browser.online && (
@@ -182,28 +184,32 @@ const SettingsContent = view((props: SettingsProps) => (
     </Section>
 
     <Section title="Minimalist version">
-      <Text>
-        Settings button will be hidden unless you hover the mouse over the area where the button is.
-        Also bunch of useless text, like this paragraph, will be hidden.
-      </Text>
+      {!state.settings.minimalistVersion && (
+        <Text>
+          Settings button will be hidden unless you hover the mouse over the area where the button
+          is. Also bunch of useless text, like this paragraph, will be hidden.
+        </Text>
+      )}
       <Checkbox
-        checked={state.settings.settingsHidden}
-        onChange={state.settings.toggleSettingsHidden}
+        checked={state.settings.minimalistVersion}
+        onChange={state.settings.toggleMinimalistVersion}
       >
         Hide stuff
       </Checkbox>
     </Section>
 
-    <Section title="Contact">
-      <Text>
-        If you find any bugs or if you would like to tell me how much you like this swell plugin you
-        can do so on following channels. Also this plugin is open source, so you contribute on
-        GitHub!
-      </Text>
-      <a href="https://github.com/hurtak/hello-friend">Github</a>
-      <a href="https://twitter.com/PetrHurtak">Twitter</a>
-      <a href="mailto:petr.hurtak@gmail.com">Mail</a>
-    </Section>
+    {!state.settings.minimalistVersion && (
+      <Section title="Contact">
+        <Text>
+          If you find any bugs or if you would like to tell me how much you like this swell plugin
+          you can do so on following channels. Also this plugin is open source, so you contribute on
+          GitHub!
+        </Text>
+        <a href="https://github.com/hurtak/hello-friend">Github</a>
+        <a href="https://twitter.com/PetrHurtak">Twitter</a>
+        <a href="mailto:petr.hurtak@gmail.com">Mail</a>
+      </Section>
+    )}
 
     {props.isDev && (
       <Section title="Dev menu">
