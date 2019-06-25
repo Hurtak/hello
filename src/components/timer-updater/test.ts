@@ -1,4 +1,5 @@
 import { getNextTick } from "./utils";
+import { day } from "../../utils/time";
 
 it("getNextTick", () => {
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0), 1000)).toBe(1000);
@@ -7,7 +8,6 @@ it("getNextTick", () => {
 
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 999), 1000)).toBe(1);
 
-  const day = 24 * 60 * 60 * 1000;
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0), day)).toBe(day);
 
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0) + day / 2, day)).toBe(day / 2);
