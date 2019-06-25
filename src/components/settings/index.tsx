@@ -127,7 +127,7 @@ const SettingsContent = view((props: SettingsProps) => (
       )}
     </Section>
 
-    <Section title="View type">
+    <Section title="Useful stuff">
       <Radio
         name="view"
         onChange={() => state.settings.setSelectedView("CLOCK")}
@@ -157,7 +157,7 @@ const SettingsContent = view((props: SettingsProps) => (
         onChange={() => state.settings.setSelectedView("NOTHING")}
         checked={state.settings.selectedView === "NOTHING"}
       >
-        Nothing
+        No thanks
       </Radio>
 
       {state.settings.selectedView === "CLOCK" && (
