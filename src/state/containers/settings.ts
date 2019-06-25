@@ -15,7 +15,7 @@ export const settings = {
   // State
   //
 
-  opened: false,
+  opened: true,
   selectedView: "CLOCK" as View,
   clockShowSeconds: false,
   ageDateOfBirthTimestamp: initialDateOfBirth,
@@ -44,15 +44,15 @@ export const settings = {
   },
 
   setAgeDateOfBirth({
-    ageDateOfBirthTimestamp,
-    ageDateOfBirthInputValue,
+    timestamp,
+    inputValue,
   }: {
-    ageDateOfBirthTimestamp: number | null;
-    ageDateOfBirthInputValue: string;
+    timestamp: number | null;
+    inputValue: string;
   }): void {
-    state.settings.ageDateOfBirthInputValue = ageDateOfBirthInputValue;
-    if (ageDateOfBirthTimestamp) {
-      state.settings.ageDateOfBirthTimestamp = ageDateOfBirthTimestamp;
+    state.settings.ageDateOfBirthInputValue = inputValue;
+    if (timestamp) {
+      state.settings.ageDateOfBirthTimestamp = timestamp;
     }
   },
 
