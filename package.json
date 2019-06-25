@@ -34,7 +34,7 @@
     "types": "tsc --pretty --noEmit",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
-    "verify": "npm run types && npm run prettier-check && CI=true npm run test",
+    "validate": "npm run types && npm run prettier-check && CI=true npm run test",
     "zip": "cd build && zip -r -X \"../build.zip\" *"
   },
   "eslintConfig": {
