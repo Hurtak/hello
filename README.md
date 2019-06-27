@@ -9,14 +9,26 @@
 ## TODO
 
 - settings design
-  - settings texts
-  - settings structure
-  - settings styles
-  - show offline indicator?
-  - disable bing when offline
-  - show proper error messages when bing image / proxy error
-  - when settings button has focus, remove 100% opacity
-  - settings responsive
+  - main box
+  - backgrond image
+    - show offline indicator?
+    - disable bing when offline
+    - show proper error messages when bing image / proxy error
+    - predefined images
+      - buttons design
+      - texts layout and design
+      - link design
+  - useful stuff box
+    - view settings
+    - clock settings
+    - age settings
+  - minimalist version
+    - animate height of texts
+  - contact
+    - links design
+    - icons
+  - other
+    - settings responsive
 - outline only for keyboard focus, not for click focus
 - hover states for buttons
 - menu overflowing -> add scroll
