@@ -10,9 +10,15 @@ function formatMs(ms: number): string {
   return `${msFormatted}ms`;
 }
 
+function getPerformanceTimeOrigin() {
+  // TODO: rename to match to function name
+  return window.GLOBAL_PERF_TIMESTAMP;
+}
+
 function gerPerformanceMessage(startTimestamp: number, endTimestamp: number, message: string) {
-  const startMark = startTimestamp - window.GLOBAL_PERF_TIMESTAMP;
-  const endMark = endTimestamp - window.GLOBAL_PERF_TIMESTAMP;
+  const timeOrigin = getPerformanceTimeOrigin();
+  const startMark = startTimestamp - timeOrigin;
+  const endMark = endTimestamp - timeOrigin;
   const timeTook = endMark - startMark;
 
   const textFrom = formatMs(startMark);
@@ -25,7 +31,8 @@ function gerPerformanceMessage(startTimestamp: number, endTimestamp: number, mes
 export function logTimeElapsedSinceStart(message: string, finalMeasure: boolean = false) {
   if (!config.logging.performance) return;
 
-  const log = gerPerformanceMessage(window.GLOBAL_PERF_TIMESTAMP, Date.now(), message);
+  const timeOrigin = getPerformanceTimeOrigin();
+  const log = gerPerformanceMessage(timeOrigin, Date.now(), message);
   if (finalMeasure) {
     console.log("-".repeat(log.length));
   }
