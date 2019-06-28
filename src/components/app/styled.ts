@@ -39,7 +39,7 @@ export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) =
     width: s.dimensions.settingsWidth,
     height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
   },
-}))({
+}))((_: AppSettingsProps) => ({
   position: "absolute",
   direction: "rtl", // To make the overflow cropping from the right side
   top: s.grid(1),
@@ -49,7 +49,7 @@ export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) =
   transition: s.animations.default,
   overflow: "hidden",
   zIndex: 3,
-});
+}));
 
 export const AppSettings = styled.div({
   width: s.dimensions.settingsWidth,

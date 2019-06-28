@@ -12,7 +12,7 @@ import { eventToAgeOfBirthValues } from "./utils";
 import * as s from "../../styles/styles";
 import { state } from "../../state/state";
 import { timestampToDateInputValue } from "../../utils/time";
-import { IconCog } from "../../icons";
+import { Icon } from "../../icon";
 
 type SettingsProps = {
   isDev: boolean;
@@ -23,7 +23,8 @@ export const Settings = view((props: SettingsProps) => (
     <SettingsWrapper settingsHidden={state.settings.cleanVersion && !state.settings.opened}>
       <ToggleButton onClick={state.settings.toggleSettingsOpened}>
         <ToggleButtonIconWrapper rotated={state.settings.opened}>
-          <IconCog
+          <Icon
+            type="COG"
             width={s.pxToGrid(s.dimensions.settingsButtonSize)}
             height={s.pxToGrid(s.dimensions.settingsButtonSize)}
           />

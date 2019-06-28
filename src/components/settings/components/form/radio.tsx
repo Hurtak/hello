@@ -1,6 +1,4 @@
 import React from "react";
-import styled from "styled-components/macro";
-import * as s from "../../../../styles/styles";
 import { GenericFormField } from "./generic-form-field";
 
 export const Radio: React.FC<{

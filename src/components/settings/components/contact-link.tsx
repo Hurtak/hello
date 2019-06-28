@@ -1,33 +1,22 @@
 import React from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../styles/styles";
-import { IconGithub } from "../../../icons";
-
-type LinkIcons = "GITHUB";
+import { Icon, IconType } from "../../../icon";
 
 export const ContactLink: React.FC<{
   href: string;
-  iconType: LinkIcons;
+  iconType: IconType;
   children: string;
 }> = ({ href, iconType, children }) => {
-  const Icon = getContactIcon(iconType);
-
   return (
     <Wrapper href={href}>
       <IconWrapper>
-        <Icon width={2} height={2} />
+        <Icon type={iconType} width={2} height={2} />
       </IconWrapper>
       <Text>{children}</Text>
     </Wrapper>
   );
 };
-
-function getContactIcon(type: LinkIcons) {
-  switch (type) {
-    case "GITHUB":
-      return IconGithub;
-  }
-}
 
 const Wrapper = styled.a({
   display: "flex",
