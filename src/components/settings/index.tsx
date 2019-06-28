@@ -7,7 +7,7 @@ import {
   ToggleButtonIconWrapper,
   ToggleButtonSpacer,
 } from "./styled";
-import { Heading, Text, Warning, Radio, Checkbox, Section } from "./components";
+import { Heading, Text, Warning, Radio, Checkbox, Section, ContactLink } from "./components";
 import { eventToAgeOfBirthValues } from "./utils";
 import * as s from "../../styles/styles";
 import { state } from "../../state/state";
@@ -202,9 +202,15 @@ const SettingsContent = view((props: SettingsProps) => (
           plugin you can do that. Also, this plugin is open-source, so you contribute on GitHub!
         </Text>
 
-        <a href="https://github.com/hurtak/hello-friend">Github</a>
-        <a href="https://twitter.com/PetrHurtak">Twitter</a>
-        <a href="mailto:petr.hurtak@gmail.com">Mail</a>
+        <ContactLink iconType="GITHUB" href="https://github.com/hurtak/hello-friend">
+          Github
+        </ContactLink>
+        <ContactLink iconType="GITHUB" href="https://twitter.com/PetrHurtak">
+          Twitter
+        </ContactLink>
+        <ContactLink iconType="GITHUB" href="mailto:petr.hurtak@gmail.com">
+          Mail
+        </ContactLink>
       </Section>
     )}
 

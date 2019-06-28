@@ -6,7 +6,7 @@ import { IconWarning } from "../../../icons";
 export const Warning: React.FC = ({ children }) => (
   <WarningTextWrapper>
     <WarningTextIcon>
-      <IconWarning color={s.colors.orange} width={16} height={16} />
+      <IconWarning color={s.colors.orange} width={2} height={2} />
     </WarningTextIcon>
     <WarningText>{children}</WarningText>
   </WarningTextWrapper>

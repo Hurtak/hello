@@ -7,16 +7,14 @@ export type IconProps = {
   color?: string;
 };
 
-export const Icon = styled.div(
-  ({ width = 24, height = 24, color = s.colors.black }: IconProps) => ({
-    display: "inline-block",
-    width: s.size(width),
-    height: s.size(height),
+export const Icon = styled.div(({ width = 3, height = 3, color = s.colors.white }: IconProps) => ({
+  display: "inline-block",
+  width: s.grid(width),
+  height: s.grid(height),
 
-    "& > svg": {
-      width: "100%",
-      height: "100%",
-      fill: color,
-    },
-  }),
-);
+  "& > svg": {
+    width: "100%",
+    height: "100%",
+    fill: color,
+  },
+}));
