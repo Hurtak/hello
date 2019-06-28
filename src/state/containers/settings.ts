@@ -56,8 +56,8 @@ export const settings = {
     }
   },
 
-  toggleMinimalistVersion(): void {
-    state.settings.minimalistVersion = !state.settings.minimalistVersion;
+  toggleCleanVersion(): void {
+    state.settings.cleanVersion = !state.settings.cleanVersion;
   },
 
   resetAppState(): void {

@@ -190,10 +190,7 @@ const SettingsContent = view((props: SettingsProps) => (
           paragraph, will be hidden. Nice.
         </Text>
       )}
-      <Checkbox
-        checked={state.settings.cleanVersion}
-        onChange={state.settings.toggleMinimalistVersion}
-      >
+      <Checkbox checked={state.settings.cleanVersion} onChange={state.settings.toggleCleanVersion}>
         No fluff
       </Checkbox>
     </Section>
