@@ -35,9 +35,11 @@ export const AppContent = styled.main({
 type AppSettingsProps = { opened: boolean; contentHeight: number | null };
 
 export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) => ({
-  style: props.opened && {
-    width: s.dimensions.settingsWidth,
-    height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
+  style: {
+    ...(props.opened && {
+      width: s.dimensions.settingsWidth,
+      height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
+    }),
   },
 }))((_: AppSettingsProps) => ({
   position: "absolute",
