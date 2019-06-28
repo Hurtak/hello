@@ -25,8 +25,6 @@
     - view settings
     - clock settings
     - age settings
-  - minimalist version
-    - animate height of texts
   - other
     - settings responsive
 - outline only for keyboard focus, not for click focus
@@ -47,6 +45,14 @@
 
 ## Later TODOS
 
+- animations
+  - use react-spring
+  - animate view transitions
+  - animate menu height
+  - also menu bugs
+    - no when menu height content is extended, it lags behind content
+    - when menu height content is collapsed, it happens instantly
+  - animate text appear/disapper in menu
 - when we cross viewport min width there is vertical scrollbar??
 - Deps
   - @types/styled-components 4.1.8 ❯ 4.1.16
