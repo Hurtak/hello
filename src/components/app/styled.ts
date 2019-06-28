@@ -32,24 +32,24 @@ export const AppContent = styled.main({
   zIndex: 2,
 });
 
-export const AppSettingsWrapper = styled.aside(
-  (props: { opened: boolean; contentHeight: number | null }) => ({
-    position: "absolute",
-    direction: "rtl", // To make the overflow cropping from the right side
-    top: s.grid(1),
-    right: s.grid(1),
-    width: s.dimensions.settingsButtonSizeAndSpacing,
-    height: s.dimensions.settingsButtonSizeAndSpacing,
-    transition: s.animations.default,
-    overflow: "hidden",
-    zIndex: 3,
+type AppSettingsProps = { opened: boolean; contentHeight: number | null };
 
-    ...(props.opened && {
-      width: s.dimensions.settingsWidth,
-      height: props.contentHeight ? s.size(props.contentHeight) : "auto",
-    }),
-  }),
-);
+export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) => ({
+  style: props.opened && {
+    width: s.dimensions.settingsWidth,
+    height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
+  },
+}))({
+  position: "absolute",
+  direction: "rtl", // To make the overflow cropping from the right side
+  top: s.grid(1),
+  right: s.grid(1),
+  width: s.dimensions.settingsButtonSizeAndSpacing,
+  height: s.dimensions.settingsButtonSizeAndSpacing,
+  transition: s.animations.default,
+  overflow: "hidden",
+  zIndex: 3,
+});
 
 export const AppSettings = styled.div({
   width: s.dimensions.settingsWidth,
