@@ -22,7 +22,7 @@ const Label = styled.label({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  padding: `${s.grid(0.5)} 0`,
+  padding: `${s.grid(0.25)} 0`,
 
   ":hover": {
     cursor: "pointer",
@@ -35,5 +35,5 @@ const Input = styled.input({});
 const Text = styled.span({
   ...s.text(),
 
-  marginLeft: s.grid(1.5),
+  marginLeft: s.grid(1.25),
 });

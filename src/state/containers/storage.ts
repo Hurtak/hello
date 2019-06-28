@@ -12,7 +12,7 @@ type SavedState = {
   clockShowSeconds: State["settings"]["clockShowSeconds"];
   ageDateOfBirthTimestamp: State["settings"]["ageDateOfBirthTimestamp"];
   ageDateOfBirthInputValue: State["settings"]["ageDateOfBirthInputValue"];
-  minimalistVersion: State["settings"]["minimalistVersion"];
+  cleanVersion: State["settings"]["cleanVersion"];
 };
 
 export const storage = {
@@ -33,7 +33,7 @@ export const storage = {
       clockShowSeconds: state.settings.clockShowSeconds,
       ageDateOfBirthTimestamp: state.settings.ageDateOfBirthTimestamp,
       ageDateOfBirthInputValue: state.settings.ageDateOfBirthInputValue,
-      minimalistVersion: state.settings.minimalistVersion,
+      cleanVersion: state.settings.cleanVersion,
     };
 
     try {
@@ -65,7 +65,7 @@ export const storage = {
       savedState.clockShowSeconds,
       savedState.ageDateOfBirthTimestamp,
       savedState.ageDateOfBirthInputValue,
-      savedState.minimalistVersion,
+      savedState.cleanVersion,
     ].every(state => state !== undefined);
 
     if (!stateValid) {
@@ -81,7 +81,7 @@ export const storage = {
     state.settings.clockShowSeconds = savedState.clockShowSeconds;
     state.settings.ageDateOfBirthTimestamp = savedState.ageDateOfBirthTimestamp;
     state.settings.ageDateOfBirthInputValue = savedState.ageDateOfBirthInputValue;
-    state.settings.minimalistVersion = savedState.minimalistVersion;
+    state.settings.cleanVersion = savedState.cleanVersion;
   },
 
   clear(): void {

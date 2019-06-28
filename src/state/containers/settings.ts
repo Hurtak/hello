@@ -20,7 +20,7 @@ export const settings = {
   clockShowSeconds: false,
   ageDateOfBirthTimestamp: initialDateOfBirth,
   ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
-  minimalistVersion: false,
+  cleanVersion: false,
   scheduledAppReset: false,
 
   //

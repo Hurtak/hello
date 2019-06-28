@@ -9,6 +9,10 @@
 ## TODO
 
 - settings design
+  - contact
+    - texts
+    - links design
+    - icons
   - background image
     - show offline indicator?
     - disable Bing when offline
@@ -23,9 +27,6 @@
     - age settings
   - minimalist version
     - animate height of texts
-  - contact
-    - links design
-    - icons
   - other
     - settings responsive
 - outline only for keyboard focus, not for click focus

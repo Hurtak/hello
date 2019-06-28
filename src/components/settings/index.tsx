@@ -20,7 +20,7 @@ type SettingsProps = {
 
 export const Settings = view((props: SettingsProps) => (
   <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
-    <SettingsWrapper settingsHidden={state.settings.minimalistVersion && !state.settings.opened}>
+    <SettingsWrapper settingsHidden={state.settings.cleanVersion && !state.settings.opened}>
       <ToggleButton onClick={state.settings.toggleSettingsOpened}>
         <ToggleButtonIconWrapper rotated={state.settings.opened}>
           <IconCog
@@ -42,7 +42,7 @@ export const Settings = view((props: SettingsProps) => (
 const SettingsContent = view((props: SettingsProps) => (
   <>
     <Heading>Hello</Heading>
-    {!state.settings.minimalistVersion && (
+    {!state.settings.cleanVersion && (
       <Text>
         Welcome to your new handsome new-tab page. Enjoy a nice background from Bing every day or
         take a look at some of the fine backgrounds that I preselected. There is also a bunch of
@@ -183,28 +183,28 @@ const SettingsContent = view((props: SettingsProps) => (
       )}
     </Section>
 
-    <Section title="Minimalist version">
-      {!state.settings.minimalistVersion && (
+    <Section title="Clean version">
+      {!state.settings.cleanVersion && (
         <Text>
-          Settings button will be hidden unless you hover the mouse over the area where the button
-          is. Also bunch of useless text, like this paragraph, will be hidden.
+          Settings button will be hidden unless you hover him. Also bunch of useless text, like this
+          paragraph, will be hidden. Nice.
         </Text>
       )}
       <Checkbox
-        checked={state.settings.minimalistVersion}
+        checked={state.settings.cleanVersion}
         onChange={state.settings.toggleMinimalistVersion}
       >
-        Hide stuff
+        No fluff
       </Checkbox>
     </Section>
 
-    {!state.settings.minimalistVersion && (
-      <Section title="Contact">
+    {!state.settings.cleanVersion && (
+      <Section title="Who did this?">
         <Text>
-          If you find any bugs or if you would like to tell me how much you like this swell plugin
-          you can do so on following channels. Also this plugin is open source, so you contribute on
-          GitHub!
+          I did! If you find any bugs or if you would like to tell me how much you like this swell
+          plugin you can do that. Also, this plugin is open-source, so you contribute on GitHub!
         </Text>
+
         <a href="https://github.com/hurtak/hello-friend">Github</a>
         <a href="https://twitter.com/PetrHurtak">Twitter</a>
         <a href="mailto:petr.hurtak@gmail.com">Mail</a>
