@@ -29,5 +29,5 @@ export const AgeText = styled.div({
   ...s.text({ family: "NUMBERS", selectable: false }),
 
   opacity: s.opacity.default,
-  fontSize: s.gridPx(4),
+  fontSize: s.gridFixed(4),
 });

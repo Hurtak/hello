@@ -35,24 +35,24 @@ export const Text = styled.div({
 
   // Precise positioning so font edges are perfectly aligned
   position: "relative",
-  top: s.sizePx(-2),
+  top: s.sizeFixed(-2),
 
-  fontSize: s.gridPx(13),
+  fontSize: s.gridFixed(13),
   color: s.colors.white,
 });
 
 export const ColonWrapper = styled.div({
   position: "relative",
-  top: s.sizePx(2),
+  top: s.sizeFixed(2),
   display: "flex",
   justifyContent: "space-between",
   flexDirection: "column",
-  padding: `${s.sizePx(30)} ${s.sizePx(8)}`,
+  padding: `${s.sizeFixed(30)} ${s.sizeFixed(8)}`,
 });
 
 export const ColonCircle = styled.div({
   borderRadius: "50%",
-  width: s.sizePx(16),
-  height: s.sizePx(16),
+  width: s.sizeFixed(16),
+  height: s.sizeFixed(16),
   backgroundColor: s.colors.white,
 });

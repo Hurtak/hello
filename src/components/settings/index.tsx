@@ -24,8 +24,8 @@ export const Settings = view((props: SettingsProps) => (
       <ToggleButton onClick={state.settings.toggleSettingsOpened}>
         <ToggleButtonIconWrapper rotated={state.settings.opened}>
           <IconCog
-            width={s.dimensions.settingsButtonSize}
-            height={s.dimensions.settingsButtonSize}
+            width={s.pxToGrid(s.dimensions.settingsButtonSize)}
+            height={s.pxToGrid(s.dimensions.settingsButtonSize)}
           />
         </ToggleButtonIconWrapper>
       </ToggleButton>

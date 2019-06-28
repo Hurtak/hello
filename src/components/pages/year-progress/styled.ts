@@ -13,10 +13,10 @@ export const ProgressBar = styled.div({
   position: "absolute",
   top: "80%",
   boxSizing: "border-box",
-  width: s.sizePx(400),
-  height: s.gridPx(8),
-  border: `${s.gridPx(0.5)} solid ${s.colors.whiteTransparentDefault}`,
-  borderRadius: s.sizePx(4),
+  width: s.sizeFixed(400),
+  height: s.gridFixed(8),
+  border: `${s.gridFixed(0.5)} solid ${s.colors.whiteTransparentDefault}`,
+  borderRadius: s.sizeFixed(4),
 });
 
 type ProgressBarProps = { progress: number };
@@ -41,6 +41,6 @@ export const Text = styled.div({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: s.gridPx(3),
+  fontSize: s.gridFixed(3),
   opacity: s.opacity.default,
 });

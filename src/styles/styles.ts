@@ -80,15 +80,18 @@ export const text = ({
  * Grid, sizing
  */
 
-const pxToGrid = (gridMultiple: number): number => gridMultiple * 8;
+const gridMultiple = 8;
+
+export const gridToPx = (grid: number): number => grid * gridMultiple;
+export const pxToGrid = (grid: number): number => grid / gridMultiple;
 
 // NOTE: Only use px we want to have fixed sizes that have the same dimensions
 // not affected by user font settings. Eg.: text in settings should be variable
 // but lets say clock size should the the same unrelated to user font size settings.
 export const size = (px: number): string => `${px / 16}rem`;
-export const sizePx = (px: number): string => `${px}px`;
-export const grid = (gridMultiple: number): string => size(pxToGrid(gridMultiple));
-export const gridPx = (gridMultiple: number): string => sizePx(pxToGrid(gridMultiple));
+export const sizeFixed = (px: number): string => `${px}px`;
+export const grid = (grid: number): string => size(gridToPx(grid));
+export const gridFixed = (grid: number): string => sizeFixed(gridToPx(grid));
 
 /*
  * Breakpoints
@@ -102,9 +105,9 @@ export const maxWidthBreakpoint = (px: number): string =>
  * Dimensions
  */
 
-const settingsButtonSize = pxToGrid(5);
-const settingsButtonPadding = pxToGrid(1);
-const settingsButtonSpacing = pxToGrid(1);
+const settingsButtonSize = gridToPx(5);
+const settingsButtonPadding = gridToPx(1);
+const settingsButtonSpacing = gridToPx(1);
 
 const settingsButtonSizeAndSpacing =
   settingsButtonSize + 2 * settingsButtonPadding + 2 * settingsButtonSpacing;
