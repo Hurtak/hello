@@ -31,8 +31,8 @@ export const ToggleButton = styled.button({
 
 export const ToggleButtonSpacer = styled.div({
   float: "right",
-  width: s.grid(8),
-  height: s.grid(8),
+  width: s.grid(7),
+  height: s.grid(7),
 });
 
 export const ToggleButtonIconWrapper = styled.div((props: { rotated?: boolean }) => ({

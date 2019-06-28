@@ -39,7 +39,7 @@ export const text = ({
   fontSize: (() => {
     switch (fontSize) {
       case "TEXT":
-        return size(14);
+        return size(15);
       case "HEADING_SMALL":
         return size(18);
       case "HEADING":

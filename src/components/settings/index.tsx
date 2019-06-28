@@ -41,12 +41,12 @@ export const Settings = view((props: SettingsProps) => (
 
 const SettingsContent = view((props: SettingsProps) => (
   <>
-    <Heading>Hello Friend</Heading>
+    <Heading>Hello</Heading>
     {!state.settings.minimalistVersion && (
       <Text>
-        This is your new cool new tab page. Enjoy a nice background from Bing every day or have a
-        look at some nice background that I preselected. There is also a bunch of useful things that
-        you can display in front of the background, like clock and stuff!
+        Welcome to your new handsome new-tab page. Enjoy a nice background from Bing every day or
+        take a look at some of the fine backgrounds that I preselected. There is also a bunch of
+        useful things that you can display in front of the background, like clock and stuff!
       </Text>
     )}
 
