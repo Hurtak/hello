@@ -19,6 +19,8 @@ export const ContactLink: React.FC<{
 };
 
 const Wrapper = styled.a({
+  ...s.itemsSpacing({ direction: "ROW", size: 2 }),
+
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
@@ -26,8 +28,10 @@ const Wrapper = styled.a({
 });
 
 const IconWrapper = styled.div({
-  display: "block",
-  marginRight: s.grid(1),
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  marginRight: s.grid(0.5),
 });
 
 const Text = styled.div({

@@ -4,9 +4,11 @@ import * as s from "../styles/styles";
 
 import { IconCog } from "./icons/cog";
 import { IconGithub } from "./icons/github";
+import { IconMail } from "./icons/mail";
+import { IconTwitter } from "./icons/twitter";
 import { IconWarning } from "./icons/warning";
 
-export type IconType = "COG" | "GITHUB" | "WARNING";
+export type IconType = "COG" | "GITHUB" | "MAIL" | "TWITTER" | "WARNING";
 
 function getIconComponent(type: IconType) {
   switch (type) {
@@ -14,6 +16,10 @@ function getIconComponent(type: IconType) {
       return IconCog;
     case "GITHUB":
       return IconGithub;
+    case "MAIL":
+      return IconMail;
+    case "TWITTER":
+      return IconTwitter;
     case "WARNING":
       return IconWarning;
   }

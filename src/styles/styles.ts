@@ -32,7 +32,7 @@ export const text = ({
   weight?: "DEFAULT" | "BOLD";
   family?: "DEFAULT" | "NUMBERS";
   selectable?: boolean;
-} = {}) => ({
+} = {}): React.CSSProperties => ({
   margin: 0,
   padding: 0,
 
@@ -62,7 +62,7 @@ export const text = ({
         return 700;
     }
   })(),
-  userSelect: ((): React.CSSProperties["userSelect"] => {
+  userSelect: (() => {
     switch (selectable) {
       case true:
         return "auto";
@@ -118,6 +118,25 @@ export const dimensions = {
   settingsButtonPadding: size(settingsButtonPadding),
   settingsButtonSpacing: size(settingsButtonSpacing),
   settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing),
+};
+
+/*
+ * Mixins
+ */
+export const itemsSpacing = ({
+  direction,
+  size,
+}: {
+  direction: "ROW" | "COLUMN";
+  size: number;
+}) => {
+  const marginDirection = direction === "ROW" ? "marginLeft" : "marginTop";
+
+  return {
+    "& + &": {
+      [marginDirection]: grid(size),
+    },
+  };
 };
 
 /*

@@ -50,7 +50,7 @@ export const bingImageUrl = (() => {
 
   const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
   bingImage.searchParams.set("format", "js"); // get JSON as response-type
-  bingImage.searchParams.set("idx", "0"); // TODO: what is this?
+  bingImage.searchParams.set("idx", "0"); // 0 - first image today, 1 - first yesterday, ...
   bingImage.searchParams.set("n", "1"); // number of images
 
   return bingImage.toString();

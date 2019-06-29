@@ -1,5 +1,12 @@
 # Hello Friend
 
+## Development
+
+- install `npm ci`
+- run in development mode `npm run start`
+- run tests, type check and prettier check `npm run validate`
+- build `npm run build`
+
 ## Random notes
 
 - Chrome CSP
@@ -9,10 +16,6 @@
 ## TODO
 
 - settings design
-  - contact
-    - texts
-    - links design
-    - icons
   - background image
     - show offline indicator?
     - disable Bing when offline
@@ -25,6 +28,7 @@
     - view settings
     - clock settings
     - age settings
+  - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?
   - other
     - settings responsive
 - outline only for keyboard focus, not for click focus
