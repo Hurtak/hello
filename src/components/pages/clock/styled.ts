@@ -11,7 +11,7 @@ export const Wrapper = styled.div({
 
 export const ClockBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
-  backgroundColor: s.colors.whiteTransparentDefault,
+  backgroundColor: s.colors.blackTransparent40,
 
   [s.maxWidthBreakpoint(900)]: {
     transform: "scale(0.9)",

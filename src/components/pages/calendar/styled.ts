@@ -13,7 +13,7 @@ export const MonthsWrapper = styled.ul({
 export const Month = styled.li({
   display: "block",
   padding: s.grid(2),
-  backgroundColor: s.colors.whiteTransparentDefault,
+  backgroundColor: s.colors.blackTransparent40,
 });
 
 export const MonthName = styled.h2({

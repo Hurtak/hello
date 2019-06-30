@@ -18,7 +18,7 @@ export const AgePosition = styled.div({
 
 export const AgeBox = styled.div({
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
-  backgroundColor: s.colors.whiteTransparentDefault,
+  backgroundColor: s.colors.blackTransparent40,
 
   [s.maxWidthBreakpoint(600)]: {
     transform: "scale(0.8)",

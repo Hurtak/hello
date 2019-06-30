@@ -1,4 +1,21 @@
 /*
+ * Grid, sizing
+ */
+
+const gridMultiple = 8;
+
+export const gridToPx = (grid: number): number => grid * gridMultiple;
+export const pxToGrid = (grid: number): number => grid / gridMultiple;
+
+// NOTE: Only use px we want to have fixed sizes that have the same dimensions
+// not affected by user font settings. Eg.: text in settings should be variable
+// but lets say clock size should the the same unrelated to user font size settings.
+export const size = (px: number): string => `${px / 16}rem`;
+export const sizeFixed = (px: number): string => `${px}px`;
+export const grid = (grid: number): string => size(gridToPx(grid));
+export const gridFixed = (grid: number): string => sizeFixed(gridToPx(grid));
+
+/*
  * Colors
  */
 
@@ -12,10 +29,20 @@ export const colors = {
 
   orange: "orange",
 
-  whiteTransparentALot: "rgba(0, 0, 0, 0.1)", // TODO: rename
-  whiteTransparentDimmed: "rgba(0, 0, 0, 0.2)", // TODO: rename
-  whiteTransparentDefault: "rgba(0, 0, 0, 0.4)", // TODO: rename
-  whiteTransparentBright: "rgba(255, 255, 255, 0.7)",
+  blue: "#488af5",
+
+  blackTransparent10: "rgba(0, 0, 0, 0.1)",
+  blackTransparent20: "rgba(0, 0, 0, 0.2)",
+  blackTransparent30: "rgba(0, 0, 0, 0.3)",
+  blackTransparent40: "rgba(0, 0, 0, 0.4)",
+
+  whiteTransparent70: "rgba(255, 255, 255, 0.7)",
+  whiteTransparent20: "rgba(255, 255, 255, 0.2)",
+};
+
+export const shadows = {
+  formFieldInset: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent20} inset`,
+  formField: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent30}`,
 };
 
 /*
@@ -77,23 +104,6 @@ export const text = ({
 });
 
 /*
- * Grid, sizing
- */
-
-const gridMultiple = 8;
-
-export const gridToPx = (grid: number): number => grid * gridMultiple;
-export const pxToGrid = (grid: number): number => grid / gridMultiple;
-
-// NOTE: Only use px we want to have fixed sizes that have the same dimensions
-// not affected by user font settings. Eg.: text in settings should be variable
-// but lets say clock size should the the same unrelated to user font size settings.
-export const size = (px: number): string => `${px / 16}rem`;
-export const sizeFixed = (px: number): string => `${px}px`;
-export const grid = (grid: number): string => size(gridToPx(grid));
-export const gridFixed = (grid: number): string => sizeFixed(gridToPx(grid));
-
-/*
  * Breakpoints
  */
 
@@ -139,6 +149,8 @@ export const itemsSpacing = ({
   };
 };
 
+export const focusVisible = ".focus-visible:focus";
+
 /*
  * Other shared styles
  */
@@ -150,4 +162,5 @@ export const animations = {
 
 export const opacity = {
   default: 0.7,
+  opacity50: 0.5,
 };

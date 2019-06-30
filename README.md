@@ -16,6 +16,9 @@
 ## TODO
 
 - settings design
+  - useful stuff box
+    - clock settings
+    - age settings
   - background image
     - show offline indicator?
     - disable Bing when offline
@@ -24,10 +27,6 @@
       - buttons design
       - texts layout and design
       - link design
-  - useful stuff box
-    - view settings
-    - clock settings
-    - age settings
   - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?
   - other
     - settings responsive
@@ -67,9 +66,12 @@
   - @types/css-font-loading-module
     - once window.FontFace becomes standardized, remove
   - resize-observer-polyfill
-    - remove, once supported
+    - remove polyfill, once supported
   - wicg-inert
-    - remove, once supported
+    - remove polyfill, once supported
+  - focus-visible
+    - remove polyfill, once supported
+    - remove `.focus-visible` class and use directly `:focus-visible`
 - hotkeys to toggle calendar/time
 - background image switching animation
 - check STRV checklist

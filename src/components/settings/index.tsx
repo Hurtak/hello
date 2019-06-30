@@ -169,17 +169,21 @@ const SettingsContent = view((props: SettingsProps) => (
       >
         No thanks
       </Radio>
+    </Section>
 
-      {state.settings.selectedView === "CLOCK" && (
+    {state.settings.selectedView === "CLOCK" && (
+      <Section title="Clock settings">
         <Checkbox
           checked={state.settings.clockShowSeconds}
           onChange={state.settings.toggleClockShowSeconds}
         >
           Show seconds
         </Checkbox>
-      )}
+      </Section>
+    )}
 
-      {state.settings.selectedView === "AGE" && (
+    {state.settings.selectedView === "AGE" && (
+      <Section title="Age settings">
         <label>
           Your date of birth
           <input
@@ -190,8 +194,8 @@ const SettingsContent = view((props: SettingsProps) => (
             onChange={e => state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e))}
           />
         </label>
-      )}
-    </Section>
+      </Section>
+    )}
 
     <Section title="Clean version">
       {!state.settings.cleanVersion && (

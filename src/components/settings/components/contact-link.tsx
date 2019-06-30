@@ -42,5 +42,5 @@ const Text = styled.div({
 
   borderBottomWidth: s.size(1),
   borderBottomStyle: "solid",
-  borderBottomColor: s.colors.whiteTransparentBright,
+  borderBottomColor: s.colors.whiteTransparent70,
 });

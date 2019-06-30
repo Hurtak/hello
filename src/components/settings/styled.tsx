@@ -6,7 +6,7 @@ export const SettingsWrapper = styled.section((props: { settingsHidden?: boolean
   position: "relative",
   padding: s.grid(2),
   overflow: "hidden",
-  backgroundColor: s.colors.whiteTransparentDefault,
+  backgroundColor: s.colors.blackTransparent40,
 
   ...(props.settingsHidden && {
     opacity: 0,

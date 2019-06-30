@@ -9,10 +9,10 @@ export const GenericFormField: React.FC<{
   type: "checkbox" | "radio";
   onChange: () => void;
   children: string;
-}> = ({ checked, disabled = false, name, type, onChange, children }) => {
+}> = ({ type, name, checked, disabled = false, onChange, children }) => {
   return (
     <Label>
-      <Input type={type} name={name} checked={checked} onChange={onChange} />
+      <Input type={type} name={name} checked={checked} disabled={disabled} onChange={onChange} />
       <Text>{children}</Text>
     </Label>
   );
