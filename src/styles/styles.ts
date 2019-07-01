@@ -162,5 +162,4 @@ export const animations = {
 
 export const opacity = {
   default: 0.7,
-  opacity50: 0.5,
 };

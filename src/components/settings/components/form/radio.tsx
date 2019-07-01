@@ -80,34 +80,31 @@ const Checkbox: React.FC<{
   hovered: boolean;
 }> = ({ checked, hovered }) => {
   const dotVisible = checked || hovered;
-  const dotTransparent = dotVisible && hovered && !checked;
 
   return (
-    <CheckboxWrapper>{dotVisible && <CheckboxDot transparent={dotTransparent} />}</CheckboxWrapper>
+    <CheckboxWrapper blue={checked}>
+      {dotVisible && <CheckboxDot blue={hovered && !checked} />}
+    </CheckboxWrapper>
   );
 };
 
-const CheckboxWrapper = styled.div({
+const CheckboxWrapper = styled.div((props: { blue: boolean }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   width: s.grid(2),
   height: s.grid(2),
   borderRadius: "50%",
-  background: s.colors.blue,
+  background: props.blue ? s.colors.blue : s.colors.white,
   boxShadow: s.shadows.formFieldInset,
-});
+}));
 
-const CheckboxDot = styled.div((props: { transparent: boolean }) => ({
+const CheckboxDot = styled.div((props: { blue: boolean }) => ({
   width: s.grid(0.75),
   height: s.grid(0.75),
   borderRadius: "50%",
-  background: s.colors.white,
+  background: props.blue ? s.colors.blue : s.colors.white,
   boxShadow: s.shadows.formField,
-
-  ...(props.transparent && {
-    opacity: s.opacity.opacity50,
-  }),
 }));
 
 const Text = styled.span({
