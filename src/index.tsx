@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./components/app";
+import { App } from "./ui/app";
 import { LogPerformance, logTimeElapsedSinceStart } from "./utils/logging";
 
 logTimeElapsedSinceStart("index.tsx initialized");
