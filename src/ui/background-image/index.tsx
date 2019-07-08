@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Wrapper, Image } from "./components/styled";
 import { logWarning } from "../../utils/logging";
+import { Wrapper, Image } from "./components/styled";
 
 type BackgroundUrl = string | null;
 

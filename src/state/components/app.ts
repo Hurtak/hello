@@ -1,6 +1,6 @@
-import { state } from "..";
 import { LogPerformance } from "../../utils/logging";
 import { loadAndInjectFonts } from "../../styles";
+import { state } from "..";
 
 export const app = {
   //

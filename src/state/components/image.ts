@@ -1,7 +1,7 @@
-import { state } from "..";
-import { images, Image } from "../../images";
-import { getRandomInt } from "../../utils/random";
 import { getBingImageOfTheDay, HttpData, BingData } from "../../utils/api";
+import { getRandomInt } from "../../utils/random";
+import { images, Image } from "../../images";
+import { state } from "..";
 
 type ImageSource = "LOCAL" | "BING";
 

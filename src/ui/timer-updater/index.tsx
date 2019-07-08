@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getNextTick } from "./components/utils";
 import { config } from "../../config";
+import { getNextTick } from "./components/utils";
 
 export type Timestamp = number;
 

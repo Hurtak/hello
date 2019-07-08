@@ -1,6 +1,11 @@
 import React from "react";
 import { view } from "react-easy-state";
 import OutsideClickHandler from "react-outside-click-handler";
+import { Icon } from "../../icons";
+import { timestampToDateInputValue } from "../../utils/time";
+import * as s from "../../styles";
+import { state } from "../../state";
+import { eventToAgeOfBirthValues } from "./components/utils";
 import {
   SettingsWrapper,
   ToggleButton,
@@ -15,12 +20,6 @@ import {
   ContactLinks,
   ContactLink,
 } from "./components/styled";
-import { eventToAgeOfBirthValues } from "./components/utils";
-import * as s from "../../styles";
-import { state } from "../../state";
-import { timestampToDateInputValue } from "../../utils/time";
-import { Icon } from "../../icons";
-
 type SettingsProps = {
   isDev: boolean;
 };

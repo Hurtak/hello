@@ -16,7 +16,6 @@
 
 ## TODO
 
-- imports further to closest
 - jest describe/it/test
 - is in array helpers
 - .each tests

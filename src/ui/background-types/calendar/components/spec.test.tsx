@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { getDaysInMonth, range } from "./utils";
-import { Calendar } from "..";
 import "jest-styled-components";
+import { Calendar } from "..";
+import { getDaysInMonth, range } from "./utils";
 
 it("getDaysInMonth", () => {
   expect(getDaysInMonth(2017, 1)).toBe(31);

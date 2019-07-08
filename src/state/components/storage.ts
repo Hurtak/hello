@@ -1,6 +1,6 @@
-import { state, State } from "..";
 import { config } from "../../config";
 import { logWarning } from "../../utils/logging";
+import { state, State } from "..";
 
 type SavedState = {
   version: number;

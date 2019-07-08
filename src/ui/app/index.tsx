@@ -6,6 +6,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { view } from "react-easy-state";
 import { HotKeys } from "react-hotkeys";
 
+import { state } from "../../state";
+import * as time from "../../utils/time";
+import { logTimeElapsedSinceStart } from "../../utils/logging";
+import { GlobalStyles } from "../../styles";
+import { config } from "../../config";
+import { Clock } from "../background-types/clock";
+import { Age } from "../background-types/age";
+import { YearProgress } from "../background-types/year-progress";
+import { Settings } from "../settings";
+import { BackgroundImage } from "../background-image";
+import { TimerUpdater } from "../timer-updater";
 import {
   Layout,
   BackgroundWrapper,
@@ -13,17 +24,6 @@ import {
   AppSettingsWrapper,
   AppSettings,
 } from "./components/styled";
-import { Settings } from "../settings";
-import { BackgroundImage } from "../background-image";
-import { TimerUpdater } from "../timer-updater";
-import { Clock } from "../background-types/clock";
-import { Age } from "../background-types/age";
-import { YearProgress } from "../background-types/year-progress";
-import { state } from "../../state";
-import * as time from "../../utils/time";
-import { logTimeElapsedSinceStart } from "../../utils/logging";
-import { GlobalStyles } from "../../styles";
-import { config } from "../../config";
 
 export const App = view(() => {
   useEffect(() => {
