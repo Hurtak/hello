@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/css-font-loading-module": "0.0.2",
     "@types/jest": "24.0.15",
-    "@types/react": "16.8.22",
+    "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "@types/react-outside-click-handler": "1.2.0",
     "@types/react-test-renderer": "16.8.2",
@@ -34,7 +34,7 @@
     "types": "tsc --pretty --noEmit",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
-    "validate": "npm run types && npm run prettier-check && CI=true npm run test",
+    "validate": "npm run types && npm run prettier-check && npm run test -- --watchAll=false",
     "zip": "cd build && zip -r -X \"../build.zip\" *"
   },
   "eslintConfig": {
