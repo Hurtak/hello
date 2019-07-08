@@ -1,6 +1,6 @@
 import { uuid } from "..";
 
-it("uuid", () => {
+test("uuid", () => {
   const ids = [];
   for (let i = 1; i <= 10; i++) {
     ids.push(uuid());

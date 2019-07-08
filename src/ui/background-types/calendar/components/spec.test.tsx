@@ -4,7 +4,7 @@ import "jest-styled-components";
 import { Calendar } from "..";
 import { getDaysInMonth, range } from "./utils";
 
-it("getDaysInMonth", () => {
+test("getDaysInMonth", () => {
   expect(getDaysInMonth(2017, 1)).toBe(31);
 
   expect(getDaysInMonth(2012, 2)).toBe(29); // leap year
@@ -23,28 +23,28 @@ it("getDaysInMonth", () => {
   expect(getDaysInMonth(2017, 12)).toBe(31);
 });
 
-it("range", () => {
+test("range", () => {
   expect(range(0, 0)).toEqual([0]);
   expect(range(1, 3)).toEqual([1, 2, 3]);
   expect(range(-1, 1)).toEqual([-1, 0, 1]);
 });
 
-it.skip("Snapshot start of the year", () => {
+test.skip("Snapshot start of the year", () => {
   const element = <Calendar time={new Date(2017, 0, 1).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
-it.skip("Snapshot end of the year", () => {
+test.skip("Snapshot end of the year", () => {
   const element = <Calendar time={new Date(2017, 11, 31, 23, 59, 59, 999).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
-it.skip("Snapshot leap year start", () => {
+test.skip("Snapshot leap year start", () => {
   const element = <Calendar time={new Date(2012, 0, 1).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });
 
-it.skip("Snapshot leap year end", () => {
+test.skip("Snapshot leap year end", () => {
   const element = <Calendar time={new Date(2012, 11, 31, 23, 59, 59, 999).getTime()} />;
   expect(renderer.create(element).toJSON()).toMatchSnapshot();
 });

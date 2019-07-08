@@ -1,6 +1,6 @@
 import { images } from "..";
 
-it("all image objects have image", () => {
+test("all image objects have image", () => {
   for (let image of images) {
     expect("url" in image).toBeTruthy();
     expect(typeof image.url === "string").toBeTruthy();
@@ -8,7 +8,7 @@ it("all image objects have image", () => {
   }
 });
 
-it("all image urls are unique", () => {
+test("all image urls are unique", () => {
   const seenUrls = new Set();
   for (let image of images) {
     expect(seenUrls.has(image.url)).toBeFalsy();
@@ -16,7 +16,7 @@ it("all image urls are unique", () => {
   }
 });
 
-it("image urls have certain structure", () => {
+test("image urls have certain structure", () => {
   for (let image of images) {
     // url is already checked in different test
     expect("name" in image).toBeTruthy();

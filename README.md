@@ -16,7 +16,6 @@
 
 ## TODO
 
-- jest describe/it/test
 - is in array helpers
 - .each tests
 - eventToAgeOfBirthValues tests

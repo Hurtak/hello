@@ -1,7 +1,7 @@
 import { day } from "../../../utils/time";
 import { getNextTick } from "./utils";
 
-it("getNextTick", () => {
+test("getNextTick", () => {
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 0), 1000)).toBe(1000);
 
   expect(getNextTick(Date.UTC(2015, 0, 1, 0, 0, 0, 1), 1000)).toBe(999);

@@ -1,6 +1,6 @@
 import { getYearProgress } from "./utils";
 
-it("getYearProgress", () => {
+test("getYearProgress", () => {
   expect(getYearProgress(new Date(2015, 0, 1, 0, 0, 0, 0).getTime())).toBe(0);
 
   const yearLength = 365 * 24 * 60 * 60 * 1000;
