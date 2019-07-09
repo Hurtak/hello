@@ -7,8 +7,9 @@ import { IconGithub } from "./components/github";
 import { IconMail } from "./components/mail";
 import { IconTwitter } from "./components/twitter";
 import { IconWarning } from "./components/warning";
+import { IconCheck } from "./components/check";
 
-export type IconType = "COG" | "GITHUB" | "MAIL" | "TWITTER" | "WARNING";
+export type IconType = "COG" | "GITHUB" | "MAIL" | "TWITTER" | "WARNING" | "CHECK";
 
 function getIconComponent(type: IconType) {
   switch (type) {
@@ -22,6 +23,8 @@ function getIconComponent(type: IconType) {
       return IconTwitter;
     case "WARNING":
       return IconWarning;
+    case "CHECK":
+      return IconCheck;
   }
 }
 
@@ -49,7 +52,7 @@ export const Icon: React.FC<IconProps> = ({
 
 const Wrapper = styled.div(
   ({ width, height, color }: { width: number; height: number; color: string }) => ({
-    display: "inline-block",
+    display: "flex",
     width: s.grid(width),
     height: s.grid(height),
 

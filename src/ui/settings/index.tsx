@@ -15,7 +15,7 @@ import {
   Text,
   Warning,
   Radio,
-  Checkbox,
+  CheckBox,
   Section,
   ContactLinks,
   ContactLink,
@@ -170,12 +170,12 @@ const SettingsContent = view((props: SettingsProps) => (
 
     {state.settings.selectedView === "CLOCK" && (
       <Section title="Clock settings">
-        <Checkbox
+        <CheckBox
           checked={state.settings.clockShowSeconds}
           onChange={state.settings.toggleClockShowSeconds}
         >
           Show seconds
-        </Checkbox>
+        </CheckBox>
       </Section>
     )}
 
@@ -203,9 +203,9 @@ const SettingsContent = view((props: SettingsProps) => (
           paragraph, will be hidden. Nice.
         </Text>
       )}
-      <Checkbox checked={state.settings.cleanVersion} onChange={state.settings.toggleCleanVersion}>
+      <CheckBox checked={state.settings.cleanVersion} onChange={state.settings.toggleCleanVersion}>
         No fluff
-      </Checkbox>
+      </CheckBox>
     </Section>
 
     {!state.settings.cleanVersion && (

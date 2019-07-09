@@ -1,98 +1,59 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
+import { Icon } from "../../../../../icons";
+import { formBoxStyles, formLabelStyles, Wrapper, Input, Text } from "./form-styles";
 
-export const Checkbox: React.FC<{
+export const CheckBox: React.FC<{
   checked: boolean;
   disabled?: boolean;
   onChange: () => void;
   children: string;
 }> = ({ checked, disabled = false, onChange, children }) => {
-  const [inputId] = useState(uuid());
-  const [labelHovered, setLabelHovered] = useState(false);
+  const inputIdRef = useRef(uuid());
 
   return (
     <Wrapper>
       <Input
-        id={inputId}
+        id={inputIdRef.current}
         checked={checked}
         disabled={disabled}
         onChange={onChange}
         type="checkbox"
       />
-      <Label
-        htmlFor={inputId}
-        onMouseEnter={() => setLabelHovered(true)}
-        onMouseLeave={() => setLabelHovered(false)}
-        checked={checked}
-      >
-        <CheckBoxComponent checked={checked} hovered={labelHovered}></CheckBoxComponent>
+      <Label htmlFor={inputIdRef.current}>
+        <CheckboxComponent>
+          <CheckboxCheckWrapper>
+            <Icon type="CHECK" width={1.25} height={1.25} color={s.colors.white} />
+          </CheckboxCheckWrapper>
+        </CheckboxComponent>
         <Text>{children}</Text>
       </Label>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div({
-  display: "flex",
-  flexDirection: "row",
-});
+const Label = styled.label(() => ({
+  ...formLabelStyles,
 
-const Input = styled.input({
-  ...s.visuallyHideInputFieldWhileStillInteractive,
-});
+  cursor: "pointer",
 
-const Label = styled.label((props: { checked: boolean }) => ({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  width: "100%",
-  padding: `${s.grid(0.25)} 0`,
-
+  // TODO: use onFocusVisible React event once it becomes standardized
   [`${Input}${s.focusVisible} + &`]: {
     backgroundColor: s.colors.whiteTransparent20,
   },
-
-  ...(!props.checked && {
-    cursor: "pointer",
-  }),
 }));
 
-const CheckBoxComponent: React.FC<{
-  checked: boolean;
-  hovered: boolean;
-}> = ({ checked, hovered }) => {
-  const dotVisible = checked || hovered;
+const CheckboxComponent = styled.div({
+  ...formBoxStyles(Input, Label),
 
-  return (
-    <CheckboxWrapper blue={checked}>
-      {dotVisible && <CheckboxDot blue={hovered && !checked} />}
-    </CheckboxWrapper>
-  );
-};
+  borderRadius: s.grid(0.25),
+});
 
-const CheckboxWrapper = styled.div((props: { blue: boolean }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: s.grid(2),
-  height: s.grid(2),
-  borderRadius: "50%",
-  background: props.blue ? s.colors.blue : s.colors.white,
-  boxShadow: s.shadows.formFieldInset,
-}));
-
-const CheckboxDot = styled.div((props: { blue: boolean }) => ({
-  width: s.grid(0.75),
-  height: s.grid(0.75),
-  borderRadius: "50%",
-  background: props.blue ? s.colors.blue : s.colors.white,
-  boxShadow: s.shadows.formField,
-}));
-
-const Text = styled.span({
-  ...s.text(),
-
-  marginLeft: s.grid(1.25),
+const CheckboxCheckWrapper = styled.div({
+  visibility: "hidden",
+  [`${Input}:checked + ${Label} &`]: {
+    visibility: "visible",
+  },
 });
