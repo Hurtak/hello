@@ -10,6 +10,8 @@ export function eventToAgeOfBirthValues(
     if (!valueValid) return null;
 
     const timestamp = new Date(inputValue).getTime();
+    if (Number.isNaN(timestamp)) return null;
+
     return timestamp;
   })();
 
