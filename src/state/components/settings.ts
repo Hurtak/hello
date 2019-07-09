@@ -15,7 +15,7 @@ export const settings = {
   // State
   //
 
-  opened: true,
+  opened: false,
   selectedView: "CLOCK" as View,
   clockShowSeconds: false,
   ageDateOfBirthTimestamp: initialDateOfBirth,
