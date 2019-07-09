@@ -17,8 +17,6 @@
 ## TODO
 
 - is in array helpers
-- .each tests
-- eventToAgeOfBirthValues tests
 - settings design
   - useful stuff box
     - clock settings
