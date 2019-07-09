@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
@@ -10,26 +10,22 @@ export const Radio: React.FC<{
   onChange: () => void;
   children: string;
 }> = ({ name, checked, disabled = false, onChange, children }) => {
-  const inputId = useRef(uuid());
-  const [labelHovered, setLabelHovered] = useState(false);
+  const inputIdRef = useRef(uuid());
 
   return (
     <Wrapper>
       <Input
-        id={inputId.current}
+        id={inputIdRef.current}
         checked={checked}
         disabled={disabled}
         name={name}
         onChange={onChange}
         type="radio"
       />
-      <Label
-        htmlFor={inputId.current}
-        onMouseEnter={() => setLabelHovered(true)}
-        onMouseLeave={() => setLabelHovered(false)}
-        checked={checked}
-      >
-        <Checkbox checked={checked} hovered={labelHovered}></Checkbox>
+      <Label htmlFor={inputIdRef.current} checked={checked}>
+        <RadioComponent>
+          <RadioDot />
+        </RadioComponent>
         <Text>{children}</Text>
       </Label>
     </Wrapper>
@@ -52,6 +48,7 @@ const Label = styled.label((props: { checked: boolean }) => ({
   width: "100%",
   padding: `${s.grid(0.25)} 0`,
 
+  // TODO: use onFocusVisible React event once it becomes standardized
   [`${Input}${s.focusVisible} + &`]: {
     backgroundColor: s.colors.whiteTransparent20,
   },
@@ -61,37 +58,39 @@ const Label = styled.label((props: { checked: boolean }) => ({
   }),
 }));
 
-const Checkbox: React.FC<{
-  checked: boolean;
-  hovered: boolean;
-}> = ({ checked, hovered }) => {
-  const dotVisible = checked || hovered;
-
-  return (
-    <CheckboxWrapper blue={checked}>
-      {dotVisible && <CheckboxDot blue={hovered && !checked} />}
-    </CheckboxWrapper>
-  );
-};
-
-const CheckboxWrapper = styled.div((props: { blue: boolean }) => ({
+const RadioComponent = styled.div({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   width: s.grid(2),
   height: s.grid(2),
   borderRadius: "50%",
-  background: props.blue ? s.colors.blue : s.colors.white,
   boxShadow: s.shadows.formFieldInset,
-}));
 
-const CheckboxDot = styled.div((props: { blue: boolean }) => ({
+  backgroundColor: s.colors.white,
+  [`${Input}:checked + ${Label} &`]: {
+    backgroundColor: s.colors.blue,
+  },
+  [`${Input}:checked:active + ${Label} &`]: {
+    backgroundColor: s.colors.blueDark,
+  },
+  [`${Input}:active + ${Label} &`]: {
+    backgroundColor: s.colors.grayMain,
+  },
+});
+
+const RadioDot = styled.div({
   width: s.grid(0.75),
   height: s.grid(0.75),
   borderRadius: "50%",
-  background: props.blue ? s.colors.blue : s.colors.white,
   boxShadow: s.shadows.formField,
-}));
+
+  visibility: "hidden",
+  [`${Input}:checked + ${Label} &`]: {
+    visibility: "visible",
+    backgroundColor: s.colors.white,
+  },
+});
 
 const Text = styled.span({
   ...s.text(),

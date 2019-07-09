@@ -24,12 +24,13 @@ export const colors = {
   white: "white",
   black: "black",
 
-  grayMain: "gray",
-  grayChrome: "#f2f1f0",
+  grayMain: "#dedede",
+  grayChromeBackground: "#f2f1f0",
 
   orange: "orange",
 
   blue: "#488af5",
+  blueDark: "#1d6ff4",
 
   blackTransparent10: "rgba(0, 0, 0, 0.1)",
   blackTransparent20: "rgba(0, 0, 0, 0.2)",

@@ -14,7 +14,7 @@ const GlobalStylesComponent = createGlobalStyle`
   ${css({
     body: {
       margin: 0,
-      backgroundColor: s.colors.grayChrome,
+      backgroundColor: s.colors.grayChromeBackground,
       position: "relative", // https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll
     },
   })}

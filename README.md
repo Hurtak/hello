@@ -16,11 +16,12 @@
 
 ## TODO
 
-- is in array helpers
 - settings design
   - useful stuff box
     - clock settings
+      - checkbox
     - age settings
+      - age my man
   - background image
     - show offline indicator?
     - disable Bing when offline
