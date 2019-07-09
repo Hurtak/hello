@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import "jest-styled-components";
 import { Calendar } from "..";
-import { getDaysInMonth, range } from "./utils";
+import { getDaysInMonth } from "./utils";
 
 test("getDaysInMonth", () => {
   expect(getDaysInMonth(2017, 1)).toBe(31);
@@ -21,12 +21,6 @@ test("getDaysInMonth", () => {
   expect(getDaysInMonth(2017, 10)).toBe(31);
   expect(getDaysInMonth(2017, 11)).toBe(30);
   expect(getDaysInMonth(2017, 12)).toBe(31);
-});
-
-test("range", () => {
-  expect(range(0, 0)).toEqual([0]);
-  expect(range(1, 3)).toEqual([1, 2, 3]);
-  expect(range(-1, 1)).toEqual([-1, 0, 1]);
 });
 
 test.skip("Snapshot start of the year", () => {

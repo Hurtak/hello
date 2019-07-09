@@ -1,6 +1,7 @@
 import React from "react";
+import { range } from "../../../utils/array";
 import { Timestamp } from "../../timer-updater";
-import { range, getDaysInMonth } from "./components/utils";
+import { getDaysInMonth } from "./components/utils";
 import { MonthsWrapper, Month, MonthName, DaysWrapper, Day } from "./components/styled";
 
 const monthNames = [

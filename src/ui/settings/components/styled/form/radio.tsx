@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components/macro";
-import { uuid } from "../../../../../utils/uuid";
+import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
 
 export const Radio: React.FC<{
