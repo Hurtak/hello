@@ -20,6 +20,7 @@ import {
   ContactLinks,
   ContactLink,
 } from "./components/styled";
+
 type SettingsProps = {
   isDev: boolean;
 };
