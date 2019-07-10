@@ -40,8 +40,14 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    "last 4 chrome versions",
-    "last 4 firefox versions"
-  ]
+  "browserslist": {
+    "production": [
+      "last 4 chrome versions"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
