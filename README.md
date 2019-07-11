@@ -49,6 +49,7 @@
 
 ## Later TODOS
 
+- support for firefox?
 - animations
   - use react-spring
   - animate view transitions
