@@ -28,7 +28,6 @@ import {
 export const App = view(() => {
   useEffect(() => {
     state.app.initialize();
-    return () => state.app.destroy();
   }, []);
 
   useEffect(() => {
@@ -36,6 +35,10 @@ export const App = view(() => {
       logTimeElapsedSinceStart("Full App Render", true);
     }
   });
+
+  if (!state.app.initialized) {
+    return null;
+  }
 
   return (
     <HotKeys
@@ -48,8 +51,7 @@ export const App = view(() => {
     >
       <Layout>
         <GlobalStyles />
-
-        {state.app.initialized && <AppInner />}
+        <AppInner />
       </Layout>
     </HotKeys>
   );

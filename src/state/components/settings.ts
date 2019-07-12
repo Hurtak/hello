@@ -21,7 +21,6 @@ export const settings = {
   ageDateOfBirthTimestamp: initialDateOfBirth,
   ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
   cleanVersion: false,
-  scheduledAppReset: false,
 
   //
   // Actions
@@ -58,11 +57,5 @@ export const settings = {
 
   toggleCleanVersion(): void {
     state.settings.cleanVersion = !state.settings.cleanVersion;
-  },
-
-  resetAppState(): void {
-    state.settings.scheduledAppReset = true;
-    state.storage.clear();
-    window.location.reload();
   },
 };

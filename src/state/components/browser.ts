@@ -11,20 +11,13 @@ export const browser = {
   // Init/Destroy
   //
 
-  initialize() {
-    window.addEventListener("online", online);
-    window.addEventListener("offline", offline);
-  },
+  initialize(): void {
+    window.addEventListener("online", () => {
+      state.browser.online = true;
+    });
 
-  destroy() {
-    window.addEventListener("online", online);
-    window.addEventListener("offline", offline);
+    window.addEventListener("offline", () => {
+      state.browser.online = false;
+    });
   },
 };
-
-function online() {
-  state.browser.online = true;
-}
-function offline() {
-  state.browser.online = false;
-}

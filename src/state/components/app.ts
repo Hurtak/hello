@@ -17,9 +17,7 @@ export const app = {
     const performanceAppStateInit = new LogPerformance("App state init");
     state.browser.initialize();
     state.storage.initialize();
-    state.storage.retrieveAndUpdateState();
-    state.image.setImageLocalRandom();
-    state.image.fetchBingImage();
+    state.image.initialize();
     performanceAppStateInit.measure();
 
     const performanceFonts = new LogPerformance("Fonts");
@@ -27,10 +25,5 @@ export const app = {
     performanceFonts.measure();
 
     state.app.initialized = true;
-  },
-
-  destroy() {
-    state.browser.destroy();
-    state.storage.initialize();
   },
 };

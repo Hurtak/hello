@@ -75,6 +75,11 @@ export const image = {
   // Actions
   //
 
+  initialize(): void {
+    state.image.setImageLocalRandom();
+    state.image.fetchBingImage();
+  },
+
   async fetchBingImage(): Promise<void> {
     state.image.imageBing = { type: "FETCHING" };
     const imageData = await getBingImageOfTheDay();

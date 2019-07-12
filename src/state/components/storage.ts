@@ -20,6 +20,16 @@ export const storage = {
   // Actions
   //
 
+  initialize(): void {
+    window.addEventListener("beforeunload", () => {
+      if (!state.debug.scheduledAppReset) {
+        state.storage.save();
+      }
+      state.debug.scheduledAppReset = false;
+    });
+    state.storage.retrieveAndUpdateState();
+  },
+
   save(): void {
     const savedState: SavedState = {
       // Version of local storage SavedState object, not used at the moment but might come in handy if we change
@@ -91,23 +101,4 @@ export const storage = {
       logWarning("Error clearing app state from local storage", err);
     }
   },
-
-  //
-  // Init/Destroy
-  //
-
-  initialize() {
-    window.addEventListener("beforeunload", beforeUnload);
-  },
-
-  destroy() {
-    window.removeEventListener("beforeunload", beforeUnload);
-  },
 };
-
-function beforeUnload() {
-  if (!state.settings.scheduledAppReset) {
-    state.storage.save();
-  }
-  state.settings.scheduledAppReset = false;
-}

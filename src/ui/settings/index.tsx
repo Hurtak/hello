@@ -233,7 +233,14 @@ const SettingsContent = view((props: SettingsProps) => (
     {props.isDev && (
       <Section title="Dev menu">
         <Text>This menu is only visible in development mode</Text>
-        <button onClick={state.settings.resetAppState}>Reset app state</button>
+        <button onClick={state.debug.resetAppState}>Reset app state</button>
+
+        <CheckBox
+          checked={state.debug.rememberSettingsOpened}
+          onChange={state.debug.toggleRememberSettingsOpened}
+        >
+          Remember settings opened state
+        </CheckBox>
       </Section>
     )}
   </>
