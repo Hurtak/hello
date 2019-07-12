@@ -21,11 +21,12 @@ export const gridFixed = (grid: number): string => sizeFixed(gridToPx(grid));
 
 // TODO: Delete unused variables.
 export const colors = {
+  pageBackground: "#f2f1f0", // Keep in sync with index.html body background style
+
   white: "white",
   black: "black",
 
   grayMain: "#dedede",
-  grayChromeBackground: "#f2f1f0",
 
   orange: "orange",
 

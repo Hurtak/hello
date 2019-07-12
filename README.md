@@ -16,7 +16,6 @@
 
 ## TODO
 
-- css background diretly in html or whatever
 - settings design
   - useful stuff box
     - age settings
