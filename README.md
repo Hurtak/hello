@@ -16,7 +16,6 @@
 
 ## TODO
 
-- debug stuff
 - css background diretly in html or whatever
 - settings design
   - useful stuff box

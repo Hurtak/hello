@@ -5,14 +5,23 @@ import { state, State } from "..";
 type SavedState = {
   version: number;
 
-  imageSource: State["image"]["imageSource"];
-  imageBingCached: State["image"]["imageBingCached"];
+  debug: {
+    rememberSettingsOpened: State["debug"]["rememberSettingsOpened"];
+  };
 
-  selectedView: State["settings"]["selectedView"];
-  clockShowSeconds: State["settings"]["clockShowSeconds"];
-  ageDateOfBirthTimestamp: State["settings"]["ageDateOfBirthTimestamp"];
-  ageDateOfBirthInputValue: State["settings"]["ageDateOfBirthInputValue"];
-  cleanVersion: State["settings"]["cleanVersion"];
+  image: {
+    imageSource: State["image"]["imageSource"];
+    imageBingCached: State["image"]["imageBingCached"];
+  };
+
+  settings: {
+    opened: State["settings"]["opened"];
+    selectedView: State["settings"]["selectedView"];
+    clockShowSeconds: State["settings"]["clockShowSeconds"];
+    ageDateOfBirthTimestamp: State["settings"]["ageDateOfBirthTimestamp"];
+    ageDateOfBirthInputValue: State["settings"]["ageDateOfBirthInputValue"];
+    cleanVersion: State["settings"]["cleanVersion"];
+  };
 };
 
 export const storage = {
@@ -36,14 +45,23 @@ export const storage = {
       // the structure in the future and want to detect the version or do some migrations
       version: 1,
 
-      imageSource: state.image.imageSource,
-      imageBingCached: state.image.imageBingCached,
+      debug: {
+        rememberSettingsOpened: state.debug.rememberSettingsOpened,
+      },
 
-      selectedView: state.settings.selectedView,
-      clockShowSeconds: state.settings.clockShowSeconds,
-      ageDateOfBirthTimestamp: state.settings.ageDateOfBirthTimestamp,
-      ageDateOfBirthInputValue: state.settings.ageDateOfBirthInputValue,
-      cleanVersion: state.settings.cleanVersion,
+      image: {
+        imageSource: state.image.imageSource,
+        imageBingCached: state.image.imageBingCached,
+      },
+
+      settings: {
+        opened: state.settings.opened,
+        selectedView: state.settings.selectedView,
+        clockShowSeconds: state.settings.clockShowSeconds,
+        ageDateOfBirthTimestamp: state.settings.ageDateOfBirthTimestamp,
+        ageDateOfBirthInputValue: state.settings.ageDateOfBirthInputValue,
+        cleanVersion: state.settings.cleanVersion,
+      },
     };
 
     try {
@@ -69,29 +87,38 @@ export const storage = {
     if (!savedState) return;
 
     const stateValid = [
-      savedState.imageSource,
-      savedState.imageBingCached,
-      savedState.selectedView,
-      savedState.clockShowSeconds,
-      savedState.ageDateOfBirthTimestamp,
-      savedState.ageDateOfBirthInputValue,
-      savedState.cleanVersion,
-    ].every(state => state !== undefined);
+      savedState.debug.rememberSettingsOpened,
+
+      savedState.image.imageSource,
+      savedState.image.imageBingCached,
+
+      savedState.settings.opened,
+      savedState.settings.selectedView,
+      savedState.settings.clockShowSeconds,
+      savedState.settings.ageDateOfBirthTimestamp,
+      savedState.settings.ageDateOfBirthInputValue,
+      savedState.settings.cleanVersion,
+    ].every(state => state != null);
 
     if (!stateValid) {
-      logWarning("Error validating state retrieved from local storage");
+      logWarning("Error validating state retrieved from local storage", savedState);
       state.storage.clear();
       return;
     }
 
-    state.image.imageSource = savedState.imageSource;
-    state.image.imageBingCached = savedState.imageBingCached;
+    state.debug.rememberSettingsOpened = savedState.debug.rememberSettingsOpened;
 
-    state.settings.selectedView = savedState.selectedView;
-    state.settings.clockShowSeconds = savedState.clockShowSeconds;
-    state.settings.ageDateOfBirthTimestamp = savedState.ageDateOfBirthTimestamp;
-    state.settings.ageDateOfBirthInputValue = savedState.ageDateOfBirthInputValue;
-    state.settings.cleanVersion = savedState.cleanVersion;
+    state.image.imageSource = savedState.image.imageSource;
+    state.image.imageBingCached = savedState.image.imageBingCached;
+
+    if (state.debug.rememberSettingsOpened) {
+      state.settings.opened = savedState.settings.opened;
+    }
+    state.settings.selectedView = savedState.settings.selectedView;
+    state.settings.clockShowSeconds = savedState.settings.clockShowSeconds;
+    state.settings.ageDateOfBirthTimestamp = savedState.settings.ageDateOfBirthTimestamp;
+    state.settings.ageDateOfBirthInputValue = savedState.settings.ageDateOfBirthInputValue;
+    state.settings.cleanVersion = savedState.settings.cleanVersion;
   },
 
   clear(): void {
