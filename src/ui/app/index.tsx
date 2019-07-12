@@ -8,7 +8,7 @@ import { HotKeys } from "react-hotkeys";
 
 import { state } from "../../state";
 import * as time from "../../utils/time";
-import { logTimeElapsedSinceStart } from "../../utils/logging";
+import { logTimeElapsedSinceStart, logTimestamp } from "../../utils/logging";
 import { GlobalStyles } from "../../styles";
 import { config } from "../../config";
 import { Clock } from "../background-types/clock";
@@ -33,6 +33,8 @@ export const App = view(() => {
   useEffect(() => {
     if (state.app.initialized) {
       logTimeElapsedSinceStart("Full App Render", true);
+    } else {
+      logTimestamp("First empty render");
     }
   });
 

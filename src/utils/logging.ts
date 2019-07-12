@@ -1,7 +1,5 @@
 import { config } from "../config";
 
-let finalMeasureMeasured = false;
-
 function formatMs(ms: number): string {
   const msFormatted = Math.trunc(ms)
     .toString()
@@ -25,7 +23,17 @@ function gerPerformanceMessage(startTimestamp: number, endTimestamp: number, mes
   const textTo = formatMs(endMark);
   const textDuration = formatMs(timeTook);
 
-  return `[PERF] ${textDuration} | from ${textFrom} to ${textTo} | ${message}`;
+  return `[PERF] from ${textFrom} to ${textTo} | ${textDuration} | ${message}`;
+}
+
+export function logTimestamp(message: string) {
+  if (!config.logging.performance) return;
+
+  const timeOrigin = getPerformanceTimeOrigin();
+  const mark = Date.now() - timeOrigin;
+  const markMs = formatMs(mark);
+
+  console.log(`[PERF] at   ${markMs}                      ${message}`);
 }
 
 export function logTimeElapsedSinceStart(message: string, finalMeasure: boolean = false) {
@@ -37,19 +45,6 @@ export function logTimeElapsedSinceStart(message: string, finalMeasure: boolean 
     console.log("-".repeat(log.length));
   }
   console.log(log);
-
-  if (finalMeasure) {
-    if (finalMeasureMeasured) {
-      logWarning(`logTimeElapsedSinceStart with finalMeasure=true called more than once`);
-    }
-    finalMeasureMeasured = true;
-  }
-}
-
-export function logWarning(message: string, ...rest: any) {
-  if (!config.logging.warnings) return;
-
-  console.warn(`[WARN] ${message}`, ...rest);
 }
 
 export class LogPerformance {
@@ -73,4 +68,10 @@ export class LogPerformance {
     console.log(gerPerformanceMessage(this.startMark, Date.now(), this.message));
     this.measured = true;
   }
+}
+
+export function logWarning(message: string, ...rest: any) {
+  if (!config.logging.warnings) return;
+
+  console.warn(`[WARN] ${message}`, ...rest);
 }
