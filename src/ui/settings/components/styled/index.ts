@@ -1,8 +1,9 @@
 import styled from "styled-components/macro";
 import * as s from "../../../../styles";
 
-export { CheckBox } from "./form/checkbox";
-export { Radio } from "./form/radio";
+export { InputCheckBox } from "./form/input-checkbox";
+export { InputDate } from "./form/input-date";
+export { InputRadio } from "./form/input-radio";
 
 export { ContactLink } from "./layout/contact-link";
 export { ContactLinks } from "./layout/contact-links";

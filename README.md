@@ -19,6 +19,9 @@
 - settings design
   - useful stuff box
     - age settings
+      - focus-visible styles
+      - Make spacing between text and input reusable value
+      - checkbox and radio have lots of shared stuff, other form field do not. make better naming/abstractions/whatever in this folder
   - background image
     - show offline indicator?
     - disable Bing when offline

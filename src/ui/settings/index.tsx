@@ -14,8 +14,9 @@ import {
   Heading,
   Text,
   Warning,
-  Radio,
-  CheckBox,
+  InputRadio,
+  InputDate,
+  InputCheckBox,
   Section,
   ContactLinks,
   ContactLink,
@@ -74,22 +75,22 @@ const SettingsContent = view((props: SettingsProps) => (
         </>
       )}
 
-      <Radio
+      <InputRadio
         name="images"
         onChange={() => state.image.setImageSource("BING")}
         checked={state.image.imageSourceWithFallback === "BING"}
         disabled={state.browser.online === false}
       >
         Bing image of the day
-      </Radio>
+      </InputRadio>
 
-      <Radio
+      <InputRadio
         name="images"
         onChange={() => state.image.setImageSource("LOCAL")}
         checked={state.image.imageSourceWithFallback === "LOCAL"}
       >
         Predefined
-      </Radio>
+      </InputRadio>
 
       {state.image.imageSourceWithFallback === "BING" && state.image.imageBing.type === "DONE" && (
         <section>
@@ -136,64 +137,60 @@ const SettingsContent = view((props: SettingsProps) => (
     </Section>
 
     <Section title="Useful stuff">
-      <Radio
+      <InputRadio
         name="view"
         onChange={() => state.settings.setSelectedView("CLOCK")}
         checked={state.settings.selectedView === "CLOCK"}
       >
         Clock
-      </Radio>
+      </InputRadio>
 
-      <Radio
+      <InputRadio
         name="view"
         onChange={() => state.settings.setSelectedView("AGE")}
         checked={state.settings.selectedView === "AGE"}
       >
         Age
-      </Radio>
+      </InputRadio>
 
-      <Radio
+      <InputRadio
         name="view"
         onChange={() => state.settings.setSelectedView("YEAR_PROGRESS")}
         checked={state.settings.selectedView === "YEAR_PROGRESS"}
       >
         Year progress
-      </Radio>
+      </InputRadio>
 
-      <Radio
+      <InputRadio
         name="view"
         onChange={() => state.settings.setSelectedView("NOTHING")}
         checked={state.settings.selectedView === "NOTHING"}
       >
         No thanks
-      </Radio>
+      </InputRadio>
     </Section>
 
     {state.settings.selectedView === "CLOCK" && (
       <Section title="Clock settings">
-        <CheckBox
+        <InputCheckBox
           checked={state.settings.clockShowSeconds}
           onChange={state.settings.toggleClockShowSeconds}
         >
           Show seconds
-        </CheckBox>
+        </InputCheckBox>
       </Section>
     )}
 
     {state.settings.selectedView === "AGE" && (
       <Section title="Age settings">
-        <label>
+        <InputDate
+          min={timestampToDateInputValue(new Date(1900, 0, 1).getTime())}
+          max={timestampToDateInputValue(Date.now())}
+          value={state.settings.ageDateOfBirthInputValue}
+          onChange={e => state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e.target.value))}
+        >
           Your date of birth
-          <input
-            type="date"
-            min={timestampToDateInputValue(new Date(1900, 0, 1).getTime())}
-            max={timestampToDateInputValue(Date.now())}
-            value={state.settings.ageDateOfBirthInputValue}
-            onChange={e =>
-              state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e.target.value))
-            }
-          />
-        </label>
+        </InputDate>
       </Section>
     )}
 
@@ -204,9 +201,12 @@ const SettingsContent = view((props: SettingsProps) => (
           paragraph, will be hidden. Nice.
         </Text>
       )}
-      <CheckBox checked={state.settings.cleanVersion} onChange={state.settings.toggleCleanVersion}>
+      <InputCheckBox
+        checked={state.settings.cleanVersion}
+        onChange={state.settings.toggleCleanVersion}
+      >
         No fluff
-      </CheckBox>
+      </InputCheckBox>
     </Section>
 
     {!state.settings.cleanVersion && (
@@ -235,12 +235,12 @@ const SettingsContent = view((props: SettingsProps) => (
         <Text>This menu is only visible in development mode</Text>
         <button onClick={state.debug.resetAppState}>Reset app state</button>
 
-        <CheckBox
+        <InputCheckBox
           checked={state.debug.rememberSettingsOpened}
           onChange={state.debug.toggleRememberSettingsOpened}
         >
           Remember settings opened state
-        </CheckBox>
+        </InputCheckBox>
       </Section>
     )}
   </>
