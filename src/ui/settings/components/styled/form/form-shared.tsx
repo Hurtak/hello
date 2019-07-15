@@ -19,14 +19,25 @@ export const CheckBoxRadioText = styled.span({
 });
 
 const inputPadding = s.gridRawToRawSize(0.25);
-export const checkBoxRadioLabelStyles: React.CSSProperties = {
+export const checkBoxRadioLabelStyles = (
+  Input: StyledComponent<any, any>,
+): React.CSSProperties => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   width: "100%",
   padding: s.size(inputPadding),
   margin: `0 ${s.size(-inputPadding)}`,
-};
+
+  // TODO: use onFocusVisible React event once it becomes standardized
+  [`${Input}${s.focusVisible} + &`]: {
+    Input: s.colors.whiteTransparent20,
+  },
+
+  [`${Input}:hover:not(:checked):not(:disabled) + &`]: {
+    cursor: "pointer",
+  },
+});
 
 export const formBoxStyles = (
   Input: StyledComponent<any, any>,
@@ -47,6 +58,9 @@ export const formBoxStyles = (
     backgroundColor: s.colors.blueDark,
   },
   [`${Input}:active + ${Label} &`]: {
+    backgroundColor: s.colors.grayMain,
+  },
+  [`${Input}:disabled + ${Label} &`]: {
     backgroundColor: s.colors.grayMain,
   },
 });

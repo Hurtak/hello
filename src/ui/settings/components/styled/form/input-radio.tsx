@@ -40,16 +40,7 @@ export const InputRadio: React.FC<{
 };
 
 const Label = styled.label({
-  ...checkBoxRadioLabelStyles,
-
-  // TODO: use onFocusVisible React event once it becomes standardized
-  [`${CheckBoxRadioInput}${s.focusVisible} + &`]: {
-    backgroundColor: s.colors.whiteTransparent20,
-  },
-
-  [`${CheckBoxRadioInput}:hover:not(:checked) + &`]: {
-    cursor: "pointer",
-  },
+  ...checkBoxRadioLabelStyles(CheckBoxRadioInput),
 });
 
 const RadioComponent = styled.div({
