@@ -2,7 +2,13 @@ import React, { useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
-import { formBoxStyles, formLabelStyles, Wrapper, Input, Text } from "./form-styles";
+import {
+  checkBoxRadioLabelStyles,
+  CheckBoxRadioWrapper,
+  CheckBoxRadioInput,
+  CheckBoxRadioText,
+  formBoxStyles,
+} from "./form-shared";
 
 export const InputRadio: React.FC<{
   name: string;
@@ -14,40 +20,40 @@ export const InputRadio: React.FC<{
   const inputIdRef = useRef(uuid());
 
   return (
-    <Wrapper>
-      <Input
+    <CheckBoxRadioWrapper>
+      <CheckBoxRadioInput
         id={inputIdRef.current}
+        type="radio"
+        name={name}
         checked={checked}
         disabled={disabled}
-        name={name}
         onChange={onChange}
-        type="radio"
       />
       <Label htmlFor={inputIdRef.current}>
         <RadioComponent>
           <RadioDot />
         </RadioComponent>
-        <Text>{children}</Text>
+        <CheckBoxRadioText>{children}</CheckBoxRadioText>
       </Label>
-    </Wrapper>
+    </CheckBoxRadioWrapper>
   );
 };
 
 const Label = styled.label({
-  ...formLabelStyles,
+  ...checkBoxRadioLabelStyles,
 
   // TODO: use onFocusVisible React event once it becomes standardized
-  [`${Input}${s.focusVisible} + &`]: {
+  [`${CheckBoxRadioInput}${s.focusVisible} + &`]: {
     backgroundColor: s.colors.whiteTransparent20,
   },
 
-  [`${Input}:hover:not(:checked) + &`]: {
+  [`${CheckBoxRadioInput}:hover:not(:checked) + &`]: {
     cursor: "pointer",
   },
 });
 
 const RadioComponent = styled.div({
-  ...formBoxStyles(Input, Label),
+  ...formBoxStyles(CheckBoxRadioInput, Label),
   borderRadius: "50%",
 });
 
@@ -58,7 +64,7 @@ const RadioDot = styled.div({
   boxShadow: s.shadows.formField,
 
   visibility: "hidden",
-  [`${Input}:checked + ${Label} &`]: {
+  [`${CheckBoxRadioInput}:checked + ${Label} &`]: {
     visibility: "visible",
     backgroundColor: s.colors.white,
   },

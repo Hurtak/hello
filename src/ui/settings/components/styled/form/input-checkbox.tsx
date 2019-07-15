@@ -3,7 +3,13 @@ import styled from "styled-components/macro";
 import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
 import { Icon } from "../../../../../icons";
-import { formBoxStyles, formLabelStyles, Wrapper, Input, Text } from "./form-styles";
+import {
+  checkBoxRadioLabelStyles,
+  CheckBoxRadioWrapper,
+  CheckBoxRadioInput,
+  CheckBoxRadioText,
+  formBoxStyles,
+} from "./form-shared";
 
 export const InputCheckBox: React.FC<{
   checked: boolean;
@@ -14,8 +20,8 @@ export const InputCheckBox: React.FC<{
   const inputIdRef = useRef(uuid());
 
   return (
-    <Wrapper>
-      <Input
+    <CheckBoxRadioWrapper>
+      <CheckBoxRadioInput
         type="checkbox"
         id={inputIdRef.current}
         checked={checked}
@@ -28,32 +34,32 @@ export const InputCheckBox: React.FC<{
             <Icon type="CHECK" width={1.25} height={1.25} color={s.colors.white} />
           </CheckboxCheckWrapper>
         </CheckboxComponent>
-        <Text>{children}</Text>
+        <CheckBoxRadioText>{children}</CheckBoxRadioText>
       </Label>
-    </Wrapper>
+    </CheckBoxRadioWrapper>
   );
 };
 
 const Label = styled.label(() => ({
-  ...formLabelStyles,
+  ...checkBoxRadioLabelStyles,
 
   cursor: "pointer",
 
   // TODO: use onFocusVisible React event once it becomes standardized
-  [`${Input}${s.focusVisible} + &`]: {
+  [`${CheckBoxRadioInput}${s.focusVisible} + &`]: {
     backgroundColor: s.colors.whiteTransparent20,
   },
 }));
 
 const CheckboxComponent = styled.div({
-  ...formBoxStyles(Input, Label),
+  ...formBoxStyles(CheckBoxRadioInput, Label),
 
   borderRadius: s.grid(0.25),
 });
 
 const CheckboxCheckWrapper = styled.div({
   visibility: "hidden",
-  [`${Input}:checked + ${Label} &`]: {
+  [`${CheckBoxRadioInput}:checked + ${Label} &`]: {
     visibility: "visible",
   },
 });

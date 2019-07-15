@@ -2,40 +2,43 @@ import React, { useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
+import { formInputTextSpacing } from "./form-shared";
 
 export const InputDate: React.FC<{
+  value: string;
   min: string;
   max: string;
-  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children: string;
-}> = ({ min, max, value, onChange, children }) => {
+}> = ({ value, min, max, onChange, children }) => {
   const inputIdRef = useRef(uuid());
 
   return (
-    <Wrapper>
+    <Label>
       <Text>{children}</Text>
 
       <Input
-        type="date"
         id={inputIdRef.current}
+        type="date"
+        value={value}
         min={min}
         max={max}
-        value={value}
         onChange={onChange}
       />
-    </Wrapper>
+    </Label>
   );
 };
 
-const Wrapper = styled.label({
-  //
-});
+const Label = styled.label({});
 
 const Input = styled.input({
+  ...s.text({ family: "NUMBERS" }),
+
+  color: s.colors.black,
   border: 0,
-  marginLeft: s.grid(1.25),
+  marginLeft: formInputTextSpacing,
   boxShadow: s.shadows.formFieldInset,
+  padding: `${s.grid(0.25)} ${s.grid(0.5)}`,
 });
 
 const Text = styled.span({

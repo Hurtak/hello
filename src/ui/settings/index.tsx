@@ -33,8 +33,8 @@ export const Settings = view((props: SettingsProps) => (
         <ToggleButtonIconWrapper rotated={state.settings.opened}>
           <Icon
             type="COG"
-            width={s.pxToGrid(s.dimensions.settingsButtonSize)}
-            height={s.pxToGrid(s.dimensions.settingsButtonSize)}
+            width={s.rawSizeToGridRaw(s.dimensions.settingsButtonSize)}
+            height={s.rawSizeToGridRaw(s.dimensions.settingsButtonSize)}
           />
         </ToggleButtonIconWrapper>
       </ToggleButton>

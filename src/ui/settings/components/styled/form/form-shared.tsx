@@ -1,27 +1,31 @@
 import styled, { StyledComponent } from "styled-components/macro";
 import * as s from "../../../../../styles";
 
-export const Wrapper = styled.div({
+export const formInputTextSpacing = s.grid(1.25);
+
+export const CheckBoxRadioWrapper = styled.div({
   display: "flex",
   flexDirection: "row",
 });
 
-export const Input = styled.input({
+export const CheckBoxRadioInput = styled.input({
   ...s.visuallyHideInputFieldWhileStillInteractive,
 });
 
-export const Text = styled.span({
+export const CheckBoxRadioText = styled.span({
   ...s.text({ selectable: false }),
 
-  marginLeft: s.grid(1.25),
+  marginLeft: formInputTextSpacing,
 });
 
-export const formLabelStyles: React.CSSProperties = {
+const inputPadding = s.gridRawToRawSize(0.25);
+export const checkBoxRadioLabelStyles: React.CSSProperties = {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   width: "100%",
-  padding: `${s.grid(0.25)} 0`,
+  padding: s.size(inputPadding),
+  margin: `0 ${s.size(-inputPadding)}`,
 };
 
 export const formBoxStyles = (
