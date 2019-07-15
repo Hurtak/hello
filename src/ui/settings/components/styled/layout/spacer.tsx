@@ -2,17 +2,10 @@ import React from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../styles";
 
-type SpacerProps = {
+export const SpacedItems: React.FC<{
   spacing?: number;
   horizontal?: boolean;
-};
-
-export const SpacedItems: React.FC<SpacerProps> = ({
-  //
-  spacing = 1,
-  horizontal = false,
-  children,
-}) => {
+}> = ({ spacing = 1, horizontal = false, children }) => {
   const childrenArray = React.Children.toArray(children);
 
   return (
@@ -20,7 +13,7 @@ export const SpacedItems: React.FC<SpacerProps> = ({
       {childrenArray.map((child, index) => {
         const spacerComponent =
           index > 0 ? (
-            <Spacer key={`spacer-${index}`} horizontal={horizontal} spacing={spacing} />
+            <Spacer key={`spacer-${index}`} horizontal={horizontal} size={spacing} />
           ) : null;
 
         return [spacerComponent, child];
@@ -29,13 +22,22 @@ export const SpacedItems: React.FC<SpacerProps> = ({
   );
 };
 
-export const Spacer = styled.div(({ spacing: space = 1, horizontal = false }: SpacerProps) => ({
-  display: horizontal ? "inline-block" : "block",
+export const Spacer: React.FC<{
+  size?: number;
+  horizontal?: boolean;
+}> = ({ size = 1, horizontal = false }) => {
+  return <SpacerComponent size={size} horizontal={horizontal} />;
+};
 
-  ...(horizontal === true && {
-    width: s.grid(space),
+const SpacerComponent = styled.div(
+  ({ size, horizontal }: { size: number; horizontal: boolean }) => ({
+    display: horizontal ? "inline-block" : "block",
+
+    ...(horizontal === true && {
+      width: s.grid(size),
+    }),
+    ...(horizontal === false && {
+      height: s.grid(size),
+    }),
   }),
-  ...(horizontal === false && {
-    height: s.grid(space),
-  }),
-}));
+);

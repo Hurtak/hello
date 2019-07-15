@@ -18,13 +18,8 @@
 
 - settings design
   - background image
-    - button styles
-    - hover states for buttons
-    - show offline indicator?
-    - disable Bing when offline
     - show proper error messages when Bing image / proxy error
     - predefined images
-      - buttons design
       - texts layout and design
       - link design
   - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?

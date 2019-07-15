@@ -1,8 +1,6 @@
 import styled, { StyledComponent } from "styled-components/macro";
 import * as s from "../../../../../styles";
 
-export const formInputTextSpacing = s.grid(1.25);
-
 export const CheckBoxRadioWrapper = styled.div({
   display: "flex",
   flexDirection: "row",
@@ -15,7 +13,7 @@ export const CheckBoxRadioInput = styled.input({
 export const CheckBoxRadioText = styled.span({
   ...s.text({ selectable: false }),
 
-  marginLeft: formInputTextSpacing,
+  marginLeft: s.dimensions.formSpacing,
 });
 
 const inputPadding = s.gridRawToRawSize(0.25);

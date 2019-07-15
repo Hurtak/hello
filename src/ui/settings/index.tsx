@@ -21,11 +21,12 @@ import {
   InputDate,
   InputCheckBox,
   //
+  SpacedItems,
+  Spacer,
   Section,
   ContactLinks,
   ContactLink,
 } from "./components/styled";
-import { SpacedItems } from "./components/styled/layout/spacer";
 
 type SettingsProps = {
   isDev: boolean;
@@ -65,21 +66,6 @@ const SettingsContent = view((props: SettingsProps) => (
     )}
 
     <Section title="Image source">
-      {!state.browser.online && (
-        <Warning>You are currently offline, falling back to local images</Warning>
-      )}
-      {state.image.imageBing.type === "ERROR" && (
-        <>
-          {/* TODO: proper error matching */}
-          <p>Error</p>
-          <p>errorType: {state.image.imageBing.errorType}</p>
-          <p>errorData: {String(state.image.imageBing.data)}</p>
-          <pre>
-            <code>{JSON.stringify(state.image.imageBing)}</code>
-          </pre>
-        </>
-      )}
-
       <InputRadio
         name="images"
         onChange={() => state.image.setImageSource("BING")}
@@ -96,6 +82,25 @@ const SettingsContent = view((props: SettingsProps) => (
       >
         Local
       </InputRadio>
+
+      {!state.browser.online && (
+        <>
+          <Spacer size={1} />
+          <Warning>You are currently offline, falling back to local images</Warning>
+        </>
+      )}
+
+      {state.image.imageBing.type === "ERROR" && (
+        <>
+          {/* TODO: proper error matching */}
+          <p>Error</p>
+          <p>errorType: {state.image.imageBing.errorType}</p>
+          <p>errorData: {String(state.image.imageBing.data)}</p>
+          <pre>
+            <code>{JSON.stringify(state.image.imageBing)}</code>
+          </pre>
+        </>
+      )}
     </Section>
 
     <Section title="Image settings">

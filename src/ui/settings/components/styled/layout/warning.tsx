@@ -18,7 +18,7 @@ const WarningTextWrapper = styled.div({
 });
 
 const WarningTextIcon = styled.div({
-  marginRight: s.grid(1),
+  marginRight: s.dimensions.formSpacing,
 });
 
 const WarningText = styled.p({

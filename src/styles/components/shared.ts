@@ -28,7 +28,7 @@ export const colors = {
 
   grayMain: "#dedede",
 
-  orange: "orange",
+  orange: "#f7b71d",
 
   blue: "#488af5",
   blueDark: "#1d6ff4",
@@ -46,7 +46,7 @@ export const colors = {
 export const shadows = {
   formFieldInset: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent20} inset`,
   formField: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent30}`,
-  buttons: `${size(1)} ${size(1)} ${size(1)} ${size(1)} ${colors.blackTransparent20}`,
+  buttons: `${size(1)} ${size(1)} ${size(3)} ${size(1)} ${colors.blackTransparent20}`,
 };
 
 /*
@@ -136,6 +136,8 @@ const settingsButtonSizeAndSpacing =
   settingsButtonSize + 2 * settingsButtonPadding + 2 * settingsButtonSpacing;
 
 export const dimensions = {
+  formSpacing: grid(1.25),
+
   settingsWidth: size(400),
   settingsButtonSize: settingsButtonSize,
   settingsButtonPadding: size(settingsButtonPadding),

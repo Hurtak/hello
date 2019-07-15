@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../utils/random";
 import * as s from "../../../../../styles";
-import { formInputTextSpacing } from "./form-shared";
 
 export const InputDate: React.FC<{
   value: string;
@@ -37,7 +36,7 @@ const Input = styled.input({
   color: s.colors.black,
   border: 0,
   outline: 0,
-  marginLeft: formInputTextSpacing,
+  marginLeft: s.dimensions.formSpacing,
   boxShadow: s.shadows.formFieldInset,
   padding: `${s.grid(0.25)} ${s.grid(0.5)}`,
 
