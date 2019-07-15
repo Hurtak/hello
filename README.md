@@ -17,10 +17,9 @@
 ## TODO
 
 - settings design
-  - useful stuff box
-    - age settings
-      - focus-visible styles
   - background image
+    - button styles
+    - hover states for buttons
     - show offline indicator?
     - disable Bing when offline
     - show proper error messages when Bing image / proxy error
@@ -29,10 +28,6 @@
       - texts layout and design
       - link design
   - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?
-  - other
-    - settings responsive
-- outline only for keyboard focus, not for click focus
-- hover states for buttons
 - menu overflowing -> add scroll
 - add more images!
 - rename to hello

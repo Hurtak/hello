@@ -36,9 +36,17 @@ const Input = styled.input({
 
   color: s.colors.black,
   border: 0,
+  outline: 0,
   marginLeft: formInputTextSpacing,
   boxShadow: s.shadows.formFieldInset,
   padding: `${s.grid(0.25)} ${s.grid(0.5)}`,
+
+  // TODO: focus visible does not seem to work in input date?
+  [`&${s.focusVisible}`]: {
+    outlineWidth: s.grid(0.75),
+    outlineStyle: "solid",
+    outlineColor: s.colors.whiteTransparent20,
+  },
 });
 
 const Text = styled.span({
