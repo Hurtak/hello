@@ -19,8 +19,6 @@ export const ContactLink: React.FC<{
 };
 
 const Wrapper = styled.a({
-  ...s.itemsSpacing({ size: 2, horizontal: true }),
-
   display: "flex",
   flexDirection: "row",
   alignItems: "center",

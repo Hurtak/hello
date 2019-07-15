@@ -11,16 +11,21 @@ import {
   ToggleButton,
   ToggleButtonIconWrapper,
   ToggleButtonSpacer,
+  //
   Heading,
   Text,
   Warning,
+  //
+  Button,
   InputRadio,
   InputDate,
   InputCheckBox,
+  //
   Section,
   ContactLinks,
   ContactLink,
 } from "./components/styled";
+import { SpacedItems } from "./components/styled/layout/spacer";
 
 type SettingsProps = {
   isDev: boolean;
@@ -59,7 +64,7 @@ const SettingsContent = view((props: SettingsProps) => (
       </Text>
     )}
 
-    <Section title="Background image">
+    <Section title="Image source">
       {!state.browser.online && (
         <Warning>You are currently offline, falling back to local images</Warning>
       )}
@@ -89,9 +94,11 @@ const SettingsContent = view((props: SettingsProps) => (
         onChange={() => state.image.setImageSource("LOCAL")}
         checked={state.image.imageSourceWithFallback === "LOCAL"}
       >
-        Predefined
+        Local
       </InputRadio>
+    </Section>
 
+    <Section title="Image settings">
       {state.image.imageSourceWithFallback === "BING" && state.image.imageBing.type === "DONE" && (
         <section>
           {state.image.imageBing.data.title && (
@@ -110,9 +117,11 @@ const SettingsContent = view((props: SettingsProps) => (
 
       {state.image.imageSourceWithFallback === "LOCAL" && (
         <section>
-          <button onClick={() => state.image.shiftImageLocalIndex(-1)}>Prev</button>
-          <button onClick={state.image.setImageLocalRandom}>Random image</button>
-          <button onClick={() => state.image.shiftImageLocalIndex(1)}>Next</button>
+          <SpacedItems horizontal>
+            <Button onClick={() => state.image.shiftImageLocalIndex(-1)}>Prev</Button>
+            <Button onClick={state.image.setImageLocalRandom}>Random image</Button>
+            <Button onClick={() => state.image.shiftImageLocalIndex(1)}>Next</Button>
+          </SpacedItems>
 
           {(() => {
             const image = state.image.imageLocal;
@@ -217,15 +226,17 @@ const SettingsContent = view((props: SettingsProps) => (
         </Text>
 
         <ContactLinks>
-          <ContactLink iconType="GITHUB" href="https://github.com/hurtak/hello-friend">
-            Github
-          </ContactLink>
-          <ContactLink iconType="TWITTER" href="https://twitter.com/PetrHurtak">
-            Twitter
-          </ContactLink>
-          <ContactLink iconType="MAIL" href="mailto:petr.hurtak@gmail.com">
-            Mail
-          </ContactLink>
+          <SpacedItems spacing={2} horizontal>
+            <ContactLink iconType="GITHUB" href="https://github.com/hurtak/hello-friend">
+              Github
+            </ContactLink>
+            <ContactLink iconType="TWITTER" href="https://twitter.com/PetrHurtak">
+              Twitter
+            </ContactLink>
+            <ContactLink iconType="MAIL" href="mailto:petr.hurtak@gmail.com">
+              Mail
+            </ContactLink>
+          </SpacedItems>
         </ContactLinks>
       </Section>
     )}
@@ -233,7 +244,7 @@ const SettingsContent = view((props: SettingsProps) => (
     {props.isDev && (
       <Section title="Dev menu">
         <Text>This menu is only visible in development mode</Text>
-        <button onClick={state.debug.resetAppState}>Reset app state</button>
+        <Button onClick={state.debug.resetAppState}>Reset app state</Button>
 
         <InputCheckBox
           checked={state.debug.rememberSettingsOpened}

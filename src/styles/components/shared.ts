@@ -38,13 +38,15 @@ export const colors = {
   blackTransparent30: "rgba(0, 0, 0, 0.3)",
   blackTransparent40: "rgba(0, 0, 0, 0.4)",
 
-  whiteTransparent70: "rgba(255, 255, 255, 0.7)",
   whiteTransparent20: "rgba(255, 255, 255, 0.2)",
+  whiteTransparent40: "rgba(255, 255, 255, 0.4)",
+  whiteTransparent70: "rgba(255, 255, 255, 0.7)",
 };
 
 export const shadows = {
   formFieldInset: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent20} inset`,
   formField: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent30}`,
+  buttons: `${size(1)} ${size(1)} ${size(1)} ${size(1)} ${colors.blackTransparent20}`,
 };
 
 /*
@@ -55,11 +57,13 @@ export const text = ({
   size: fontSize = "TEXT",
   weight = "DEFAULT",
   family = "DEFAULT",
+  multiline = false,
   selectable = true,
 }: {
   size?: "TEXT" | "HEADING_SMALL" | "HEADING";
   weight?: "DEFAULT" | "BOLD";
   family?: "DEFAULT" | "NUMBERS";
+  multiline?: boolean;
   selectable?: boolean;
 } = {}): React.CSSProperties => ({
   margin: 0,
@@ -100,7 +104,14 @@ export const text = ({
     }
   })(),
 
-  lineHeight: 1,
+  lineHeight: (() => {
+    switch (multiline) {
+      case true:
+        return 1.2;
+      case false:
+        return 1;
+    }
+  })(),
 
   color: colors.white,
 });
@@ -130,25 +141,6 @@ export const dimensions = {
   settingsButtonPadding: size(settingsButtonPadding),
   settingsButtonSpacing: size(settingsButtonSpacing),
   settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing),
-};
-
-/*
- * Mixins
- */
-export const itemsSpacing = ({
-  horizontal = false,
-  size,
-}: {
-  horizontal?: boolean;
-  size: number;
-}) => {
-  const marginDirection = horizontal ? "marginLeft" : "marginTop";
-
-  return {
-    "& + &": {
-      [marginDirection]: grid(size),
-    },
-  };
 };
 
 export const visuallyHideInputFieldWhileStillInteractive: React.CSSProperties = {
