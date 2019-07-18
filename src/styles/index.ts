@@ -1,3 +1,3 @@
-export { GlobalStyles } from "./components/global-styles";
-export { loadAndInjectFonts } from "./components/fonts";
-export * from "./components/shared";
+export * from "./mod/global-styles";
+export * from "./mod/fonts";
+export * from "./mod/shared";

@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components/macro";
 import * as s from "../styles";
 
-import { IconCog } from "./components/cog";
-import { IconGithub } from "./components/github";
-import { IconMail } from "./components/mail";
-import { IconTwitter } from "./components/twitter";
-import { IconWarning } from "./components/warning";
-import { IconCheck } from "./components/check";
+// Currently we prefer ease of use (prop type="ICON_TYPE") and do not do any code splitting
+import { IconCog } from "./mod/cog";
+import { IconGithub } from "./mod/github";
+import { IconMail } from "./mod/mail";
+import { IconTwitter } from "./mod/twitter";
+import { IconWarning } from "./mod/warning";
+import { IconCheck } from "./mod/check";
 
 export type IconType = "COG" | "GITHUB" | "MAIL" | "TWITTER" | "WARNING" | "CHECK";
 

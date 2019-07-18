@@ -23,7 +23,7 @@ import {
   AppContent,
   AppSettingsWrapper,
   AppSettings,
-} from "./components/styled";
+} from "./mod/styled";
 
 export const App = view(() => {
   useEffect(() => {

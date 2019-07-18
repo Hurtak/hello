@@ -1,14 +1,7 @@
 import React from "react";
 import { addLeadingZero } from "../../../utils/time";
 import { Timestamp } from "../../timer-updater";
-import {
-  Wrapper,
-  ClockBox,
-  TextWrapper,
-  Text,
-  ColonWrapper,
-  ColonCircle,
-} from "./components/styled";
+import { Wrapper, ClockBox, TextWrapper, Text, ColonWrapper, ColonCircle } from "./mod/styled";
 
 type ClockProps = {
   time: Timestamp;

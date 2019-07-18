@@ -5,7 +5,7 @@ import { Icon } from "../../icons";
 import { timestampToDateInputValue } from "../../utils/time";
 import * as s from "../../styles";
 import { state } from "../../state";
-import { eventToAgeOfBirthValues } from "./components/utils";
+import { eventToAgeOfBirthValues } from "./mod/utils";
 import {
   SettingsWrapper,
   ToggleButton,
@@ -26,7 +26,7 @@ import {
   Section,
   ContactLinks,
   ContactLink,
-} from "./components/styled";
+} from "./mod/styled";
 
 type SettingsProps = {
   isDev: boolean;

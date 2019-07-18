@@ -1,8 +1,8 @@
-import image01 from "./components/images/01.jpg";
-import image02 from "./components/images/02.jpg";
-import image03 from "./components/images/03.jpg";
-import image04 from "./components/images/04.jpg";
-import image05 from "./components/images/05.jpg";
+import image01 from "./mod/images/01.jpg";
+import image02 from "./mod/images/02.jpg";
+import image03 from "./mod/images/03.jpg";
+import image04 from "./mod/images/04.jpg";
+import image05 from "./mod/images/05.jpg";
 
 export type Image = {
   url: string;
