@@ -70,6 +70,16 @@ export const SettingsContent = view(() => (
       )}
     </Section>
 
+    {state.image.imageSourceWithFallback === "LOCAL" && (
+      <Section title="Image settings">
+        <SpacedItems horizontal>
+          <Button onClick={() => state.image.shiftImageLocalIndex(-1)}>Previous</Button>
+          <Button onClick={state.image.setImageLocalRandom}>Random</Button>
+          <Button onClick={() => state.image.shiftImageLocalIndex(1)}>Next</Button>
+        </SpacedItems>
+      </Section>
+    )}
+
     <Section title="Image information">
       {state.image.imageSourceWithFallback === "BING" && state.image.imageBing.type === "DONE" && (
         <>
@@ -106,37 +116,6 @@ export const SettingsContent = view(() => (
             </>
           );
         })()}
-    </Section>
-
-    <Section title="Image settings">
-      {state.image.imageSourceWithFallback === "LOCAL" && (
-        <>
-          <SpacedItems horizontal>
-            <Button onClick={() => state.image.shiftImageLocalIndex(-1)}>Prev</Button>
-            <Button onClick={state.image.setImageLocalRandom}>Random image</Button>
-            <Button onClick={() => state.image.shiftImageLocalIndex(1)}>Next</Button>
-          </SpacedItems>
-
-          {(() => {
-            const image = state.image.imageLocal;
-
-            return (
-              <>
-                <Text>
-                  image: {state.image.imageLocalIndex + 1}/{state.image.imagesLocal.length}
-                </Text>
-                {image.name && <Text>name: {image.name}</Text>}
-                {image.location && <Text>location: {image.location}</Text>}
-                {image.source && (
-                  <Text>
-                    <a href={image.source}>source</a>
-                  </Text>
-                )}
-              </>
-            );
-          })()}
-        </>
-      )}
     </Section>
 
     <Section title="Useful stuff">
