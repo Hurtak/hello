@@ -30,7 +30,7 @@ export const checkBoxRadioLabelStyles = (
 
   // TODO: use onFocusVisible React event once it becomes standardized
   [`${Input}${s.focusVisible} + &`]: {
-    Input: s.colors.whiteTransparent20,
+    background: s.colors.whiteTransparent20,
   },
 
   [`${Input}:disabled + &`]: {
