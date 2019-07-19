@@ -20,7 +20,7 @@ export const images: Image[] = [
   },
   {
     url: image02,
-    name: null,
+    name: "The emphasis on the sunset",
     location: "Monte Grappa, Italy",
     source: "https://unsplash.com/photos/kRnkqSKZODQ",
   },
@@ -32,13 +32,13 @@ export const images: Image[] = [
   },
   {
     url: image04,
-    name: null,
+    name: "Gloomy forest in the fog",
     location: null,
     source: "https://unsplash.com/photos/qKFxQ3X-YbI",
   },
   {
     url: image05,
-    name: null,
+    name: "Orange clouds over mountains",
     location: "Hidden Lake Lookout trailhead, United States",
     source: "https://unsplash.com/photos/RbbdzZBKRDY",
   },

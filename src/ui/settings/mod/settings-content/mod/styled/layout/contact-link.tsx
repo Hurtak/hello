@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 import { Icon, IconType } from "../../../../../../../icons";
+import { Link } from "./link";
 
 export const ContactLink: React.FC<{
   href: string;
@@ -9,16 +10,16 @@ export const ContactLink: React.FC<{
   children: string;
 }> = ({ href, iconType, children }) => {
   return (
-    <Wrapper href={href}>
+    <ContactLinkStyled href={href}>
       <IconWrapper>
         <Icon type={iconType} width={2} height={2} />
       </IconWrapper>
-      <Text>{children}</Text>
-    </Wrapper>
+      <Link as="div">{children}</Link>
+    </ContactLinkStyled>
   );
 };
 
-const Wrapper = styled.a({
+const ContactLinkStyled = styled.a({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
@@ -29,16 +30,5 @@ const IconWrapper = styled.div({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  marginRight: s.grid(0.5),
-});
-
-const Text = styled.div({
-  ...s.text(),
-
-  display: "inline-block",
-  textDecoration: "none",
-
-  borderBottomWidth: s.size(1),
-  borderBottomStyle: "solid",
-  borderBottomColor: s.colors.whiteTransparent70,
+  marginRight: s.grid(0.75),
 });

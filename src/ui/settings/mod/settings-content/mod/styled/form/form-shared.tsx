@@ -45,8 +45,8 @@ export const formBoxStyles = (
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: s.grid(2),
-  height: s.grid(2),
+  width: s.dimensions.formInputBoxSize,
+  height: s.dimensions.formInputBoxSize,
   boxShadow: s.shadows.formFieldInset,
 
   background: s.colors.white,

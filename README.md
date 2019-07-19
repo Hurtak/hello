@@ -16,12 +16,8 @@
 
 ## TODO
 
-- use variables from theme?
 - settings design
   - background image
-    - predefined images
-      - texts layout and design
-      - link design
     - show proper error messages when Bing image / proxy error
   - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?
 - menu overflowing -> add scroll
