@@ -41,6 +41,10 @@ export const InputRadio: React.FC<{
 
 const Label = styled.label({
   ...checkBoxRadioLabelStyles(CheckBoxRadioInput),
+
+  [`${CheckBoxRadioInput}:checked + &`]: {
+    cursor: "auto",
+  },
 });
 
 const RadioComponent = styled.div({

@@ -26,14 +26,15 @@ export const checkBoxRadioLabelStyles = (
   width: "100%",
   padding: s.size(inputPadding),
   margin: `0 ${s.size(-inputPadding)}`,
+  cursor: "pointer",
 
   // TODO: use onFocusVisible React event once it becomes standardized
   [`${Input}${s.focusVisible} + &`]: {
     Input: s.colors.whiteTransparent20,
   },
 
-  [`${Input}:hover:not(:checked):not(:disabled) + &`]: {
-    cursor: "pointer",
+  [`${Input}:disabled + &`]: {
+    cursor: "auto",
   },
 });
 
