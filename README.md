@@ -16,6 +16,8 @@
 
 ## TODO
 
+- show location and links somewhere else and somewhere more visible accesible?
+  - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
 - settings design
   - background image
     - predefined images
@@ -39,6 +41,7 @@
 
 ## Later TODOS
 
+- decimal places in age configurable
 - support for firefox?
 - animations
   - use react-spring
@@ -86,7 +89,6 @@
 - global("body", { backgroundColor: colors.grayChrome, }
   - problem this is inserted at runtime so we wee white screen splash from default styles?
   - or maybe even if we had css file we would seee this splash?
-- decimal places in age
 - fill github descriptions and stuff
 - user-select: none na vsechno?
 - support
