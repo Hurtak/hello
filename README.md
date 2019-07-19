@@ -16,8 +16,7 @@
 
 ## TODO
 
-- show location and links somewhere else and somewhere more visible accesible?
-  - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
+- use variables from theme?
 - settings design
   - background image
     - predefined images
@@ -26,6 +25,8 @@
     - show proper error messages when Bing image / proxy error
   - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?
 - menu overflowing -> add scroll
+- show location and links somewhere else and somewhere more visible accesible?
+  - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
 - add more images!
 - rename to hello
 - go through manifest.json

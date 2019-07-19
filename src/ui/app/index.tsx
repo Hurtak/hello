@@ -138,7 +138,7 @@ const AppInner = view(() => {
 
       <AppSettingsWrapper opened={state.settings.opened} contentHeight={settingsHeight}>
         <AppSettings ref={settingsEl}>
-          <Settings isDev={config.isDev} />
+          <Settings />
         </AppSettings>
       </AppSettingsWrapper>
     </>

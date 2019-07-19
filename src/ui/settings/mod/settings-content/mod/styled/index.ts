@@ -9,5 +9,3 @@ export * from "./layout/section";
 export * from "./layout/text";
 export * from "./layout/warning";
 export * from "./layout/spacer";
-
-export * from "./settings";

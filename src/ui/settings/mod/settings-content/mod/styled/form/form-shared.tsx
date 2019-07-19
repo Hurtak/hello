@@ -1,5 +1,5 @@
 import styled, { StyledComponent } from "styled-components/macro";
-import * as s from "../../../../../styles";
+import * as s from "../../../../../../../styles";
 
 export const CheckBoxRadioWrapper = styled.div({
   display: "flex",

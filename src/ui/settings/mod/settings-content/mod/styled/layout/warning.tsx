@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
-import * as s from "../../../../../styles";
-import { Icon } from "../../../../../icons";
+import * as s from "../../../../../../../styles";
+import { Icon } from "../../../../../../../icons";
 
 export const Warning: React.FC = ({ children }) => (
   <WarningTextWrapper>

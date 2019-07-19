@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import * as s from "../../../../../styles";
+import * as s from "../../../../../../../styles";
 import { HeadingSmall } from "./text";
 
 export const Section: React.FC<{

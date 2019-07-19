@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
-import * as s from "../../../../../styles";
-import { Icon, IconType } from "../../../../../icons";
+import * as s from "../../../../../../../styles";
+import { Icon, IconType } from "../../../../../../../icons";
 
 export const ContactLink: React.FC<{
   href: string;

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components/macro";
-import { uuid } from "../../../../../utils/random";
-import * as s from "../../../../../styles";
+import { uuid } from "../../../../../../../utils/random";
+import * as s from "../../../../../../../styles";
 import {
   checkBoxRadioLabelStyles,
   CheckBoxRadioWrapper,
