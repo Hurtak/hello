@@ -25,12 +25,14 @@
     "@types/styled-components": "4.1.8",
     "jest-styled-components": "6.3.3",
     "prettier": "1.18.2",
-    "react-test-renderer": "16.8.6"
+    "react-test-renderer": "16.8.6",
+    "source-map-explorer": "2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
+    "analyze": "source-map-explorer ./build/static/js/*",
     "types": "tsc --pretty --noEmit",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
