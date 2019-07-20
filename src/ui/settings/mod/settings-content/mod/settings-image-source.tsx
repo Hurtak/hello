@@ -33,13 +33,17 @@ export const SettingsImageSource = view(() => {
 const Errors = view(() => {
   return (
     <>
-      <Spacer />
-
       {!state.browser.online && (
-        <Warning>You are currently offline, falling back to local images.</Warning>
+        <>
+          <Spacer />
+          <Warning>You are currently offline, falling back to local images.</Warning>
+        </>
       )}
       {state.browser.online && state.image.imageBing.type === "ERROR" && (
-        <Warning>Error fetching the Bing image ({state.image.imageBing.errorType})</Warning>
+        <>
+          <Spacer />
+          <Warning>Error fetching the Bing image ({state.image.imageBing.errorType})</Warning>
+        </>
       )}
     </>
   );
