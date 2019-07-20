@@ -40,15 +40,9 @@ const Errors = view(() => {
         </>
       )}
 
-      {state.image.imageBing.type === "ERROR" && (
+      {state.browser.online && state.image.imageBing.type === "ERROR" && (
         <>
-          {/* TODO: proper error matching */}
-          <p>Error</p>
-          <p>errorType: {state.image.imageBing.errorType}</p>
-          <p>errorData: {String(state.image.imageBing.data)}</p>
-          <pre>
-            <code>{JSON.stringify(state.image.imageBing)}</code>
-          </pre>
+          <Warning>Error fetching the Bing image ({state.image.imageBing.errorType})</Warning>
         </>
       )}
     </>

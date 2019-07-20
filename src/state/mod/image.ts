@@ -29,23 +29,29 @@ export const image = {
     return state.image.imagesLocal[state.image.imageLocalIndex];
   },
 
-  get imageSourceWithFallback(): ImageSource | null {
+  get imageBingWithFallback(): BingData | null {
+    if (state.image.imageBing.type === "DONE") {
+      return state.image.imageBing.data;
+    } else if (state.image.imageBingCached) {
+      return state.image.imageBingCached;
+    }
+    return null;
+  },
+
+  get imageSourceWithFallback(): ImageSource {
     switch (state.image.imageSource) {
       case "LOCAL":
         return "LOCAL";
+
       case "BING":
         if (!state.browser.online) {
-          return "LOCAL";
-        } else if (state.image.imageBingCached) {
-          return "BING";
-        } else if (state.image.imageBing && state.image.imageBing.type === "ERROR") {
           return "LOCAL";
         } else {
           return "BING";
         }
 
       default:
-        return null;
+        return "LOCAL";
     }
   },
 
@@ -56,16 +62,20 @@ export const image = {
     switch (state.image.imageSourceWithFallback) {
       case "LOCAL":
         return urlLocal;
+
       case "BING":
         if (state.image.imageBingCached) {
           return state.image.imageBingCached.url;
         }
+
+        // TODO: does this branch do anything?
         switch (state.image.imageBing.type) {
           case "DONE":
             return state.image.imageBing.data.url;
           default:
             return null;
         }
+
       default:
         return null;
     }

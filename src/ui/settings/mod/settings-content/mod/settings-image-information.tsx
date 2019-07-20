@@ -7,26 +7,26 @@ export const SettingsImageInformation = view(() => (
   <Section title="Image information">
     {state.image.imageSourceWithFallback === "BING" && (
       <>
-        {state.image.imageBing.type === "FETCHING" && (
+        {!state.image.imageBingWithFallback && state.image.imageBing.type === "FETCHING" && (
           <List>
             <ListItem>Fetching&hellip;</ListItem>
           </List>
         )}
-        {state.image.imageBing.type === "DONE" && (
+        {state.image.imageBingWithFallback && (
           <List>
-            {state.image.imageBing.data.title && (
+            {state.image.imageBingWithFallback.title && (
               <ListItem>
-                Title <Dash /> {state.image.imageBing.data.title}
+                Title <Dash /> {state.image.imageBingWithFallback.title}
               </ListItem>
             )}
-            {state.image.imageBing.data.description && (
+            {state.image.imageBingWithFallback.description && (
               <ListItem>
-                Description <Dash /> {state.image.imageBing.data.description}
+                Description <Dash /> {state.image.imageBingWithFallback.description}
               </ListItem>
             )}
-            {state.image.imageBing.data.link && (
+            {state.image.imageBingWithFallback.link && (
               <ListItem>
-                <Link href={state.image.imageBing.data.link}>Link</Link>
+                <Link href={state.image.imageBingWithFallback.link}>Link</Link>
               </ListItem>
             )}
           </List>

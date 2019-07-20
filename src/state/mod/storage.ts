@@ -30,6 +30,7 @@ export const storage = {
       }
       state.debug.scheduledAppReset = false;
     });
+
     state.storage.retrieveAndUpdateState();
   },
 
