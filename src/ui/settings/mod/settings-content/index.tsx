@@ -36,43 +36,45 @@ export const SettingsContent = view(() => (
       </Text>
     )}
 
-    <Section title="Image source">
-      <InputRadio
-        name="images"
-        onChange={() => state.image.setImageSource("BING")}
-        checked={state.image.imageSourceWithFallback === "BING"}
-        disabled={state.browser.online === false}
-      >
-        Bing image of the day
-      </InputRadio>
+    {!state.settings.cleanVersion && (
+      <Section title="Image source">
+        <InputRadio
+          name="images"
+          onChange={() => state.image.setImageSource("BING")}
+          checked={state.image.imageSourceWithFallback === "BING"}
+          disabled={state.browser.online === false}
+        >
+          Bing image of the day
+        </InputRadio>
 
-      <InputRadio
-        name="images"
-        onChange={() => state.image.setImageSource("LOCAL")}
-        checked={state.image.imageSourceWithFallback === "LOCAL"}
-      >
-        Local
-      </InputRadio>
+        <InputRadio
+          name="images"
+          onChange={() => state.image.setImageSource("LOCAL")}
+          checked={state.image.imageSourceWithFallback === "LOCAL"}
+        >
+          Local
+        </InputRadio>
 
-      {!state.browser.online && (
-        <>
-          <Spacer size={1} />
-          <Warning>You are currently offline, falling back to local images</Warning>
-        </>
-      )}
+        {!state.browser.online && (
+          <>
+            <Spacer size={1} />
+            <Warning>You are currently offline, falling back to local images</Warning>
+          </>
+        )}
 
-      {state.image.imageBing.type === "ERROR" && (
-        <>
-          {/* TODO: proper error matching */}
-          <p>Error</p>
-          <p>errorType: {state.image.imageBing.errorType}</p>
-          <p>errorData: {String(state.image.imageBing.data)}</p>
-          <pre>
-            <code>{JSON.stringify(state.image.imageBing)}</code>
-          </pre>
-        </>
-      )}
-    </Section>
+        {state.image.imageBing.type === "ERROR" && (
+          <>
+            {/* TODO: proper error matching */}
+            <p>Error</p>
+            <p>errorType: {state.image.imageBing.errorType}</p>
+            <p>errorData: {String(state.image.imageBing.data)}</p>
+            <pre>
+              <code>{JSON.stringify(state.image.imageBing)}</code>
+            </pre>
+          </>
+        )}
+      </Section>
+    )}
 
     {state.image.imageSourceWithFallback === "LOCAL" && (
       <Section title="Image settings">
@@ -138,41 +140,43 @@ export const SettingsContent = view(() => (
       )}
     </Section>
 
-    <Section title="Useful stuff">
-      <InputRadio
-        name="view"
-        onChange={() => state.settings.setSelectedView("CLOCK")}
-        checked={state.settings.selectedView === "CLOCK"}
-      >
-        Clock
-      </InputRadio>
+    {!state.settings.cleanVersion && (
+      <Section title="Useful stuff">
+        <InputRadio
+          name="view"
+          onChange={() => state.settings.setSelectedView("CLOCK")}
+          checked={state.settings.selectedView === "CLOCK"}
+        >
+          Clock
+        </InputRadio>
 
-      <InputRadio
-        name="view"
-        onChange={() => state.settings.setSelectedView("AGE")}
-        checked={state.settings.selectedView === "AGE"}
-      >
-        Age
-      </InputRadio>
+        <InputRadio
+          name="view"
+          onChange={() => state.settings.setSelectedView("AGE")}
+          checked={state.settings.selectedView === "AGE"}
+        >
+          Age
+        </InputRadio>
 
-      <InputRadio
-        name="view"
-        onChange={() => state.settings.setSelectedView("YEAR_PROGRESS")}
-        checked={state.settings.selectedView === "YEAR_PROGRESS"}
-      >
-        Year progress
-      </InputRadio>
+        <InputRadio
+          name="view"
+          onChange={() => state.settings.setSelectedView("YEAR_PROGRESS")}
+          checked={state.settings.selectedView === "YEAR_PROGRESS"}
+        >
+          Year progress
+        </InputRadio>
 
-      <InputRadio
-        name="view"
-        onChange={() => state.settings.setSelectedView("NOTHING")}
-        checked={state.settings.selectedView === "NOTHING"}
-      >
-        No thanks
-      </InputRadio>
-    </Section>
+        <InputRadio
+          name="view"
+          onChange={() => state.settings.setSelectedView("NOTHING")}
+          checked={state.settings.selectedView === "NOTHING"}
+        >
+          No thanks
+        </InputRadio>
+      </Section>
+    )}
 
-    {state.settings.selectedView === "CLOCK" && (
+    {!state.settings.cleanVersion && state.settings.selectedView === "CLOCK" && (
       <Section title="Clock settings">
         <InputCheckBox
           checked={state.settings.clockShowSeconds}
@@ -183,7 +187,7 @@ export const SettingsContent = view(() => (
       </Section>
     )}
 
-    {state.settings.selectedView === "AGE" && (
+    {!state.settings.cleanVersion && state.settings.selectedView === "AGE" && (
       <Section title="Age settings">
         <InputDate
           min={timestampToDateInputValue(new Date(1900, 0, 1).getTime())}
