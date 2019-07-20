@@ -6,6 +6,7 @@ import { debug } from "./mod/debug";
 import { image } from "./mod/image";
 import { settings } from "./mod/settings";
 import { storage } from "./mod/storage";
+import { config } from "../config";
 
 export type State = {
   app: typeof app;
@@ -24,3 +25,7 @@ export const state: State = store<State>({
   settings,
   storage,
 });
+
+if (config.isDev) {
+  window._state = state;
+}
