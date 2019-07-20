@@ -18,7 +18,6 @@
 ## TODO
 
 - settings design
-  - revamp whole layout, are there some shared layout elements/spacings that could be abstracted/unified?
   - main button focus-visible
 - menu overflowing -> add scroll
 - add more images!
