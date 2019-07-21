@@ -16,7 +16,7 @@ export const grid = (grid: number): string => size(gridRawToRawSize(grid));
 export const gridFixed = (grid: number): string => sizeFixed(gridRawToRawSize(grid));
 
 /*
- * Colors
+ * Colors / Shared values
  */
 
 // TODO: Delete unused variables.
@@ -47,6 +47,15 @@ export const shadows = {
   formFieldInset: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent20} inset`,
   formField: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent30}`,
   buttons: `${size(1)} ${size(1)} ${size(3)} ${size(1)} ${colors.blackTransparent20}`,
+};
+
+export const animations = {
+  default: "0.5s all ease",
+  backgroundImage: "opacity 0.3s ease",
+};
+
+export const opacity = {
+  default: 0.7,
 };
 
 /*
@@ -117,14 +126,6 @@ export const text = ({
 });
 
 /*
- * Breakpoints
- */
-
-const breakpointPxToEm = (px: number): string => `${px / 16}em`;
-export const maxWidthBreakpoint = (px: number): string =>
-  `@media (max-width: ${breakpointPxToEm(px)})`;
-
-/*
  * Dimensions
  */
 
@@ -146,6 +147,14 @@ export const dimensions = {
   settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing),
 };
 
+/*
+ * Mixins
+ */
+
+const breakpointPxToEm = (px: number): string => `${px / 16}em`;
+export const maxWidthBreakpoint = (px: number): string =>
+  `@media (max-width: ${breakpointPxToEm(px)})`;
+
 export const visuallyHideInputFieldWhileStillInteractive: React.CSSProperties = {
   // Make sure the input is still there for screen readers and for the browser
   // and for the "focus" events, but hide him visually.
@@ -156,16 +165,3 @@ export const visuallyHideInputFieldWhileStillInteractive: React.CSSProperties = 
 };
 
 export const focusVisible = ".focus-visible:focus";
-
-/*
- * Other shared styles
- */
-
-export const animations = {
-  default: "0.5s all ease",
-  backgroundImage: "opacity 0.3s ease",
-};
-
-export const opacity = {
-  default: 0.7,
-};
