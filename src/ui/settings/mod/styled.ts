@@ -24,9 +24,14 @@ export const ToggleButton = styled.button({
   top: s.dimensions.settingsButtonSpacing,
   right: s.dimensions.settingsButtonSpacing,
   border: 0,
+  outline: 0,
   background: "transparent",
   padding: s.dimensions.settingsButtonPadding,
   cursor: "pointer",
+
+  [`&${s.focusVisible}`]: {
+    backgroundColor: s.colors.whiteTransparent20,
+  },
 });
 
 export const ToggleButtonSpacer = styled.div({

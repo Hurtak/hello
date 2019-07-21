@@ -21,7 +21,7 @@ const ButtonStyled = styled.button({
   cursor: "pointer",
 
   [`&${s.focusVisible}`]: {
-    outlineWidth: s.grid(0.25),
+    outlineWidth: s.grid(0.5),
     outlineStyle: "solid",
     outlineColor: s.colors.whiteTransparent40,
   },

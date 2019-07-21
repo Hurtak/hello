@@ -17,8 +17,6 @@
 
 ## TODO
 
-- settings design
-  - main button focus-visible
 - menu overflowing -> add scroll
 - add more images!
 - rename to hello

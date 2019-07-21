@@ -24,6 +24,13 @@ const ContactLinkStyled = styled.a({
   flexDirection: "row",
   alignItems: "center",
   textDecoration: "none",
+  outline: 0,
+  padding: s.grid(0.75),
+  margin: s.grid(-0.75),
+
+  [`&${s.focusVisible}`]: {
+    background: s.colors.whiteTransparent20,
+  },
 });
 
 const IconWrapper = styled.div({
