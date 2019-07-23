@@ -23,12 +23,12 @@ export const ToggleButton = styled.button({
   boxSizing: "border-box",
   position: "absolute",
   overflow: "hidden", // When icon was rotating, it increased the outline size.
-  top: s.dimensions.settingsButtonSpacing,
-  right: s.dimensions.settingsButtonSpacing,
+  top: s.size(s.dimensions.settingsButtonSpacing),
+  right: s.size(s.dimensions.settingsButtonSpacing),
   border: 0,
   outline: 0,
   background: "transparent",
-  padding: s.dimensions.settingsButtonPadding,
+  padding: s.size(s.dimensions.settingsButtonPadding),
   cursor: "pointer",
 
   [`&${s.focusVisible}`]: {

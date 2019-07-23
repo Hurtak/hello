@@ -47,8 +47,8 @@ export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) =
   direction: "rtl", // To make the overflow cropping from the right side
   top: s.size(s.dimensions.settingsSpacing),
   right: s.size(s.dimensions.settingsSpacing),
-  width: s.dimensions.settingsButtonSizeAndSpacing,
-  height: s.dimensions.settingsButtonSizeAndSpacing,
+  width: s.size(s.dimensions.settingsButtonSizeAndSpacing),
+  height: s.size(s.dimensions.settingsButtonSizeAndSpacing),
   transition: s.animations.default,
   overflow: "hidden",
   zIndex: 3,

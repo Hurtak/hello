@@ -13,7 +13,7 @@ export const CheckBoxRadioInput = styled.input({
 export const CheckBoxRadioText = styled.span({
   ...s.text({ selectable: false }),
 
-  marginLeft: s.dimensions.formSpacing,
+  marginLeft: s.size(s.dimensions.formSpacing),
 });
 
 const inputPadding = s.gridNumber(0.25);
@@ -45,8 +45,8 @@ export const formBoxStyles = (
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: s.dimensions.formInputBoxSize,
-  height: s.dimensions.formInputBoxSize,
+  width: s.size(s.dimensions.formInputBoxSize),
+  height: s.size(s.dimensions.formInputBoxSize),
   boxShadow: s.shadows.formFieldInset,
 
   background: s.colors.white,

@@ -139,16 +139,16 @@ const settingsButtonSpacing = gridNumber(1);
 const settingsButtonSizeAndSpacing =
   settingsButtonSize + 2 * settingsButtonPadding + 2 * settingsButtonSpacing;
 
-export const dimensions = {
-  formSpacing: grid(1.25),
-  formInputBoxSize: grid(2),
+export const dimensions: { [key: string]: number } = {
+  formSpacing: gridNumber(1.25),
+  formInputBoxSize: gridNumber(2),
 
   settingsSpacing: gridNumber(1),
 
   settingsButtonSize: settingsButtonSize,
-  settingsButtonPadding: size(settingsButtonPadding),
-  settingsButtonSpacing: size(settingsButtonSpacing),
-  settingsButtonSizeAndSpacing: size(settingsButtonSizeAndSpacing),
+  settingsButtonPadding: settingsButtonPadding,
+  settingsButtonSpacing: settingsButtonSpacing,
+  settingsButtonSizeAndSpacing: settingsButtonSizeAndSpacing,
 };
 
 /*

@@ -38,9 +38,9 @@ const LiDotWrapper = styled.span({
   alignItems: "center",
   justifyContent: "center",
   flexShrink: 0,
-  width: s.dimensions.formInputBoxSize,
+  width: s.size(s.dimensions.formInputBoxSize),
   height: s.grid(1.75),
-  marginRight: s.dimensions.formSpacing,
+  marginRight: s.size(s.dimensions.formSpacing),
 });
 
 const LiDot = styled.span({
