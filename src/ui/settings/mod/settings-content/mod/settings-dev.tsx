@@ -1,28 +1,30 @@
 import React from "react";
 import { view } from "react-easy-state";
 import { state } from "../../../../../state";
-import { config } from "../../../../../config";
-import { Text, Section, Button, InputCheckBox, Spacer } from "./styled";
+import { Text, Section, Button, InputCheckBox, SpacedItems } from "./styled";
 
 export const SettingsDev = view(() => {
-  if (!config.isDev) return null;
+  if (!state.debug.devMenuVisible) return null;
 
   return (
     <Section title="Dev menu">
-      <Text>This menu is only visible in development mode</Text>
+      <SpacedItems spacing={1}>
+        <Text>
+          This menu is visible by default in development mode or after pressing `i d d q d` cheat
+          code!
+        </Text>
 
-      <Spacer size={0.5} />
+        <InputCheckBox
+          checked={state.debug.rememberSettingsOpened}
+          onChange={state.debug.toggleRememberSettingsOpened}
+        >
+          Remember settings opened state
+        </InputCheckBox>
 
-      <Button onClick={state.debug.resetAppState}>Reset app state</Button>
+        <Button onClick={state.debug.resetAppState}>Reset app state</Button>
 
-      <Spacer size={0.5} />
-
-      <InputCheckBox
-        checked={state.debug.rememberSettingsOpened}
-        onChange={state.debug.toggleRememberSettingsOpened}
-      >
-        Remember settings opened state
-      </InputCheckBox>
+        <Button onClick={state.debug.hideDevMenu}>Hide dev menu</Button>
+      </SpacedItems>
     </Section>
   );
 });

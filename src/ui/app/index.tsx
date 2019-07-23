@@ -4,7 +4,6 @@ import "focus-visible"; // TODO: Remove once supported in Chrome & FF
 
 import React, { useState, useEffect, useRef } from "react";
 import { view } from "react-easy-state";
-import { HotKeys } from "react-hotkeys";
 
 import { state } from "../../state";
 import * as time from "../../utils/time";
@@ -17,6 +16,7 @@ import { YearProgress } from "../background-types/year-progress";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
 import { TimerUpdater } from "../timer-updater";
+import { RootHotKeys } from "../hotkeys/hotkeys";
 import {
   Layout,
   BackgroundWrapper,
@@ -43,19 +43,12 @@ export const App = view(() => {
   }
 
   return (
-    <HotKeys
-      keyMap={{
-        CLOSE_SETTINGS: "esc",
-      }}
-      handlers={{
-        CLOSE_SETTINGS: state.settings.closeSettings,
-      }}
-    >
+    <RootHotKeys>
       <Layout>
         <GlobalStyles />
         <AppInner />
       </Layout>
-    </HotKeys>
+    </RootHotKeys>
   );
 });
 

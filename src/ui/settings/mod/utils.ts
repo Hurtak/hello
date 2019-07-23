@@ -20,3 +20,12 @@ export function eventToAgeOfBirthValues(
     inputValue,
   };
 }
+
+export function scrollTop(el: HTMLElement) {
+  // TODO: which one oto use, .scroll. scrollBy or .scrollTo
+  el.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+}
+
+export function scrollBottom(el: HTMLElement) {
+  el.scrollTo({ left: 0, top: el.scrollHeight, behavior: "smooth" });
+}

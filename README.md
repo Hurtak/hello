@@ -14,10 +14,13 @@
   - Another inline script is `window.GLOBAL_PERF_TIMESTAMP = Date.now();` that is used for performance measuring. This one is added manually into `manifest.json`. Side note: `performance.timeOrigin` seemed to return wrong timings, investigate further in the future
 - Create React App does not support testing files that have name `test.ts`, only files with `*.test.ts` or `*.spec.ts` patterns, so we go around this by calling tests `spec.test.ts`
 - Global state is available in dev mode on `window._state`.
--
 
 ## TODO
 
+- dev menu
+  - build time
+  - version from package.json
+  - changelog link?
 - rename to hello
 - image changing smoothly
 - go through manifest.json
@@ -28,7 +31,13 @@
   - name
   - description
 - add more images!
-- release
+- react hook dependencies issue react-easy-state
+- host on github pages
+- release on chrome store
+- write article
+- release on twitter
+- release on reddit
+- release on HN
 
 ## Later TODOS
 
@@ -86,7 +95,6 @@
 - fill github descriptions and stuff
 - user-select: none na vsechno?
 - support
-  - chrome plugin
   - firefox plugin
   - web app - github pages hosted
 - when loading new image, add blur our, blur in efect
