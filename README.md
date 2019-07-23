@@ -17,8 +17,7 @@
 
 ## TODO
 
-- menu overflowing -> add scroll
-- add more images!
+- image changing smoothly
 - rename to hello
 - go through manifest.json
   - unnecessary permissions?
@@ -29,6 +28,7 @@
   - bump version to 1.0
   - license
   - author
+- add more images!
 - release
 
 ## Later TODOS

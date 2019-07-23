@@ -16,7 +16,7 @@ export const CheckBoxRadioText = styled.span({
   marginLeft: s.dimensions.formSpacing,
 });
 
-const inputPadding = s.gridRawToRawSize(0.25);
+const inputPadding = s.gridNumber(0.25);
 export const checkBoxRadioLabelStyles = (
   Input: StyledComponent<any, any>,
 ): React.CSSProperties => ({
