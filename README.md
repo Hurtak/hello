@@ -18,8 +18,6 @@
 ## TODO
 
 - dev menu
-  - build time
-  - version from package.json
   - changelog link?
 - rename to hello
 - image changing smoothly

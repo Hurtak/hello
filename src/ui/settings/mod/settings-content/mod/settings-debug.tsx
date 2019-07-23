@@ -1,7 +1,12 @@
 import React from "react";
 import { view } from "react-easy-state";
 import { state } from "../../../../../state";
-import { Text, Section, Button, InputCheckBox, SpacedItems } from "./styled";
+import { Text, Section, Button, InputCheckBox, SpacedItems, List, ListItem, Dash } from "./styled";
+import { version } from "../../../../../../package.json";
+
+const buildTimeTimestamp = process.env.REACT_APP_BUILD_TIME
+  ? Number(process.env.REACT_APP_BUILD_TIME) * 1000
+  : Date.now();
 
 export const SettingsDebug = view(() => {
   if (!state.debug.debugMenuVisible) return null;
@@ -13,6 +18,15 @@ export const SettingsDebug = view(() => {
           This menu is visible by default in development mode or after pressing `i d d q d` cheat
           code!
         </Text>
+
+        <List>
+          <ListItem>
+            Version <Dash /> {version}
+          </ListItem>
+          <ListItem>
+            Build time <Dash /> {new Date(buildTimeTimestamp).toISOString()}
+          </ListItem>
+        </List>
 
         <InputCheckBox
           checked={state.debug.rememberSettingsOpened}
