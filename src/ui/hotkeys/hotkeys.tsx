@@ -12,15 +12,10 @@ export const RootHotKeys = view(({ children }) => {
       }}
       handlers={{
         CLOSE_SETTINGS: state.settings.closeSettings,
-        SHOW_DEV_MENU: showDevMenu,
+        SHOW_DEV_MENU: state.debug.showDevMenu,
       }}
     >
       {children}
     </HotKeys>
   );
 });
-
-function showDevMenu() {
-  if (state.debug.devMenuVisible) return;
-  state.debug.showDevMenu();
-}

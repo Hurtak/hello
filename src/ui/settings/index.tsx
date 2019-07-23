@@ -16,30 +16,39 @@ import { scrollTop, scrollBottom } from "./mod/utils";
 export const Settings = view(() => {
   const settingsWrapperEl = useRef<HTMLElement>(null);
 
-  const [previousDevMenuVisible, setPreviousDevMenuVisible] = useState<boolean | null>(null);
   const [previousSettingsOpened, setPreviousSettingsOpened] = useState<boolean | null>(null);
+  const [
+    previousDevMenuScrollAnimationRequestNr,
+    setPreviousDevMenuScrollAnimationRequestNr,
+  ] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     if (!settingsWrapperEl.current) return;
 
+    // Scroll to top when settings is closing
     if (previousSettingsOpened !== null) {
       if (state.settings.opened === false) {
-        // Scroll to top when we are closing
         scrollTop(settingsWrapperEl.current);
       }
-      if (state.debug.devMenuVisible === true && previousDevMenuVisible === false) {
-        // Scroll to bottom when we show dev menu
+    }
+
+    // Scroll to dev menu (bottom of settings) when we show dev menu
+    if (previousDevMenuScrollAnimationRequestNr !== null) {
+      if (
+        state.debug.devMenuVisible === true &&
+        state.debug.devMenuScrollAnimationRequestNr !== previousDevMenuScrollAnimationRequestNr
+      ) {
         scrollBottom(settingsWrapperEl.current);
       }
     }
 
     setPreviousSettingsOpened(state.settings.opened);
-    setPreviousDevMenuVisible(state.debug.devMenuVisible);
+    setPreviousDevMenuScrollAnimationRequestNr(state.debug.devMenuScrollAnimationRequestNr);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     previousSettingsOpened,
-    previousDevMenuVisible,
+    previousDevMenuScrollAnimationRequestNr,
     state.settings.opened,
     state.debug.devMenuVisible,
   ]);

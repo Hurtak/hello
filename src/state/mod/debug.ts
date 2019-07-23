@@ -7,6 +7,7 @@ export const debug = {
   //
 
   devMenuVisible: config.isDev,
+  devMenuScrollAnimationRequestNr: 0,
   rememberSettingsOpened: false,
   scheduledAppReset: false,
 
@@ -21,6 +22,7 @@ export const debug = {
   showDevMenu(): void {
     state.settings.opened = true;
     state.debug.devMenuVisible = true;
+    state.debug.devMenuScrollAnimationRequestNr++;
   },
 
   toggleRememberSettingsOpened(): void {
