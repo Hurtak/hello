@@ -17,17 +17,15 @@
 
 ## TODO
 
-- image changing smoothly
 - rename to hello
+- image changing smoothly
 - go through manifest.json
   - unnecessary permissions?
   - missing fields?
   - update existing fields
 - properly fill package.json
-  - repository
-  - bump version to 1.0
-  - license
-  - author
+  - name
+  - description
 - add more images!
 - release
 

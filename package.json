@@ -1,6 +1,11 @@
 {
   "name": "hello",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Petr Huřťák",
+    "email": "petr.hurtak@gmail.com"
+  },
   "dependencies": {
     "focus-visible": "5.0.2",
     "react": "16.8.6",
