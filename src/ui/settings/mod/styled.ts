@@ -1,23 +1,25 @@
 import styled from "styled-components/macro";
 import * as s from "../../../styles";
 
-export const SettingsWrapper = styled.section((props: { opened: boolean; hidden: boolean }) => ({
-  boxSizing: "border-box",
-  position: "relative",
-  padding: s.grid(2),
-  maxHeight: `calc(100vh - ${s.size(2 * s.dimensions.settingsSpacing)})`,
-  overflow: props.opened ? "auto" : "hidden",
-  backgroundColor: s.colors.blackTransparent40,
+export const SettingsWrapper = styled.section(
+  (props: { opened: boolean; hiddenUnlessHovered: boolean }) => ({
+    boxSizing: "border-box",
+    position: "relative",
+    padding: s.grid(2),
+    maxHeight: `calc(100vh - ${s.size(2 * s.dimensions.settingsSpacing)})`,
+    overflow: props.opened ? "auto" : "hidden",
+    backgroundColor: s.colors.blackTransparent40,
 
-  ...(props.hidden && {
-    opacity: 0,
-    transition: s.animations.default,
+    ...(props.hiddenUnlessHovered && {
+      opacity: 0,
+      transition: s.animations.default,
 
-    "&:hover": {
-      opacity: 1,
-    },
+      "&:hover": {
+        opacity: 1,
+      },
+    }),
   }),
-}));
+);
 
 export const ToggleButton = styled.button({
   boxSizing: "border-box",

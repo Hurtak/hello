@@ -28,7 +28,7 @@ export const Settings = view(() => {
     <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
       <SettingsWrapper
         opened={state.settings.opened}
-        hidden={state.settings.cleanVersion && !state.settings.opened}
+        hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}
         ref={settingsWrapperEl}
       >
         <ToggleButton onClick={state.settings.toggleSettingsOpened}>
