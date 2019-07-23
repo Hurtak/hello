@@ -16,13 +16,13 @@ export const Settings = view(() => {
   const settingsWrapperEl = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
+    if (!settingsWrapperEl.current) return;
+
     if (state.settings.opened === false) {
-      if (settingsWrapperEl.current) {
-        // TODO: which one oto use, .scroll. scrollBy or .scrollTo
-        settingsWrapperEl.current.scrollTo({ left: 0, top: 0, behavior: "smooth" });
-      }
+      // TODO: which one oto use, .scroll. scrollBy or .scrollTo
+      settingsWrapperEl.current.scrollTo({ left: 0, top: 0, behavior: "smooth" });
     }
-  }, [state.settings.opened]);
+  });
 
   return (
     <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
