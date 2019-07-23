@@ -143,7 +143,8 @@ export const dimensions = {
   formSpacing: grid(1.25),
   formInputBoxSize: grid(2),
 
-  settingsWidth: size(400),
+  settingsSpacing: gridNumber(1),
+
   settingsButtonSize: settingsButtonSize,
   settingsButtonPadding: size(settingsButtonPadding),
   settingsButtonSpacing: size(settingsButtonSpacing),

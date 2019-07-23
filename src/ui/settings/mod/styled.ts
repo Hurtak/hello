@@ -1,16 +1,18 @@
 import styled from "styled-components/macro";
 import * as s from "../../../styles";
 
-export const SettingsWrapper = styled.section((props: { settingsHidden?: boolean }) => ({
+export const SettingsWrapper = styled.section((props: { opened: boolean; hidden: boolean }) => ({
   boxSizing: "border-box",
   position: "relative",
   padding: s.grid(2),
-  overflow: "hidden",
+  maxHeight: `calc(100vh - ${s.size(2 * s.dimensions.settingsSpacing)})`,
+  overflow: props.opened ? "auto" : "hidden",
   backgroundColor: s.colors.blackTransparent40,
 
-  ...(props.settingsHidden && {
+  ...(props.hidden && {
     opacity: 0,
     transition: s.animations.default,
+
     "&:hover": {
       opacity: 1,
     },

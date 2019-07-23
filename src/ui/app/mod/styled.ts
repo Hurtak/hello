@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
 import * as s from "../../../styles";
 
+const settingsWidth = s.size(400);
+
 export const Layout = styled.div({
   boxSizing: "border-box",
   position: "relative",
@@ -33,19 +35,18 @@ export const AppContent = styled.main({
 });
 
 type AppSettingsProps = { opened: boolean; contentHeight: number | null };
-
 export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) => ({
   style: {
     ...(props.opened && {
-      width: s.dimensions.settingsWidth,
+      width: settingsWidth,
       height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
     }),
   },
 }))((_: AppSettingsProps) => ({
   position: "absolute",
   direction: "rtl", // To make the overflow cropping from the right side
-  top: s.grid(1),
-  right: s.grid(1),
+  top: s.size(s.dimensions.settingsSpacing),
+  right: s.size(s.dimensions.settingsSpacing),
   width: s.dimensions.settingsButtonSizeAndSpacing,
   height: s.dimensions.settingsButtonSizeAndSpacing,
   transition: s.animations.default,
@@ -54,6 +55,6 @@ export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) =
 }));
 
 export const AppSettings = styled.div({
-  width: s.dimensions.settingsWidth,
+  width: settingsWidth,
   direction: "ltr", // Reset direction set in AppSettingsWrapper
 });
