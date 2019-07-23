@@ -8,7 +8,7 @@ import { SettingsViewType } from "./mod/settings-view-type";
 import { SettingsViewSettings } from "./mod/settings-view-settings";
 import { SettingsCleanVersion } from "./mod/settings-clean-version";
 import { SettingsContact } from "./mod/settings-contact";
-import { SettingsDev } from "./mod/settings-dev";
+import { SettingsDebug } from "./mod/settings-debug";
 
 export const SettingsContent = () => (
   <>
@@ -23,6 +23,6 @@ export const SettingsContent = () => (
 
     <SettingsCleanVersion />
     <SettingsContact />
-    <SettingsDev />
+    <SettingsDebug />
   </>
 );

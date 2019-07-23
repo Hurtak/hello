@@ -3,11 +3,11 @@ import { view } from "react-easy-state";
 import { state } from "../../../../../state";
 import { Text, Section, Button, InputCheckBox, SpacedItems } from "./styled";
 
-export const SettingsDev = view(() => {
-  if (!state.debug.devMenuVisible) return null;
+export const SettingsDebug = view(() => {
+  if (!state.debug.debugMenuVisible) return null;
 
   return (
-    <Section title="Dev menu">
+    <Section title="Debug menu">
       <SpacedItems spacing={1}>
         <Text>
           This menu is visible by default in development mode or after pressing `i d d q d` cheat
@@ -23,7 +23,7 @@ export const SettingsDev = view(() => {
 
         <Button onClick={state.debug.resetAppState}>Reset app state</Button>
 
-        <Button onClick={state.debug.hideDevMenu}>Hide dev menu</Button>
+        <Button onClick={state.debug.hideDebugMenu}>Hide dev menu</Button>
       </SpacedItems>
     </Section>
   );

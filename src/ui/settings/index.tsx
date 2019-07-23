@@ -18,8 +18,8 @@ export const Settings = view(() => {
 
   const [previousSettingsOpened, setPreviousSettingsOpened] = useState<boolean | null>(null);
   const [
-    previousDevMenuScrollAnimationRequestNr,
-    setPreviousDevMenuScrollAnimationRequestNr,
+    previousDebugMenuScrollAnimationRequestNr,
+    setPreviousDebugMenuScrollAnimationRequestNr,
   ] = useState<number | null>(null);
 
   useLayoutEffect(() => {
@@ -32,25 +32,25 @@ export const Settings = view(() => {
       }
     }
 
-    // Scroll to dev menu (bottom of settings) when we show dev menu
-    if (previousDevMenuScrollAnimationRequestNr !== null) {
+    // Scroll to debug menu (bottom of settings) when we show debug menu
+    if (previousDebugMenuScrollAnimationRequestNr !== null) {
       if (
-        state.debug.devMenuVisible === true &&
-        state.debug.devMenuScrollAnimationRequestNr !== previousDevMenuScrollAnimationRequestNr
+        state.debug.debugMenuVisible === true &&
+        state.debug.debugMenuScrollAnimationRequestNr !== previousDebugMenuScrollAnimationRequestNr
       ) {
         scrollBottom(settingsWrapperEl.current);
       }
     }
 
     setPreviousSettingsOpened(state.settings.opened);
-    setPreviousDevMenuScrollAnimationRequestNr(state.debug.devMenuScrollAnimationRequestNr);
+    setPreviousDebugMenuScrollAnimationRequestNr(state.debug.debugMenuScrollAnimationRequestNr);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     previousSettingsOpened,
-    previousDevMenuScrollAnimationRequestNr,
+    previousDebugMenuScrollAnimationRequestNr,
     state.settings.opened,
-    state.debug.devMenuVisible,
+    state.debug.debugMenuVisible,
   ]);
 
   return (

@@ -8,11 +8,11 @@ export const RootHotKeys = view(({ children }) => {
     <HotKeys
       keyMap={{
         CLOSE_SETTINGS: "esc",
-        SHOW_DEV_MENU: ["i d d q d"],
+        SHOW_DEBUG_MENU: ["i d d q d"],
       }}
       handlers={{
         CLOSE_SETTINGS: state.settings.closeSettings,
-        SHOW_DEV_MENU: state.debug.showDevMenu,
+        SHOW_DEBUG_MENU: state.debug.showDebugMenu,
       }}
     >
       {children}
