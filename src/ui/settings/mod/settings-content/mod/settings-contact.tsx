@@ -16,7 +16,7 @@ export const SettingsContact = view(() => {
       <Spacer size={1} />
 
       <ContactLinks>
-        <SpacedItems spacing={2} horizontal>
+        <SpacedItems spacing={1} horizontal>
           <ContactLink iconType="GITHUB" href="https://github.com/hurtak/hello-friend">
             Github
           </ContactLink>
