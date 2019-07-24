@@ -17,6 +17,8 @@
 
 ## TODO
 
+- react suspense for settings to improve perf?
+- fade in animation of main view and settings button
 - dev menu
   - changelog link?
 - rename to hello

@@ -10,8 +10,9 @@ import {
   ToggleButtonIconWrapper,
   ToggleButtonSpacer,
 } from "./mod/styled";
-import { SettingsContent } from "./mod/settings-content";
 import { scrollTop, scrollBottom } from "./mod/utils";
+
+const SettingsContentLazy = React.lazy(() => import("./mod/settings-content"));
 
 export const Settings = view(() => {
   const settingsWrapperEl = useRef<HTMLElement>(null);
@@ -73,7 +74,9 @@ export const Settings = view(() => {
         <ToggleButtonSpacer />
 
         <div inert={state.settings.opened === false ? "inert" : null}>
-          <SettingsContent />
+          <React.Suspense fallback={null}>
+            <SettingsContentLazy />
+          </React.Suspense>
         </div>
       </SettingsWrapper>
     </OutsideClickHandler>

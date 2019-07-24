@@ -26,3 +26,6 @@ export const SettingsContent = () => (
     <SettingsDebug />
   </>
 );
+
+// For React.lazy
+export default SettingsContent;
