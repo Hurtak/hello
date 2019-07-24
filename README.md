@@ -17,19 +17,12 @@
 
 ## TODO
 
-- react suspense for settings to improve perf?
 - fade in animation of main view and settings button
-- dev menu
-  - changelog link?
-- rename to hello
 - image changing smoothly
 - go through manifest.json
   - unnecessary permissions?
   - missing fields?
   - update existing fields
-- properly fill package.json
-  - name
-  - description
 - add more images!
 - react hook dependencies issue react-easy-state
 - host on github pages
@@ -42,6 +35,7 @@
 ## Later TODOS
 
 - introduce changelog
+  - menu changelog link
 - show location and links somewhere else and somewhere more visible accesible?
   - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
 - decimal places in age configurable

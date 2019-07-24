@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Hello Friend – New Tab Page",
-  "description": "TODO",
+  "description": "New tab page with daily image on the background and bunch of useful things that you can display in front of the background, like clock and stuff.",
   "version": "1.0.0",
   "chrome_url_overrides": {
     "newtab": "index.html"
