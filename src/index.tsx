@@ -5,6 +5,6 @@ import { App } from "./ui/app";
 
 logTimeElapsedSinceStart("index.tsx first line");
 
-const measureRender = new LogPerformance("ReactDOM.render <App />");
+const performanceReactDomRender = new LogPerformance("ReactDOM.render <App />");
 ReactDOM.render(<App />, document.getElementById("root"));
-measureRender.measure();
+performanceReactDomRender.measure();

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { logTimestamp } from "../../../../utils/logging";
 
 import { SettingsHeader } from "./mod/settings-header";
 import { SettingsImageSource } from "./mod/settings-image-source";
@@ -10,22 +12,28 @@ import { SettingsCleanVersion } from "./mod/settings-clean-version";
 import { SettingsContact } from "./mod/settings-contact";
 import { SettingsDebug } from "./mod/settings-debug";
 
-export const SettingsContent = () => (
-  <>
-    <SettingsHeader />
+export const SettingsContent = () => {
+  useEffect(() => {
+    logTimestamp("Settings rendered");
+  }, []);
 
-    <SettingsImageSource />
-    <SettingsImageSettings />
-    <SettingsImageInformation />
+  return (
+    <>
+      <SettingsHeader />
 
-    <SettingsViewType />
-    <SettingsViewSettings />
+      <SettingsImageSource />
+      <SettingsImageSettings />
+      <SettingsImageInformation />
 
-    <SettingsCleanVersion />
-    <SettingsContact />
-    <SettingsDebug />
-  </>
-);
+      <SettingsViewType />
+      <SettingsViewSettings />
+
+      <SettingsCleanVersion />
+      <SettingsContact />
+      <SettingsDebug />
+    </>
+  );
+};
 
 // For React.lazy
 export default SettingsContent;

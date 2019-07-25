@@ -4,6 +4,7 @@ import { view } from "react-easy-state";
 import { Icon } from "../../icons";
 import * as s from "../../styles";
 import { state } from "../../state";
+import { LogPerformance } from "../../utils/logging";
 import {
   SettingsWrapper,
   ToggleButton,
@@ -12,7 +13,13 @@ import {
 } from "./mod/styled";
 import { scrollTop, scrollBottom } from "./mod/utils";
 
-const SettingsContentLazy = React.lazy(() => import("./mod/settings-content"));
+const SettingsContentLazy = React.lazy(() => {
+  const performanceSettings = new LogPerformance("Settings code download");
+  return import("./mod/settings-content").then(mod => {
+    performanceSettings.measure();
+    return mod;
+  });
+});
 
 export const Settings = view(() => {
   const settingsWrapperEl = useRef<HTMLElement>(null);
