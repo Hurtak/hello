@@ -1,8 +1,8 @@
 import React from "react";
 import { view } from "react-easy-state";
+import { version } from "../../../../../../package.json";
 import { state } from "../../../../../state";
 import { Text, Section, Button, InputCheckBox, SpacedItems, List, ListItem, Dash } from "./styled";
-import { version } from "../../../../../../package.json";
 
 const buildTimeTimestamp = process.env.REACT_APP_BUILD_TIME
   ? Number(process.env.REACT_APP_BUILD_TIME) * 1000
