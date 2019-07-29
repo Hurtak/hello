@@ -33,6 +33,8 @@
 
 ## Later TODOS
 
+- problem, sometimes i want to view the calendar
+  - keyboard shortcuts? so we can easily show toggle/switch to calendar/time whatever?
 - react hook dependencies issue react-easy-state
 - fade in animation of main view and settings button
 - introduce changelog
