@@ -17,14 +17,13 @@
 
 ## TODO
 
-- fade in animation of main view and settings button
+- rewrite description, bad sentences
 - image changing smoothly
 - go through manifest.json
   - unnecessary permissions?
   - missing fields?
   - update existing fields
 - add more images!
-- react hook dependencies issue react-easy-state
 - host on github pages
 - release on chrome store
 - write article
@@ -34,6 +33,8 @@
 
 ## Later TODOS
 
+- react hook dependencies issue react-easy-state
+- fade in animation of main view and settings button
 - introduce changelog
   - menu changelog link
 - show location and links somewhere else and somewhere more visible accesible?
