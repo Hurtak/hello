@@ -14,6 +14,7 @@ export type BingData = {
   title: string | null;
   link: string | null;
   description: string | null;
+  copyright: string | null;
 };
 
 export type HttpData<Response> =
@@ -130,10 +131,18 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
   return httpDataWithLog({
     type: "DONE",
     data: {
-      url: "https://www.bing.com" + imageData.url,
-
+      url: `https://www.bing.com${imageData.url}`,
       title: imageData.title ? imageData.title : null,
+      link: (() => {
+        const link = imageData.copyrightLink;
+        if (!link) return null;
 
+        // Bing API has this string there for some reason
+        // eslint-disable-next-line no-script-url
+        if (link === "javascript:void(0)") return null;
+
+        return link;
+      })(),
       description: (() => {
         const description = imageData.copyright;
         if (!description) return null;
@@ -141,14 +150,15 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
         // "Image description (© copyright)" => "Image description"
         return description.replace(/ \(©.+?\)/, "");
       })(),
-      link: (() => {
-        const link = imageData.copyrightLink;
-        if (!link) return null;
+      copyright: (() => {
+        const description = imageData.copyright;
+        if (!description) return null;
 
-        // eslint-disable-next-line no-script-url
-        if (link === "javascript:void(0)") return null;
+        const match = description.match(/\(© (?<copyright>.+?)\)/);
+        if (!match) return null;
 
-        return link;
+        const copyright = match.groups && match.groups.copyright ? match.groups.copyright : null;
+        return copyright;
       })(),
     },
   });

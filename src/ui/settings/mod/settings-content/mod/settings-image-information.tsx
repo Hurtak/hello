@@ -15,14 +15,13 @@ export const SettingsImageInformation = view(() => (
         {state.image.imageBingWithFallback && (
           <List>
             {state.image.imageBingWithFallback.title && (
-              <ListItem>
-                Title <Dash /> {state.image.imageBingWithFallback.title}
-              </ListItem>
+              <ListItem>{state.image.imageBingWithFallback.title}</ListItem>
             )}
             {state.image.imageBingWithFallback.description && (
-              <ListItem>
-                Description <Dash /> {state.image.imageBingWithFallback.description}
-              </ListItem>
+              <ListItem>{state.image.imageBingWithFallback.description}</ListItem>
+            )}
+            {state.image.imageBingWithFallback.copyright && (
+              <ListItem>&copy; {state.image.imageBingWithFallback.copyright}</ListItem>
             )}
             {state.image.imageBingWithFallback.link && (
               <ListItem>
