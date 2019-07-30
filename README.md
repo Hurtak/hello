@@ -17,6 +17,9 @@
 
 ## TODO
 
+- bing image
+  - add copyright row
+  - include link to bing
 - rewrite description, bad sentences
 - image changing smoothly
 - go through manifest.json
