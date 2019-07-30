@@ -20,6 +20,7 @@
 - bing image
   - add copyright row
   - include link to bing
+- when settings has focus, show it on minimalistic view
 - rewrite description, bad sentences
 - image changing smoothly
 - go through manifest.json
