@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Hello Friend – New Tab Page",
-  "description": "New tab page with daily image on the background and bunch of useful things that you can display in front of the background, like clock and stuff.",
+  "description": "New tab page with daily image and bunch of useful things that you can display, like clock and stuff.",
   "author": "Petr Huřťák",
   "version": "1.0.0",
 
