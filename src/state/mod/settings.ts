@@ -8,7 +8,7 @@ type View =
   | "AGE"
   | "NOTHING";
 
-const initialDateOfBirth = new Date(1990, 0, 1).getTime();
+const defaultDateOfBirth = new Date(1990, 0, 1).getTime();
 
 export const settings = {
   //
@@ -18,8 +18,8 @@ export const settings = {
   opened: false,
   selectedView: "CLOCK" as View,
   clockShowSeconds: false,
-  ageDateOfBirthTimestamp: initialDateOfBirth,
-  ageDateOfBirthInputValue: timestampToDateInputValue(initialDateOfBirth),
+  ageDateOfBirthTimestamp: defaultDateOfBirth,
+  ageDateOfBirthInputValue: timestampToDateInputValue(defaultDateOfBirth),
   cleanVersion: false,
 
   //
