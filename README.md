@@ -1,5 +1,7 @@
 # Hello Friend
 
+- https://hello-friend.netlify.com/
+
 ## Development
 
 - install `npm ci`
@@ -17,14 +19,12 @@
 
 ## TODO
 
-- when settings has focus, show it on minimalistic view
 - image changing smoothly
 - go through manifest.json
   - unnecessary permissions?
   - missing fields?
   - update existing fields
 - add more images!
-- host on github pages
 - release on chrome store
 - write article
 - release on twitter
@@ -33,6 +33,7 @@
 
 ## Later TODOS
 
+- when settings has focus, show it on minimalistic view
 - problem, sometimes i want to view the calendar
   - keyboard shortcuts? so we can easily show toggle/switch to calendar/time whatever?
 - fade in animation of main view and settings button
