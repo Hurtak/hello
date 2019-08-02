@@ -20,10 +20,6 @@
 ## TODO
 
 - image changing smoothly
-- go through manifest.json
-  - unnecessary permissions?
-  - missing fields?
-  - update existing fields
 - add more images!
 - release on chrome store
 - write article
