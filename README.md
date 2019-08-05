@@ -22,13 +22,13 @@
 - image changing smoothly
 - add more images!
 - release on chrome store
+
+## Later TODOS
+
 - write article
 - release on twitter
 - release on reddit
 - release on HN
-
-## Later TODOS
-
 - when settings has focus, show it on minimalistic view
 - problem, sometimes i want to view the calendar
   - keyboard shortcuts? so we can easily show toggle/switch to calendar/time whatever?
