@@ -6,8 +6,6 @@
   "author": "Petr Huřťák",
   "version": "1.0.0",
 
-  "default_locale": "en",
-
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
