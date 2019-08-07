@@ -19,7 +19,6 @@
 
 ## TODO
 
-- image changing smoothly
 - add more images!
 - release on chrome store
 
