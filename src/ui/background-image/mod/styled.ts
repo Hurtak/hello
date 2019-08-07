@@ -8,9 +8,9 @@ export const Wrapper = styled.div({
 });
 
 type ImageProps = {
-  topImage?: boolean;
-  imageLoaded: boolean;
-  backgroundImage: string | null;
+  visible?: boolean;
+  noAnimation?: boolean;
+  backgroundImage?: string | null;
 };
 
 export const Image = styled.div.attrs((props: ImageProps) => ({
@@ -26,7 +26,6 @@ export const Image = styled.div.attrs((props: ImageProps) => ({
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  transition: s.animations.backgroundImage,
-  zIndex: props.topImage ? 2 : 1,
-  opacity: props.imageLoaded ? 1 : 0,
+  transition: props.noAnimation ? "initial" : s.animations.backgroundImage,
+  opacity: props.visible ? 1 : 0,
 }));

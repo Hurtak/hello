@@ -52,9 +52,11 @@ export const shadows = {
   buttons: `${size(1)} ${size(1)} ${size(3)} ${size(1)} ${colors.blackTransparent20}`,
 };
 
+const backgroundImageAnimationDurationSeconds = 0.3;
 export const animations = {
   default: "0.5s all ease",
-  backgroundImage: "opacity 0.3s ease",
+  backgroundImageAnimationDurationSeconds,
+  backgroundImage: `opacity ${backgroundImageAnimationDurationSeconds}s ease`,
 };
 
 export const opacity = {
