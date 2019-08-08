@@ -13,9 +13,10 @@ export const GlobalStyles = () => (
 const GlobalStylesComponent = createGlobalStyle`
   ${css({
     body: {
-      margin: 0,
-      backgroundColor: s.colors.pageBackground,
       position: "relative", // https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll
+      margin: 0,
+      overscrollBehavior: "none",
+      backgroundColor: s.colors.pageBackground,
     },
   })}
 `;
