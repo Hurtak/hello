@@ -71,13 +71,11 @@ export const text = ({
   size: fontSize = "TEXT",
   weight = "DEFAULT",
   family = "DEFAULT",
-  multiline = false,
   selectable = true,
 }: {
   size?: "TEXT" | "HEADING_SMALL" | "HEADING";
   weight?: "DEFAULT" | "BOLD";
   family?: "DEFAULT" | "NUMBERS";
-  multiline?: boolean;
   selectable?: boolean;
 } = {}): React.CSSProperties => ({
   margin: 0,
@@ -118,15 +116,7 @@ export const text = ({
     }
   })(),
 
-  lineHeight: (() => {
-    switch (multiline) {
-      case true:
-        return 1.2;
-      case false:
-        return 1;
-    }
-  })(),
-
+  lineHeight: 1,
   color: colors.white,
 });
 
