@@ -19,6 +19,9 @@
 
 ## TODO
 
+- fonts
+  - precise cap-height boundaries for fonts
+  - add line-heights so there is proper spacing between fonts
 - add more images!
 - release on chrome store
 
