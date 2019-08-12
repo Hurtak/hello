@@ -19,6 +19,7 @@
 
 ## TODO
 
+- use blur for background with opacity fallback (@supports)
 - fonts
   - precise cap-height boundaries for fonts
   - add line-heights so there is proper spacing between fonts
