@@ -1,10 +1,10 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
-import OutsideClickHandler from "react-outside-click-handler";
 import { view } from "react-easy-state";
 import { Icon } from "../../icons";
 import * as s from "../../styles";
 import { state } from "../../state";
 import { LogPerformance } from "../../utils/logging";
+import { OutsideClick } from "../utils/outside-click";
 import {
   SettingsWrapper,
   ToggleButton,
@@ -62,7 +62,7 @@ export const Settings = view(() => {
   ]);
 
   return (
-    <OutsideClickHandler onOutsideClick={state.settings.closeSettings}>
+    <OutsideClick onOutsideClick={state.settings.closeSettings}>
       <SettingsWrapper
         opened={state.settings.opened}
         hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}
@@ -86,6 +86,6 @@ export const Settings = view(() => {
           </React.Suspense>
         </div>
       </SettingsWrapper>
-    </OutsideClickHandler>
+    </OutsideClick>
   );
 });

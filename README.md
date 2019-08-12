@@ -19,6 +19,7 @@
 
 ## TODO
 
+- responsive
 - use blur for background with opacity fallback (@supports)
 - fonts
   - precise cap-height boundaries for fonts
