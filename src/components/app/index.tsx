@@ -7,6 +7,7 @@ import { view } from "react-easy-state";
 
 import { state } from "../../state";
 import * as time from "../../utils/time";
+import { TimerUpdater } from "../utils/timer-updater";
 import { logTimeElapsedSinceStart, logTimestamp } from "../../utils/logging";
 import { GlobalStyles } from "../../styles";
 import { config } from "../../config";
@@ -15,7 +16,6 @@ import { Age } from "../background-types/age";
 import { YearProgress } from "../background-types/year-progress";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
-import { TimerUpdater } from "../timer-updater";
 import { RootHotKeys } from "../hotkeys/hotkeys";
 import {
   Layout,

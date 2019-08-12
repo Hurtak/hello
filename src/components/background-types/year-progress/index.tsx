@@ -1,5 +1,5 @@
 import React from "react";
-import { Timestamp } from "../../timer-updater";
+import { Timestamp } from "../../utils/timer-updater";
 import { getYearProgress } from "./mod/utils";
 import { Wrapper, ProgressBar, ProgressBarInner, Text } from "./mod/styled";
 

@@ -1,4 +1,4 @@
-import { day } from "../../../utils/time";
+import { day } from "../../../../utils/time";
 import { getNextTick } from "./utils";
 
 describe("getNextTick", () => {
