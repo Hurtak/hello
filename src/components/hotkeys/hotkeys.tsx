@@ -1,21 +1,10 @@
-import React from "react";
 import { view } from "react-easy-state";
-import { HotKeys } from "react-hotkeys";
+import { useHotkeys } from "react-hotkeys-hook";
 import { state } from "../../state";
 
 export const RootHotKeys = view(({ children }) => {
-  return (
-    <HotKeys
-      keyMap={{
-        CLOSE_SETTINGS: "esc",
-        SHOW_DEBUG_MENU: ["i d d q d"],
-      }}
-      handlers={{
-        CLOSE_SETTINGS: state.settings.closeSettings,
-        SHOW_DEBUG_MENU: state.debug.showDebugMenu,
-      }}
-    >
-      {children}
-    </HotKeys>
-  );
+  useHotkeys("esc", state.settings.closeSettings);
+  useHotkeys("d+e+b", state.debug.showDebugMenu);
+
+  return children;
 });
