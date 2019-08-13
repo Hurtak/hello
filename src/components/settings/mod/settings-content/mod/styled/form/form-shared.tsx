@@ -57,9 +57,9 @@ export const formBoxStyles = (
     backgroundColor: s.colors.blueDark,
   },
   [`${Input}:active + ${Label} &`]: {
-    backgroundColor: s.colors.grayMain,
+    backgroundColor: s.colors.gray,
   },
   [`${Input}:disabled + ${Label} &`]: {
-    backgroundColor: s.colors.grayMain,
+    backgroundColor: s.colors.gray,
   },
 });

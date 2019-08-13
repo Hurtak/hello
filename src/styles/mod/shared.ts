@@ -22,21 +22,19 @@ export const sizeNumberToGridNumber = (size: number): number => size / gridMulti
  * Colors / Shared values
  */
 
-// TODO: Delete unused variables.
 export const colors = {
   pageBackground: "#f2f1f0", // Keep in sync with index.html body background style
 
   white: "white",
   black: "black",
 
-  grayMain: "#dedede",
+  gray: "#dedede",
 
   orange: "#f7b71d",
 
   blue: "#488af5",
   blueDark: "#1d6ff4",
 
-  blackTransparent10: "rgba(0, 0, 0, 0.1)",
   blackTransparent20: "rgba(0, 0, 0, 0.2)",
   blackTransparent30: "rgba(0, 0, 0, 0.3)",
   blackTransparent40: "rgba(0, 0, 0, 0.4)",
