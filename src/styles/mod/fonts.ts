@@ -1,5 +1,5 @@
 export async function loadAndInjectFonts() {
-  return await Promise.all([
+  return Promise.all([
     loadFont({
       name: "Roboto",
       src: `${process.env.PUBLIC_URL}/assets/fonts/roboto-v19-latin-regular.woff2`,
@@ -35,7 +35,7 @@ async function loadFont({
   style?: string;
   weight: number;
 }) {
-  var font = new FontFace(name, `url("${src}")`, {
+  const font = new FontFace(name, `url("${src}")`, {
     style,
     weight: String(weight),
   });
