@@ -135,6 +135,7 @@ export const dimensions: { [key: string]: number } = {
 
   settingsSpacing: gridNumber(1),
 
+  settingsWidth: sizeNumber(400),
   settingsButtonSize: settingsButtonSize,
   settingsButtonPadding: settingsButtonPadding,
   settingsButtonSpacing: settingsButtonSpacing,

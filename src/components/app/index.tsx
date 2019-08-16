@@ -17,13 +17,7 @@ import { YearProgress } from "../background-types/year-progress";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
 import { RootHotKeys } from "../hotkeys/hotkeys";
-import {
-  Layout,
-  BackgroundWrapper,
-  AppContent,
-  AppSettingsWrapper,
-  AppSettings,
-} from "./mod/styled";
+import { Layout, BackgroundWrapper, AppContent, AppSettingsWrapper } from "./mod/styled";
 
 export const App = view(() => {
   useEffect(() => {
@@ -130,9 +124,9 @@ const AppInner = view(() => {
       </AppContent>
 
       <AppSettingsWrapper opened={state.settings.opened} contentHeight={settingsHeight}>
-        <AppSettings ref={settingsEl}>
+        <div ref={settingsEl}>
           <Settings />
-        </AppSettings>
+        </div>
       </AppSettingsWrapper>
     </>
   );

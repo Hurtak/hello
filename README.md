@@ -19,7 +19,6 @@
 
 ## TODO
 
-- responsive - settings
 - use blur for background
 - fonts
   - precise cap-height boundaries for fonts
@@ -29,6 +28,8 @@
 
 ## Later TODOS
 
+- hotkeys (esc) do not work when input is focused
+  - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
 - write article
 - release on twitter
 - release on reddit

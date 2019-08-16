@@ -6,7 +6,8 @@ import { state } from "../../state";
 import { LogPerformance } from "../../utils/logging";
 import { OutsideClick } from "../utils/outside-click";
 import {
-  SettingsWrapper,
+  SettingsWrapperWrapper,
+  SettingsStyled,
   ToggleButton,
   ToggleButtonIconWrapper,
   ToggleButtonSpacer,
@@ -22,7 +23,7 @@ const SettingsContentLazy = React.lazy(() => {
 });
 
 export const Settings = view(() => {
-  const settingsWrapperEl = useRef<HTMLElement>(null);
+  const settingsWrapperEl = useRef<HTMLDivElement>(null);
 
   const [previousSettingsOpened, setPreviousSettingsOpened] = useState<boolean | null>(null);
   const [
@@ -62,30 +63,28 @@ export const Settings = view(() => {
   ]);
 
   return (
-    <OutsideClick onOutsideClick={state.settings.closeSettings}>
-      <SettingsWrapper
-        opened={state.settings.opened}
-        hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}
-        ref={settingsWrapperEl}
-      >
-        <ToggleButton onClick={state.settings.toggleSettingsOpened}>
-          <ToggleButtonIconWrapper rotated={state.settings.opened}>
-            <Icon
-              type="COG"
-              width={s.sizeNumberToGridNumber(s.dimensions.settingsButtonSize)}
-              height={s.sizeNumberToGridNumber(s.dimensions.settingsButtonSize)}
-            />
-          </ToggleButtonIconWrapper>
-        </ToggleButton>
+    <SettingsWrapperWrapper ref={settingsWrapperEl} opened={state.settings.opened}>
+      <OutsideClick onOutsideClick={state.settings.closeSettings}>
+        <SettingsStyled hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}>
+          <ToggleButton onClick={state.settings.toggleSettingsOpened}>
+            <ToggleButtonIconWrapper rotated={state.settings.opened}>
+              <Icon
+                type="COG"
+                width={s.sizeNumberToGridNumber(s.dimensions.settingsButtonSize)}
+                height={s.sizeNumberToGridNumber(s.dimensions.settingsButtonSize)}
+              />
+            </ToggleButtonIconWrapper>
+          </ToggleButton>
 
-        <ToggleButtonSpacer />
+          <ToggleButtonSpacer />
 
-        <div inert={state.settings.opened === false ? "inert" : null}>
-          <React.Suspense fallback={null}>
-            <SettingsContentLazy />
-          </React.Suspense>
-        </div>
-      </SettingsWrapper>
-    </OutsideClick>
+          <div inert={state.settings.opened === false ? "inert" : null}>
+            <React.Suspense fallback={null}>
+              <SettingsContentLazy />
+            </React.Suspense>
+          </div>
+        </SettingsStyled>
+      </OutsideClick>
+    </SettingsWrapperWrapper>
   );
 });
