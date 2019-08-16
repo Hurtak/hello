@@ -19,8 +19,8 @@
 
 ## TODO
 
-- responsive
-- use blur for background with opacity fallback (@supports)
+- responsive - settings
+- use blur for background
 - fonts
   - precise cap-height boundaries for fonts
   - add line-heights so there is proper spacing between fonts
