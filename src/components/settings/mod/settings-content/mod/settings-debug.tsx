@@ -15,8 +15,7 @@ export const SettingsDebug = view(() => {
     <Section title="Debug menu">
       <SpacedItems spacing={1}>
         <Text>
-          This menu is visible by default in development mode or after pressing `i d d q d` cheat
-          code!
+          This menu is visible by default in development mode or after pressing `d+e+b` cheat code!
         </Text>
 
         <List>
