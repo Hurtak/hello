@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Hello Friend – New Tab Page",
+  "name": "Hello",
   "description": "New tab page with daily image and bunch of useful things that you can display, like clock and stuff.",
   "author": "Petr Huřťák",
   "version": "1.0.0",
