@@ -19,7 +19,9 @@
 
 ## TODO
 
-- add more images!
+- cors proxy
+  - on now
+  - on heroku?
 - revisit texts
 - changelog
 - release on chrome store

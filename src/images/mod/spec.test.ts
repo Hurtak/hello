@@ -3,9 +3,9 @@ import { images, Image } from "..";
 
 test.each([
   //
-  "url",
-  "source",
-] as (keyof Image)[])("image '%s' are unique", dataAccessor => {
-  const items = images.map(image => image[dataAccessor]);
+  (image: Image) => image.url,
+  (image: Image) => image.source.url,
+])("image '%s' are unique", dataAccessor => {
+  const items = images.map(image => dataAccessor(image));
   testItemsUniqueness(items);
 });
