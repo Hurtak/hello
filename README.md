@@ -1,6 +1,6 @@
 # Hello
 
-- https://hello-friend.netlify.com/
+- https://hello-extension.netlify.com
 
 ## Development
 
