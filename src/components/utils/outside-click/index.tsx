@@ -1,19 +1,15 @@
 import React, { useRef, useEffect } from "react";
 
-type StyleDisplay = "BLOCK" | "FLEX" | "INLINE-BLOCK";
-
 type OutsideClickProps = {
   onOutsideClick: (event: MouseEvent) => void;
   useCapture?: boolean;
   disabled?: boolean;
-  display?: StyleDisplay;
 };
 
 export const OutsideClick: React.FC<OutsideClickProps> = ({
   onOutsideClick,
   useCapture = true,
   disabled = false,
-  display = "BLOCK",
   children,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -49,23 +45,5 @@ export const OutsideClick: React.FC<OutsideClickProps> = ({
     };
   }, [onOutsideClick, disabled, useCapture]);
 
-  return (
-    <div ref={ref} style={getStyles(display)}>
-      {children}
-    </div>
-  );
+  return <div ref={ref}>{children}</div>;
 };
-
-function getStyles(display: StyleDisplay): React.CSSProperties | undefined {
-  switch (display) {
-    case "BLOCK":
-    default:
-      return undefined;
-
-    case "INLINE-BLOCK":
-      return { display: "inline-block" };
-
-    case "FLEX":
-      return { display: "flex" };
-  }
-}

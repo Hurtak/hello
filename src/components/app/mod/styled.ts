@@ -2,7 +2,6 @@ import styled from "styled-components/macro";
 import * as s from "../../../styles";
 
 export const Layout = styled.div({
-  boxSizing: "border-box",
   position: "relative",
   display: "flex",
   flexDirection: "column",
@@ -10,7 +9,6 @@ export const Layout = styled.div({
   alignItems: "center",
   height: "100vh",
   minWidth: s.size(300),
-  padding: s.grid(1),
   overflow: "auto",
 });
 
@@ -24,34 +22,53 @@ export const BackgroundWrapper = styled.div({
 });
 
 export const AppContent = styled.main({
+  boxSizing: "border-box",
   display: "flex",
   flex: "1 0 0",
+  flexDirection: "column",
   height: "100%",
   width: "100%",
-  flexDirection: "column",
+  padding: s.grid(1),
   zIndex: 2,
+});
+
+export const AppSettingsLayout = styled.aside({
+  boxSizing: "border-box",
+  display: "flex",
+  justifyContent: "flex-end",
+  position: "absolute",
+  left: 0,
+  top: 0,
+  width: "100%",
+  height: "100%",
+  padding: s.size(s.dimensions.settingsSpacing),
+  pointerEvents: "none",
+  zIndex: 3,
 });
 
 type AppSettingsProps = { opened: boolean; contentHeight: number | null };
 
-export const AppSettingsWrapper = styled.aside.attrs((props: AppSettingsProps) => ({
+export const AppSettings = styled.div.attrs((props: AppSettingsProps) => ({
   style: {
     ...(props.opened && {
       height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
     }),
   },
 }))((props: AppSettingsProps) => ({
-  position: "absolute",
   direction: "rtl", // To make the overflow cropping from the right side
-  top: s.size(s.dimensions.settingsSpacing),
-  right: s.size(s.dimensions.settingsSpacing),
   width: s.size(s.dimensions.settingsButtonSizeAndSpacing),
   height: s.size(s.dimensions.settingsButtonSizeAndSpacing),
   transition: s.animations.default,
   overflow: "hidden",
-  zIndex: 3,
+  pointerEvents: "auto",
 
   ...(props.opened && {
     width: s.size(s.dimensions.settingsWidth),
+    maxWidth: "100%",
   }),
 }));
+
+export const AppSettingsInner = styled.div({
+  direction: "ltr", // Reset direction set in AppSettings component
+  width: s.size(s.dimensions.settingsWidth),
+});

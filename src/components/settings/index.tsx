@@ -6,7 +6,7 @@ import { state } from "../../state";
 import { LogPerformance } from "../../utils/logging";
 import { OutsideClick } from "../utils/outside-click";
 import {
-  SettingsWrapperWrapper,
+  SettingsWrapper,
   SettingsStyled,
   ToggleButton,
   ToggleButtonIconWrapper,
@@ -63,9 +63,13 @@ export const Settings = view(() => {
   ]);
 
   return (
-    <SettingsWrapperWrapper ref={settingsWrapperEl} opened={state.settings.opened}>
-      <OutsideClick onOutsideClick={state.settings.closeSettings}>
-        <SettingsStyled hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}>
+    <OutsideClick onOutsideClick={state.settings.closeSettings}>
+      <SettingsWrapper
+        ref={settingsWrapperEl}
+        opened={state.settings.opened}
+        hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}
+      >
+        <SettingsStyled>
           <ToggleButton onClick={state.settings.toggleSettingsOpened}>
             <ToggleButtonIconWrapper rotated={state.settings.opened}>
               <Icon
@@ -80,11 +84,12 @@ export const Settings = view(() => {
 
           <div inert={state.settings.opened === false ? "inert" : null}>
             <React.Suspense fallback={null}>
+              {/*  */}
               <SettingsContentLazy />
             </React.Suspense>
           </div>
         </SettingsStyled>
-      </OutsideClick>
-    </SettingsWrapperWrapper>
+      </SettingsWrapper>
+    </OutsideClick>
   );
 });

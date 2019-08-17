@@ -17,7 +17,14 @@ import { YearProgress } from "../background-types/year-progress";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
 import { RootHotKeys } from "../hotkeys/hotkeys";
-import { Layout, BackgroundWrapper, AppContent, AppSettingsWrapper } from "./mod/styled";
+import {
+  Layout,
+  BackgroundWrapper,
+  AppContent,
+  AppSettingsLayout,
+  AppSettings,
+  AppSettingsInner,
+} from "./mod/styled";
 
 export const App = view(() => {
   useEffect(() => {
@@ -68,6 +75,8 @@ const AppInner = view(() => {
         <BackgroundImage url={state.image.imageUrl} />
       </BackgroundWrapper>
 
+      {/* TODO: AFAIK TimerUpdated dod not handle well view change and its updateEveryN change,
+          so we pu key on AppContent, investigate */}
       <AppContent key={state.settings.selectedView}>
         {(() => {
           switch (state.settings.selectedView) {
@@ -123,11 +132,13 @@ const AppInner = view(() => {
         })()}
       </AppContent>
 
-      <AppSettingsWrapper opened={state.settings.opened} contentHeight={settingsHeight}>
-        <div ref={settingsEl}>
-          <Settings />
-        </div>
-      </AppSettingsWrapper>
+      <AppSettingsLayout>
+        <AppSettings opened={state.settings.opened} contentHeight={settingsHeight}>
+          <AppSettingsInner ref={settingsEl}>
+            <Settings />
+          </AppSettingsInner>
+        </AppSettings>
+      </AppSettingsLayout>
     </>
   );
 });

@@ -1,29 +1,28 @@
 import styled from "styled-components/macro";
 import * as s from "../../../styles";
 
-export const SettingsWrapperWrapper = styled.div((props: { opened: boolean }) => ({
-  width: s.size(s.dimensions.settingsWidth),
-  maxWidth: `calc(100vw - ${s.size(2 * s.dimensions.settingsSpacing)})`,
-  maxHeight: `calc(100vh - ${s.size(2 * s.dimensions.settingsSpacing)})`,
-  overflow: props.opened ? "auto" : "hidden",
-  direction: "ltr", // Reset direction set in AppSettingsWrapper
-}));
+export const SettingsWrapper = styled.div(
+  (props: { opened: boolean; hiddenUnlessHovered: boolean }) => ({
+    maxHeight: `calc(100vh - ${s.size(2 * s.dimensions.settingsSpacing)})`,
+    overflow: props.opened ? "auto" : "hidden",
+    backgroundColor: s.colors.blackTransparent40,
 
-export const SettingsStyled = styled.section((props: { hiddenUnlessHovered: boolean }) => ({
+    ...(props.hiddenUnlessHovered && {
+      opacity: 0,
+      transition: s.animations.default,
+
+      "&:hover": {
+        opacity: 1,
+      },
+    }),
+  }),
+);
+
+export const SettingsStyled = styled.section({
   boxSizing: "border-box",
   position: "relative",
   padding: s.grid(2),
-  backgroundColor: s.colors.blackTransparent40,
-
-  ...(props.hiddenUnlessHovered && {
-    opacity: 0,
-    transition: s.animations.default,
-
-    "&:hover": {
-      opacity: 1,
-    },
-  }),
-}));
+});
 
 export const ToggleButton = styled.button({
   boxSizing: "border-box",
