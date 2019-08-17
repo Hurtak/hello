@@ -95,7 +95,7 @@ export const BackgroundImage: React.FC<{
               url,
             },
           }));
-        }, s.animations.backgroundImageAnimationDurationSeconds * 1000);
+        }, s.animation.backgroundImageAnimationDurationSeconds * 1000);
         return () => window.clearTimeout(timeout);
       }
     }

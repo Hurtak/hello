@@ -31,7 +31,7 @@ export const InputCheckBox: React.FC<{
       <Label htmlFor={inputIdRef.current}>
         <CheckboxComponent>
           <CheckboxCheckWrapper>
-            <Icon type="CHECK" width={1.25} height={1.25} color={s.colors.white} />
+            <Icon type="CHECK" width={1.25} height={1.25} color={s.color.white} />
           </CheckboxCheckWrapper>
         </CheckboxComponent>
         <CheckBoxRadioText>{children}</CheckBoxRadioText>
@@ -47,7 +47,7 @@ const Label = styled.label({
 const CheckboxComponent = styled.div({
   ...formBoxStyles(CheckBoxRadioInput, Label),
 
-  borderRadius: s.grid(0.25),
+  borderRadius: s.borderRadius.input,
 });
 
 const CheckboxCheckWrapper = styled.div({

@@ -15,8 +15,9 @@ export const ProgressBar = styled.div({
   boxSizing: "border-box",
   width: s.sizeFixed(400),
   height: s.gridFixed(8),
-  border: `${s.gridFixed(0.5)} solid ${s.colors.blackTransparent40}`,
-  borderRadius: s.sizeFixed(4),
+  border: `${s.gridFixed(0.5)} solid ${s.boxBackground.backgroundColor}`,
+  backdropFilter: s.boxBackground.backdropFilter,
+  borderRadius: s.borderRadius.default,
 });
 
 type ProgressBarProps = { progress: number };
@@ -26,8 +27,8 @@ export const ProgressBarInner = styled.div.attrs((props: ProgressBarProps) => ({
     width: props.progress * 100 + "%",
   },
 }))((_: ProgressBarProps) => ({
+  backgroundColor: s.boxBackground.backgroundColor,
   height: "100%",
-  backgroundColor: s.colors.blackTransparent40,
 }));
 
 export const Text = styled.div({

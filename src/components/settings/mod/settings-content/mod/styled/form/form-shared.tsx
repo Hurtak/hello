@@ -30,7 +30,7 @@ export const checkBoxRadioLabelStyles = (
 
   // TODO: use onFocusVisible React event once it becomes standardized
   [`${Input}${s.focusVisible} + &`]: {
-    background: s.colors.whiteTransparent20,
+    background: s.color.whiteTransparent20,
   },
 
   [`${Input}:disabled + &`]: {
@@ -47,19 +47,19 @@ export const formBoxStyles = (
   justifyContent: "center",
   width: s.size(s.dimensions.formInputBoxSize),
   height: s.size(s.dimensions.formInputBoxSize),
-  boxShadow: s.shadows.formFieldInset,
+  boxShadow: s.shadow.formFieldInset,
 
-  background: s.colors.white,
+  background: s.color.white,
   [`${Input}:checked + ${Label} &`]: {
-    backgroundColor: s.colors.blue,
+    backgroundColor: s.color.blue,
   },
   [`${Input}:checked:active + ${Label} &`]: {
-    backgroundColor: s.colors.blueDark,
+    backgroundColor: s.color.blueDark,
   },
   [`${Input}:active + ${Label} &`]: {
-    backgroundColor: s.colors.gray,
+    backgroundColor: s.color.gray,
   },
   [`${Input}:disabled + ${Label} &`]: {
-    backgroundColor: s.colors.gray,
+    backgroundColor: s.color.gray,
   },
 });

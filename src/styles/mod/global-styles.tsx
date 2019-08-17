@@ -16,7 +16,7 @@ const GlobalStylesComponent = createGlobalStyle`
       position: "relative", // https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll
       margin: 0,
       overscrollBehavior: "none",
-      backgroundColor: s.colors.pageBackground,
+      backgroundColor: s.color.pageBackground,
     },
   })}
 `;

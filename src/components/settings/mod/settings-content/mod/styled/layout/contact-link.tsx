@@ -29,7 +29,7 @@ const ContactLinkStyled = styled.a({
   margin: s.grid(-0.75),
 
   [`&${s.focusVisible}`]: {
-    background: s.colors.whiteTransparent20,
+    background: s.color.whiteTransparent20,
   },
 });
 

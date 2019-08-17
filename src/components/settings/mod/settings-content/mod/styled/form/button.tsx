@@ -15,15 +15,15 @@ const ButtonStyled = styled.button({
   padding: `${s.grid(0.75)} ${s.grid(1)}`,
   border: 0,
   outline: 0,
-  color: s.colors.black,
-  background: s.colors.white,
-  boxShadow: s.shadows.buttons,
+  color: s.color.black,
+  background: s.color.white,
+  boxShadow: s.shadow.buttons,
   cursor: "pointer",
 
   [`&${s.focusVisible}`]: {
     outlineWidth: s.grid(0.5),
     outlineStyle: "solid",
-    outlineColor: s.colors.whiteTransparent40,
+    outlineColor: s.color.whiteTransparent40,
   },
 
   ":active": {

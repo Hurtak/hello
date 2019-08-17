@@ -6,7 +6,7 @@ import { Icon } from "../../../../../../../icons";
 export const Warning: React.FC = ({ children }) => (
   <WarningTextWrapper>
     <WarningTextIcon>
-      <Icon type="WARNING" color={s.colors.orange} width={2} height={2} />
+      <Icon type="WARNING" color={s.color.orange} width={2} height={2} />
     </WarningTextIcon>
     <WarningText>{children}</WarningText>
   </WarningTextWrapper>
@@ -25,5 +25,5 @@ const WarningText = styled.p({
   ...s.text(),
 
   display: "inline-block",
-  color: s.colors.orange,
+  color: s.color.orange,
 });

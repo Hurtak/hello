@@ -19,15 +19,16 @@
 
 ## TODO
 
-- use blur for background
-- fonts
-  - precise cap-height boundaries for fonts
-  - add line-heights so there is proper spacing between fonts
 - add more images!
+- revisit texts
+- changelog
 - release on chrome store
 
 ## Later TODOS
 
+- fonts
+  - precise cap-height boundaries for fonts
+  - add line-heights so there is proper spacing between fonts
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
 - write article
@@ -74,7 +75,6 @@
     - remove `.focus-visible` class and use directly `:focus-visible`
 - hotkeys to toggle calendar/time
 - background image switching animation
-- check STRV checklist
 - revisit tsconfig
 - docs
 - images

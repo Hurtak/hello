@@ -60,7 +60,7 @@ export const AppSettings = styled.div.attrs((props: AppSettingsProps) => ({
   direction: "rtl", // To make the overflow cropping from the right side
   width: s.size(s.dimensions.settingsButtonSizeAndSpacing),
   height: s.size(s.dimensions.settingsButtonSizeAndSpacing),
-  transition: s.animations.default,
+  transition: s.animation.default,
   overflow: "hidden",
   pointerEvents: "auto",
 

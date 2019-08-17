@@ -26,6 +26,6 @@ export const Image = styled.div.attrs((props: ImageProps) => ({
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  transition: props.noAnimation ? "initial" : s.animations.backgroundImage,
+  transition: props.noAnimation ? "initial" : s.animation.backgroundImage,
   opacity: props.visible ? 1 : 0,
 }));

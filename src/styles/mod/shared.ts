@@ -22,7 +22,7 @@ export const sizeNumberToGridNumber = (size: number): number => size / gridMulti
  * Colors / Shared values
  */
 
-export const colors = {
+export const color = {
   pageBackground: "#f2f1f0", // Keep in sync with index.html body background style
 
   white: "white",
@@ -44,14 +44,24 @@ export const colors = {
   whiteTransparent70: "rgba(255, 255, 255, 0.7)",
 };
 
-export const shadows = {
-  formFieldInset: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent20} inset`,
-  formField: `${size(1)} ${size(1)} ${size(3)} ${colors.blackTransparent30}`,
-  buttons: `${size(1)} ${size(1)} ${size(3)} ${size(1)} ${colors.blackTransparent20}`,
+export const backdropFilter = {
+  blur: `blur(${sizeFixed(4)})`,
+};
+
+export const shadow = {
+  formFieldInset: `${size(1)} ${size(1)} ${size(3)} ${color.blackTransparent20} inset`,
+  formField: `${size(1)} ${size(1)} ${size(3)} ${color.blackTransparent30}`,
+  buttons: `${size(1)} ${size(1)} ${size(3)} ${size(1)} ${color.blackTransparent20}`,
 };
 
 const backgroundImageAnimationDurationSeconds = 0.3;
-export const animations = {
+
+export const borderRadius = {
+  default: sizeFixed(4),
+  input: sizeFixed(2),
+};
+
+export const animation = {
   default: "0.5s all ease",
   backgroundImageAnimationDurationSeconds,
   backgroundImage: `opacity ${backgroundImageAnimationDurationSeconds}s ease`,
@@ -115,7 +125,7 @@ export const text = ({
   })(),
 
   lineHeight: 1,
-  color: colors.white,
+  color: color.white,
 });
 
 /*
@@ -145,6 +155,11 @@ export const dimensions: { [key: string]: number } = {
 /*
  * Mixins
  */
+
+export const boxBackground = {
+  backgroundColor: color.blackTransparent40,
+  backdropFilter: backdropFilter.blur,
+};
 
 const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 export const maxWidthBreakpoint = (px: number): string =>

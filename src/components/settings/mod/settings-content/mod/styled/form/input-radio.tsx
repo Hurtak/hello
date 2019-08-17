@@ -56,11 +56,11 @@ const RadioDot = styled.div({
   width: s.grid(0.75),
   height: s.grid(0.75),
   borderRadius: "50%",
-  boxShadow: s.shadows.formField,
+  boxShadow: s.shadow.formField,
 
   visibility: "hidden",
   [`${CheckBoxRadioInput}:checked + ${Label} &`]: {
     visibility: "visible",
-    backgroundColor: s.colors.white,
+    backgroundColor: s.color.white,
   },
 });

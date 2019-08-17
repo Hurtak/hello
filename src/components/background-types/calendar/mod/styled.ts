@@ -11,9 +11,10 @@ export const MonthsWrapper = styled.ul({
 });
 
 export const Month = styled.li({
+  ...s.boxBackground,
+
   display: "block",
   padding: s.grid(2),
-  backgroundColor: s.colors.blackTransparent40,
 });
 
 export const MonthName = styled.h2({

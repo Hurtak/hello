@@ -46,7 +46,7 @@ const LiDotWrapper = styled.span({
 const LiDot = styled.span({
   width: s.grid(0.75),
   height: s.grid(0.75),
-  background: s.colors.white,
+  background: s.color.white,
   borderRadius: "50%",
 });
 

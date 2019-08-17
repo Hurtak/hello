@@ -9,13 +9,13 @@ export const Link = styled.a({
   cursor: "pointer",
   borderBottomWidth: s.size(1),
   borderBottomStyle: "solid",
-  borderBottomColor: s.colors.whiteTransparent70,
+  borderBottomColor: s.color.whiteTransparent70,
   outline: 0,
 
   [`&${s.focusVisible}`]: {
-    backgroundColor: s.colors.whiteTransparent40,
+    backgroundColor: s.color.whiteTransparent40,
     outlineWidth: s.grid(0.25),
     outlineStyle: "solid",
-    outlineColor: s.colors.whiteTransparent40,
+    outlineColor: s.color.whiteTransparent40,
   },
 });

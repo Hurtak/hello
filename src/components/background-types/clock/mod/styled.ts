@@ -10,8 +10,9 @@ export const Wrapper = styled.div({
 });
 
 export const ClockBox = styled.div({
+  ...s.boxBackground,
+
   padding: `${s.grid(2)} ${s.grid(2.5)}`,
-  backgroundColor: s.colors.blackTransparent40,
 
   [s.maxWidthBreakpoint(900)]: {
     transform: "scale(0.9)",
@@ -38,7 +39,7 @@ export const Text = styled.div({
   top: s.sizeFixed(-2),
 
   fontSize: s.gridFixed(13),
-  color: s.colors.white,
+  color: s.color.white,
 });
 
 export const ColonWrapper = styled.div({
@@ -54,5 +55,5 @@ export const ColonCircle = styled.div({
   borderRadius: "50%",
   width: s.sizeFixed(16),
   height: s.sizeFixed(16),
-  backgroundColor: s.colors.white,
+  backgroundColor: s.color.white,
 });

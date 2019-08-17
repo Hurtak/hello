@@ -40,7 +40,7 @@ export const Icon: React.FC<IconProps> = ({
   type,
   width = 3,
   height = 3,
-  color = s.colors.white,
+  color = s.color.white,
 }) => {
   const Svg = getIconComponent(type);
 
