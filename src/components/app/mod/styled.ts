@@ -8,7 +8,9 @@ export const Layout = styled.div({
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
-  minWidth: s.size(300),
+  // TODO: When making this value smaller, make sure the Settings component is
+  // updated. At the moment it is not really responsive.
+  minWidth: s.size(420),
   overflow: "auto",
 });
 

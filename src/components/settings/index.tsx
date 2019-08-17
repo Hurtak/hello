@@ -84,7 +84,6 @@ export const Settings = view(() => {
 
           <div inert={state.settings.opened === false ? "inert" : null}>
             <React.Suspense fallback={null}>
-              {/*  */}
               <SettingsContentLazy />
             </React.Suspense>
           </div>
