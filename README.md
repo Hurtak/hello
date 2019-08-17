@@ -1,4 +1,4 @@
-# Hello Friend
+# Hello
 
 - https://hello-friend.netlify.com/
 
@@ -19,15 +19,14 @@
 
 ## TODO
 
-- cors proxy
-  - on now
-  - on heroku?
-- revisit texts
-- changelog
 - release on chrome store
 
 ## Later TODOS
 
+- cors proxy
+  - on now
+  - on heroku?
+- changelog
 - fonts
   - precise cap-height boundaries for fonts
   - add line-heights so there is proper spacing between fonts
