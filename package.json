@@ -42,7 +42,7 @@
     "analyze": "source-map-explorer ./build/static/js/*",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
-    "validate": "npm run types && npm run prettier-check && npm run test -- --watchAll=false",
+    "validate": "npm run types && npm run prettier-check && npm run tests -- --watchAll=false",
     "zip": "cd build && zip -r -X \"../build.zip\" *",
     "publish": "npm run validate && np --no-publish && npm run build && npm run zip"
   },
