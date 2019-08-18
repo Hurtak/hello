@@ -17,12 +17,33 @@
 - Create React App does not support testing files that have name `test.ts`, only files with `*.test.ts` or `*.spec.ts` patterns, so we go around this by calling tests `spec.test.ts`
 - Global state is available in dev mode on `window._state`.
 
-## TODO
+## Dependencies
 
-- release on chrome store
+- react-scripts 3.0.1 -> 3.1.0
+  - There was an error trying to load the config "styledComponents" for the macro imported from "styled-components/macro. Please see the error thrown for more information
+  - https://github.com/styled-components/styled-components/issues/2713
+- @types/styled-components 4.1.8 ❯ 4.1.16
+  - typings completely broken
+  - https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
+- typescript 3.4.5 ❯ 3.5.2
+  - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
+  - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
+- @types/css-font-loading-module
+  - once window.FontFace becomes standardized, remove
+- resize-observer-polyfill
+  - remove polyfill, once supported by browsers
+- wicg-inert
+  - remove polyfill, once supported by browsers
+- focus-visible
+  - remove polyfill, once supported by browsers
+  - remove `.focus-visible` class and use directly `:focus-visible`
 
-## Later TODOS
+## TODOS
 
+- chrome store
+  - images without settings button
+  - better description?
+  - better logo?
 - cors proxy
   - on now
   - on heroku?
@@ -97,24 +118,3 @@
 - finish design for year progress
   - maybe get rid of this guy?
   - responsive design
-
-## Dependencies
-
-- react-scripts 3.0.1 -> 3.1.0
-  - There was an error trying to load the config "styledComponents" for the macro imported from "styled-components/macro. Please see the error thrown for more information
-  - https://github.com/styled-components/styled-components/issues/2713
-- @types/styled-components 4.1.8 ❯ 4.1.16
-  - typings completely broken
-  - https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
-- typescript 3.4.5 ❯ 3.5.2
-  - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
-  - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
-- @types/css-font-loading-module
-  - once window.FontFace becomes standardized, remove
-- resize-observer-polyfill
-  - remove polyfill, once supported by browsers
-- wicg-inert
-  - remove polyfill, once supported by browsers
-- focus-visible
-  - remove polyfill, once supported by browsers
-  - remove `.focus-visible` class and use directly `:focus-visible`
