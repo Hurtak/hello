@@ -29,6 +29,7 @@
     "@types/react-test-renderer": "16.9.0",
     "@types/styled-components": "4.1.8",
     "jest-styled-components": "6.3.3",
+    "np": "5.0.3",
     "prettier": "1.18.2",
     "react-test-renderer": "16.9.0",
     "source-map-explorer": "2.0.1"
@@ -42,7 +43,8 @@
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "validate": "npm run types && npm run prettier-check && npm run test -- --watchAll=false",
-    "zip": "cd build && zip -r -X \"../build.zip\" *"
+    "zip": "cd build && zip -r -X \"../build.zip\" *",
+    "publish": "npm run validate && np --no-publish && npm run build && npm run zip"
   },
   "eslintConfig": {
     "extends": "react-app"
