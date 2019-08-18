@@ -17,7 +17,7 @@ export const SettingsContact = view(() => {
 
       <ContactLinks>
         <SpacedItems spacing={1} horizontal>
-          <ContactLink iconType="GITHUB" href="https://github.com/hurtak/hello-friend">
+          <ContactLink iconType="GITHUB" href="https://github.com/hurtak/hello">
             Github
           </ContactLink>
           <ContactLink iconType="TWITTER" href="https://twitter.com/PetrHurtak">
