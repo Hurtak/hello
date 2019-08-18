@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "INLINE_RUNTIME_CHUNK=false REACT_APP_BUILD_TIME=$(date +%s) react-scripts build",
-    "test": "react-scripts test",
+    "test2": "react-scripts test",
     "analyze": "source-map-explorer ./build/static/js/*",
     "types": "tsc --pretty --noEmit",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
