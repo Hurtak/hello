@@ -4,12 +4,12 @@ import { uuid } from "../../../../../../../utils/random";
 import * as s from "../../../../../../../styles";
 
 export const InputDate: React.FC<{
-  value: string;
+  defaultValue: string;
   min: string;
   max: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children: string;
-}> = ({ value, min, max, onChange, children }) => {
+}> = ({ defaultValue, min, max, onChange, children }) => {
   const inputIdRef = useRef(uuid());
 
   return (
@@ -19,7 +19,7 @@ export const InputDate: React.FC<{
       <Input
         id={inputIdRef.current}
         type="date"
-        value={value}
+        defaultValue={defaultValue}
         min={min}
         max={max}
         onChange={onChange}

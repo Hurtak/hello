@@ -26,7 +26,9 @@ export const SettingsViewSettings = view(() => {
           <InputDate
             min={timestampToDateInputValue(new Date(1900, 0, 1).getTime())}
             max={timestampToDateInputValue(Date.now())}
-            value={state.settings.ageDateOfBirthInputValue}
+            // TODO: We use default value because there are some re-renders on parent components
+            // that caused lose of current caret position of the input. Investigate.
+            defaultValue={state.settings.ageDateOfBirthInputValue}
             onChange={e =>
               state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e.target.value))
             }
