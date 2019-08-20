@@ -28,8 +28,8 @@
     "@types/react-dom": "16.8.5",
     "@types/react-test-renderer": "16.9.0",
     "@types/styled-components": "4.1.8",
+    "execa": "2.0.4",
     "jest-styled-components": "6.3.3",
-    "np": "5.0.3",
     "prettier": "1.18.2",
     "react-test-renderer": "16.9.0",
     "source-map-explorer": "2.0.1"
