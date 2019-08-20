@@ -45,21 +45,6 @@
 
 ## TODOS
 
-- release script
-  - npm run validate
-  - get version from changelog.md
-    - if unreleased error
-  - package.json version
-    - if version is the same, as the one we are releasing, error
-    - put new version there
-  - increment manifest.json version
-    - if version is the same, as the one we are releasing, error
-    - put new version there
-  - npm run build
-  - commit "1.x.x"
-  - add tag "v1.x.x"
-  - push commit and tag
-  - npm run zip
 - chrome store
   - images without settings button
   - better description?
