@@ -9,6 +9,11 @@
 - run tests, type check and prettier check `npm run validate`
 - build `npm run build`
 
+## Release
+
+- up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
+- run `node ./scripts/release.js`
+
 ## Random notes
 
 - Chrome CSP
