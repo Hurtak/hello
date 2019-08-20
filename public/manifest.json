@@ -4,7 +4,7 @@
   "name": "Hello",
   "description": "New tab page with daily image and bunch of useful things that you can display, like clock and stuff.",
   "author": "Petr Huřťák",
-  "version": "1.0.0",
+  "version": "1.0.1",
 
   "chrome_url_overrides": {
     "newtab": "index.html"
