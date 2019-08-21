@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Update description in manifest.json.
+
 ## [1.0.1]
 
 - Fix date input where typing the age with keyboard was resetting caret position.

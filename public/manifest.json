@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Hello",
-  "description": "New tab page with daily image and bunch of useful things that you can display, like clock and stuff.",
+  "description": "New tab page with widgets and fresh image every day.",
   "author": "Petr Huřťák",
   "version": "1.0.1",
 

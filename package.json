@@ -1,7 +1,7 @@
 {
   "name": "hello",
   "version": "1.0.1",
-  "description": "New tab page with daily image and bunch of useful things that you can display, like clock and stuff.",
+  "description": "New tab page with widgets and fresh image every day.",
   "license": "MIT",
   "author": {
     "name": "Petr Huřťák",
