@@ -7,6 +7,10 @@
     "name": "Petr Huřťák",
     "email": "petr.hurtak@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hurtak/hello"
+  },
   "dependencies": {
     "focus-visible": "5.0.2",
     "react": "16.9.0",
