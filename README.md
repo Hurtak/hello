@@ -45,6 +45,10 @@
   - remove polyfill, once supported by browsers
   - remove `.focus-visible` class and use directly `:focus-visible`
 
+## Attributions
+
+- Icon by [Alice Noir](https://thenounproject.com/AliceNoir/uploads/?i=576432) with slight modifications by me.
+
 ## TODOS
 
 - chrome store
