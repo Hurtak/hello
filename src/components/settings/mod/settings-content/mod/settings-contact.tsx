@@ -7,10 +7,10 @@ export const SettingsContact = view(() => {
   if (state.settings.cleanVersion) return null;
 
   return (
-    <Section title="Who did this?">
+    <Section title="Contact">
       <Text>
-        I did! If you find any bugs or if you would like to tell me how much you like this swell
-        plugin you can do that. Also, this plugin is open-source, so you contribute on GitHub!
+        In case you find any bugs or if you would like to just say hi, there are several places
+        where you can contact me. Also, this plugin is open-source, so you contribute on GitHub.
       </Text>
 
       <Spacer size={1} />

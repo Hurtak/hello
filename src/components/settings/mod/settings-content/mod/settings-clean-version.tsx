@@ -7,8 +7,8 @@ export const SettingsCleanVersion = view(() => (
   <Section title="Clean version">
     {!state.settings.cleanVersion && (
       <Text>
-        Settings button will be hidden unless you hover him. Also bunch of useless text, like this
-        paragraph, will be hidden. Nice.
+        Settings button will be hidden unless you hover over him. Also a bunch of useless text, like
+        this paragraph, will be hidden.
       </Text>
     )}
 

@@ -9,9 +9,9 @@ export const SettingsHeader = view(() => (
 
     {!state.settings.cleanVersion && (
       <Text>
-        How are you doing? Enjoy a nice background from Bing every day or take a look at some of the
-        backgrounds that I preselected. There is also a bunch of useful things that you can display
-        in front of the background, like clock and stuff!
+        How are you doing? Enjoy daily new image from bing.com, or in case you are offline there is
+        dozen of nice wallpapers from nature that I liked. You can also display a widget. Some are
+        traditional, like a clock, some are meant to motivate you a little.
       </Text>
     )}
   </>

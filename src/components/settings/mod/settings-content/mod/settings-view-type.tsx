@@ -7,7 +7,7 @@ export const SettingsViewType = view(() => {
   if (state.settings.cleanVersion) return null;
 
   return (
-    <Section title="Useful stuff">
+    <Section title="Widget">
       <InputRadio
         name="view"
         onChange={() => state.settings.setSelectedView("CLOCK")}

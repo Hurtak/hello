@@ -51,8 +51,8 @@
 
 ## TODOS
 
+- line height bigger
 - chrome store
-  - better logo?
   - update settings
   - images without settings button
   - new version publish
