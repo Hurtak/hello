@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update description in manifest.json.
 - Remove link rel="manifest" from index.html.
 - Increase line-height for regular text.
+- Fix extra space when clean version is activated.
 
 ## [1.0.1]
 

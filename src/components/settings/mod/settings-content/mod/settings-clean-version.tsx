@@ -6,13 +6,14 @@ import { Text, Section, InputCheckBox, Spacer } from "./styled";
 export const SettingsCleanVersion = view(() => (
   <Section title="Clean version">
     {!state.settings.cleanVersion && (
-      <Text>
-        Settings button will be hidden unless you hover over him. Also a bunch of useless text, like
-        this paragraph, will be hidden.
-      </Text>
+      <>
+        <Text>
+          Settings button will be hidden unless you hover over him. Also a bunch of useless text,
+          like this paragraph, will be hidden.
+        </Text>
+        <Spacer size={0.5} />
+      </>
     )}
-
-    <Spacer size={0.5} />
 
     <InputCheckBox
       checked={state.settings.cleanVersion}
