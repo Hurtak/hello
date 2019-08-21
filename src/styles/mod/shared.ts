@@ -132,10 +132,9 @@ export const text = ({
             return 1.3;
           case "HEADING_SMALL":
           case "HEADING":
-          // default case to make linter happy
-          default:
             return 1;
         }
+      // eslint-disable-next-line: no-fallthrough
       case "NUMBERS":
         return 1;
     }
