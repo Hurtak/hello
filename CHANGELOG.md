@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New application texts, made them cleaner and more formal.
 - Add extension icon.
 - Update description in manifest.json.
+- Remove link rel="manifest" from index.html.
 
 ## [1.0.1]
 
