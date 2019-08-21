@@ -4,7 +4,7 @@
   "name": "Hello",
   "description": "New tab page with widgets and fresh image every day.",
   "author": "Petr Huřťák",
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "icons": {
     "128": "assets/logo-128.png"
