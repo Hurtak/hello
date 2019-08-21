@@ -1,6 +1,8 @@
 # Hello
 
-- https://hello-extension.netlify.com
+- Chrome extension that replaces new tab page with widgets and fresh image every day.
+- Live example: https://hello-extension.netlify.com
+- Chrome store link: https://chrome.google.com/webstore/detail/hello/olenfgbgcphkaipfeohfjpagibimmpke
 
 ## Development
 
@@ -46,9 +48,10 @@
 ## TODOS
 
 - chrome store
-  - images without settings button
-  - better description?
   - better logo?
+  - update settings
+  - images without settings button
+  - new version publish
 - cors proxy
   - on now
   - on heroku?
