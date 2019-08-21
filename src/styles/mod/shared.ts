@@ -129,7 +129,7 @@ export const text = ({
       case "DEFAULT":
         switch (fontSize) {
           case "TEXT":
-            return 1.3;
+            return 1.35;
           case "HEADING_SMALL":
           case "HEADING":
             return 1;
