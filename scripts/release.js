@@ -114,13 +114,13 @@ async function main() {
   await execCommand("git", ["commit", "--allow-empty", "--message", `release ${versionChangelog}`]);
   console.log("  OK");
 
-  console.log(`Git push`);
-  await execCommand("git", ["push"]);
-  console.log("  OK");
-
   console.log(`Creating tag "${gitTag}"`);
   await execCommand("git", ["tag", "--annotate", gitTag, "--message", gitTag]);
   console.log(`  OK`);
+
+  console.log(`Git push`);
+  await execCommand("git", ["push"]);
+  console.log("  OK");
 
   console.log(`Pushing tags`);
   await execCommand("git", ["push", "origin", gitTag]); // Tags are not pushed by regular `git push`.
