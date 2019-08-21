@@ -22,10 +22,6 @@ async function main() {
 
   console.log("");
 
-  console.log("Running validate script");
-  await execCommand("npm", ["run", "validate"]);
-  console.log("  OK");
-
   console.log("Getting version from CHANGELOG.md");
   const changelog = fs.readFileSync(path.join(__dirname, "../CHANGELOG.md"), "utf8");
   const isUnreleased = Boolean(changelog.match(/^## \[Unreleased\]+/im));
@@ -101,6 +97,10 @@ async function main() {
   } else {
     console.log("  OK");
   }
+
+  console.log("Running validate script");
+  await execCommand("npm", ["run", "validate"]);
+  console.log("  OK");
 
   console.log(`Building the app`);
   await execCommand("npm", ["run", "build"]);
