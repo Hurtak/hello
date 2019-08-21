@@ -51,18 +51,15 @@
 
 ## TODOS
 
-- line height bigger
 - chrome store
-  - update settings
   - images without settings button
   - new version publish
 - cors proxy
   - on now
   - on heroku?
-- changelog
 - fonts
   - precise cap-height boundaries for fonts
-  - add line-heights so there is proper spacing between fonts
+  - Text component?
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
 - write article

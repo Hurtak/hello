@@ -124,7 +124,21 @@ export const text = ({
     }
   })(),
 
-  lineHeight: 1,
+  lineHeight: (() => {
+    switch (family) {
+      case "DEFAULT":
+        switch (fontSize) {
+          case "TEXT":
+            return 1.3;
+          case "HEADING_SMALL":
+            return 1;
+          case "HEADING":
+            return 1;
+        }
+      case "NUMBERS":
+        return 1;
+    }
+  })(),
   color: color.white,
 });
 
