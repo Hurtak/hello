@@ -89,33 +89,30 @@ export const text = ({
   margin: 0,
   padding: 0,
 
-  fontSize: (() => {
+  fontSize: ((): string => {
     switch (fontSize) {
       case "HEADING_SMALL":
         return size(18);
       case "HEADING":
         return size(24);
       case "TEXT":
-      default:
         return size(15);
     }
   })(),
-  fontFamily: (() => {
+  fontFamily: ((): string => {
     switch (family) {
       case "NUMBERS":
         return "Lato";
       case "DEFAULT":
-      default:
         return "Roboto";
     }
   })(),
-  fontWeight: (() => {
+  fontWeight: ((): number => {
     switch (weight) {
+      case "DEFAULT":
+        return 400;
       case "BOLD":
         return 700;
-      case "DEFAULT":
-      default:
-        return 400;
     }
   })(),
   userSelect: (() => {
@@ -127,7 +124,7 @@ export const text = ({
     }
   })(),
 
-  lineHeight: (() => {
+  lineHeight: ((): number => {
     switch (family) {
       case "DEFAULT":
         switch (fontSize) {
@@ -135,11 +132,11 @@ export const text = ({
             return 1.3;
           case "HEADING_SMALL":
           case "HEADING":
+          // default case to make linter happy
           default:
             return 1;
         }
       case "NUMBERS":
-      default:
         return 1;
     }
   })(),
