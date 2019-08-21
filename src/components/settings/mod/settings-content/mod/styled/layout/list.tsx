@@ -39,7 +39,7 @@ const LiDotWrapper = styled.span({
   justifyContent: "center",
   flexShrink: 0,
   width: s.size(s.dimensions.formInputBoxSize),
-  height: s.grid(1.75),
+  height: s.size(18), // To match the line height
   marginRight: s.size(s.dimensions.formSpacing),
 });
 
