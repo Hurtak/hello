@@ -91,28 +91,31 @@ export const text = ({
 
   fontSize: (() => {
     switch (fontSize) {
-      case "TEXT":
-        return size(15);
       case "HEADING_SMALL":
         return size(18);
       case "HEADING":
         return size(24);
+      case "TEXT":
+      default:
+        return size(15);
     }
   })(),
   fontFamily: (() => {
     switch (family) {
-      case "DEFAULT":
-        return "Roboto";
       case "NUMBERS":
         return "Lato";
+      case "DEFAULT":
+      default:
+        return "Roboto";
     }
   })(),
   fontWeight: (() => {
     switch (weight) {
-      case "DEFAULT":
-        return 400;
       case "BOLD":
         return 700;
+      case "DEFAULT":
+      default:
+        return 400;
     }
   })(),
   userSelect: (() => {
@@ -131,11 +134,12 @@ export const text = ({
           case "TEXT":
             return 1.3;
           case "HEADING_SMALL":
-            return 1;
           case "HEADING":
+          default:
             return 1;
         }
       case "NUMBERS":
+      default:
         return 1;
     }
   })(),
