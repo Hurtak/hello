@@ -51,9 +51,9 @@
 
 ## TODOS
 
+- add calendar view back
 - chrome store
   - images without settings button
-  - new version publish
 - cors proxy
   - on now
   - on heroku?

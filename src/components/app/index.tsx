@@ -13,6 +13,7 @@ import { GlobalStyles } from "../../styles";
 import { config } from "../../config";
 import { Clock } from "../background-types/clock";
 import { Age } from "../background-types/age";
+import { Calendar } from "../background-types/calendar";
 import { YearProgress } from "../background-types/year-progress";
 import { Settings } from "../settings";
 import { BackgroundImage } from "../background-image";
@@ -90,14 +91,14 @@ const AppInner = view(() => {
                 />
               );
 
-            // case "CALENDAR":
-            //   return (
-            //       <TimerUpdater
-            //         updateEveryN={time.day}
-            //         component={time => <Calendar time={time} />}
-            //         key={state.settings.selectedView}
-            //       />
-            //   );
+            case "CALENDAR":
+              return (
+                <TimerUpdater
+                  updateEveryN={time.day}
+                  component={time => <Calendar time={time} />}
+                  key={state.settings.selectedView}
+                />
+              );
 
             case "YEAR_PROGRESS":
               return (

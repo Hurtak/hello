@@ -28,7 +28,7 @@ export const MonthName = styled.h2({
 export const DaysWrapper = styled.div({
   display: "grid",
   gridTemplateColumns: "repeat(7, auto)",
-  gridGap: "${s.grid(1)} 0",
+  gridGap: `${s.grid(1)} 0`,
   justifyContent: "space-between",
   padding: 0,
   marginTop: s.grid(2),

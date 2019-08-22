@@ -1,12 +1,7 @@
 import { timestampToDateInputValue } from "../../utils/time";
 import { state } from "..";
 
-type View =
-  | "CLOCK"
-  // | "CALENDAR"
-  | "YEAR_PROGRESS"
-  | "AGE"
-  | "NOTHING";
+export type View = "CLOCK" | "CALENDAR" | "YEAR_PROGRESS" | "AGE" | "NOTHING";
 
 const defaultDateOfBirth = new Date(1990, 0, 1).getTime();
 
