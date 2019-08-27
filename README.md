@@ -13,6 +13,7 @@
 
 ## Release
 
+- check if `CHANGELOG.md` is properly filled, add current date to the latest version
 - up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
 - run `node ./scripts/release.js`
 
