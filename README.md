@@ -52,6 +52,10 @@
 ## TODOS
 
 - add calendar view back
+- add another image providers?
+  - https://chrome.google.com/webstore/detail/telescope/mcbkdemjpfgkelnhcnbkoafaljnblcjd
+  - https://chrome.google.com/webstore/detail/new-tab-art/oldcmmikbakmkmikgikndeekekdihgnf
+  - https://github.com/Hurtak/hello/issues/1
 - chrome store
   - images without settings button
 - cors proxy
