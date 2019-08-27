@@ -49,13 +49,17 @@
 
 - Icon by [Alice Noir](https://thenounproject.com/AliceNoir/uploads/?i=576432) with slight modifications by me.
 
-## TODOS
+## Potential futere improvements
 
-- add calendar view back
+- add calendar widget
 - add another image providers?
   - https://chrome.google.com/webstore/detail/telescope/mcbkdemjpfgkelnhcnbkoafaljnblcjd
   - https://chrome.google.com/webstore/detail/new-tab-art/oldcmmikbakmkmikgikndeekekdihgnf
   - https://github.com/Hurtak/hello/issues/1
+- release as Firefox plugin
+
+## TODOS
+
 - chrome store
   - images without settings button
 - cors proxy
@@ -66,20 +70,14 @@
   - Text component?
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
-- write article
-- release on twitter
 - release on reddit
-- release on HN
 - when settings has focus, show it on minimalistic view
-- problem, sometimes i want to view the calendar
-  - keyboard shortcuts? so we can easily show toggle/switch to calendar/time whatever?
-- fade in animation of main view and settings button
-- introduce changelog
-  - menu changelog link
+- hotkeys to toggle calendar/time
+  - write about it in settings
+- show changelog somewhere in menu
 - show location and links somewhere else and somewhere more visible accesible?
   - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
 - decimal places in age configurable
-- support for firefox?
 - animations
   - use react-spring
   - animate view transitions
@@ -88,11 +86,7 @@
     - no when menu height content is extended, it lags behind content
     - when menu height content is collapsed, it happens instantly
   - animate text appear/disapper in menu
-- when we cross viewport min width there is vertical scrollbar??
-- hotkeys to toggle calendar/time
-- background image switching animation
-- revisit tsconfig
-- docs
+- background image switching seems slow and buggy sometimes
 - images
   - bing image of the day
     - download once a hour?
@@ -103,31 +97,6 @@
     - backup background when image cannot be loaded
     - when no internet auto fallback to offline images?
     - when no internet disable menu settings and show error message
-- background image transition does not work for local images
-- responsive menu
-- change fonts
-- tweet about this!
-- global("body", { backgroundColor: colors.grayChrome, }
-  - problem this is inserted at runtime so we wee white screen splash from default styles?
-  - or maybe even if we had css file we would seee this splash?
-- fill github descriptions and stuff
-- user-select: none na vsechno?
-- support
-  - firefox plugin
-  - web app - github pages hosted
-- when loading new image, add blur our, blur in efect
-- settings
-  - bouncy transitions on settings box and cog
-  - close button
-    - transformation to close button?
-    - hover styles
-    - focus styles
 - fix tests
 - resolve all todos in code
-- when menu is closed, disable all form field, or do not render the html
 - conditional updated is broken when we change clocks showSeconds prop, overall behavior seems strange investigate!
-- finish design for calendar
-  - responsive design
-- finish design for year progress
-  - maybe get rid of this guy?
-  - responsive design
