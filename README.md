@@ -49,7 +49,7 @@
 
 - Icon by [Alice Noir](https://thenounproject.com/AliceNoir/uploads/?i=576432) with slight modifications by me.
 
-## Potential futere improvements
+## Potential future improvements
 
 - add calendar widget
 - add another image providers?
@@ -58,7 +58,7 @@
   - https://github.com/Hurtak/hello/issues/1
 - release as Firefox plugin
 
-## TODOS
+## TODO
 
 - chrome store
   - images without settings button
@@ -71,11 +71,11 @@
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
 - release on reddit
-- when settings has focus, show it on minimalistic view
+- when settings has focus, show it on minimalist view
 - hotkeys to toggle calendar/time
   - write about it in settings
 - show changelog somewhere in menu
-- show location and links somewhere else and somewhere more visible accesible?
+- show location and links somewhere else and somewhere more visible accessible?
   - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
 - decimal places in age configurable
 - animations
@@ -85,12 +85,12 @@
   - also menu bugs
     - no when menu height content is extended, it lags behind content
     - when menu height content is collapsed, it happens instantly
-  - animate text appear/disapper in menu
+  - animate text appear/disappear in menu
 - background image switching seems slow and buggy sometimes
 - images
   - bing image of the day
     - download once a hour?
-    - what happense when we have outdated data?
+    - what happens when we have outdated data?
     - display new image on subsequent page visits?
   - error handling
     - show error when image cannot be loaded
