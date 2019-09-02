@@ -19,6 +19,7 @@ export const SettingsViewType = view(() => {
     <Section title="Widget">
       {views.map(view => (
         <InputRadio
+          key={view.type}
           name="view"
           onChange={() => state.settings.setSelectedView(view.type)}
           checked={state.settings.selectedView === view.type}
