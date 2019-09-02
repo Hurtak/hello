@@ -1,5 +1,6 @@
 import { getBingImageOfTheDay, HttpData, BingData } from "../../utils/api";
 import { getRandomInt } from "../../utils/random";
+import { never } from "../../utils/never";
 import { images, Image } from "../../images";
 import { state } from "..";
 
@@ -51,7 +52,7 @@ export const image = {
         }
 
       default:
-        return "LOCAL";
+        return never(state.image.imageSource);
     }
   },
 
@@ -72,12 +73,16 @@ export const image = {
         switch (state.image.imageBing.type) {
           case "DONE":
             return state.image.imageBing.data.url;
-          default:
+          case "INITIAL":
+          case "FETCHING":
+          case "ERROR":
             return null;
+          default:
+            return never(state.image.imageBing);
         }
 
       default:
-        return null;
+        return never(state.image.imageSourceWithFallback);
     }
   },
 
@@ -99,14 +104,41 @@ export const image = {
       case "DONE":
         state.image.imageBingCached = state.image.imageBing.data;
         break;
+      case "INITIAL":
+      case "FETCHING":
+      case "ERROR":
+        break;
+      default:
+        never(state.image.imageBing);
     }
   },
 
   setImageSource(imageSource: ImageSource): void {
     state.image.imageSource = imageSource;
-    if (imageSource === "BING") {
-      if (state.image.imageBing.type === "INITIAL" || state.image.imageBing.type === "ERROR") {
-        state.image.fetchBingImage();
+
+    switch (imageSource) {
+      case "BING": {
+        switch (state.image.imageBing.type) {
+          case "INITIAL":
+          case "ERROR": {
+            state.image.fetchBingImage();
+            break;
+          }
+          case "FETCHING":
+          case "DONE": {
+            break;
+          }
+          default: {
+            never(state.image.imageBing);
+          }
+        }
+        break;
+      }
+      case "LOCAL": {
+        break;
+      }
+      default: {
+        never(imageSource);
       }
     }
   },

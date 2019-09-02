@@ -9,6 +9,7 @@ import { state } from "../../state";
 import * as time from "../../utils/time";
 import { TimerUpdater } from "../utils/timer-updater";
 import { logTimeElapsedSinceStart, logTimestamp } from "../../utils/logging";
+import { never } from "../../utils/never";
 import { GlobalStyles } from "../../styles";
 import { config } from "../../config";
 import { Clock } from "../background-types/clock";
@@ -128,7 +129,7 @@ const AppInner = view(() => {
               return null;
 
             default:
-              return null;
+              never(state.settings.selectedView);
           }
         })()}
       </AppContent>

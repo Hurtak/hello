@@ -1,4 +1,5 @@
 import { logWarning } from "./logging";
+import { never } from "./never";
 
 type BingResponse = {
   images?: {
@@ -42,6 +43,8 @@ export function getCorsProxyUrl(corsProxyType: CorsProxyType, proxedUrl: string)
       return `https://crossorigin.me/${proxedUrl}`;
     case "CODETABS":
       return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(proxedUrl)}`;
+    default:
+      return never(corsProxyType);
   }
 }
 

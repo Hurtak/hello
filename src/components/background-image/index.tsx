@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { logWarning } from "../../utils/logging";
+import { never } from "../../utils/never";
 import * as s from "../../styles";
 import { Wrapper, Image } from "./mod/styled";
 
@@ -39,14 +40,16 @@ export const BackgroundImage: React.FC<{
   }, [url]);
 
   useEffect(() => {
-    switch (state.image.type) {
+    const { image, imageWaitingToStartTransition } = state;
+
+    switch (image.type) {
       case "NO_IMAGE": {
-        if (!state.imageWaitingToStartTransition) return;
+        if (!imageWaitingToStartTransition) return;
 
         setState({
           image: {
             type: "TRANSITION_START",
-            url: state.imageWaitingToStartTransition,
+            url: imageWaitingToStartTransition,
             urlOld: null,
           },
           imageWaitingToStartTransition: null,
@@ -55,13 +58,13 @@ export const BackgroundImage: React.FC<{
       }
 
       case "ONE_IMAGE": {
-        if (!state.imageWaitingToStartTransition) return;
+        if (!imageWaitingToStartTransition) return;
 
         setState({
           image: {
             type: "TRANSITION_START",
-            url: state.imageWaitingToStartTransition,
-            urlOld: state.image.url,
+            url: imageWaitingToStartTransition,
+            urlOld: image.url,
           },
           imageWaitingToStartTransition: null,
         });
@@ -69,7 +72,7 @@ export const BackgroundImage: React.FC<{
       }
 
       case "TRANSITION_START": {
-        const { url, urlOld } = state.image;
+        const { url, urlOld } = image;
 
         const timeout = window.setTimeout(() => {
           setState(state => ({
@@ -85,7 +88,7 @@ export const BackgroundImage: React.FC<{
       }
 
       case "TRANSITIONING": {
-        const { url } = state.image;
+        const { url } = image;
 
         const timeout = window.setTimeout(() => {
           setState(state => ({
@@ -97,6 +100,10 @@ export const BackgroundImage: React.FC<{
           }));
         }, s.animation.backgroundImageAnimationDurationSeconds * 1000);
         return () => window.clearTimeout(timeout);
+      }
+
+      default: {
+        never(image);
       }
     }
   }, [state]);
@@ -133,6 +140,10 @@ export const BackgroundImage: React.FC<{
           <Image backgroundImage={state.image.url} visible />
         </Wrapper>
       );
+
+    default: {
+      return never(state.image);
+    }
   }
 };
 

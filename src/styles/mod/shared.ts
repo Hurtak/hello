@@ -1,3 +1,5 @@
+import { never } from "../../utils/never";
+
 /*
  * Grid, sizing
  */
@@ -97,6 +99,8 @@ export const text = ({
         return size(24);
       case "TEXT":
         return size(15);
+      default:
+        return never(fontSize);
     }
   })(),
   fontFamily: ((): string => {
@@ -105,6 +109,8 @@ export const text = ({
         return "Lato";
       case "DEFAULT":
         return "Roboto";
+      default:
+        return never(family);
     }
   })(),
   fontWeight: ((): number => {
@@ -113,6 +119,8 @@ export const text = ({
         return 400;
       case "BOLD":
         return 700;
+      default:
+        return never(weight);
     }
   })(),
   userSelect: (() => {
@@ -121,6 +129,8 @@ export const text = ({
         return "auto";
       case false:
         return "none";
+      default:
+        return never(selectable);
     }
   })(),
 
@@ -133,10 +143,13 @@ export const text = ({
           case "HEADING_SMALL":
           case "HEADING":
             return 1;
+          default:
+            return never(fontSize);
         }
-      // eslint-disable-next-line: no-fallthrough
       case "NUMBERS":
         return 1;
+      default:
+        return never(family);
     }
   })(),
   color: color.white,

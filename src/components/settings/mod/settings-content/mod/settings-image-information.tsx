@@ -1,6 +1,7 @@
 import React from "react";
 import { view } from "react-easy-state";
 import { state } from "../../../../../state";
+import { never } from "../../../../../utils/never";
 import { Section, List, ListItem, Dash, Link } from "./styled";
 
 export const SettingsImageInformation = view(() => (
@@ -75,7 +76,7 @@ export const SettingsImageInformation = view(() => (
                   case "UNSPLASH":
                     return <>Unsplash.com</>;
                   default:
-                    return null;
+                    never(state.image.imageLocal.source.type);
                 }
               })()}
             </Link>

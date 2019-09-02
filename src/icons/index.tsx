@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { never } from "../utils/never";
 import * as s from "../styles";
 
 // Currently we prefer ease of use (prop type="ICON_TYPE") and do not do any code splitting
@@ -26,6 +27,8 @@ function getIconComponent(type: IconType) {
       return IconWarning;
     case "CHECK":
       return IconCheck;
+    default:
+      return never(type);
   }
 }
 
