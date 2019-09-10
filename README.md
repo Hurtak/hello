@@ -51,7 +51,7 @@
 
 - Icon by [Alice Noir](https://thenounproject.com/AliceNoir/uploads/?i=576432) with slight modifications by me.
 
-## Potential future improvements
+## TODO
 
 - add calendar widget
 - add another image providers?
@@ -59,9 +59,17 @@
   - https://chrome.google.com/webstore/detail/new-tab-art/oldcmmikbakmkmikgikndeekekdihgnf
   - https://github.com/Hurtak/hello/issues/1
 - release as Firefox plugin
+- release on reddit
+- images
+  - try to load image from cache, if it is there display it, if not only then display offline fallback
+  - bing image of the day
+    - download once a hour, not on every page view?
+    - when downloaded and it is new one, should we immediately switch to new one, or on next page view?
 
-## TODO
+## TODO nice to have
 
+- hotkeys to toggle calendar/time
+  - write about it in settings
 - chrome store
   - images without settings button
 - cors proxy
@@ -72,10 +80,7 @@
   - Text component?
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
-- release on reddit
 - when settings has focus, show it on minimalist view
-- hotkeys to toggle calendar/time
-  - write about it in settings
 - show changelog somewhere in menu
 - show location and links somewhere else and somewhere more visible accessible?
   - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
@@ -89,16 +94,6 @@
     - when menu height content is collapsed, it happens instantly
   - animate text appear/disappear in menu
 - background image switching seems slow and buggy sometimes
-- images
-  - bing image of the day
-    - download once a hour?
-    - what happens when we have outdated data?
-    - display new image on subsequent page visits?
-  - error handling
-    - show error when image cannot be loaded
-    - backup background when image cannot be loaded
-    - when no internet auto fallback to offline images?
-    - when no internet disable menu settings and show error message
 - fix tests
 - resolve all todos in code
 - conditional updated is broken when we change clocks showSeconds prop, overall behavior seems strange investigate!
