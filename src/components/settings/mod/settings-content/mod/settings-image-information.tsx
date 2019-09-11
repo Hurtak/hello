@@ -27,7 +27,7 @@ export const SettingsImageInformation = view(() => (
             )}
             {state.image.imageBingWithFallback.copyright && (
               <ListItem>
-                Copyright <Dash /> {state.image.imageBingWithFallback.copyright}
+                Author <Dash /> {state.image.imageBingWithFallback.copyright}
               </ListItem>
             )}
             {state.image.imageBingWithFallback.link && (
