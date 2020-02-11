@@ -69,8 +69,6 @@ async function main() {
     console.log("  OK");
   }
 
-  process.exit(0);
-
   console.log(`Checking if there is correct version in package.json`);
   const packageJsonString = fs.readFileSync(filePaths.packageJson, "utf8");
   const packageJson = JSON.parse(packageJsonString);
