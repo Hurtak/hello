@@ -62,7 +62,7 @@ const AppInner = view(() => {
   useEffect(() => {
     if (!settingsEl.current) return;
 
-    const observer = new ResizeObserver(entries => {
+    const observer = new ResizeObserver((entries) => {
       setSettingsHeight(entries[0].contentRect.height);
     });
     observer.observe(settingsEl.current);
@@ -86,7 +86,7 @@ const AppInner = view(() => {
               return (
                 <TimerUpdater
                   updateEveryN={state.settings.clockShowSeconds ? time.second : time.minute}
-                  component={time => (
+                  component={(time) => (
                     <Clock time={time} showSeconds={state.settings.clockShowSeconds} />
                   )}
                 />
@@ -96,7 +96,7 @@ const AppInner = view(() => {
               return (
                 <TimerUpdater
                   updateEveryN={time.day}
-                  component={time => <Calendar time={time} />}
+                  component={(time) => <Calendar time={time} />}
                   key={state.settings.selectedView}
                 />
               );
@@ -105,7 +105,7 @@ const AppInner = view(() => {
               return (
                 <TimerUpdater
                   updateEveryN={time.year / 100 / 10 ** config.yearProgressDecimalPlaces}
-                  component={time => (
+                  component={(time) => (
                     <YearProgress time={time} decimalPlaces={config.yearProgressDecimalPlaces} />
                   )}
                 />
@@ -115,7 +115,7 @@ const AppInner = view(() => {
               return (
                 <TimerUpdater
                   updateEveryN={time.year / 10 ** config.ageDecimalPlaces}
-                  component={time => (
+                  component={(time) => (
                     <Age
                       time={time}
                       birthDate={state.settings.ageDateOfBirthTimestamp}

@@ -17,7 +17,7 @@ export const SettingsViewType = view(() => {
 
   return (
     <Section title="Widget">
-      {views.map(view => (
+      {views.map((view) => (
         <InputRadio
           key={view.type}
           name="view"

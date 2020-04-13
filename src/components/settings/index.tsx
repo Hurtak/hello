@@ -16,7 +16,7 @@ import { scrollTop, scrollBottom } from "./mod/utils";
 
 const SettingsContentLazy = React.lazy(() => {
   const performanceSettings = new LogPerformance("Settings code download");
-  return import("./mod/settings-content").then(mod => {
+  return import("./mod/settings-content").then((mod) => {
     performanceSettings.measure();
     return mod;
   });

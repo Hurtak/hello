@@ -7,7 +7,7 @@ export const Age: React.FC<{
   time: Timestamp;
   birthDate: number;
   decimalPlaces: number;
-}> = props => {
+}> = (props) => {
   const years = (props.time - props.birthDate) / time.year;
 
   return (

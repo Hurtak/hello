@@ -29,7 +29,7 @@ export const SettingsViewSettings = view(() => {
             // TODO: We use default value because there are some re-renders on parent components
             // that caused lose of current caret position of the input. Investigate.
             defaultValue={state.settings.ageDateOfBirthInputValue}
-            onChange={e =>
+            onChange={(e) =>
               state.settings.setAgeDateOfBirth(eventToAgeOfBirthValues(e.target.value))
             }
           >

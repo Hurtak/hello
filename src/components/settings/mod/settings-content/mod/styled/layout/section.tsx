@@ -5,7 +5,7 @@ import { HeadingSmall } from "./text";
 
 export const Section: React.FC<{
   title: string;
-}> = props => (
+}> = (props) => (
   <Wrapper>
     <HeadingSmall>{props.title}</HeadingSmall>
     {props.children}

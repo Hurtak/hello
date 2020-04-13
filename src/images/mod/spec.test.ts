@@ -5,7 +5,7 @@ test.each([
   //
   (image: Image) => image.url,
   (image: Image) => image.source.url,
-])("image '%s' are unique", dataAccessor => {
-  const items = images.map(image => dataAccessor(image));
+])("image '%s' are unique", (dataAccessor) => {
+  const items = images.map((image) => dataAccessor(image));
   testItemsUniqueness(items);
 });

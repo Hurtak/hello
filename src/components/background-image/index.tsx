@@ -26,13 +26,13 @@ export const BackgroundImage: React.FC<{
   useEffect(() => {
     if (url) {
       return loadImage(url, () => {
-        setState(state => ({
+        setState((state) => ({
           ...state,
           imageWaitingToStartTransition: url,
         }));
       });
     } else {
-      setState(state => ({
+      setState((state) => ({
         ...state,
         imageWaitingToStartTransition: null,
       }));
@@ -75,7 +75,7 @@ export const BackgroundImage: React.FC<{
         const { url, urlOld } = image;
 
         const timeout = window.setTimeout(() => {
-          setState(state => ({
+          setState((state) => ({
             ...state,
             image: {
               type: "TRANSITIONING",
@@ -91,7 +91,7 @@ export const BackgroundImage: React.FC<{
         const { url } = image;
 
         const timeout = window.setTimeout(() => {
-          setState(state => ({
+          setState((state) => ({
             ...state,
             image: {
               type: "ONE_IMAGE",
@@ -160,7 +160,7 @@ function loadImage(url: string, loaded: () => void): () => void {
     loaded();
   };
 
-  image.onerror = e => {
+  image.onerror = (e) => {
     // Image load cancelling throws error event
     if (imageState === "CANCELED") return;
 

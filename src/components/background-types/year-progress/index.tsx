@@ -6,7 +6,7 @@ import { Wrapper, ProgressBar, ProgressBarInner, Text } from "./mod/styled";
 export const YearProgress: React.FC<{
   time: Timestamp;
   decimalPlaces: number;
-}> = props => {
+}> = (props) => {
   const progress = getYearProgress(props.time);
 
   return (

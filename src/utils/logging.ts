@@ -1,9 +1,7 @@
 import { config } from "../config";
 
 function formatMs(ms: number): string {
-  const msFormatted = Math.trunc(ms)
-    .toString()
-    .padStart(4);
+  const msFormatted = Math.trunc(ms).toString().padStart(4);
 
   return `${msFormatted}ms`;
 }

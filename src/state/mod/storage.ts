@@ -87,7 +87,7 @@ export const storage = {
       savedState.ageDateOfBirthTimestamp,
       savedState.ageDateOfBirthInputValue,
       savedState.cleanVersion,
-    ].every(state => state != null);
+    ].every((state) => state != null);
 
     if (!stateValid) {
       logWarning("Error validating state retrieved from local storage", savedState);

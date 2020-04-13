@@ -21,7 +21,7 @@ const monthNames = [
 
 const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-export const Calendar: React.FC<{ time: Timestamp }> = props => {
+export const Calendar: React.FC<{ time: Timestamp }> = (props) => {
   const now = new Date(props.time);
 
   const currentMonth = now.getMonth() + 1;
@@ -32,7 +32,7 @@ export const Calendar: React.FC<{ time: Timestamp }> = props => {
 
   return (
     <MonthsWrapper>
-      {months.map(monthNumber => {
+      {months.map((monthNumber) => {
         return (
           <Month key={monthNumber}>
             <MonthName>
@@ -45,7 +45,7 @@ export const Calendar: React.FC<{ time: Timestamp }> = props => {
 
               return (
                 <DaysWrapper>
-                  {dayNames.map(dayName => {
+                  {dayNames.map((dayName) => {
                     return (
                       <Day heading key={dayName}>
                         {dayName}
@@ -69,12 +69,12 @@ export const Calendar: React.FC<{ time: Timestamp }> = props => {
                     const numberOfEmptyItems = firstDayIndex - 1;
                     const emptyItems = range(0, numberOfEmptyItems);
 
-                    return emptyItems.map(item => {
+                    return emptyItems.map((item) => {
                       return <Day key={item} />;
                     });
                   })()}
 
-                  {days.map(dayNumber => {
+                  {days.map((dayNumber) => {
                     const isCurrentDay = Boolean(
                       monthNumber === currentMonth && dayNumber === currentDay,
                     );
