@@ -27,16 +27,9 @@
 
 ## Dependencies
 
-- There was an error trying to load the config "styledComponents" for the macro imported from "styled-components/macro. Please see the error thrown for more information
-  - https://github.com/styled-components/styled-components/issues/2713
-  - https://github.com/facebook/create-react-app/issues/7524
-  - Used to happen when we updated react-scripts 3.0.1 -> 3.1.0, now it happens when we regenerate package-lock, so some of the sub-dependencies is now also affected
 - @types/styled-components 4.1.8 ❯ 4.1.16
   - typings completely broken
   - https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
-- typescript 3.4.5 ❯ 3.5.2
-  - WARNING: You are currently running a version of TypeScript which is not officially supported by typescript-estree
-  - SUPPORTED TYPESCRIPT VERSIONS: >=3.2.1 <3.5.0
 - @types/css-font-loading-module
   - once window.FontFace becomes standardized, remove
 - resize-observer-polyfill
