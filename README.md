@@ -13,8 +13,9 @@
 
 ## Release
 
-- check if `CHANGELOG.md` is properly filled add date is updated
+- check if `CHANGELOG.md` is properly filled and date is updated
 - up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
+- make commit with message `prepare VERSION_NUMBER`
 - run `node ./scripts/release.js`
 
 ## Random notes
