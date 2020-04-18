@@ -44,7 +44,7 @@
     "test": "react-scripts test",
     "test-ci": "CI=true react-scripts test",
     "types": "tsc --pretty --noEmit",
-    "analyze": "source-map-explorer ./build/static/js/*",
+    "analyze": "source-map-explorer ./build/static/js/*.js",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "validate": "npm run types && npm run prettier-check && npm run test-ci",
