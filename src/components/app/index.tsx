@@ -85,7 +85,7 @@ const AppInner = view(() => {
             case "CLOCK":
               return (
                 <TimerUpdater
-                  updateEveryN={state.settings.clockShowSeconds ? time.second : time.minute}
+                  updateEveryN={state.settings.clockShowSeconds ? time.secondMs : time.minuteMs}
                   component={(time) => (
                     <Clock time={time} showSeconds={state.settings.clockShowSeconds} />
                   )}
@@ -95,7 +95,7 @@ const AppInner = view(() => {
             case "CALENDAR":
               return (
                 <TimerUpdater
-                  updateEveryN={time.day}
+                  updateEveryN={time.dayMs}
                   component={(time) => <Calendar time={time} />}
                   key={state.settings.selectedView}
                 />
@@ -104,7 +104,7 @@ const AppInner = view(() => {
             case "YEAR_PROGRESS":
               return (
                 <TimerUpdater
-                  updateEveryN={time.year / 100 / 10 ** config.yearProgressDecimalPlaces}
+                  updateEveryN={time.yearMs / 100 / 10 ** config.yearProgressDecimalPlaces}
                   component={(time) => (
                     <YearProgress time={time} decimalPlaces={config.yearProgressDecimalPlaces} />
                   )}
@@ -114,7 +114,7 @@ const AppInner = view(() => {
             case "AGE":
               return (
                 <TimerUpdater
-                  updateEveryN={time.year / 10 ** config.ageDecimalPlaces}
+                  updateEveryN={time.yearMs / 10 ** config.ageDecimalPlaces}
                   component={(time) => (
                     <Age
                       time={time}

@@ -13,7 +13,7 @@ export const config = {
   // second so it will not be affected. On the other hand if we had setting
   // of TimerUpdater that would update state 100 times a second (like age with
   // lots of decimal places), it would be capped at 60.
-  maximumRefreshRate: time.second / 60,
+  maximumRefreshRate: time.secondMs / 60,
 
   ageDecimalPlaces: 8,
   yearProgressDecimalPlaces: 0,
