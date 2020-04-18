@@ -1,20 +1,20 @@
 import React from "react";
-import * as time from "../../../utils/time";
 import { Timestamp } from "../../utils/timer-updater";
 import { Wrapper, AgePosition, AgeBox, AgeText } from "./mod/styled";
+import { getAgeInYears } from "./mod/utils";
 
 export const Age: React.FC<{
   time: Timestamp;
-  birthDate: number;
+  birthDate: Timestamp;
   decimalPlaces: number;
 }> = (props) => {
-  const years = (props.time - props.birthDate) / time.year;
+  const years = getAgeInYears(props.time, props.birthDate);
 
   return (
     <Wrapper>
       <AgePosition>
         <AgeBox>
-          <AgeText>{years.toFixed(props.decimalPlaces)}</AgeText>
+          <AgeText>{Math.max(years, 0).toFixed(props.decimalPlaces)}</AgeText>
         </AgeBox>
       </AgePosition>
     </Wrapper>

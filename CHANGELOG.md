@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## UNRELEASED
 
+- Fix age computation, previously it did not adjust for leap years.
+- Minimum age is now 0.
 - Change image information "copyright" to "author".
 
 ## [1.0.2] - 2019-08-21
