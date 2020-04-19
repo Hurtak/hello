@@ -17,6 +17,7 @@
 - up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
 - make commit with message `prepare VERSION_NUMBER`
 - run `node ./scripts/release.js`
+- go to https://chrome.google.com/webstore/devconsole and upload new version
 
 ## Random notes
 
