@@ -41,15 +41,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "INLINE_RUNTIME_CHUNK=false REACT_APP_BUILD_TIME=$(date +%s) react-scripts build",
+    "analyze": "source-map-explorer ./build/static/js/*.js",
     "test": "react-scripts test",
     "test-ci": "CI=true react-scripts test",
     "types": "tsc --pretty --noEmit",
-    "analyze": "source-map-explorer ./build/static/js/*.js",
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "validate": "npm run types && npm run prettier-check && npm run test-ci",
-    "zip": "cd build && zip -r -X \"../build.zip\" *",
-    "publish": "npm run validate && np --no-publish && npm run build && npm run zip"
+    "zip": "cd build && zip -r -X \"../build.zip\" *"
   },
   "eslintConfig": {
     "extends": "react-app"
