@@ -34,8 +34,8 @@
   - https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
 - @types/css-font-loading-module
   - once window.FontFace becomes standardized, remove
-- resize-observer-polyfill
-  - remove polyfill, once supported by browsers
+- ResizeObserver types
+  - https://github.com/microsoft/TypeScript/issues/37861
 - wicg-inert
   - remove polyfill, once supported by browsers
 - focus-visible

@@ -1,4 +1,3 @@
-import ResizeObserver from "resize-observer-polyfill"; // TODO: Remove once supported in Chrome & FF
 import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 import "focus-visible"; // TODO: Remove once supported in Chrome & FF
 
