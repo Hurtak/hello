@@ -1,3 +1,4 @@
+import { CSSObject } from "styled-components";
 import { never } from "../../utils/never";
 
 /*
@@ -87,7 +88,7 @@ export const text = ({
   weight?: "DEFAULT" | "BOLD";
   family?: "DEFAULT" | "NUMBERS";
   selectable?: boolean;
-} = {}): React.CSSProperties => ({
+} = {}): CSSObject => ({
   margin: 0,
   padding: 0,
 
@@ -192,7 +193,7 @@ const breakpointPxToEm = (px: number): string => `${px / 16}em`;
 export const maxWidthBreakpoint = (px: number): string =>
   `@media (max-width: ${breakpointPxToEm(px)})`;
 
-export const visuallyHideInputFieldWhileStillInteractive: React.CSSProperties = {
+export const visuallyHideInputFieldWhileStillInteractive: CSSObject = {
   // Make sure the input is still there for screen readers and for the browser
   // and for the "focus" events, but hide him visually.
   position: "absolute",

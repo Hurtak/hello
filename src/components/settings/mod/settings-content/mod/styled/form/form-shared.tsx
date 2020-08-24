@@ -1,3 +1,4 @@
+import { CSSObject } from "styled-components";
 import styled, { StyledComponent } from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 
@@ -17,9 +18,7 @@ export const CheckBoxRadioText = styled.span({
 });
 
 const inputPadding = s.gridNumber(0.25);
-export const checkBoxRadioLabelStyles = (
-  Input: StyledComponent<any, any>,
-): React.CSSProperties => ({
+export const checkBoxRadioLabelStyles = (Input: StyledComponent<any, any>): CSSObject => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
