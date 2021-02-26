@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2018",
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
@@ -14,7 +14,7 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2017", "dom"]
+    "lib": ["es2018", "dom"]
   },
   "include": ["src"]
 }
