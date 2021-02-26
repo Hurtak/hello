@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { App } from ".";
+import { App } from "../";
 
 test("renders without crashing", () => {
-  expect(1).toEqual(1);
-  // TODO: fix this test
-  // ReactDOM.render(<App />, document.createElement("div"));
+  ReactDOM.render(<App />, document.createElement("div"));
 });
