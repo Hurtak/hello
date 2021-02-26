@@ -43,22 +43,7 @@
 
 - Icon by [Alice Noir](https://thenounproject.com/AliceNoir/uploads/?i=576432) with slight modifications by me.
 
-## TODO
-
-- add calendar widget
-- add another image providers?
-  - https://chrome.google.com/webstore/detail/telescope/mcbkdemjpfgkelnhcnbkoafaljnblcjd
-  - https://chrome.google.com/webstore/detail/new-tab-art/oldcmmikbakmkmikgikndeekekdihgnf
-  - https://github.com/Hurtak/hello/issues/1
-- release as Firefox plugin
-- release on reddit
-- images
-  - try to load image from cache, if it is there display it, if not only then display offline fallback
-  - bing image of the day
-    - download once a hour, not on every page view?
-    - when downloaded and it is new one, should we immediately switch to new one, or on next page view?
-
-## TODO nice to have
+## TODOs
 
 - hotkeys to toggle calendar/time
   - write about it in settings
@@ -67,15 +52,9 @@
 - cors proxy
   - on now
   - on heroku?
-- fonts
-  - precise cap-height boundaries for fonts
-  - Text component?
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
-- when settings has focus, show it on minimalist view
 - show changelog somewhere in menu
-- show location and links somewhere else and somewhere more visible accessible?
-  - main reasoning: you will use the settings once at the beginning, then you will only look what is on the picture etc
 - decimal places in age configurable
 - animations
   - use react-spring
@@ -86,6 +65,14 @@
     - when menu height content is collapsed, it happens instantly
   - animate text appear/disappear in menu
 - background image switching seems slow and buggy sometimes
-- fix tests
-- resolve all todos in code
 - conditional updated is broken when we change clocks showSeconds prop, overall behavior seems strange investigate!
+- add calendar widget?
+- add another image providers?
+  - https://chrome.google.com/webstore/detail/telescope/mcbkdemjpfgkelnhcnbkoafaljnblcjd
+  - https://chrome.google.com/webstore/detail/new-tab-art/oldcmmikbakmkmikgikndeekekdihgnf
+  - https://github.com/Hurtak/hello/issues/1
+- images
+  - try to load image from cache, if it is there display it, if not only then display offline fallback
+  - bing image of the day
+    - download once a hour, not on every page view?
+    - when downloaded and it is new one, should we immediately switch to new one, or on next page view?
