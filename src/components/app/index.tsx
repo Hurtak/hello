@@ -66,7 +66,6 @@ const AppInner = view(() => {
     });
     observer.observe(settingsEl.current);
 
-    // TODO: Maybe use `.unobserve`? What is the difference between the two?
     return () => observer.disconnect();
   }, []);
 

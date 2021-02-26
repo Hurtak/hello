@@ -45,13 +45,15 @@
 
 ## TODOs
 
-- hotkeys to toggle calendar/time
-  - write about it in settings
-- chrome store
-  - images without settings button
 - cors proxy
   - on now
   - on heroku?
+- does not remember state?
+
+---
+
+- chrome store
+  - images without settings button
 - hotkeys (esc) do not work when input is focused
   - https://github.com/JohannesKlauss/react-hotkeys-hook/issues/127
 - show changelog somewhere in menu

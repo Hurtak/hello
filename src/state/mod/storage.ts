@@ -76,18 +76,18 @@ export const storage = {
     if (!savedState) return;
 
     const stateValid = [
-      savedState.rememberSettingsOpened,
+      "rememberSettingsOpened",
 
-      savedState.imageSource,
-      savedState.imageBingCached,
+      "imageSource",
+      "imageBingCached",
 
-      savedState.opened,
-      savedState.selectedView,
-      savedState.clockShowSeconds,
-      savedState.ageDateOfBirthTimestamp,
-      savedState.ageDateOfBirthInputValue,
-      savedState.cleanVersion,
-    ].every((state) => state != null);
+      "opened",
+      "selectedView",
+      "clockShowSeconds",
+      "ageDateOfBirthTimestamp",
+      "ageDateOfBirthInputValue",
+      "cleanVersion",
+    ].every((key) => key in savedState);
 
     if (!stateValid) {
       logWarning("Error validating state retrieved from local storage", savedState);
