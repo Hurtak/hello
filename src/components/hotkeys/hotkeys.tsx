@@ -1,4 +1,4 @@
-import { view } from "@risingstack/react-easy-state";
+import { view } from "react-easy-state";
 import { useHotkeys } from "react-hotkeys-hook";
 import { state } from "../../state";
 

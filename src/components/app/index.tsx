@@ -2,7 +2,7 @@ import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 import "focus-visible"; // TODO: Remove once supported in Chrome & FF
 
 import React, { useState, useEffect, useRef } from "react";
-import { view } from "@risingstack/react-easy-state";
+import { view } from "react-easy-state";
 
 import { state } from "../../state";
 import * as time from "../../utils/time";
