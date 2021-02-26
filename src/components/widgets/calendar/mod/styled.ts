@@ -41,20 +41,21 @@ export const Day = styled.div(
       weight: props.heading || props.currentDay ? "BOLD" : "DEFAULT",
     }),
 
-    ...(props.currentDay && {
-      position: "relative",
-      zIndex: 0,
-      "&::after": {
-        content: `""`,
-        display: "block",
-        position: "absolute",
-        left: "-2px",
-        top: "-4px",
-        width: "22px",
-        height: "22px",
-        backgroundColor: "orange",
-        zIndex: -1,
-      },
-    }),
+    ...(props.currentDay &&
+      ({
+        position: "relative",
+        zIndex: 0,
+        "&::after": {
+          content: `""`,
+          display: "block",
+          position: "absolute",
+          left: "-2px",
+          top: "-4px",
+          width: "22px",
+          height: "22px",
+          backgroundColor: "orange",
+          zIndex: -1,
+        },
+      } as const)),
   }),
 );

@@ -29,9 +29,6 @@
 
 ## Dependencies
 
-- @types/styled-components 4.1.8 ❯ 4.1.16
-  - typings completely broken
-  - https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
 - @types/css-font-loading-module
   - once window.FontFace becomes standardized, remove
 - ResizeObserver types

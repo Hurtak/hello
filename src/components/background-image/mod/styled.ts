@@ -17,15 +17,18 @@ export const Image = styled.div.attrs((props: ImageProps) => ({
   style: {
     backgroundImage: props.backgroundImage ? `url("${props.backgroundImage}")` : "none",
   },
-}))((props: ImageProps) => ({
-  position: "absolute",
-  left: 0,
-  top: 0,
-  width: "100%",
-  height: "100%",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "center",
-  transition: props.noAnimation ? "initial" : s.animation.backgroundImage,
-  opacity: props.visible ? 1 : 0,
-}));
+}))(
+  (props: ImageProps) =>
+    ({
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      transition: props.noAnimation ? "initial" : s.animation.backgroundImage,
+      opacity: props.visible ? 1 : 0,
+    } as const),
+);

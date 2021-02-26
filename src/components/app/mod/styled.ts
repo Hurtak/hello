@@ -56,19 +56,22 @@ export const AppSettings = styled.div.attrs((props: AppSettingsProps) => ({
       height: typeof props.contentHeight === "number" ? s.size(props.contentHeight) : "auto",
     }),
   },
-}))((props: AppSettingsProps) => ({
-  direction: "rtl", // To make the overflow cropping from the right side
-  width: s.size(s.dimensions.settingsButtonSizeAndSpacing),
-  height: s.size(s.dimensions.settingsButtonSizeAndSpacing),
-  transition: s.animation.default,
-  overflow: "hidden",
-  pointerEvents: "auto",
+}))(
+  (props: AppSettingsProps) =>
+    ({
+      direction: "rtl", // To make the overflow cropping from the right side
+      width: s.size(s.dimensions.settingsButtonSizeAndSpacing),
+      height: s.size(s.dimensions.settingsButtonSizeAndSpacing),
+      transition: s.animation.default,
+      overflow: "hidden",
+      pointerEvents: "auto",
 
-  ...(props.opened && {
-    width: s.size(s.dimensions.settingsWidth),
-    maxWidth: "100%",
-  }),
-}));
+      ...(props.opened && {
+        width: s.size(s.dimensions.settingsWidth),
+        maxWidth: "100%",
+      }),
+    } as const),
+);
 
 export const AppSettingsInner = styled.div({
   direction: "ltr", // Reset direction set in AppSettings component
