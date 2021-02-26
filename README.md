@@ -45,13 +45,6 @@
 
 ## TODOs
 
-- cors proxy
-  - on now
-  - on heroku?
-- does not remember state?
-
----
-
 - chrome store
   - images without settings button
 - hotkeys (esc) do not work when input is focused

@@ -1,5 +1,7 @@
 import { logWarning } from "./logging";
-import { never } from "./never";
+
+// const bingImageUrlProxied = "http://localhost:3001/";
+const bingImageUrlProxied = "https://hello-cors-proxy.herokuapp.com/";
 
 type BingResponse = {
   images?: {
@@ -33,37 +35,9 @@ export type HttpData<Response> =
       data: any;
     };
 
-type CorsProxyType = "CORS_ANYWHERE" | "CROSSORIGIN_ME" | "CODETABS";
-
-export function getCorsProxyUrl(corsProxyType: CorsProxyType, proxedUrl: string): string {
-  switch (corsProxyType) {
-    case "CORS_ANYWHERE":
-      return `https://cors-anywhere.herokuapp.com/${proxedUrl}`;
-    case "CROSSORIGIN_ME":
-      return `https://crossorigin.me/${proxedUrl}`;
-    case "CODETABS":
-      return `https://api.codetabs.com/cors-proxy/${encodeURIComponent(proxedUrl)}`;
-    default:
-      return never(corsProxyType);
-  }
-}
-
-export const bingImageUrl = (() => {
-  // Some related docs: https://github.com/timothymctim/Bing-wallpapers
-  // Locale (the "mkt" parameter) is determined automatically based on the IP address.
-
-  const bingImage = new URL("https://www.bing.com/HPImageArchive.aspx");
-  bingImage.searchParams.set("format", "js"); // get JSON as response-type
-  bingImage.searchParams.set("idx", "0"); // 0 - first image today, 1 - first yesterday, ...
-  bingImage.searchParams.set("n", "1"); // number of images
-
-  return bingImage.toString();
-})();
-
 export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
   let request = null;
 
-  const bingImageUrlProxied = getCorsProxyUrl("CORS_ANYWHERE", bingImageUrl);
   try {
     request = await fetch(bingImageUrlProxied, {
       headers: { Accept: "application/json" },
