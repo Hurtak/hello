@@ -61,7 +61,7 @@ const AppInner = view(() => {
   useEffect(() => {
     if (!settingsEl.current) return;
 
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
       setSettingsHeight(entries[0].contentRect.height);
     });
     observer.observe(settingsEl.current);

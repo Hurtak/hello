@@ -3,7 +3,7 @@
     "target": "es2018",
     "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "allowJs": true,
@@ -13,8 +13,9 @@
 
     "strict": true,
     "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom", "dom.iterable"]
   },
   "include": ["src"]
 }
