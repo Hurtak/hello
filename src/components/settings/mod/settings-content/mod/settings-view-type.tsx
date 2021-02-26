@@ -1,5 +1,5 @@
 import React from "react";
-import { view } from "react-easy-state";
+import { view } from "@risingstack/react-easy-state";
 import { View } from "../../../../../state/mod/settings";
 import { state } from "../../../../../state";
 import { Section, InputRadio } from "./styled";

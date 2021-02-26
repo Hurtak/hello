@@ -1,5 +1,5 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
-import { view } from "react-easy-state";
+import { view } from "@risingstack/react-easy-state";
 import { Icon } from "../../icons";
 import * as s from "../../styles";
 import { state } from "../../state";

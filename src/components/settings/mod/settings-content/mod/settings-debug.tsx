@@ -1,5 +1,5 @@
 import React from "react";
-import { view } from "react-easy-state";
+import { view } from "@risingstack/react-easy-state";
 import { version } from "../../../../../../package.json";
 import { state } from "../../../../../state";
 import { Text, Section, Button, InputCheckBox, SpacedItems, List, ListItem, Dash } from "./styled";

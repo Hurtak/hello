@@ -12,6 +12,7 @@
     "url": "https://github.com/hurtak/hello"
   },
   "dependencies": {
+    "@risingstack/react-easy-state": "6.3.0",
     "focus-visible": "5.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
