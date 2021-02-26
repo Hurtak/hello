@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## UNRELEASED
 
+## [1.0.4] - 2021-02-26
+
 - Fix Bing image provider
 - Fix bug where if we did not properly load Bing image it broke app state saving.
 - Update dependencies
