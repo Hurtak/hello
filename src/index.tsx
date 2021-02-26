@@ -6,5 +6,10 @@ import { App } from "./components/app";
 logTimeElapsedSinceStart("index.tsx first line");
 
 const performanceReactDomRender = new LogPerformance("ReactDOM.render <App />");
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root"),
+);
 performanceReactDomRender.measure();
