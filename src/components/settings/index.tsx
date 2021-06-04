@@ -26,10 +26,8 @@ export const Settings = view(() => {
   const settingsWrapperEl = useRef<HTMLDivElement>(null);
 
   const [previousSettingsOpened, setPreviousSettingsOpened] = useState<boolean | null>(null);
-  const [
-    previousDebugMenuScrollAnimationRequestNr,
-    setPreviousDebugMenuScrollAnimationRequestNr,
-  ] = useState<number | null>(null);
+  const [previousDebugMenuScrollAnimationRequestNr, setPreviousDebugMenuScrollAnimationRequestNr] =
+    useState<number | null>(null);
 
   useLayoutEffect(() => {
     if (!settingsWrapperEl.current) return;

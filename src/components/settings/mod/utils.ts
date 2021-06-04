@@ -1,6 +1,4 @@
-export function eventToAgeOfBirthValues(
-  inputValue: string,
-): {
+export function eventToAgeOfBirthValues(inputValue: string): {
   timestamp: number | null;
   inputValue: string;
 } {
