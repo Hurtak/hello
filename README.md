@@ -39,6 +39,9 @@
 - focus-visible
   - remove polyfill, once supported by browsers
   - remove `.focus-visible` class and use directly `:focus-visible`
+- Node 17
+  - after update we had `Error: error:0308010C:digital envelope routines::unsupported` error in build in CI
+  - https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
 
 ## Attributions
 
