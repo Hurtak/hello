@@ -1,8 +1,9 @@
 # Hello
 
-- Chrome extension that replaces new tab page with widgets and fresh image every day.
+- Chrome & Firefox extension that replaces new tab page with widgets and fresh image every day.
 - Live example: https://hello-extension.netlify.com
 - Chrome store link: https://chrome.google.com/webstore/detail/hello/olenfgbgcphkaipfeohfjpagibimmpke
+- Firefox store link: https://addons.mozilla.org/en-US/firefox/addon/hello-new-tab/
 
 ## Development
 
