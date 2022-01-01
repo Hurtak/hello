@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-export const IconCog: React.FC = () => (
+export const IconCog: FC = () => (
   <svg viewBox="22 21 56 58">
     <path
       fillRule="evenodd"

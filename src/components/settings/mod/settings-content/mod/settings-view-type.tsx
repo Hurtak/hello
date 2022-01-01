@@ -1,4 +1,3 @@
-import React from "react";
 import { view } from "react-easy-state";
 import { View } from "../../../../../state/mod/settings";
 import { state } from "../../../../../state";

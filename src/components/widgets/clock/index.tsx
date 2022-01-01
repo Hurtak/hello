@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { addLeadingZero } from "../../../utils/time";
 import { Timestamp } from "../../utils/timer-updater";
 import { Wrapper, ClockBox, TextWrapper, Text, ColonWrapper, ColonCircle } from "./mod/styled";
@@ -8,7 +8,7 @@ type ClockProps = {
   showSeconds: boolean;
 };
 
-export const Clock: React.FC<ClockProps> = (props) => {
+export const Clock: FC<ClockProps> = (props) => {
   const date = new Date(props.time);
 
   const hours = addLeadingZero(date.getHours());
@@ -34,7 +34,7 @@ export const Clock: React.FC<ClockProps> = (props) => {
   );
 };
 
-const Colon: React.FC = () => {
+const Colon: FC = () => {
   return (
     <ColonWrapper>
       <ColonCircle />

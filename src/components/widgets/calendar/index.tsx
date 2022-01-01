@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { range } from "../../../utils/array";
 import { Timestamp } from "../../utils/timer-updater";
 import { getDaysInMonth } from "./mod/utils";
@@ -21,7 +21,7 @@ const monthNames = [
 
 const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-export const Calendar: React.FC<{ time: Timestamp }> = (props) => {
+export const Calendar: FC<{ time: Timestamp }> = (props) => {
   const now = new Date(props.time);
 
   const currentMonth = now.getMonth() + 1;

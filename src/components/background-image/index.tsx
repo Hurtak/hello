@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { logWarning } from "../../utils/logging";
 import { never } from "../../utils/never";
 import * as s from "../../styles";
@@ -18,7 +18,7 @@ const initialImageState: State = {
   imageWaitingToStartTransition: null,
 };
 
-export const BackgroundImage: React.FC<{
+export const BackgroundImage: FC<{
   url: string | null;
 }> = ({ url }) => {
   const [state, setState] = useState(initialImageState);

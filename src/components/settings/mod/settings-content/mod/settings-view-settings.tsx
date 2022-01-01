@@ -1,4 +1,3 @@
-import React from "react";
 import { view } from "react-easy-state";
 import { state } from "../../../../../state";
 import { timestampToDateInputValue } from "../../../../../utils/time";

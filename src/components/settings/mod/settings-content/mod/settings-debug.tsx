@@ -1,4 +1,3 @@
-import React from "react";
 import { view } from "react-easy-state";
 import packageJson from "../../../../../../package.json";
 import { state } from "../../../../../state";

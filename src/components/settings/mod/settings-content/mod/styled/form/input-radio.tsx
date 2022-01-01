@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { FC, useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../../../utils/random";
 import * as s from "../../../../../../../styles";
@@ -10,7 +10,7 @@ import {
   formBoxStyles,
 } from "./form-shared";
 
-export const InputRadio: React.FC<{
+export const InputRadio: FC<{
   name: string;
   checked: boolean;
   disabled?: boolean;

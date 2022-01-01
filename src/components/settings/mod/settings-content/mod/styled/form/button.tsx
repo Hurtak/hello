@@ -1,8 +1,8 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 
-export const Button: React.FC<{
+export const Button: FC<{
   onClick: () => void;
   children: string;
 }> = ({ onClick, children }) => {

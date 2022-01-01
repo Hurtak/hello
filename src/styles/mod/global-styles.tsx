@@ -1,4 +1,3 @@
-import React from "react";
 import { createGlobalStyle, css } from "styled-components/macro";
 import { Normalize } from "styled-normalize";
 import * as s from "./shared";

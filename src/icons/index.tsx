@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components/macro";
 import { never } from "../utils/never";
 import * as s from "../styles";
@@ -39,12 +39,7 @@ export type IconProps = {
   color?: string;
 };
 
-export const Icon: React.FC<IconProps> = ({
-  type,
-  width = 3,
-  height = 3,
-  color = s.color.white,
-}) => {
+export const Icon: FC<IconProps> = ({ type, width = 3, height = 3, color = s.color.white }) => {
   const Svg = getIconComponent(type);
 
   return (

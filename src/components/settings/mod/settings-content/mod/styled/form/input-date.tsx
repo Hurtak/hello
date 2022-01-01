@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import { FC, useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../../../utils/random";
 import * as s from "../../../../../../../styles";
 
-export const InputDate: React.FC<{
+export const InputDate: FC<{
   defaultValue: string;
   min: string;
   max: string;

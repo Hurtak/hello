@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 import { Icon } from "../../../../../../../icons";
 
-export const Warning: React.FC = ({ children }) => (
+export const Warning: FC = ({ children }) => (
   <WarningTextWrapper>
     <WarningTextIcon>
       <Icon type="WARNING" color={s.color.orange} width={2} height={2} />

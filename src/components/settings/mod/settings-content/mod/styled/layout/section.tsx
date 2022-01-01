@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 import { HeadingSmall } from "./text";
 
-export const Section: React.FC<{
+export const Section: FC<{
   title: string;
 }> = (props) => (
   <Wrapper>

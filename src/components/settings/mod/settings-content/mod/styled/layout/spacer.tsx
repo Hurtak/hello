@@ -1,12 +1,12 @@
-import React from "react";
+import { Children, FC } from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 
-export const SpacedItems: React.FC<{
+export const SpacedItems: FC<{
   spacing?: number;
   horizontal?: boolean;
 }> = ({ spacing = 1, horizontal = false, children }) => {
-  const childrenArray = React.Children.toArray(children);
+  const childrenArray = Children.toArray(children);
 
   return (
     <>
@@ -22,7 +22,7 @@ export const SpacedItems: React.FC<{
   );
 };
 
-export const Spacer: React.FC<{
+export const Spacer: FC<{
   size?: number;
   horizontal?: boolean;
 }> = ({ size = 1, horizontal = false }) => {
