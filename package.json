@@ -48,7 +48,8 @@
     "prettier-check": "prettier --check '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "prettier-write": "prettier --write '{src,public}/**/*.{ts,js,tsx,jsx,json,html}'",
     "validate": "npm run types && npm run prettier-check && npm run test-ci",
-    "zip": "cd build && zip -r -X \"../build.zip\" *"
+    "zip": "cd build && zip -r \"../build.zip\" *",
+    "zip-src": "zip -r \"src.zip\" * -x \"node_modules/*\" \"build/*\" \"build.zip\" \"src.zip\""
   },
   "eslintConfig": {
     "extends": [
