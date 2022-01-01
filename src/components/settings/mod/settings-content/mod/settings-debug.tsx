@@ -1,6 +1,6 @@
 import React from "react";
 import { view } from "react-easy-state";
-import { version } from "../../../../../../package.json";
+import packageJson from "../../../../../../package.json";
 import { state } from "../../../../../state";
 import { Text, Section, Button, InputCheckBox, SpacedItems, List, ListItem, Dash } from "./styled";
 
@@ -20,7 +20,7 @@ export const SettingsDebug = view(() => {
 
         <List>
           <ListItem>
-            Version <Dash /> {version}
+            Version <Dash /> {packageJson.version}
           </ListItem>
           <ListItem>
             Build time <Dash /> {new Date(buildTimeTimestamp).toISOString()}
