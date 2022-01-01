@@ -1,5 +1,9 @@
 /node_modules
-/build
-/build.zip
 /hello-cors-proxy/node_modules
+
+/build
+
+/build.zip
+/src.zip
+
 .DS_Store
