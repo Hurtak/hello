@@ -23,7 +23,12 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run zip
+      - run: npm run zip-src
       - uses: actions/upload-artifact@v2
         with:
           name: artifact-dist
           path: build.zip
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifact-src
+          path: src.zip
