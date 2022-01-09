@@ -125,14 +125,6 @@ async function main() {
   await execCommand("npm", ["run", "build"]);
   console.log("  OK");
 
-  console.log(`Creating the zip of builded app`);
-  await execCommand("npm", ["run", "zip"]);
-  console.log("  OK");
-
-  console.log(`Creating the zip of source files`);
-  await execCommand("npm", ["run", "zip-src"]);
-  console.log("  OK");
-
   console.log(`Git commit release`);
   await execCommand("git", ["commit", "--allow-empty", "--message", `release ${versionChangelog}`]);
   console.log("  OK");
