@@ -22,13 +22,14 @@ jobs:
           node-version: "17"
       - run: npm ci
       - run: npm run build
-      - run: npm run zip
-      - run: npm run zip-src
       - uses: actions/upload-artifact@v2
         with:
-          name: build.zip
-          path: build.zip
+          name: build
+          path: build
       - uses: actions/upload-artifact@v2
         with:
-          name: src.zip
-          path: src.zip
+          name: src
+          path: |
+            .
+            !node_modules
+            !build
