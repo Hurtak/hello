@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { VFC, useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../../../utils/random";
 import * as s from "../../../../../../../styles";
@@ -11,7 +11,7 @@ import {
   formBoxStyles,
 } from "./form-shared";
 
-export const InputCheckBox: FC<{
+export const InputCheckBox: VFC<{
   checked: boolean;
   disabled?: boolean;
   onChange: () => void;

@@ -1,9 +1,9 @@
-import { FC, useRef } from "react";
+import { VFC, useRef } from "react";
 import styled from "styled-components/macro";
 import { uuid } from "../../../../../../../utils/random";
 import * as s from "../../../../../../../styles";
 
-export const InputDate: FC<{
+export const InputDate: VFC<{
   defaultValue: string;
   min: string;
   max: string;
