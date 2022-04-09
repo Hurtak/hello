@@ -12,7 +12,7 @@ export const Link = styled.a({
   borderBottomColor: s.color.whiteTransparent70,
   outline: 0,
 
-  [`&${s.focusVisible}`]: {
+  ":focus-visible": {
     backgroundColor: s.color.whiteTransparent40,
     outlineWidth: s.grid(0.25),
     outlineStyle: "solid",

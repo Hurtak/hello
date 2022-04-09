@@ -20,7 +20,7 @@ const ButtonStyled = styled.button({
   boxShadow: s.shadow.buttons,
   cursor: "pointer",
 
-  [`&${s.focusVisible}`]: {
+  ":focus-visible": {
     outlineWidth: s.grid(0.5),
     outlineStyle: "solid",
     outlineColor: s.color.whiteTransparent40,

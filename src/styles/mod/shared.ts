@@ -201,5 +201,3 @@ export const visuallyHideInputFieldWhileStillInteractive: CSSObject = {
   pointerEvents: "none",
   opacity: 0,
 };
-
-export const focusVisible = ".focus-visible:focus";

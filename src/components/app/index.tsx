@@ -1,5 +1,4 @@
 import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
-import "focus-visible"; // TODO: Remove once supported in Chrome & FF
 
 import { useState, useEffect, useRef } from "react";
 import { view } from "react-easy-state";

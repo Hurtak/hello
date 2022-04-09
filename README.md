@@ -31,15 +31,8 @@
 
 ## Dependencies
 
-- `@types/css-font-loading-module`
-  - once window.FontFace becomes standardized, remove
-- `ResizeObserver` types
-  - https://github.com/microsoft/TypeScript/issues/37861
 - `wicg-inert`
   - remove polyfill, once supported by browsers
-- `focus-visible`
-  - remove polyfill, once supported by browsers
-  - remove `.focus-visible` class and use directly `:focus-visible`
 
 ## Attributions
 

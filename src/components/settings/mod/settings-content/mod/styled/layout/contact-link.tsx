@@ -28,7 +28,7 @@ const ContactLinkStyled = styled.a({
   padding: s.grid(0.75),
   margin: s.grid(-0.75),
 
-  [`&${s.focusVisible}`]: {
+  ":focus-visible": {
     background: s.color.whiteTransparent20,
   },
 });

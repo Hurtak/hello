@@ -27,8 +27,7 @@ export const checkBoxRadioLabelStyles = (Input: StyledComponent<any, any>): CSSO
   margin: `0 ${s.size(-inputPadding)}`,
   cursor: "pointer",
 
-  // TODO: use onFocusVisible React event once it becomes standardized
-  [`${Input}${s.focusVisible} + &`]: {
+  [`${Input}:focus-visible + &`]: {
     background: s.color.whiteTransparent20,
   },
 

@@ -37,7 +37,7 @@ export const ToggleButton = styled.button({
   background: "transparent",
   cursor: "pointer",
 
-  [`&${s.focusVisible}`]: {
+  ":focus-visible": {
     backgroundColor: s.color.whiteTransparent20,
   },
 });
