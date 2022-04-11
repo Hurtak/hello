@@ -1,10 +1,11 @@
-import { Children, FC } from "react";
+import { Children, FC, ReactNode } from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 
 export const SpacedItems: FC<{
   spacing?: number;
   horizontal?: boolean;
+  children: ReactNode;
 }> = ({ spacing = 1, horizontal = false, children }) => {
   const childrenArray = Children.toArray(children);
 

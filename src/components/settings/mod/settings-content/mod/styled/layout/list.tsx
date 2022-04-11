@@ -1,9 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styled from "styled-components/macro";
 import * as s from "../../../../../../../styles";
 import { SpacedItems } from "./spacer";
 
-export const List: FC = ({ children }) => {
+export const List: FC<{
+  children: ReactNode;
+}> = ({ children }) => {
   return (
     <StyledList>
       <SpacedItems spacing={0.5}>{children}</SpacedItems>
@@ -17,7 +19,9 @@ const StyledList = styled.ul({
   listStyle: "none",
 });
 
-export const ListItem: FC = ({ children }) => {
+export const ListItem: FC<{
+  children: ReactNode;
+}> = ({ children }) => {
   return (
     <LiWrapper>
       <LiDotWrapper>

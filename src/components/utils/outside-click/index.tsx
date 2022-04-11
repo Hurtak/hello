@@ -1,9 +1,10 @@
-import { FC, useRef, useEffect } from "react";
+import { FC, ReactNode, useRef, useEffect } from "react";
 
 type OutsideClickProps = {
   onOutsideClick: (event: MouseEvent) => void;
   useCapture?: boolean;
   disabled?: boolean;
+  children: ReactNode;
 };
 
 export const OutsideClick: FC<OutsideClickProps> = ({

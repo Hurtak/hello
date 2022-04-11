@@ -1,6 +1,6 @@
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { App } from "../";
 
 test("renders without crashing", () => {
-  ReactDOM.render(<App />, document.createElement("div"));
+  createRoot(document.createElement("div")).render(<App />);
 });
