@@ -1,32 +1,32 @@
 import { getAgeInYears, isLeapYear } from "./utils";
 
+const testWithYearAndMonth = (
+  yearNow: number,
+  monthNow: number,
+  yearBirth: number,
+  monthBirth: number,
+  result: number,
+) => {
+  expect(getAgeInYears(Date.UTC(yearNow, monthBirth, 1), Date.UTC(yearBirth, monthNow, 1))).toBe(
+    result,
+  );
+
+  expect(
+    getAgeInYears(Date.UTC(yearNow, monthBirth, 2), Date.UTC(yearBirth, monthNow, 1)),
+  ).toBeGreaterThan(result);
+  expect(
+    getAgeInYears(Date.UTC(yearNow, monthBirth, 2), Date.UTC(yearBirth, monthNow, 1)),
+  ).toBeCloseTo(result, 2);
+
+  expect(
+    getAgeInYears(Date.UTC(yearNow, monthBirth, 1), Date.UTC(yearBirth, monthNow, 2)),
+  ).toBeLessThan(result);
+  expect(
+    getAgeInYears(Date.UTC(yearNow, monthBirth, 1), Date.UTC(yearBirth, monthNow, 2)),
+  ).toBeCloseTo(result, 2);
+};
+
 describe("getAgeInYears", () => {
-  const testWithYearAndMonth = (
-    yearNow: number,
-    monthNow: number,
-    yearBirth: number,
-    monthBirth: number,
-    result: number,
-  ) => {
-    expect(getAgeInYears(Date.UTC(yearNow, monthBirth, 1), Date.UTC(yearBirth, monthNow, 1))).toBe(
-      result,
-    );
-
-    expect(
-      getAgeInYears(Date.UTC(yearNow, monthBirth, 2), Date.UTC(yearBirth, monthNow, 1)),
-    ).toBeGreaterThan(result);
-    expect(
-      getAgeInYears(Date.UTC(yearNow, monthBirth, 2), Date.UTC(yearBirth, monthNow, 1)),
-    ).toBeCloseTo(result, 2);
-
-    expect(
-      getAgeInYears(Date.UTC(yearNow, monthBirth, 1), Date.UTC(yearBirth, monthNow, 2)),
-    ).toBeLessThan(result);
-    expect(
-      getAgeInYears(Date.UTC(yearNow, monthBirth, 1), Date.UTC(yearBirth, monthNow, 2)),
-    ).toBeCloseTo(result, 2);
-  };
-
   test("birth date in distant past", () => {
     testWithYearAndMonth(2020, 0, 1970, 0, 50);
   });

@@ -1,8 +1,9 @@
 import { FC } from "react";
+
 import { range } from "../../../utils/array";
 import { Timestamp } from "../../utils/timer-updater";
+import { Day, DaysWrapper, Month, MonthName, MonthsWrapper } from "./mod/styled";
 import { getDaysInMonth } from "./mod/utils";
-import { MonthsWrapper, Month, MonthName, DaysWrapper, Day } from "./mod/styled";
 
 const monthNames = [
   "January",

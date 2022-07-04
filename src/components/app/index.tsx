@@ -1,34 +1,34 @@
 import "wicg-inert"; // TODO: Remove once supported in Chrome & FF
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { view } from "react-easy-state";
 
+import { config } from "../../config";
 import { state } from "../../state";
-import * as time from "../../utils/time";
-import { TimerUpdater } from "../utils/timer-updater";
+import { GlobalStyles } from "../../styles";
 import { logTimeElapsedSinceStart, logTimestamp } from "../../utils/logging";
 import { never } from "../../utils/never";
-import { GlobalStyles } from "../../styles";
-import { config } from "../../config";
-import { Clock } from "../widgets/clock";
-import { Age } from "../widgets/age";
-import { Calendar } from "../widgets/calendar";
-import { YearProgress } from "../widgets/year-progress";
-import { Settings } from "../settings";
+import * as time from "../../utils/time";
 import { BackgroundImage } from "../background-image";
 import { RootHotKeys } from "../hotkeys/hotkeys";
+import { Settings } from "../settings";
+import { TimerUpdater } from "../utils/timer-updater";
+import { Age } from "../widgets/age";
+import { Calendar } from "../widgets/calendar";
+import { Clock } from "../widgets/clock";
+import { YearProgress } from "../widgets/year-progress";
 import {
-  Layout,
-  BackgroundWrapper,
   AppContent,
-  AppSettingsLayout,
   AppSettings,
   AppSettingsInner,
+  AppSettingsLayout,
+  BackgroundWrapper,
+  Layout,
 } from "./mod/styled";
 
 export const App = view(() => {
   useEffect(() => {
-    state.app.initialize();
+    void state.app.initialize();
   }, []);
 
   useEffect(() => {

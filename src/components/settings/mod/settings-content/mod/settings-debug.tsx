@@ -1,7 +1,8 @@
 import { view } from "react-easy-state";
+
 import packageJson from "../../../../../../package.json";
 import { state } from "../../../../../state";
-import { Text, Section, Button, InputCheckBox, SpacedItems, List, ListItem, Dash } from "./styled";
+import { Button, Dash, InputCheckBox, List, ListItem, Section, SpacedItems, Text } from "./styled";
 
 const buildTimeTimestamp = process.env.REACT_APP_BUILD_TIME
   ? Number(process.env.REACT_APP_BUILD_TIME) * 1000
@@ -28,14 +29,14 @@ export const SettingsDebug = view(() => {
 
         <InputCheckBox
           checked={state.debug.rememberSettingsOpened}
-          onChange={state.debug.toggleRememberSettingsOpened}
+          onChange={() => state.debug.toggleRememberSettingsOpened()}
         >
           Remember settings opened state
         </InputCheckBox>
 
-        <Button onClick={state.debug.resetAppState}>Reset app state</Button>
+        <Button onClick={() => state.debug.resetAppState()}>Reset app state</Button>
 
-        <Button onClick={state.debug.hideDebugMenu}>Hide dev menu</Button>
+        <Button onClick={() => state.debug.hideDebugMenu()}>Hide dev menu</Button>
       </SpacedItems>
     </Section>
   );

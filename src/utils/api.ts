@@ -5,7 +5,7 @@ const bingImageUrlProxied = "https://hello-cors-proxy.herokuapp.com/";
 
 type BingResponse = {
   images?: {
-    url?: string;
+    url: string;
     title?: string;
     copyright?: string;
     copyrightLink?: string;
@@ -14,10 +14,10 @@ type BingResponse = {
 
 export type BingData = {
   url: string;
-  title: string | null;
-  link: string | null;
-  description: string | null;
-  copyright: string | null;
+  title?: string;
+  link?: string;
+  description?: string;
+  copyright?: string;
 };
 
 export type HttpData<Response> =
@@ -32,7 +32,7 @@ export type HttpData<Response> =
         | "STATUS_NOT_200_AND_ERROR_PARSING_RESPONSE"
         | "ERROR_PARSING_JSON"
         | "MISSING_DATA_IN_RESPONSE";
-      data: any;
+      data: unknown;
     };
 
 export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
@@ -73,10 +73,9 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
     });
   }
 
-  let responseRaw = null;
+  let responseRaw: BingResponse | undefined;
   try {
-    responseRaw = await request.text();
-    responseRaw = JSON.parse(responseRaw);
+    responseRaw = JSON.parse(await request.text()) as BingResponse;
   } catch (error) {
     return httpDataWithLog({
       type: "ERROR",
@@ -109,32 +108,33 @@ export async function getBingImageOfTheDay(): Promise<HttpData<BingData>> {
     type: "DONE",
     data: {
       url: `https://www.bing.com${imageData.url}`,
-      title: imageData.title ? imageData.title : null,
+      title: imageData.title,
       link: (() => {
         const link = imageData.copyrightLink;
-        if (!link) return null;
+        if (!link) return;
 
         // Bing API has this string there for some reason
         // eslint-disable-next-line no-script-url
-        if (link === "javascript:void(0)") return null;
+        if (link === "javascript:void(0)") return;
 
         return link;
       })(),
       description: (() => {
         const description = imageData.copyright;
-        if (!description) return null;
+        if (!description) return;
 
         // "Image description (© copyright)" => "Image description"
         return description.replace(/ \(©.+?\)/, "");
       })(),
       copyright: (() => {
         const description = imageData.copyright;
-        if (!description) return null;
+        if (!description) return;
 
         const match = description.match(/\(© (?<copyright>.+?)\)/);
-        if (!match) return null;
+        if (!match) return;
 
-        const copyright = match.groups && match.groups.copyright ? match.groups.copyright : null;
+        const copyright =
+          match.groups && match.groups.copyright ? match.groups.copyright : undefined;
         return copyright;
       })(),
     },

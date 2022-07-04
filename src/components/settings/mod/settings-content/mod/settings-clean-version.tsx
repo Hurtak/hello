@@ -1,6 +1,7 @@
 import { view } from "react-easy-state";
+
 import { state } from "../../../../../state";
-import { Text, Section, InputCheckBox, Spacer } from "./styled";
+import { InputCheckBox, Section, Spacer, Text } from "./styled";
 
 export const SettingsCleanVersion = view(() => (
   <Section title="Clean version">
@@ -16,7 +17,7 @@ export const SettingsCleanVersion = view(() => (
 
     <InputCheckBox
       checked={state.settings.cleanVersion}
-      onChange={state.settings.toggleCleanVersion}
+      onChange={() => state.settings.toggleCleanVersion()}
     >
       No fluff
     </InputCheckBox>

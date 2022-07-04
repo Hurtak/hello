@@ -6,7 +6,7 @@ function formatMs(ms: number): string {
   return `${msFormatted}ms`;
 }
 
-function getPerformanceTimeOrigin() {
+function getPerformanceTimeOrigin(): number {
   // TODO: rename to match to function name
   return window.GLOBAL_PERF_TIMESTAMP;
 }
@@ -34,7 +34,7 @@ export function logTimestamp(message: string) {
   console.log(`[PERF] at   ${markMs}                      ${message}`);
 }
 
-export function logTimeElapsedSinceStart(message: string, finalMeasure: boolean = false) {
+export function logTimeElapsedSinceStart(message: string, finalMeasure = false) {
   if (!config.logging.performance) return;
 
   const timeOrigin = getPerformanceTimeOrigin();
@@ -68,7 +68,7 @@ export class LogPerformance {
   }
 }
 
-export function logWarning(message: string, ...rest: any) {
+export function logWarning(message: string, ...rest: unknown[]) {
   if (!config.logging.warnings) return;
 
   console.warn(`[WARN] ${message}`, ...rest);

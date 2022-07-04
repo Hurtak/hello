@@ -1,10 +1,11 @@
-import { VFC } from "react";
+import { FC } from "react";
 import styled from "styled-components/macro";
-import * as s from "../../../../../../../styles";
+
 import { Icon, IconType } from "../../../../../../../icons";
+import * as s from "../../../../../../../styles";
 import { Link } from "./link";
 
-export const ContactLink: VFC<{
+export const ContactLink: FC<{
   href: string;
   iconType: IconType;
   children: string;

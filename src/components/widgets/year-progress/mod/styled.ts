@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+
 import * as s from "../../../../styles";
 
 export const Wrapper = styled.div({
@@ -24,7 +25,7 @@ type ProgressBarProps = { progress: number };
 
 export const ProgressBarInner = styled.div.attrs((props: ProgressBarProps) => ({
   style: {
-    width: props.progress * 100 + "%",
+    width: String(props.progress * 100) + "%",
   },
 }))((_: ProgressBarProps) => ({
   backgroundColor: s.boxBackground.backgroundColor,

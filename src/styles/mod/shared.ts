@@ -1,4 +1,5 @@
-import { CSSObject } from "styled-components";
+import { CSSObject } from "styled-components/macro";
+
 import { never } from "../../utils/never";
 
 /*
@@ -174,10 +175,10 @@ export const dimensions: { [key: string]: number } = {
   settingsSpacing: gridNumber(1),
 
   settingsWidth: sizeNumber(400),
-  settingsButtonSize: settingsButtonSize,
-  settingsButtonPadding: settingsButtonPadding,
-  settingsButtonSpacing: settingsButtonSpacing,
-  settingsButtonSizeAndSpacing: settingsButtonSizeAndSpacing,
+  settingsButtonSize,
+  settingsButtonPadding,
+  settingsButtonSpacing,
+  settingsButtonSizeAndSpacing,
 };
 
 /*

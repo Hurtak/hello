@@ -1,7 +1,7 @@
-import { getBingImageOfTheDay, HttpData, BingData } from "../../utils/api";
-import { getRandomInt } from "../../utils/random";
+import { Image, images } from "../../images";
+import { BingData, getBingImageOfTheDay, HttpData } from "../../utils/api";
 import { never } from "../../utils/never";
-import { images, Image } from "../../images";
+import { getRandomInt } from "../../utils/random";
 import { state } from "..";
 
 type ImageSource = "LOCAL" | "BING";
@@ -45,11 +45,7 @@ export const image = {
         return "LOCAL";
 
       case "BING":
-        if (!state.browser.online) {
-          return "LOCAL";
-        } else {
-          return "BING";
-        }
+        return !state.browser.online ? "LOCAL" : "BING";
 
       default:
         return never(state.image.imageSource);
@@ -90,9 +86,9 @@ export const image = {
   // Actions
   //
 
-  initialize(): void {
+  async initialize(): Promise<void> {
     state.image.setImageLocalRandom();
-    state.image.fetchBingImage();
+    await state.image.fetchBingImage();
   },
 
   async fetchBingImage(): Promise<void> {
@@ -113,7 +109,7 @@ export const image = {
     }
   },
 
-  setImageSource(imageSource: ImageSource): void {
+  async setImageSource(imageSource: ImageSource): Promise<void> {
     state.image.imageSource = imageSource;
 
     switch (imageSource) {
@@ -121,7 +117,7 @@ export const image = {
         switch (state.image.imageBing.type) {
           case "INITIAL":
           case "ERROR": {
-            state.image.fetchBingImage();
+            await state.image.fetchBingImage();
             break;
           }
           case "FETCHING":

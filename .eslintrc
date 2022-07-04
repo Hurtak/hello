@@ -1,0 +1,20 @@
+{
+  "extends": ["start", "start-react", "react-app", "react-app/jest"],
+
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          { "name": "styled-components", "message": "Use styled-components/macro" }
+        ],
+
+        "unicorn/no-null": "off" // Turned off because of outdated types in react-easy-state
+      }
+    }
+  ]
+}

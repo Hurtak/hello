@@ -1,8 +1,9 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+
+import * as s from "../../styles";
 import { logWarning } from "../../utils/logging";
 import { never } from "../../utils/never";
-import * as s from "../../styles";
-import { Wrapper, Image } from "./mod/styled";
+import { Image, Wrapper } from "./mod/styled";
 
 type State = {
   image:
@@ -153,20 +154,20 @@ function loadImage(url: string, loaded: () => void): () => void {
   let imageState: ImageLoadingState = "LOADING";
 
   const image = document.createElement("img");
-  image.onload = () => {
+  image.addEventListener("load", () => {
     if (imageState === "CANCELED") return;
 
     imageState = "DONE";
     loaded();
-  };
+  });
 
-  image.onerror = (e) => {
+  image.addEventListener("error", (e) => {
     // Image load cancelling throws error event
     if (imageState === "CANCELED") return;
 
     logWarning("Could not load image", url, e);
     imageState = "ERROR";
-  };
+  });
   image.src = url;
 
   if (image.complete) {

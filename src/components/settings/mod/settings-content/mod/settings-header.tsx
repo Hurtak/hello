@@ -1,6 +1,7 @@
 import { view } from "react-easy-state";
+
 import { state } from "../../../../../state";
-import { Text, Heading } from "./styled";
+import { Heading, Text } from "./styled";
 
 export const SettingsHeader = view(() => (
   <>

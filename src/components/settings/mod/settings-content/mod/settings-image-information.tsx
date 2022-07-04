@@ -1,7 +1,8 @@
 import { view } from "react-easy-state";
+
 import { state } from "../../../../../state";
 import { never } from "../../../../../utils/never";
-import { Section, List, ListItem, Dash, Link } from "./styled";
+import { Dash, Link, List, ListItem, Section } from "./styled";
 
 export const SettingsImageInformation = view(() => (
   <Section title="Image information">

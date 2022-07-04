@@ -1,7 +1,9 @@
+// eslint-disable-next-line react/no-typos
 import "react";
 
 declare module "react" {
-  interface HTMLAttributes<T> {
-    inert?: "inert" | null;
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+  interface HTMLAttributes {
+    inert?: "inert";
   }
 }

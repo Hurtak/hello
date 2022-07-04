@@ -12,7 +12,7 @@ export function timestampToDateInputValue(timestamp: number): string {
   const date = new Date(timestamp);
 
   const value =
-    date.getFullYear() +
+    String(date.getFullYear()) +
     "-" +
     addLeadingZero(date.getMonth() + 1) +
     "-" +

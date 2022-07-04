@@ -1,6 +1,6 @@
 import { config } from "../../config";
 import { logWarning } from "../../utils/logging";
-import { state, State } from "..";
+import { State, state } from "..";
 
 type SavedState = {
   version: number;
@@ -56,20 +56,19 @@ export const storage = {
     try {
       const serializedState = JSON.stringify(savedState);
       window.localStorage.setItem(config.localStorageKey, serializedState);
-    } catch (err) {
-      logWarning("Error saving app state to local storage", err);
+    } catch (error) {
+      logWarning("Error saving app state to local storage", error);
     }
   },
 
   retrieveAndUpdateState(): void {
-    const savedState: SavedState = (() => {
+    const savedState: SavedState | undefined = (() => {
       try {
         const serializedState = window.localStorage.getItem(config.localStorageKey);
-        if (!serializedState) return null;
-        return JSON.parse(serializedState);
-      } catch (err) {
-        logWarning("Error retrieving saved app state from local storage", err);
-        return null;
+        if (!serializedState) return;
+        return JSON.parse(serializedState) as SavedState;
+      } catch (error) {
+        logWarning("Error retrieving saved app state from local storage", error);
       }
     })();
 
@@ -113,8 +112,8 @@ export const storage = {
   clear(): void {
     try {
       window.localStorage.removeItem(config.localStorageKey);
-    } catch (err) {
-      logWarning("Error clearing app state from local storage", err);
+    } catch (error) {
+      logWarning("Error clearing app state from local storage", error);
     }
   },
 };

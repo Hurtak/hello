@@ -1,6 +1,7 @@
 import { view } from "react-easy-state";
+
 import { state } from "../../../../../state";
-import { Warning, InputRadio, Spacer, Section } from "./styled";
+import { InputRadio, Section, Spacer, Warning } from "./styled";
 
 export const SettingsImageSource = view(() => {
   if (state.settings.cleanVersion) return <Errors />;
@@ -9,7 +10,7 @@ export const SettingsImageSource = view(() => {
     <Section title="Image source">
       <InputRadio
         name="images"
-        onChange={() => state.image.setImageSource("BING")}
+        onChange={() => void state.image.setImageSource("BING")}
         checked={state.image.imageSourceWithFallback === "BING"}
         disabled={state.browser.online === false}
       >
@@ -18,7 +19,7 @@ export const SettingsImageSource = view(() => {
 
       <InputRadio
         name="images"
-        onChange={() => state.image.setImageSource("LOCAL")}
+        onChange={() => void state.image.setImageSource("LOCAL")}
         checked={state.image.imageSourceWithFallback === "LOCAL"}
       >
         Local

@@ -1,7 +1,8 @@
 import { FC, ReactNode } from "react";
 import styled from "styled-components/macro";
-import * as s from "../../../../../../../styles";
+
 import { Icon } from "../../../../../../../icons";
+import * as s from "../../../../../../../styles";
 
 export const Warning: FC<{
   children: ReactNode;

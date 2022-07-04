@@ -1,15 +1,15 @@
 import { FC } from "react";
 import styled from "styled-components/macro";
-import { never } from "../utils/never";
-import * as s from "../styles";
 
+import * as s from "../styles";
+import { never } from "../utils/never";
+import { IconCheck } from "./mod/check";
 // Currently we prefer ease of use (prop type="ICON_TYPE") and do not do any code splitting
 import { IconCog } from "./mod/cog";
 import { IconGithub } from "./mod/github";
 import { IconMail } from "./mod/mail";
 import { IconTwitter } from "./mod/twitter";
 import { IconWarning } from "./mod/warning";
-import { IconCheck } from "./mod/check";
 
 export type IconType = "COG" | "GITHUB" | "MAIL" | "TWITTER" | "WARNING" | "CHECK";
 

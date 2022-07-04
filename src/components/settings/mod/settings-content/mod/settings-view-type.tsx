@@ -1,7 +1,8 @@
 import { view } from "react-easy-state";
-import { View } from "../../../../../state/mod/settings";
+
 import { state } from "../../../../../state";
-import { Section, InputRadio } from "./styled";
+import { View } from "../../../../../state/mod/settings";
+import { InputRadio, Section } from "./styled";
 
 export const SettingsViewType = view(() => {
   if (state.settings.cleanVersion) return null;

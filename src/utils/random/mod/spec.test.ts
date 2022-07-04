@@ -1,5 +1,5 @@
-import { testItemsUniqueness } from "../../tests";
 import { range } from "../../array";
+import { testItemsUniqueness } from "../../tests";
 import { uuid } from "..";
 
 describe("uuid", () => {

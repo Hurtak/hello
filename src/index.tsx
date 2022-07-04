@@ -1,11 +1,11 @@
 import { createRoot } from "react-dom/client";
 
-import { LogPerformance, logTimeElapsedSinceStart } from "./utils/logging";
 import { App } from "./components/app";
+import { LogPerformance, logTimeElapsedSinceStart } from "./utils/logging";
 
 logTimeElapsedSinceStart("index.tsx first line");
 
-const container = document.getElementById("root");
+const container = document.querySelector("#root");
 if (container) {
   const performanceReactDomRender = new LogPerformance("ReactDOM.render <App />");
   const root = createRoot(container);

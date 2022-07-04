@@ -1,18 +1,19 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { view } from "react-easy-state";
+
 import { Icon } from "../../icons";
-import * as s from "../../styles";
 import { state } from "../../state";
+import * as s from "../../styles";
 import { LogPerformance } from "../../utils/logging";
 import { OutsideClick } from "../utils/outside-click";
 import {
-  SettingsWrapper,
   SettingsStyled,
+  SettingsWrapper,
   ToggleButton,
   ToggleButtonIconWrapper,
   ToggleButtonSpacer,
 } from "./mod/styled";
-import { scrollTop, scrollBottom } from "./mod/utils";
+import { scrollBottom, scrollTop } from "./mod/utils";
 
 const SettingsContentLazy = React.lazy(() => {
   const performanceSettings = new LogPerformance("Settings code download");
@@ -33,20 +34,17 @@ export const Settings = view(() => {
     if (!settingsWrapperEl.current) return;
 
     // Scroll to top when settings is closing
-    if (previousSettingsOpened !== null) {
-      if (state.settings.opened === false) {
-        scrollTop(settingsWrapperEl.current);
-      }
+    if (previousSettingsOpened !== null && state.settings.opened === false) {
+      scrollTop(settingsWrapperEl.current);
     }
 
     // Scroll to debug menu (bottom of settings) when we show debug menu
-    if (previousDebugMenuScrollAnimationRequestNr !== null) {
-      if (
-        state.debug.debugMenuVisible === true &&
-        state.debug.debugMenuScrollAnimationRequestNr !== previousDebugMenuScrollAnimationRequestNr
-      ) {
-        scrollBottom(settingsWrapperEl.current);
-      }
+    if (
+      previousDebugMenuScrollAnimationRequestNr !== null &&
+      state.debug.debugMenuVisible === true &&
+      state.debug.debugMenuScrollAnimationRequestNr !== previousDebugMenuScrollAnimationRequestNr
+    ) {
+      scrollBottom(settingsWrapperEl.current);
     }
 
     setPreviousSettingsOpened(state.settings.opened);
@@ -61,14 +59,14 @@ export const Settings = view(() => {
   ]);
 
   return (
-    <OutsideClick onOutsideClick={state.settings.closeSettings}>
+    <OutsideClick onOutsideClick={() => state.settings.closeSettings()}>
       <SettingsWrapper
         ref={settingsWrapperEl}
         opened={state.settings.opened}
         hiddenUnlessHovered={state.settings.cleanVersion && !state.settings.opened}
       >
         <SettingsStyled>
-          <ToggleButton onClick={state.settings.toggleSettingsOpened}>
+          <ToggleButton onClick={() => state.settings.toggleSettingsOpened()}>
             <ToggleButtonIconWrapper rotated={state.settings.opened}>
               <Icon
                 type="COG"
@@ -80,7 +78,7 @@ export const Settings = view(() => {
 
           <ToggleButtonSpacer />
 
-          <div inert={state.settings.opened === false ? "inert" : null}>
+          <div inert={state.settings.opened === false ? "inert" : undefined}>
             <React.Suspense fallback={null}>
               <SettingsContentLazy />
             </React.Suspense>

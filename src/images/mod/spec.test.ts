@@ -1,5 +1,5 @@
 import { testItemsUniqueness } from "../../utils/tests";
-import { images, Image } from "..";
+import { Image, images } from "..";
 
 test.each([
   //

@@ -1,5 +1,5 @@
-import { CSSObject } from "styled-components";
-import styled, { StyledComponent } from "styled-components/macro";
+import styled, { AnyStyledComponent, CSSObject } from "styled-components/macro";
+
 import * as s from "../../../../../../../styles";
 
 export const CheckBoxRadioWrapper = styled.div({
@@ -18,7 +18,7 @@ export const CheckBoxRadioText = styled.span({
 });
 
 const inputPadding = s.gridNumber(0.25);
-export const checkBoxRadioLabelStyles = (Input: StyledComponent<any, any>): CSSObject => ({
+export const checkBoxRadioLabelStyles = (Input: AnyStyledComponent): CSSObject => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
@@ -36,10 +36,7 @@ export const checkBoxRadioLabelStyles = (Input: StyledComponent<any, any>): CSSO
   },
 });
 
-export const formBoxStyles = (
-  Input: StyledComponent<any, any>,
-  Label: StyledComponent<any, any>,
-) => ({
+export const formBoxStyles = (Input: AnyStyledComponent, Label: AnyStyledComponent) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

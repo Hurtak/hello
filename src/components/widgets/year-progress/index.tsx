@@ -1,7 +1,8 @@
 import { FC } from "react";
+
 import { Timestamp } from "../../utils/timer-updater";
+import { ProgressBar, ProgressBarInner, Text, Wrapper } from "./mod/styled";
 import { getYearProgress } from "./mod/utils";
-import { Wrapper, ProgressBar, ProgressBarInner, Text } from "./mod/styled";
 
 export const YearProgress: FC<{
   time: Timestamp;

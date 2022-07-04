@@ -1,5 +1,7 @@
-import renderer from "react-test-renderer";
 import "jest-styled-components";
+
+import renderer from "react-test-renderer";
+
 import { Calendar } from "..";
 import { getDaysInMonth } from "./utils";
 

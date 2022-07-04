@@ -1,16 +1,17 @@
-import { VFC, useRef } from "react";
+import { FC, useRef } from "react";
 import styled from "styled-components/macro";
-import { uuid } from "../../../../../../../utils/random";
+
 import * as s from "../../../../../../../styles";
+import { uuid } from "../../../../../../../utils/random";
 import {
-  checkBoxRadioLabelStyles,
-  CheckBoxRadioWrapper,
   CheckBoxRadioInput,
+  checkBoxRadioLabelStyles,
   CheckBoxRadioText,
+  CheckBoxRadioWrapper,
   formBoxStyles,
 } from "./form-shared";
 
-export const InputRadio: VFC<{
+export const InputRadio: FC<{
   name: string;
   checked: boolean;
   disabled?: boolean;

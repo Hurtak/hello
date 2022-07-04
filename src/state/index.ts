@@ -1,12 +1,12 @@
 import { store } from "react-easy-state";
 
+import { config } from "../config";
 import { app } from "./mod/app";
 import { browser } from "./mod/browser";
 import { debug } from "./mod/debug";
 import { image } from "./mod/image";
 import { settings } from "./mod/settings";
 import { storage } from "./mod/storage";
-import { config } from "../config";
 
 export type State = {
   app: typeof app;

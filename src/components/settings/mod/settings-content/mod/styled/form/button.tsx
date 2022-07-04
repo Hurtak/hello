@@ -1,8 +1,9 @@
-import { VFC } from "react";
+import { FC } from "react";
 import styled from "styled-components/macro";
+
 import * as s from "../../../../../../../styles";
 
-export const Button: VFC<{
+export const Button: FC<{
   onClick: () => void;
   children: string;
 }> = ({ onClick, children }) => {

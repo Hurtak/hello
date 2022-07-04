@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const execa = require("execa");
 const dayjs = require("dayjs");
 
@@ -20,14 +20,15 @@ async function main() {
 
   console.log("Getting version from CHANGELOG.md");
   const changelogString = fs.readFileSync(filePaths.changelog, "utf8");
-  const isUnreleased = Boolean(changelogString.match(/^## \[Unreleased\]+/im));
+  const isUnreleased = Boolean(/^## \[unreleased]+/im.test(changelogString));
   if (isUnreleased) {
     console.error(`  "Unreleased" version in changelog, exiting`);
     return;
   }
 
-  const versionMatch = changelogString.match(/^## \[(.+)\]+/m);
-  const versionChangelog = Array.isArray(versionMatch) && versionMatch[1] ? versionMatch[1] : null;
+  const versionMatch = changelogString.match(/^## \[(.+)]+/m);
+  const versionChangelog =
+    Array.isArray(versionMatch) && versionMatch[1] ? versionMatch[1] : undefined;
   if (!versionChangelog) {
     console.error("  Could not parse version from changelog, exiting");
     return;
@@ -47,9 +48,9 @@ async function main() {
   }
 
   console.log(`Checking if there is date in CHANGELOG.md`);
-  const changelogDateMatch = changelogString.match(/^## \[.+\] - (\d{4}-\d{2}-\d{2})+/m);
+  const changelogDateMatch = changelogString.match(/^## \[.+] - (\d{4}-\d{2}-\d{2})+/m);
   const changelogDate =
-    Array.isArray(changelogDateMatch) && changelogDateMatch[1] ? changelogDateMatch[1] : null;
+    Array.isArray(changelogDateMatch) && changelogDateMatch[1] ? changelogDateMatch[1] : undefined;
   if (!changelogDate) {
     console.error(`  Could not parse date from CHANGELOG.md, exiting`);
     return;
@@ -149,12 +150,11 @@ async function execCommand(...args) {
   let res;
   try {
     res = await execa(...args);
-  } catch (e) {
-    console.error(e.all);
-    process.exit(1);
+  } catch (error) {
+    throw error.all;
   }
 
   return res.stdout;
 }
 
-main();
+await main();

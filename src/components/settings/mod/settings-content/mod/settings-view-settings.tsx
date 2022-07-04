@@ -1,8 +1,9 @@
 import { view } from "react-easy-state";
+
 import { state } from "../../../../../state";
 import { timestampToDateInputValue } from "../../../../../utils/time";
+import { InputCheckBox, InputDate, Section } from "./styled";
 import { eventToAgeOfBirthValues } from "./utils";
-import { Section, InputCheckBox, InputDate } from "./styled";
 
 export const SettingsViewSettings = view(() => {
   if (state.settings.cleanVersion) return null;
@@ -13,7 +14,7 @@ export const SettingsViewSettings = view(() => {
         <Section title="Clock settings">
           <InputCheckBox
             checked={state.settings.clockShowSeconds}
-            onChange={state.settings.toggleClockShowSeconds}
+            onChange={() => state.settings.toggleClockShowSeconds()}
           >
             Show seconds
           </InputCheckBox>

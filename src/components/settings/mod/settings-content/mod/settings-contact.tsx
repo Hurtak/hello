@@ -1,6 +1,7 @@
 import { view } from "react-easy-state";
+
 import { state } from "../../../../../state";
-import { Text, Section, ContactLinks, SpacedItems, ContactLink, Spacer } from "./styled";
+import { ContactLink, ContactLinks, Section, SpacedItems, Spacer, Text } from "./styled";
 
 export const SettingsContact = view(() => {
   if (state.settings.cleanVersion) return null;

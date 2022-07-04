@@ -5,7 +5,7 @@ describe("eventToAgeOfBirthValues", () => {
     const [y, m, d] = input.split("-").map(Number);
     const timestamp = Date.UTC(y, m - 1, d);
     expect(eventToAgeOfBirthValues(input)).toEqual({
-      timestamp: timestamp,
+      timestamp,
       inputValue: input,
     });
   });
