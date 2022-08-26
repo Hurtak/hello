@@ -157,4 +157,5 @@ async function execCommand(...args) {
   return res.stdout;
 }
 
-await main();
+// eslint-disable-next-line unicorn/prefer-top-level-await
+main();
