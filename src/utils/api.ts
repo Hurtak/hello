@@ -1,7 +1,7 @@
 import { logWarning } from "./logging";
 
 // const bingImageUrlProxied = "http://localhost:3001/";
-const bingImageUrlProxied = "https://hello-cors-proxy.herokuapp.com/";
+const bingImageUrlProxied = "https://hello-cors-proxy.onrender.com/";
 
 type BingResponse = {
   images?: {
