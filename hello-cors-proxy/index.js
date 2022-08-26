@@ -21,6 +21,10 @@ app.get("/", cors(), (req, res) => {
   req.pipe(request(bingImageUrl)).pipe(res);
 });
 
+app.get("/health-check", cors(), (req, res) => {
+  res.sendStatus(200);
+});
+
 app.listen(port, () => {
   console.log(`hello-cors-proxy listening at port ${port}`);
 });
