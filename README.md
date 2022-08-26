@@ -18,7 +18,14 @@
 - up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
 - make commit with message `prepare VERSION_NUMBER`
 - run `node ./scripts/release.js`
-- go to https://chrome.google.com/webstore/devconsole and upload new version
+- go to https://github.com/Hurtak/hello/actions/ and download the release tag build artifacts `hello-src.zip` and `hello-build.zip`
+- Chrome
+  - go to https://chrome.google.com/webstore/devconsole
+  - upload new version `hello-build.zip`
+- Firefox
+  - go to https://addons.mozilla.org/en-US/developers/addon/hello-new-tab/versions/submit/
+  - and upload new version `hello-build.zip`
+  - `Do You Need to Submit Source Code` answer yes and upload `hello-src.zip`
 
 ## Random notes
 
