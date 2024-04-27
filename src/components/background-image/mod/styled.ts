@@ -31,5 +31,5 @@ export const Image = styled.div.attrs((props: ImageProps) => ({
       backgroundPosition: "center",
       transition: props.noAnimation ? "initial" : s.animation.backgroundImage,
       opacity: props.visible ? 1 : 0,
-    } as const),
+    }) as const,
 );

@@ -45,7 +45,7 @@ export const image = {
         return "LOCAL";
 
       case "BING":
-        return !state.browser.online ? "LOCAL" : "BING";
+        return state.browser.online ? "BING" : "LOCAL";
 
       default:
         return never(state.image.imageSource);

@@ -71,7 +71,7 @@ export const AppSettings = styled.div.attrs((props: AppSettingsProps) => ({
         width: s.size(s.dimensions.settingsWidth),
         maxWidth: "100%",
       }),
-    } as const),
+    }) as const,
 );
 
 export const AppSettingsInner = styled.div({
