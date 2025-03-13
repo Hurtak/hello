@@ -18,6 +18,7 @@
 - up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
 - make commit with message `prepare VERSION_NUMBER`
 - run `node ./scripts/release.js`
+- run `git push`
 - go to https://github.com/Hurtak/hello/actions/ and download the release tag build artifacts `hello-src.zip` and `hello-build.zip`
 - Chrome
   - go to https://chrome.google.com/webstore/devconsole
