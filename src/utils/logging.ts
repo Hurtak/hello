@@ -7,8 +7,7 @@ function formatMs(ms: number): string {
 }
 
 function getPerformanceTimeOrigin(): number {
-  // TODO: rename to match to function name
-  return window.GLOBAL_PERF_TIMESTAMP;
+  return performance.timeOrigin;
 }
 
 function gerPerformanceMessage(startTimestamp: number, endTimestamp: number, message: string) {

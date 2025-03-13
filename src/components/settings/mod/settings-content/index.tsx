@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { logTimestamp } from "../../../../utils/logging";
 import { SettingsCleanVersion } from "./mod/settings-clean-version";

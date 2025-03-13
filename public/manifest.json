@@ -12,9 +12,6 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "content_security_policy": {
-    "sandbox": "script-src 'self' 'unsafe-eval' 'sha256-7E6FJntvtaJ4ZqfHn2YBae4NRFQAcjvIA19UsZ2NqNA='; object-src 'self'"
-  },
   "permissions": [],
   "offline_enabled": true
 }
