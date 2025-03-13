@@ -16,6 +16,7 @@
 
 - check if `CHANGELOG.md` is properly filled and date is updated
 - up versions in `CHANGELOG.md`, `package.json` and `manifest.json`
+- run `npm i` to propagate the version into `package-lock.json`
 - make commit with message `prepare VERSION_NUMBER`
 - run `node ./scripts/release.js`
 - run `git push`

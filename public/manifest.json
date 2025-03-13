@@ -4,7 +4,7 @@
   "name": "Hello",
   "description": "New tab page with widgets and fresh image every day.",
   "author": "Petr Huřťák",
-  "version": "1.0.11",
+  "version": "1.0.12",
 
   "icons": {
     "128": "assets/logo-128.png"
@@ -13,5 +13,11 @@
     "newtab": "index.html"
   },
   "permissions": [],
-  "offline_enabled": true
+  "offline_enabled": true,
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{6c06aa5f-f56e-4bd6-bc8d-62d2c3e22457}"
+    }
+  }
 }
