@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.11] - 2025-03-13
 
 - Fix migration of manifest.json from version 2 to version 3
+- Remove dependencies
 
 ## [1.0.10] - 2024-04-27
 
